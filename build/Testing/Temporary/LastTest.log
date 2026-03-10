@@ -1,0 +1,30 @@
+Start testing: Mar 11 03:07 CST
+----------------------------------------------------------
+1/1 Testing: SanityTest.Basic
+1/1 Test: SanityTest.Basic
+Command: "/home/yun/design/high-concurrency-runtime/build/tests/runtime_unit_tests" "--gtest_filter=SanityTest.Basic" "--gtest_also_run_disabled_tests"
+Directory: /home/yun/design/high-concurrency-runtime/build/tests
+"SanityTest.Basic" start time: Mar 11 03:07 CST
+Output:
+----------------------------------------------------------
+Running main() from /home/yun/design/high-concurrency-runtime/build/_deps/googletest-src/googletest/src/gtest_main.cc
+Note: Google Test filter = SanityTest.Basic
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from SanityTest
+[ RUN      ] SanityTest.Basic
+[       OK ] SanityTest.Basic (0 ms)
+[----------] 1 test from SanityTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"SanityTest.Basic" end time: Mar 11 03:07 CST
+"SanityTest.Basic" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Mar 11 03:07 CST
