@@ -1,20 +1,20 @@
-Start testing: Mar 11 03:07 CST
+Start testing: Mar 17 08:31 CST
 ----------------------------------------------------------
-1/1 Testing: SanityTest.Basic
-1/1 Test: SanityTest.Basic
-Command: "/home/yun/design/high-concurrency-runtime/build/tests/runtime_unit_tests" "--gtest_filter=SanityTest.Basic" "--gtest_also_run_disabled_tests"
+3/3 Testing: ThreadPoolTest.ExecutesTasksAndReturnsFutureValues
+3/3 Test: ThreadPoolTest.ExecutesTasksAndReturnsFutureValues
+Command: "/home/yun/design/high-concurrency-runtime/build/tests/runtime_unit_tests" "--gtest_filter=ThreadPoolTest.ExecutesTasksAndReturnsFutureValues" "--gtest_also_run_disabled_tests"
 Directory: /home/yun/design/high-concurrency-runtime/build/tests
-"SanityTest.Basic" start time: Mar 11 03:07 CST
+"ThreadPoolTest.ExecutesTasksAndReturnsFutureValues" start time: Mar 17 08:31 CST
 Output:
 ----------------------------------------------------------
 Running main() from /home/yun/design/high-concurrency-runtime/build/_deps/googletest-src/googletest/src/gtest_main.cc
-Note: Google Test filter = SanityTest.Basic
+Note: Google Test filter = ThreadPoolTest.ExecutesTasksAndReturnsFutureValues
 [==========] Running 1 test from 1 test suite.
 [----------] Global test environment set-up.
-[----------] 1 test from SanityTest
-[ RUN      ] SanityTest.Basic
-[       OK ] SanityTest.Basic (0 ms)
-[----------] 1 test from SanityTest (0 ms total)
+[----------] 1 test from ThreadPoolTest
+[ RUN      ] ThreadPoolTest.ExecutesTasksAndReturnsFutureValues
+[       OK ] ThreadPoolTest.ExecutesTasksAndReturnsFutureValues (0 ms)
+[----------] 1 test from ThreadPoolTest (0 ms total)
 
 [----------] Global test environment tear-down
 [==========] 1 test from 1 test suite ran. (0 ms total)
@@ -23,8 +23,8 @@ Note: Google Test filter = SanityTest.Basic
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"SanityTest.Basic" end time: Mar 11 03:07 CST
-"SanityTest.Basic" time elapsed: 00:00:00
+"ThreadPoolTest.ExecutesTasksAndReturnsFutureValues" end time: Mar 17 08:31 CST
+"ThreadPoolTest.ExecutesTasksAndReturnsFutureValues" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-End testing: Mar 11 03:07 CST
+End testing: Mar 17 08:31 CST

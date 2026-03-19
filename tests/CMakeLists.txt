@@ -1,4 +1,7 @@
 include(FetchContent)
+include(GoogleTest)
+
+find_package(Threads REQUIRED)
 
 FetchContent_Declare(
     googletest
@@ -11,13 +14,15 @@ set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
 add_executable(runtime_unit_tests
+    ../src/task/thread_pool.cpp
     unit/test_sanity.cpp
+    unit/test_thread_pool.cpp
 )
 
 target_link_libraries(runtime_unit_tests
     PRIVATE
         GTest::gtest_main
+        Threads::Threads
 )
 
-include(GoogleTest)
 gtest_discover_tests(runtime_unit_tests)

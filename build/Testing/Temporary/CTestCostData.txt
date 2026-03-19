@@ -1,2 +1,4 @@
 SanityTest.Basic 1 0.00311813
+simple_logger_example_smoke 3 0.000972533
+ThreadPoolTest.ExecutesTasksAndReturnsFutureValues 1 0.00367789
 ---

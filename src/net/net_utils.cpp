@@ -12,7 +12,18 @@
 namespace runtime::net {
 
 namespace {
-    bool setFdFlag(int fd, int cmd_get, int cmd_set, int new_flag)
+
+    int CreateNonBlockingSocket()
+    {
+        // 创建套接字 (IPv4, TCP)
+        int fd = socket(AF_INET, SOCK_STREAM, 0);
+        if(fd < 0)
+        {
+            fprintf(stderr, "net_utils.cpp : CreateNonBlockingSocket failed.");
+            return -1;
+        }
+    }
+    bool setFdFlag(int fd, int cmd_get, int cmd_set, int new_flags)
     {
         int flags = ::fcntl(fd, cmd_get, 0);
         if(flags < 0)
@@ -20,7 +31,7 @@ namespace {
             return false;
         }
 
-        if(::fcntl(fd, cmd_set, flags | new_flag) < 0) {
+        if(::fcntl(fd, cmd_set, flags | new_flags) < 0) {
             return false;
         }
         return true;
