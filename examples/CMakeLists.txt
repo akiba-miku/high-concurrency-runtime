@@ -3,16 +3,24 @@
 # 如果后续你不想保留这个测试流程，只需要：
 # 1. 删除本文件里的 simple_logger_example 目标
 # 2. 或者在顶层 CMakeLists.txt 里去掉 add_subdirectory(examples)
+# 3. 未来最小 echo server 也建议继续放在本目录单独加 target
 
 add_executable(simple_logger_example
     simple_logger.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/../src/log/logger.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/../src/time/timestamp.cpp
 )
 
-target_include_directories(simple_logger_example
+target_link_libraries(simple_logger_example
     PRIVATE
-        ${CMAKE_CURRENT_SOURCE_DIR}/../include
+        runtime_foundation
+)
+
+add_executable(simple_echo_server
+    simple_echo_server.cpp
+)
+
+target_link_libraries(simple_echo_server
+    PRIVATE
+        runtime_net
 )
 
 # 把 example 挂进 CTest，便于直接通过 ctest 跑通日志 smoke test。

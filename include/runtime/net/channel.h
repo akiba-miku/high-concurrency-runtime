@@ -1,13 +1,15 @@
 #pragma once
 
 #include "runtime/base/noncopyable.h"
-#include "include/runtime/time/timestamp.h"
+#include "runtime/time/timestamp.h"
+
 #include <functional>
 #include <utility>
 #include <memory>
-class EventLoop;
 
 namespace runtime::net {
+
+class EventLoop ;
 /**
  * Channel -> 封装fd 和 感兴趣的event
  * 绑定了poller返回的具体事件
@@ -18,10 +20,11 @@ class Channel : public runtime::base::NonCopyable {
 public:
     using EventCallBack = std::function<void()> ;
     using ReadEventCallBack = std::function<void(runtime::time::Timestamp)> ;
+    
     explicit Channel(EventLoop *loop, int fd); 
     ~Channel();
 
-    // fd 得到poller通知以后，  处理事件的
+    // fd 得到poller通知以后，处理事件的
     void handleEvent(runtime::time::Timestamp receiveTime);
 
     // 设置回调对象
@@ -46,8 +49,7 @@ public:
     int fd() const { return fd_; }
     int events() const { return events_; }
     int revents() const { return revents_; }
-    int set_revents(int reve) { revents_ = reve; }
-    bool isNonEvents() const { return events_ == kNoneEvent; }
+    void set_revents(int revt) { revents_ = revt; }
 
     void enableReading() { events_ |= kReadEvent; update();}
     void disableReading() { events_ &= ~kReadEvent; update();}
@@ -56,7 +58,7 @@ public:
     void disableAll() { events_ = kNoneEvent; update(); }
 
     // 返回fd当前的事件状态
-    bool isNoneEvent() const { return events_ == kNoneEvent; }
+    bool isNonEvent() const { return events_ == kNoneEvent; }
     bool isWriting() const { return events_ & kWriteEvent; }
     bool isReading() const { return events_ & kReadEvent; }
 
@@ -67,13 +69,13 @@ public:
     EventLoop *ownerLoop() { return loop_; }
     void remove();
 private:
+    void update();
+    void handleEventWithGuard(runtime::time::Timestamp receiveTime);
+private:
     static const int kNoneEvent;
     static const int kReadEvent;
     static const int kWriteEvent;
 
-    void update();
-    void handleEventWithGuard(runtime::time::Timestamp receiveTime);
-private:
     EventLoop *loop_; // 属于哪个eventloop
     const int fd_; // channel 绑定的哪个文件符
     int events_; // 想监听的事件
@@ -88,4 +90,4 @@ private:
     EventCallBack errorCallBack_;
 };
 
-}
+}   // namespace runtime::net

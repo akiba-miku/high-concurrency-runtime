@@ -8,8 +8,64 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 option(BUILD_TESTS "Build tests" ON)
 option(BUILD_EXAMPLES "Build example programs" ON)
 
-# 头文件统一从 include/ 作为根目录引入，便于 examples 和 tests 复用。
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
+find_package(Threads REQUIRED)
+
+# 当前先把已经稳定的基础模块整理成可复用 target。
+# 网络主链还在持续实现中，后续 echo server 可以继续在 examples/ 下接入。
+add_library(runtime_foundation STATIC
+    src/base/current_thread.cpp
+    src/time/timestamp.cpp
+)
+
+target_include_directories(runtime_foundation
+    PUBLIC
+        ${CMAKE_CURRENT_SOURCE_DIR}/include
+)
+
+target_compile_features(runtime_foundation PUBLIC cxx_std_20)
+
+add_library(runtime_task STATIC
+    src/task/thread_pool.cpp
+)
+
+target_include_directories(runtime_task
+    PUBLIC
+        ${CMAKE_CURRENT_SOURCE_DIR}/include
+)
+
+target_link_libraries(runtime_task
+    PUBLIC
+        runtime_foundation
+        Threads::Threads
+)
+
+target_compile_features(runtime_task PUBLIC cxx_std_20)
+
+add_library(runtime_net STATIC
+    src/net/acceptor.cpp
+    src/net/channel.cpp
+    src/net/epoll_poller.cpp
+    src/net/event_loop.cpp
+    src/net/inet_address.cpp
+    src/net/net_utils.cpp
+    src/net/poller.cpp
+    src/net/socket.cpp
+    src/net/tcp_connection.cpp
+    src/net/tcp_server.cpp
+)
+
+target_include_directories(runtime_net
+    PUBLIC
+        ${CMAKE_CURRENT_SOURCE_DIR}/include
+)
+
+target_link_libraries(runtime_net
+    PUBLIC
+        runtime_foundation
+        Threads::Threads
+)
+
+target_compile_features(runtime_net PUBLIC cxx_std_20)
 
 if(BUILD_TESTS)
     enable_testing()

@@ -1,11 +1,11 @@
 #pragma once
 
 #include "poller.h"
-#include <vector>
-#include <sys/epoll.h>
-#include <net/socket.h>
-namespace runtime::net {
 
+#include <sys/epoll.h>
+#include <vector>
+
+namespace runtime::net {
 /**
  * epoll 的使用
  * epoll_create;
@@ -14,24 +14,23 @@ namespace runtime::net {
  */
 class EPollPoller : public Poller {
 public:
-    EPollPoller(EventLoop *loop);
+    explicit EPollPoller(EventLoop *loop);
     ~EPollPoller() override ;
 
     // 重写基类的抽象方法
-    runtime::time::Timestamp poll(int timesoutMs, ChannelList *activeChannels) override;
+    runtime::time::Timestamp poll(int timesout_ms, ChannelList *active_channels) override;
     void updateChannel(Channel *channel) override;
     void removeChannel(Channel *channel) override;
 private:
-    static const int kInitEventListSize = 16;
+    static constexpr int kInitEventListSize = 16;
     // 填写活跃的连接
-    void fillActiveChannels(int numEvents, ChannelList *activeChannels) const ;
+    void fillActiveChannels(int num_events, ChannelList *active_channels) const ;
     // 更新Channel通道
     void update(int operation, Channel *channel);
-
-    using EventList = std::vector<epoll_event> ;
     
     int epollfd_;
-    EventList events_;
+    std::vector<epoll_event> events_;
 };
 
-}
+}   // namespace runtime::net
+

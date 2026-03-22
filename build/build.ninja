@@ -35,17 +35,74 @@ include CMakeFiles/rules.ninja
 # Logical path to working directory; prefix for absolute paths.
 
 cmake_ninja_workdir = /home/yun/design/high-concurrency-runtime/build/
+# =============================================================================
+# Object build statements for STATIC_LIBRARY target runtime_foundation
+
 
 #############################################
-# Utility command for test
+# Order-only phony target for runtime_foundation
 
-build CMakeFiles/test.util: CUSTOM_COMMAND
-  COMMAND = cd /home/yun/design/high-concurrency-runtime/build && /usr/bin/ctest --force-new-ctest-process
-  DESC = Running tests...
-  pool = console
-  restat = 1
+build cmake_object_order_depends_target_runtime_foundation: phony || CMakeFiles/runtime_foundation.dir
 
-build test: phony CMakeFiles/test.util
+build CMakeFiles/runtime_foundation.dir/src/base/current_thread.cpp.o: CXX_COMPILER__runtime_foundation_ /home/yun/design/high-concurrency-runtime/src/base/current_thread.cpp || cmake_object_order_depends_target_runtime_foundation
+  DEP_FILE = CMakeFiles/runtime_foundation.dir/src/base/current_thread.cpp.o.d
+  FLAGS = -std=c++20
+  INCLUDES = -I/home/yun/design/high-concurrency-runtime/include
+  OBJECT_DIR = CMakeFiles/runtime_foundation.dir
+  OBJECT_FILE_DIR = CMakeFiles/runtime_foundation.dir/src/base
+
+build CMakeFiles/runtime_foundation.dir/src/time/timestamp.cpp.o: CXX_COMPILER__runtime_foundation_ /home/yun/design/high-concurrency-runtime/src/time/timestamp.cpp || cmake_object_order_depends_target_runtime_foundation
+  DEP_FILE = CMakeFiles/runtime_foundation.dir/src/time/timestamp.cpp.o.d
+  FLAGS = -std=c++20
+  INCLUDES = -I/home/yun/design/high-concurrency-runtime/include
+  OBJECT_DIR = CMakeFiles/runtime_foundation.dir
+  OBJECT_FILE_DIR = CMakeFiles/runtime_foundation.dir/src/time
+
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target runtime_foundation
+
+
+#############################################
+# Link the static library libruntime_foundation.a
+
+build libruntime_foundation.a: CXX_STATIC_LIBRARY_LINKER__runtime_foundation_ CMakeFiles/runtime_foundation.dir/src/base/current_thread.cpp.o CMakeFiles/runtime_foundation.dir/src/time/timestamp.cpp.o
+  OBJECT_DIR = CMakeFiles/runtime_foundation.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_FILE = libruntime_foundation.a
+  TARGET_PDB = runtime_foundation.a.dbg
+
+# =============================================================================
+# Object build statements for STATIC_LIBRARY target runtime_task
+
+
+#############################################
+# Order-only phony target for runtime_task
+
+build cmake_object_order_depends_target_runtime_task: phony || cmake_object_order_depends_target_runtime_foundation
+
+build CMakeFiles/runtime_task.dir/src/task/thread_pool.cpp.o: CXX_COMPILER__runtime_task_ /home/yun/design/high-concurrency-runtime/src/task/thread_pool.cpp || cmake_object_order_depends_target_runtime_task
+  DEP_FILE = CMakeFiles/runtime_task.dir/src/task/thread_pool.cpp.o.d
+  FLAGS = -std=c++20
+  INCLUDES = -I/home/yun/design/high-concurrency-runtime/include
+  OBJECT_DIR = CMakeFiles/runtime_task.dir
+  OBJECT_FILE_DIR = CMakeFiles/runtime_task.dir/src/task
+
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target runtime_task
+
+
+#############################################
+# Link the static library libruntime_task.a
+
+build libruntime_task.a: CXX_STATIC_LIBRARY_LINKER__runtime_task_ CMakeFiles/runtime_task.dir/src/task/thread_pool.cpp.o || libruntime_foundation.a
+  OBJECT_DIR = CMakeFiles/runtime_task.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_FILE = libruntime_task.a
+  TARGET_PDB = runtime_task.a.dbg
 
 
 #############################################
@@ -70,48 +127,6 @@ build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
 
 build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 
-
-#############################################
-# Utility command for list_install_components
-
-build list_install_components: phony
-
-
-#############################################
-# Utility command for install
-
-build CMakeFiles/install.util: CUSTOM_COMMAND all
-  COMMAND = cd /home/yun/design/high-concurrency-runtime/build && /usr/bin/cmake -P cmake_install.cmake
-  DESC = Install the project...
-  pool = console
-  restat = 1
-
-build install: phony CMakeFiles/install.util
-
-
-#############################################
-# Utility command for install/local
-
-build CMakeFiles/install/local.util: CUSTOM_COMMAND all
-  COMMAND = cd /home/yun/design/high-concurrency-runtime/build && /usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-  DESC = Installing only the local directory...
-  pool = console
-  restat = 1
-
-build install/local: phony CMakeFiles/install/local.util
-
-
-#############################################
-# Utility command for install/strip
-
-build CMakeFiles/install/strip.util: CUSTOM_COMMAND all
-  COMMAND = cd /home/yun/design/high-concurrency-runtime/build && /usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-  DESC = Installing the project stripped...
-  pool = console
-  restat = 1
-
-build install/strip: phony CMakeFiles/install/strip.util
-
 # =============================================================================
 # Write statements declared in CMakeLists.txt:
 # /home/yun/design/high-concurrency-runtime/CMakeLists.txt
@@ -124,28 +139,14 @@ build install/strip: phony CMakeFiles/install/strip.util
 #############################################
 # Order-only phony target for simple_logger_example
 
-build cmake_object_order_depends_target_simple_logger_example: phony || examples/CMakeFiles/simple_logger_example.dir
+build cmake_object_order_depends_target_simple_logger_example: phony || cmake_object_order_depends_target_runtime_foundation
 
 build examples/CMakeFiles/simple_logger_example.dir/simple_logger.cpp.o: CXX_COMPILER__simple_logger_example_ /home/yun/design/high-concurrency-runtime/examples/simple_logger.cpp || cmake_object_order_depends_target_simple_logger_example
   DEP_FILE = examples/CMakeFiles/simple_logger_example.dir/simple_logger.cpp.o.d
   FLAGS = -std=c++20
-  INCLUDES = -I/home/yun/design/high-concurrency-runtime/include -I/home/yun/design/high-concurrency-runtime/examples/../include
+  INCLUDES = -I/home/yun/design/high-concurrency-runtime/include
   OBJECT_DIR = examples/CMakeFiles/simple_logger_example.dir
   OBJECT_FILE_DIR = examples/CMakeFiles/simple_logger_example.dir
-
-build examples/CMakeFiles/simple_logger_example.dir/__/src/log/logger.cpp.o: CXX_COMPILER__simple_logger_example_ /home/yun/design/high-concurrency-runtime/src/log/logger.cpp || cmake_object_order_depends_target_simple_logger_example
-  DEP_FILE = examples/CMakeFiles/simple_logger_example.dir/__/src/log/logger.cpp.o.d
-  FLAGS = -std=c++20
-  INCLUDES = -I/home/yun/design/high-concurrency-runtime/include -I/home/yun/design/high-concurrency-runtime/examples/../include
-  OBJECT_DIR = examples/CMakeFiles/simple_logger_example.dir
-  OBJECT_FILE_DIR = examples/CMakeFiles/simple_logger_example.dir/__/src/log
-
-build examples/CMakeFiles/simple_logger_example.dir/__/src/time/timestamp.cpp.o: CXX_COMPILER__simple_logger_example_ /home/yun/design/high-concurrency-runtime/src/time/timestamp.cpp || cmake_object_order_depends_target_simple_logger_example
-  DEP_FILE = examples/CMakeFiles/simple_logger_example.dir/__/src/time/timestamp.cpp.o.d
-  FLAGS = -std=c++20
-  INCLUDES = -I/home/yun/design/high-concurrency-runtime/include -I/home/yun/design/high-concurrency-runtime/examples/../include
-  OBJECT_DIR = examples/CMakeFiles/simple_logger_example.dir
-  OBJECT_FILE_DIR = examples/CMakeFiles/simple_logger_example.dir/__/src/time
 
 
 # =============================================================================
@@ -155,24 +156,13 @@ build examples/CMakeFiles/simple_logger_example.dir/__/src/time/timestamp.cpp.o:
 #############################################
 # Link the executable examples/simple_logger_example
 
-build examples/simple_logger_example: CXX_EXECUTABLE_LINKER__simple_logger_example_ examples/CMakeFiles/simple_logger_example.dir/simple_logger.cpp.o examples/CMakeFiles/simple_logger_example.dir/__/src/log/logger.cpp.o examples/CMakeFiles/simple_logger_example.dir/__/src/time/timestamp.cpp.o
+build examples/simple_logger_example: CXX_EXECUTABLE_LINKER__simple_logger_example_ examples/CMakeFiles/simple_logger_example.dir/simple_logger.cpp.o | libruntime_foundation.a || libruntime_foundation.a
+  LINK_LIBRARIES = libruntime_foundation.a
   OBJECT_DIR = examples/CMakeFiles/simple_logger_example.dir
   POST_BUILD = :
   PRE_LINK = :
   TARGET_FILE = examples/simple_logger_example
   TARGET_PDB = simple_logger_example.dbg
-
-
-#############################################
-# Utility command for test
-
-build examples/CMakeFiles/test.util: CUSTOM_COMMAND
-  COMMAND = cd /home/yun/design/high-concurrency-runtime/build/examples && /usr/bin/ctest --force-new-ctest-process
-  DESC = Running tests...
-  pool = console
-  restat = 1
-
-build examples/test: phony examples/CMakeFiles/test.util
 
 
 #############################################
@@ -197,567 +187,12 @@ build examples/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
 
 build examples/rebuild_cache: phony examples/CMakeFiles/rebuild_cache.util
 
-
-#############################################
-# Utility command for list_install_components
-
-build examples/list_install_components: phony
-
-
-#############################################
-# Utility command for install
-
-build examples/CMakeFiles/install.util: CUSTOM_COMMAND examples/all
-  COMMAND = cd /home/yun/design/high-concurrency-runtime/build/examples && /usr/bin/cmake -P cmake_install.cmake
-  DESC = Install the project...
-  pool = console
-  restat = 1
-
-build examples/install: phony examples/CMakeFiles/install.util
-
-
-#############################################
-# Utility command for install/local
-
-build examples/CMakeFiles/install/local.util: CUSTOM_COMMAND examples/all
-  COMMAND = cd /home/yun/design/high-concurrency-runtime/build/examples && /usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-  DESC = Installing only the local directory...
-  pool = console
-  restat = 1
-
-build examples/install/local: phony examples/CMakeFiles/install/local.util
-
-
-#############################################
-# Utility command for install/strip
-
-build examples/CMakeFiles/install/strip.util: CUSTOM_COMMAND examples/all
-  COMMAND = cd /home/yun/design/high-concurrency-runtime/build/examples && /usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-  DESC = Installing the project stripped...
-  pool = console
-  restat = 1
-
-build examples/install/strip: phony examples/CMakeFiles/install/strip.util
-
-# =============================================================================
-# Write statements declared in CMakeLists.txt:
-# /home/yun/design/high-concurrency-runtime/CMakeLists.txt
-# =============================================================================
-
-# =============================================================================
-# Object build statements for EXECUTABLE target runtime_unit_tests
-
-
-#############################################
-# Order-only phony target for runtime_unit_tests
-
-build cmake_object_order_depends_target_runtime_unit_tests: phony || cmake_object_order_depends_target_gtest cmake_object_order_depends_target_gtest_main
-
-build tests/CMakeFiles/runtime_unit_tests.dir/__/src/task/thread_pool.cpp.o: CXX_COMPILER__runtime_unit_tests_ /home/yun/design/high-concurrency-runtime/src/task/thread_pool.cpp || cmake_object_order_depends_target_runtime_unit_tests
-  DEP_FILE = tests/CMakeFiles/runtime_unit_tests.dir/__/src/task/thread_pool.cpp.o.d
-  FLAGS = -std=c++20
-  INCLUDES = -I/home/yun/design/high-concurrency-runtime/include -isystem /home/yun/design/high-concurrency-runtime/build/_deps/googletest-src/googletest/include -isystem /home/yun/design/high-concurrency-runtime/build/_deps/googletest-src/googletest
-  OBJECT_DIR = tests/CMakeFiles/runtime_unit_tests.dir
-  OBJECT_FILE_DIR = tests/CMakeFiles/runtime_unit_tests.dir/__/src/task
-
-build tests/CMakeFiles/runtime_unit_tests.dir/unit/test_sanity.cpp.o: CXX_COMPILER__runtime_unit_tests_ /home/yun/design/high-concurrency-runtime/tests/unit/test_sanity.cpp || cmake_object_order_depends_target_runtime_unit_tests
-  DEP_FILE = tests/CMakeFiles/runtime_unit_tests.dir/unit/test_sanity.cpp.o.d
-  FLAGS = -std=c++20
-  INCLUDES = -I/home/yun/design/high-concurrency-runtime/include -isystem /home/yun/design/high-concurrency-runtime/build/_deps/googletest-src/googletest/include -isystem /home/yun/design/high-concurrency-runtime/build/_deps/googletest-src/googletest
-  OBJECT_DIR = tests/CMakeFiles/runtime_unit_tests.dir
-  OBJECT_FILE_DIR = tests/CMakeFiles/runtime_unit_tests.dir/unit
-
-build tests/CMakeFiles/runtime_unit_tests.dir/unit/test_thread_pool.cpp.o: CXX_COMPILER__runtime_unit_tests_ /home/yun/design/high-concurrency-runtime/tests/unit/test_thread_pool.cpp || cmake_object_order_depends_target_runtime_unit_tests
-  DEP_FILE = tests/CMakeFiles/runtime_unit_tests.dir/unit/test_thread_pool.cpp.o.d
-  FLAGS = -std=c++20
-  INCLUDES = -I/home/yun/design/high-concurrency-runtime/include -isystem /home/yun/design/high-concurrency-runtime/build/_deps/googletest-src/googletest/include -isystem /home/yun/design/high-concurrency-runtime/build/_deps/googletest-src/googletest
-  OBJECT_DIR = tests/CMakeFiles/runtime_unit_tests.dir
-  OBJECT_FILE_DIR = tests/CMakeFiles/runtime_unit_tests.dir/unit
-
-
-# =============================================================================
-# Link build statements for EXECUTABLE target runtime_unit_tests
-
-
-#############################################
-# Link the executable tests/runtime_unit_tests
-
-build tests/runtime_unit_tests tests/runtime_unit_tests[1]_tests.cmake | ${cmake_ninja_workdir}tests/runtime_unit_tests[1]_tests.cmake: CXX_EXECUTABLE_LINKER__runtime_unit_tests_ tests/CMakeFiles/runtime_unit_tests.dir/__/src/task/thread_pool.cpp.o tests/CMakeFiles/runtime_unit_tests.dir/unit/test_sanity.cpp.o tests/CMakeFiles/runtime_unit_tests.dir/unit/test_thread_pool.cpp.o | lib/libgtest_main.a lib/libgtest.a || lib/libgtest.a lib/libgtest_main.a
-  LINK_LIBRARIES = lib/libgtest_main.a  lib/libgtest.a
-  OBJECT_DIR = tests/CMakeFiles/runtime_unit_tests.dir
-  POST_BUILD = cd /home/yun/design/high-concurrency-runtime/build/tests && /usr/bin/cmake -D TEST_TARGET=runtime_unit_tests -D TEST_EXECUTABLE=/home/yun/design/high-concurrency-runtime/build/tests/runtime_unit_tests -D TEST_EXECUTOR= -D TEST_WORKING_DIR=/home/yun/design/high-concurrency-runtime/build/tests -D TEST_EXTRA_ARGS= -D TEST_PROPERTIES= -D TEST_PREFIX= -D TEST_SUFFIX= -D TEST_FILTER= -D NO_PRETTY_TYPES=FALSE -D NO_PRETTY_VALUES=FALSE -D TEST_LIST=runtime_unit_tests_TESTS -D CTEST_FILE=/home/yun/design/high-concurrency-runtime/build/tests/runtime_unit_tests[1]_tests.cmake -D TEST_DISCOVERY_TIMEOUT=5 -D TEST_XML_OUTPUT_DIR= -P /usr/share/cmake-3.25/Modules/GoogleTestAddTests.cmake
-  PRE_LINK = :
-  RESTAT = 1
-  TARGET_FILE = tests/runtime_unit_tests
-  TARGET_PDB = runtime_unit_tests.dbg
-
-
-#############################################
-# Utility command for test
-
-build tests/CMakeFiles/test.util: CUSTOM_COMMAND
-  COMMAND = cd /home/yun/design/high-concurrency-runtime/build/tests && /usr/bin/ctest --force-new-ctest-process
-  DESC = Running tests...
-  pool = console
-  restat = 1
-
-build tests/test: phony tests/CMakeFiles/test.util
-
-
-#############################################
-# Utility command for edit_cache
-
-build tests/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cd /home/yun/design/high-concurrency-runtime/build/tests && /usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-  DESC = No interactive CMake dialog available...
-  restat = 1
-
-build tests/edit_cache: phony tests/CMakeFiles/edit_cache.util
-
-
-#############################################
-# Utility command for rebuild_cache
-
-build tests/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = cd /home/yun/design/high-concurrency-runtime/build/tests && /usr/bin/cmake --regenerate-during-build -S/home/yun/design/high-concurrency-runtime -B/home/yun/design/high-concurrency-runtime/build
-  DESC = Running CMake to regenerate build system...
-  pool = console
-  restat = 1
-
-build tests/rebuild_cache: phony tests/CMakeFiles/rebuild_cache.util
-
-
-#############################################
-# Utility command for list_install_components
-
-build tests/list_install_components: phony
-
-
-#############################################
-# Utility command for install
-
-build tests/CMakeFiles/install.util: CUSTOM_COMMAND tests/all
-  COMMAND = cd /home/yun/design/high-concurrency-runtime/build/tests && /usr/bin/cmake -P cmake_install.cmake
-  DESC = Install the project...
-  pool = console
-  restat = 1
-
-build tests/install: phony tests/CMakeFiles/install.util
-
-
-#############################################
-# Utility command for install/local
-
-build tests/CMakeFiles/install/local.util: CUSTOM_COMMAND tests/all
-  COMMAND = cd /home/yun/design/high-concurrency-runtime/build/tests && /usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-  DESC = Installing only the local directory...
-  pool = console
-  restat = 1
-
-build tests/install/local: phony tests/CMakeFiles/install/local.util
-
-
-#############################################
-# Utility command for install/strip
-
-build tests/CMakeFiles/install/strip.util: CUSTOM_COMMAND tests/all
-  COMMAND = cd /home/yun/design/high-concurrency-runtime/build/tests && /usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-  DESC = Installing the project stripped...
-  pool = console
-  restat = 1
-
-build tests/install/strip: phony tests/CMakeFiles/install/strip.util
-
-# =============================================================================
-# Write statements declared in CMakeLists.txt:
-# /home/yun/design/high-concurrency-runtime/tests/CMakeLists.txt
-# =============================================================================
-
-
-#############################################
-# Utility command for test
-
-build _deps/googletest-build/CMakeFiles/test.util: CUSTOM_COMMAND
-  COMMAND = cd /home/yun/design/high-concurrency-runtime/build/_deps/googletest-build && /usr/bin/ctest --force-new-ctest-process
-  DESC = Running tests...
-  pool = console
-  restat = 1
-
-build _deps/googletest-build/test: phony _deps/googletest-build/CMakeFiles/test.util
-
-
-#############################################
-# Utility command for edit_cache
-
-build _deps/googletest-build/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cd /home/yun/design/high-concurrency-runtime/build/_deps/googletest-build && /usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-  DESC = No interactive CMake dialog available...
-  restat = 1
-
-build _deps/googletest-build/edit_cache: phony _deps/googletest-build/CMakeFiles/edit_cache.util
-
-
-#############################################
-# Utility command for rebuild_cache
-
-build _deps/googletest-build/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = cd /home/yun/design/high-concurrency-runtime/build/_deps/googletest-build && /usr/bin/cmake --regenerate-during-build -S/home/yun/design/high-concurrency-runtime -B/home/yun/design/high-concurrency-runtime/build
-  DESC = Running CMake to regenerate build system...
-  pool = console
-  restat = 1
-
-build _deps/googletest-build/rebuild_cache: phony _deps/googletest-build/CMakeFiles/rebuild_cache.util
-
-
-#############################################
-# Utility command for list_install_components
-
-build _deps/googletest-build/list_install_components: phony
-
-
-#############################################
-# Utility command for install
-
-build _deps/googletest-build/CMakeFiles/install.util: CUSTOM_COMMAND _deps/googletest-build/all
-  COMMAND = cd /home/yun/design/high-concurrency-runtime/build/_deps/googletest-build && /usr/bin/cmake -P cmake_install.cmake
-  DESC = Install the project...
-  pool = console
-  restat = 1
-
-build _deps/googletest-build/install: phony _deps/googletest-build/CMakeFiles/install.util
-
-
-#############################################
-# Utility command for install/local
-
-build _deps/googletest-build/CMakeFiles/install/local.util: CUSTOM_COMMAND _deps/googletest-build/all
-  COMMAND = cd /home/yun/design/high-concurrency-runtime/build/_deps/googletest-build && /usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-  DESC = Installing only the local directory...
-  pool = console
-  restat = 1
-
-build _deps/googletest-build/install/local: phony _deps/googletest-build/CMakeFiles/install/local.util
-
-
-#############################################
-# Utility command for install/strip
-
-build _deps/googletest-build/CMakeFiles/install/strip.util: CUSTOM_COMMAND _deps/googletest-build/all
-  COMMAND = cd /home/yun/design/high-concurrency-runtime/build/_deps/googletest-build && /usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-  DESC = Installing the project stripped...
-  pool = console
-  restat = 1
-
-build _deps/googletest-build/install/strip: phony _deps/googletest-build/CMakeFiles/install/strip.util
-
-# =============================================================================
-# Write statements declared in CMakeLists.txt:
-# /home/yun/design/high-concurrency-runtime/build/_deps/googletest-src/CMakeLists.txt
-# =============================================================================
-
-# =============================================================================
-# Object build statements for STATIC_LIBRARY target gmock
-
-
-#############################################
-# Order-only phony target for gmock
-
-build cmake_object_order_depends_target_gmock: phony || cmake_object_order_depends_target_gtest
-
-build _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.o: CXX_COMPILER__gmock_ /home/yun/design/high-concurrency-runtime/build/_deps/googletest-src/googlemock/src/gmock-all.cc || cmake_object_order_depends_target_gmock
-  DEP_FILE = _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.o.d
-  FLAGS = -Wall -Wshadow -Wundef -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -std=c++20
-  INCLUDES = -I/home/yun/design/high-concurrency-runtime/include -I/home/yun/design/high-concurrency-runtime/build/_deps/googletest-src/googlemock/include -I/home/yun/design/high-concurrency-runtime/build/_deps/googletest-src/googlemock -isystem /home/yun/design/high-concurrency-runtime/build/_deps/googletest-src/googletest/include -isystem /home/yun/design/high-concurrency-runtime/build/_deps/googletest-src/googletest
-  OBJECT_DIR = _deps/googletest-build/googlemock/CMakeFiles/gmock.dir
-  OBJECT_FILE_DIR = _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/src
-
-
-# =============================================================================
-# Link build statements for STATIC_LIBRARY target gmock
-
-
-#############################################
-# Link the static library lib/libgmock.a
-
-build lib/libgmock.a: CXX_STATIC_LIBRARY_LINKER__gmock_ _deps/googletest-build/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.o || lib/libgtest.a
-  OBJECT_DIR = _deps/googletest-build/googlemock/CMakeFiles/gmock.dir
-  POST_BUILD = :
-  PRE_LINK = :
-  TARGET_FILE = lib/libgmock.a
-  TARGET_PDB = gmock.a.dbg
-
-# =============================================================================
-# Object build statements for STATIC_LIBRARY target gmock_main
-
-
-#############################################
-# Order-only phony target for gmock_main
-
-build cmake_object_order_depends_target_gmock_main: phony || cmake_object_order_depends_target_gmock cmake_object_order_depends_target_gtest
-
-build _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/src/gmock_main.cc.o: CXX_COMPILER__gmock_main_ /home/yun/design/high-concurrency-runtime/build/_deps/googletest-src/googlemock/src/gmock_main.cc || cmake_object_order_depends_target_gmock_main
-  DEP_FILE = _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/src/gmock_main.cc.o.d
-  FLAGS = -Wall -Wshadow -Wundef -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -std=c++20
-  INCLUDES = -I/home/yun/design/high-concurrency-runtime/include -isystem /home/yun/design/high-concurrency-runtime/build/_deps/googletest-src/googlemock/include -isystem /home/yun/design/high-concurrency-runtime/build/_deps/googletest-src/googlemock -isystem /home/yun/design/high-concurrency-runtime/build/_deps/googletest-src/googletest/include -isystem /home/yun/design/high-concurrency-runtime/build/_deps/googletest-src/googletest
-  OBJECT_DIR = _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir
-  OBJECT_FILE_DIR = _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/src
-
-
-# =============================================================================
-# Link build statements for STATIC_LIBRARY target gmock_main
-
-
-#############################################
-# Link the static library lib/libgmock_main.a
-
-build lib/libgmock_main.a: CXX_STATIC_LIBRARY_LINKER__gmock_main_ _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir/src/gmock_main.cc.o || lib/libgmock.a lib/libgtest.a
-  OBJECT_DIR = _deps/googletest-build/googlemock/CMakeFiles/gmock_main.dir
-  POST_BUILD = :
-  PRE_LINK = :
-  TARGET_FILE = lib/libgmock_main.a
-  TARGET_PDB = gmock_main.a.dbg
-
-
-#############################################
-# Utility command for test
-
-build _deps/googletest-build/googlemock/CMakeFiles/test.util: CUSTOM_COMMAND
-  COMMAND = cd /home/yun/design/high-concurrency-runtime/build/_deps/googletest-build/googlemock && /usr/bin/ctest --force-new-ctest-process
-  DESC = Running tests...
-  pool = console
-  restat = 1
-
-build _deps/googletest-build/googlemock/test: phony _deps/googletest-build/googlemock/CMakeFiles/test.util
-
-
-#############################################
-# Utility command for edit_cache
-
-build _deps/googletest-build/googlemock/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cd /home/yun/design/high-concurrency-runtime/build/_deps/googletest-build/googlemock && /usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-  DESC = No interactive CMake dialog available...
-  restat = 1
-
-build _deps/googletest-build/googlemock/edit_cache: phony _deps/googletest-build/googlemock/CMakeFiles/edit_cache.util
-
-
-#############################################
-# Utility command for rebuild_cache
-
-build _deps/googletest-build/googlemock/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = cd /home/yun/design/high-concurrency-runtime/build/_deps/googletest-build/googlemock && /usr/bin/cmake --regenerate-during-build -S/home/yun/design/high-concurrency-runtime -B/home/yun/design/high-concurrency-runtime/build
-  DESC = Running CMake to regenerate build system...
-  pool = console
-  restat = 1
-
-build _deps/googletest-build/googlemock/rebuild_cache: phony _deps/googletest-build/googlemock/CMakeFiles/rebuild_cache.util
-
-
-#############################################
-# Utility command for list_install_components
-
-build _deps/googletest-build/googlemock/list_install_components: phony
-
-
-#############################################
-# Utility command for install
-
-build _deps/googletest-build/googlemock/CMakeFiles/install.util: CUSTOM_COMMAND _deps/googletest-build/googlemock/all
-  COMMAND = cd /home/yun/design/high-concurrency-runtime/build/_deps/googletest-build/googlemock && /usr/bin/cmake -P cmake_install.cmake
-  DESC = Install the project...
-  pool = console
-  restat = 1
-
-build _deps/googletest-build/googlemock/install: phony _deps/googletest-build/googlemock/CMakeFiles/install.util
-
-
-#############################################
-# Utility command for install/local
-
-build _deps/googletest-build/googlemock/CMakeFiles/install/local.util: CUSTOM_COMMAND _deps/googletest-build/googlemock/all
-  COMMAND = cd /home/yun/design/high-concurrency-runtime/build/_deps/googletest-build/googlemock && /usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-  DESC = Installing only the local directory...
-  pool = console
-  restat = 1
-
-build _deps/googletest-build/googlemock/install/local: phony _deps/googletest-build/googlemock/CMakeFiles/install/local.util
-
-
-#############################################
-# Utility command for install/strip
-
-build _deps/googletest-build/googlemock/CMakeFiles/install/strip.util: CUSTOM_COMMAND _deps/googletest-build/googlemock/all
-  COMMAND = cd /home/yun/design/high-concurrency-runtime/build/_deps/googletest-build/googlemock && /usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-  DESC = Installing the project stripped...
-  pool = console
-  restat = 1
-
-build _deps/googletest-build/googlemock/install/strip: phony _deps/googletest-build/googlemock/CMakeFiles/install/strip.util
-
-# =============================================================================
-# Write statements declared in CMakeLists.txt:
-# /home/yun/design/high-concurrency-runtime/build/_deps/googletest-src/googlemock/CMakeLists.txt
-# =============================================================================
-
-# =============================================================================
-# Object build statements for STATIC_LIBRARY target gtest
-
-
-#############################################
-# Order-only phony target for gtest
-
-build cmake_object_order_depends_target_gtest: phony || _deps/googletest-build/googletest/CMakeFiles/gtest.dir
-
-build _deps/googletest-build/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o: CXX_COMPILER__gtest_ /home/yun/design/high-concurrency-runtime/build/_deps/googletest-src/googletest/src/gtest-all.cc || cmake_object_order_depends_target_gtest
-  DEP_FILE = _deps/googletest-build/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o.d
-  FLAGS = -Wall -Wshadow -Wundef -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -std=c++20
-  INCLUDES = -I/home/yun/design/high-concurrency-runtime/include -I/home/yun/design/high-concurrency-runtime/build/_deps/googletest-src/googletest/include -I/home/yun/design/high-concurrency-runtime/build/_deps/googletest-src/googletest
-  OBJECT_DIR = _deps/googletest-build/googletest/CMakeFiles/gtest.dir
-  OBJECT_FILE_DIR = _deps/googletest-build/googletest/CMakeFiles/gtest.dir/src
-
-
-# =============================================================================
-# Link build statements for STATIC_LIBRARY target gtest
-
-
-#############################################
-# Link the static library lib/libgtest.a
-
-build lib/libgtest.a: CXX_STATIC_LIBRARY_LINKER__gtest_ _deps/googletest-build/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o
-  OBJECT_DIR = _deps/googletest-build/googletest/CMakeFiles/gtest.dir
-  POST_BUILD = :
-  PRE_LINK = :
-  TARGET_FILE = lib/libgtest.a
-  TARGET_PDB = gtest.a.dbg
-
-# =============================================================================
-# Object build statements for STATIC_LIBRARY target gtest_main
-
-
-#############################################
-# Order-only phony target for gtest_main
-
-build cmake_object_order_depends_target_gtest_main: phony || cmake_object_order_depends_target_gtest
-
-build _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o: CXX_COMPILER__gtest_main_ /home/yun/design/high-concurrency-runtime/build/_deps/googletest-src/googletest/src/gtest_main.cc || cmake_object_order_depends_target_gtest_main
-  DEP_FILE = _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o.d
-  FLAGS = -Wall -Wshadow -Wundef -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -std=c++20
-  INCLUDES = -I/home/yun/design/high-concurrency-runtime/include -isystem /home/yun/design/high-concurrency-runtime/build/_deps/googletest-src/googletest/include -isystem /home/yun/design/high-concurrency-runtime/build/_deps/googletest-src/googletest
-  OBJECT_DIR = _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir
-  OBJECT_FILE_DIR = _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/src
-
-
-# =============================================================================
-# Link build statements for STATIC_LIBRARY target gtest_main
-
-
-#############################################
-# Link the static library lib/libgtest_main.a
-
-build lib/libgtest_main.a: CXX_STATIC_LIBRARY_LINKER__gtest_main_ _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o || lib/libgtest.a
-  OBJECT_DIR = _deps/googletest-build/googletest/CMakeFiles/gtest_main.dir
-  POST_BUILD = :
-  PRE_LINK = :
-  TARGET_FILE = lib/libgtest_main.a
-  TARGET_PDB = gtest_main.a.dbg
-
-
-#############################################
-# Utility command for test
-
-build _deps/googletest-build/googletest/CMakeFiles/test.util: CUSTOM_COMMAND
-  COMMAND = cd /home/yun/design/high-concurrency-runtime/build/_deps/googletest-build/googletest && /usr/bin/ctest --force-new-ctest-process
-  DESC = Running tests...
-  pool = console
-  restat = 1
-
-build _deps/googletest-build/googletest/test: phony _deps/googletest-build/googletest/CMakeFiles/test.util
-
-
-#############################################
-# Utility command for edit_cache
-
-build _deps/googletest-build/googletest/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cd /home/yun/design/high-concurrency-runtime/build/_deps/googletest-build/googletest && /usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-  DESC = No interactive CMake dialog available...
-  restat = 1
-
-build _deps/googletest-build/googletest/edit_cache: phony _deps/googletest-build/googletest/CMakeFiles/edit_cache.util
-
-
-#############################################
-# Utility command for rebuild_cache
-
-build _deps/googletest-build/googletest/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = cd /home/yun/design/high-concurrency-runtime/build/_deps/googletest-build/googletest && /usr/bin/cmake --regenerate-during-build -S/home/yun/design/high-concurrency-runtime -B/home/yun/design/high-concurrency-runtime/build
-  DESC = Running CMake to regenerate build system...
-  pool = console
-  restat = 1
-
-build _deps/googletest-build/googletest/rebuild_cache: phony _deps/googletest-build/googletest/CMakeFiles/rebuild_cache.util
-
-
-#############################################
-# Utility command for list_install_components
-
-build _deps/googletest-build/googletest/list_install_components: phony
-
-
-#############################################
-# Utility command for install
-
-build _deps/googletest-build/googletest/CMakeFiles/install.util: CUSTOM_COMMAND _deps/googletest-build/googletest/all
-  COMMAND = cd /home/yun/design/high-concurrency-runtime/build/_deps/googletest-build/googletest && /usr/bin/cmake -P cmake_install.cmake
-  DESC = Install the project...
-  pool = console
-  restat = 1
-
-build _deps/googletest-build/googletest/install: phony _deps/googletest-build/googletest/CMakeFiles/install.util
-
-
-#############################################
-# Utility command for install/local
-
-build _deps/googletest-build/googletest/CMakeFiles/install/local.util: CUSTOM_COMMAND _deps/googletest-build/googletest/all
-  COMMAND = cd /home/yun/design/high-concurrency-runtime/build/_deps/googletest-build/googletest && /usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-  DESC = Installing only the local directory...
-  pool = console
-  restat = 1
-
-build _deps/googletest-build/googletest/install/local: phony _deps/googletest-build/googletest/CMakeFiles/install/local.util
-
-
-#############################################
-# Utility command for install/strip
-
-build _deps/googletest-build/googletest/CMakeFiles/install/strip.util: CUSTOM_COMMAND _deps/googletest-build/googletest/all
-  COMMAND = cd /home/yun/design/high-concurrency-runtime/build/_deps/googletest-build/googletest && /usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-  DESC = Installing the project stripped...
-  pool = console
-  restat = 1
-
-build _deps/googletest-build/googletest/install/strip: phony _deps/googletest-build/googletest/CMakeFiles/install/strip.util
-
 # =============================================================================
 # Target aliases.
 
-build gmock: phony lib/libgmock.a
+build runtime_foundation: phony libruntime_foundation.a
 
-build gmock_main: phony lib/libgmock_main.a
-
-build gtest: phony lib/libgtest.a
-
-build gtest_main: phony lib/libgtest_main.a
-
-build libgmock.a: phony lib/libgmock.a
-
-build libgmock_main.a: phony lib/libgmock_main.a
-
-build libgtest.a: phony lib/libgtest.a
-
-build libgtest_main.a: phony lib/libgtest_main.a
-
-build runtime_unit_tests: phony tests/runtime_unit_tests
+build runtime_task: phony libruntime_task.a
 
 build simple_logger_example: phony examples/simple_logger_example
 
@@ -769,28 +204,7 @@ build simple_logger_example: phony examples/simple_logger_example
 #############################################
 # Folder: /home/yun/design/high-concurrency-runtime/build
 
-build all: phony examples/all tests/all
-
-# =============================================================================
-
-#############################################
-# Folder: /home/yun/design/high-concurrency-runtime/build/_deps/googletest-build
-
-build _deps/googletest-build/all: phony _deps/googletest-build/googlemock/all
-
-# =============================================================================
-
-#############################################
-# Folder: /home/yun/design/high-concurrency-runtime/build/_deps/googletest-build/googlemock
-
-build _deps/googletest-build/googlemock/all: phony lib/libgmock.a lib/libgmock_main.a _deps/googletest-build/googletest/all
-
-# =============================================================================
-
-#############################################
-# Folder: /home/yun/design/high-concurrency-runtime/build/_deps/googletest-build/googletest
-
-build _deps/googletest-build/googletest/all: phony lib/libgtest.a lib/libgtest_main.a
+build all: phony libruntime_foundation.a libruntime_task.a examples/all
 
 # =============================================================================
 
@@ -800,27 +214,20 @@ build _deps/googletest-build/googletest/all: phony lib/libgtest.a lib/libgtest_m
 build examples/all: phony examples/simple_logger_example
 
 # =============================================================================
-
-#############################################
-# Folder: /home/yun/design/high-concurrency-runtime/build/tests
-
-build tests/all: phony tests/runtime_unit_tests _deps/googletest-build/all
-
-# =============================================================================
 # Built-in targets
 
 
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | /home/yun/design/high-concurrency-runtime/CMakeLists.txt /home/yun/design/high-concurrency-runtime/examples/CMakeLists.txt /home/yun/design/high-concurrency-runtime/tests/CMakeLists.txt /usr/share/cmake-3.25/Modules/BasicConfigVersion-AnyNewerVersion.cmake.in /usr/share/cmake-3.25/Modules/CMakeCInformation.cmake /usr/share/cmake-3.25/Modules/CMakeCXXInformation.cmake /usr/share/cmake-3.25/Modules/CMakeCommonLanguageInclude.cmake /usr/share/cmake-3.25/Modules/CMakeDependentOption.cmake /usr/share/cmake-3.25/Modules/CMakeGenericSystem.cmake /usr/share/cmake-3.25/Modules/CMakeInitializeConfigs.cmake /usr/share/cmake-3.25/Modules/CMakeLanguageInformation.cmake /usr/share/cmake-3.25/Modules/CMakePackageConfigHelpers.cmake /usr/share/cmake-3.25/Modules/CMakeSystemSpecificInformation.cmake /usr/share/cmake-3.25/Modules/CMakeSystemSpecificInitialize.cmake /usr/share/cmake-3.25/Modules/CheckCSourceCompiles.cmake /usr/share/cmake-3.25/Modules/CheckCXXSourceCompiles.cmake /usr/share/cmake-3.25/Modules/CheckIncludeFile.cmake /usr/share/cmake-3.25/Modules/CheckIncludeFileCXX.cmake /usr/share/cmake-3.25/Modules/CheckLibraryExists.cmake /usr/share/cmake-3.25/Modules/Compiler/CMakeCommonCompilerMacros.cmake /usr/share/cmake-3.25/Modules/Compiler/GNU-C.cmake /usr/share/cmake-3.25/Modules/Compiler/GNU-CXX.cmake /usr/share/cmake-3.25/Modules/Compiler/GNU.cmake /usr/share/cmake-3.25/Modules/FetchContent.cmake /usr/share/cmake-3.25/Modules/FetchContent/CMakeLists.cmake.in /usr/share/cmake-3.25/Modules/FindPackageHandleStandardArgs.cmake /usr/share/cmake-3.25/Modules/FindPackageMessage.cmake /usr/share/cmake-3.25/Modules/FindPython/Support.cmake /usr/share/cmake-3.25/Modules/FindPython3.cmake /usr/share/cmake-3.25/Modules/FindThreads.cmake /usr/share/cmake-3.25/Modules/GNUInstallDirs.cmake /usr/share/cmake-3.25/Modules/GoogleTest.cmake /usr/share/cmake-3.25/Modules/Internal/CheckSourceCompiles.cmake /usr/share/cmake-3.25/Modules/Platform/Linux-GNU-C.cmake /usr/share/cmake-3.25/Modules/Platform/Linux-GNU-CXX.cmake /usr/share/cmake-3.25/Modules/Platform/Linux-GNU.cmake /usr/share/cmake-3.25/Modules/Platform/Linux.cmake /usr/share/cmake-3.25/Modules/Platform/UnixPaths.cmake /usr/share/cmake-3.25/Modules/WriteBasicConfigVersionFile.cmake CMakeCache.txt CMakeFiles/3.25.1/CMakeCCompiler.cmake CMakeFiles/3.25.1/CMakeCXXCompiler.cmake CMakeFiles/3.25.1/CMakeSystem.cmake _deps/googletest-src/CMakeLists.txt _deps/googletest-src/googlemock/CMakeLists.txt _deps/googletest-src/googlemock/cmake/gmock.pc.in _deps/googletest-src/googlemock/cmake/gmock_main.pc.in _deps/googletest-src/googletest/CMakeLists.txt _deps/googletest-src/googletest/cmake/Config.cmake.in _deps/googletest-src/googletest/cmake/gtest.pc.in _deps/googletest-src/googletest/cmake/gtest_main.pc.in _deps/googletest-src/googletest/cmake/internal_utils.cmake
+build build.ninja: RERUN_CMAKE | /home/yun/design/high-concurrency-runtime/CMakeLists.txt /home/yun/design/high-concurrency-runtime/examples/CMakeLists.txt /usr/share/cmake-3.25/Modules/CMakeCXXInformation.cmake /usr/share/cmake-3.25/Modules/CMakeCommonLanguageInclude.cmake /usr/share/cmake-3.25/Modules/CMakeGenericSystem.cmake /usr/share/cmake-3.25/Modules/CMakeInitializeConfigs.cmake /usr/share/cmake-3.25/Modules/CMakeLanguageInformation.cmake /usr/share/cmake-3.25/Modules/CMakeSystemSpecificInformation.cmake /usr/share/cmake-3.25/Modules/CMakeSystemSpecificInitialize.cmake /usr/share/cmake-3.25/Modules/CheckCXXSourceCompiles.cmake /usr/share/cmake-3.25/Modules/CheckIncludeFileCXX.cmake /usr/share/cmake-3.25/Modules/CheckLibraryExists.cmake /usr/share/cmake-3.25/Modules/Compiler/CMakeCommonCompilerMacros.cmake /usr/share/cmake-3.25/Modules/Compiler/GNU-CXX.cmake /usr/share/cmake-3.25/Modules/Compiler/GNU.cmake /usr/share/cmake-3.25/Modules/FindPackageHandleStandardArgs.cmake /usr/share/cmake-3.25/Modules/FindPackageMessage.cmake /usr/share/cmake-3.25/Modules/FindThreads.cmake /usr/share/cmake-3.25/Modules/Internal/CheckSourceCompiles.cmake /usr/share/cmake-3.25/Modules/Platform/Linux-GNU-CXX.cmake /usr/share/cmake-3.25/Modules/Platform/Linux-GNU.cmake /usr/share/cmake-3.25/Modules/Platform/Linux.cmake /usr/share/cmake-3.25/Modules/Platform/UnixPaths.cmake CMakeCache.txt CMakeFiles/3.25.1/CMakeCXXCompiler.cmake CMakeFiles/3.25.1/CMakeSystem.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build /home/yun/design/high-concurrency-runtime/CMakeLists.txt /home/yun/design/high-concurrency-runtime/examples/CMakeLists.txt /home/yun/design/high-concurrency-runtime/tests/CMakeLists.txt /usr/share/cmake-3.25/Modules/BasicConfigVersion-AnyNewerVersion.cmake.in /usr/share/cmake-3.25/Modules/CMakeCInformation.cmake /usr/share/cmake-3.25/Modules/CMakeCXXInformation.cmake /usr/share/cmake-3.25/Modules/CMakeCommonLanguageInclude.cmake /usr/share/cmake-3.25/Modules/CMakeDependentOption.cmake /usr/share/cmake-3.25/Modules/CMakeGenericSystem.cmake /usr/share/cmake-3.25/Modules/CMakeInitializeConfigs.cmake /usr/share/cmake-3.25/Modules/CMakeLanguageInformation.cmake /usr/share/cmake-3.25/Modules/CMakePackageConfigHelpers.cmake /usr/share/cmake-3.25/Modules/CMakeSystemSpecificInformation.cmake /usr/share/cmake-3.25/Modules/CMakeSystemSpecificInitialize.cmake /usr/share/cmake-3.25/Modules/CheckCSourceCompiles.cmake /usr/share/cmake-3.25/Modules/CheckCXXSourceCompiles.cmake /usr/share/cmake-3.25/Modules/CheckIncludeFile.cmake /usr/share/cmake-3.25/Modules/CheckIncludeFileCXX.cmake /usr/share/cmake-3.25/Modules/CheckLibraryExists.cmake /usr/share/cmake-3.25/Modules/Compiler/CMakeCommonCompilerMacros.cmake /usr/share/cmake-3.25/Modules/Compiler/GNU-C.cmake /usr/share/cmake-3.25/Modules/Compiler/GNU-CXX.cmake /usr/share/cmake-3.25/Modules/Compiler/GNU.cmake /usr/share/cmake-3.25/Modules/FetchContent.cmake /usr/share/cmake-3.25/Modules/FetchContent/CMakeLists.cmake.in /usr/share/cmake-3.25/Modules/FindPackageHandleStandardArgs.cmake /usr/share/cmake-3.25/Modules/FindPackageMessage.cmake /usr/share/cmake-3.25/Modules/FindPython/Support.cmake /usr/share/cmake-3.25/Modules/FindPython3.cmake /usr/share/cmake-3.25/Modules/FindThreads.cmake /usr/share/cmake-3.25/Modules/GNUInstallDirs.cmake /usr/share/cmake-3.25/Modules/GoogleTest.cmake /usr/share/cmake-3.25/Modules/Internal/CheckSourceCompiles.cmake /usr/share/cmake-3.25/Modules/Platform/Linux-GNU-C.cmake /usr/share/cmake-3.25/Modules/Platform/Linux-GNU-CXX.cmake /usr/share/cmake-3.25/Modules/Platform/Linux-GNU.cmake /usr/share/cmake-3.25/Modules/Platform/Linux.cmake /usr/share/cmake-3.25/Modules/Platform/UnixPaths.cmake /usr/share/cmake-3.25/Modules/WriteBasicConfigVersionFile.cmake CMakeCache.txt CMakeFiles/3.25.1/CMakeCCompiler.cmake CMakeFiles/3.25.1/CMakeCXXCompiler.cmake CMakeFiles/3.25.1/CMakeSystem.cmake _deps/googletest-src/CMakeLists.txt _deps/googletest-src/googlemock/CMakeLists.txt _deps/googletest-src/googlemock/cmake/gmock.pc.in _deps/googletest-src/googlemock/cmake/gmock_main.pc.in _deps/googletest-src/googletest/CMakeLists.txt _deps/googletest-src/googletest/cmake/Config.cmake.in _deps/googletest-src/googletest/cmake/gtest.pc.in _deps/googletest-src/googletest/cmake/gtest_main.pc.in _deps/googletest-src/googletest/cmake/internal_utils.cmake: phony
+build /home/yun/design/high-concurrency-runtime/CMakeLists.txt /home/yun/design/high-concurrency-runtime/examples/CMakeLists.txt /usr/share/cmake-3.25/Modules/CMakeCXXInformation.cmake /usr/share/cmake-3.25/Modules/CMakeCommonLanguageInclude.cmake /usr/share/cmake-3.25/Modules/CMakeGenericSystem.cmake /usr/share/cmake-3.25/Modules/CMakeInitializeConfigs.cmake /usr/share/cmake-3.25/Modules/CMakeLanguageInformation.cmake /usr/share/cmake-3.25/Modules/CMakeSystemSpecificInformation.cmake /usr/share/cmake-3.25/Modules/CMakeSystemSpecificInitialize.cmake /usr/share/cmake-3.25/Modules/CheckCXXSourceCompiles.cmake /usr/share/cmake-3.25/Modules/CheckIncludeFileCXX.cmake /usr/share/cmake-3.25/Modules/CheckLibraryExists.cmake /usr/share/cmake-3.25/Modules/Compiler/CMakeCommonCompilerMacros.cmake /usr/share/cmake-3.25/Modules/Compiler/GNU-CXX.cmake /usr/share/cmake-3.25/Modules/Compiler/GNU.cmake /usr/share/cmake-3.25/Modules/FindPackageHandleStandardArgs.cmake /usr/share/cmake-3.25/Modules/FindPackageMessage.cmake /usr/share/cmake-3.25/Modules/FindThreads.cmake /usr/share/cmake-3.25/Modules/Internal/CheckSourceCompiles.cmake /usr/share/cmake-3.25/Modules/Platform/Linux-GNU-CXX.cmake /usr/share/cmake-3.25/Modules/Platform/Linux-GNU.cmake /usr/share/cmake-3.25/Modules/Platform/Linux.cmake /usr/share/cmake-3.25/Modules/Platform/UnixPaths.cmake CMakeCache.txt CMakeFiles/3.25.1/CMakeCXXCompiler.cmake CMakeFiles/3.25.1/CMakeSystem.cmake: phony
 
 
 #############################################

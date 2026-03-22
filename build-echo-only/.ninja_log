@@ -1,0 +1,18 @@
+# ninja log v5
+4337	5829	1774165608187845568	examples/CMakeFiles/simple_echo_server.dir/simple_echo_server.cpp.o	336f5d7ab9bf611b
+1540	3646	1774165605999871972	CMakeFiles/runtime_net.dir/src/net/epoll_poller.cpp.o	d52263fe8bed067a
+2481	3180	1774165605539877523	CMakeFiles/runtime_net.dir/src/net/net_utils.cpp.o	8060de48f99b6823
+1862	2481	1774165604839885970	CMakeFiles/runtime_net.dir/src/net/inet_address.cpp.o	2dec1b62b59f082d
+2	1862	1774165604219893452	CMakeFiles/runtime_net.dir/src/net/acceptor.cpp.o	3e6bac84b6ef633b
+3646	4288	1774165606647864152	CMakeFiles/runtime_net.dir/src/net/socket.cpp.o	1342c30fc6fe7114
+1847	3744	1774165606095870813	CMakeFiles/runtime_net.dir/src/net/event_loop.cpp.o	10613950e340c017
+55	1846	1774165604203893645	CMakeFiles/runtime_net.dir/src/net/channel.cpp.o	82dec7257437ee01
+3181	4337	1774165606695863573	CMakeFiles/runtime_net.dir/src/net/poller.cpp.o	19019274025351fd
+1450	1540	1774165603899897313	libruntime_foundation.a	b5152f83a6872793
+1	1449	1774165603807898423	CMakeFiles/runtime_foundation.dir/src/time/timestamp.cpp.o	17a6f2d8845a3a93
+4288	6044	1774165608403842962	CMakeFiles/runtime_net.dir/src/net/tcp_server.cpp.o	c9aaec282b2267af
+1	55	1774165602411915269	CMakeFiles/runtime_foundation.dir/src/base/current_thread.cpp.o	3b0f91d872327058
+2	1293	1774165666159145711	CMakeFiles/runtime_net.dir/src/net/tcp_server.cpp.o	c9aaec282b2267af
+2	831	1774165780777760652	CMakeFiles/runtime_net.dir/src/net/tcp_connection.cpp.o	4a3e20d714a182a6
+831	869	1774165780817760169	libruntime_net.a	3d53718ee2f37132
+869	932	1774165780877759443	examples/simple_echo_server	b19e7ccd3264c95f

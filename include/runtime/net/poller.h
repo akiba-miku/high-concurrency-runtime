@@ -2,21 +2,24 @@
 
 #include "runtime/base/noncopyable.h"
 #include "runtime/time/timestamp.h"
-#include <vector>
+
 #include <unordered_map>
-class Channel;
-class EventLoop;
+#include <vector>
+
 namespace runtime::net {
     
+class Channel;
+class EventLoop;
 // 多路事件分发器
 class Poller : public runtime::base::NonCopyable {
 public:
     using ChannelList = std::vector<Channel*>;
-    Poller(EventLoop *loop);
-    virtual ~Poller();
+
+    explicit Poller(EventLoop *loop);
+    virtual ~Poller() = default;
 
     // 给所有IO复用保留统一的接口
-    virtual runtime::time::Timestamp poll(int timeoutMs, ChannelList *activeChannels) = 0;
+    virtual runtime::time::Timestamp poll(int timeout_ms, ChannelList *active_channels) = 0;
     virtual void updateChannel(Channel *channel) = 0;
     virtual void removeChannel(Channel *channel) = 0;
 
@@ -34,4 +37,4 @@ private:
     EventLoop* ownerLoop_;
 };
 
-}
+}   // namespace runtime::net

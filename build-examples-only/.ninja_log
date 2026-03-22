@@ -1,0 +1,8 @@
+# ninja log v5
+0	59	1774165278795826527	CMakeFiles/runtime_foundation.dir/src/base/current_thread.cpp.o	3b0f91d872327058
+1	848	1774165279583816996	CMakeFiles/runtime_foundation.dir/src/time/timestamp.cpp.o	17a6f2d8845a3a93
+849	931	1774165279667815980	libruntime_foundation.a	b5152f83a6872793
+1136	1222	1774165279955812496	examples/simple_logger_example	91939f9ad2a6fc33
+59	1136	1774165279871813512	examples/CMakeFiles/simple_logger_example.dir/simple_logger.cpp.o	40f66c25e0abc5a7
+1	1509	1774165280243809012	CMakeFiles/runtime_task.dir/src/task/thread_pool.cpp.o	8007648560bfe1f3
+1509	1529	1774165280263808771	libruntime_task.a	a24e57ad0acae4f0

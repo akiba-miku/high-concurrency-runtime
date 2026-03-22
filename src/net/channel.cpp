@@ -1,6 +1,6 @@
-#include "include/runtime/net/channel.h"
-#include "include/runtime/log/logger.h"
-#include "include/runtime/log/log_formatter.h"
+#include "runtime/net/channel.h"
+#include "runtime/net/event_loop.h"
+
 #include <sys/epoll.h>
 
 namespace runtime::net {
@@ -14,14 +14,11 @@ Channel::Channel(EventLoop *loop, int fd)
     , fd_(fd)
     , events_(0)
     , index_(-1)
-    , tied_(false)
-    {}
+    , tied_(false) {}
 
-Channel::~Channel() {
-    
-}
+Channel::~Channel() = default;
 
-// Channel 的tie方法什么时候调用过...
+// 
 void Channel::tie(const std::shared_ptr<void> &obj) {
     tie_ = obj;
     tied_ = true;
@@ -33,18 +30,15 @@ void Channel::tie(const std::shared_ptr<void> &obj) {
  */
 void Channel::update() {
     // 通过Channel所属的eventloop, 调用poller的相应方法， 注册fd的events
-    // loop_->updateChannel(this);
-    // add code_;
+    loop_->updateChannel(this);
 }
 
 
 void Channel::remove() {
-    // add code_;
-    // loop_->removeChannel();
+    loop_->removeChannel(this);
 }
 
 void Channel::handleEvent(runtime::time::Timestamp receiveTime) {
-    std::shared_ptr<void> guard;
     if(tied_) {
         std::shared_ptr<void> guard = tie_.lock();
         if(guard) {
@@ -58,8 +52,6 @@ void Channel::handleEvent(runtime::time::Timestamp receiveTime) {
 
 
 void Channel::handleEventWithGuard(runtime::time::Timestamp receiveTime) {
-    LOG_INFO("channel handleEvent revents:%d\n", revents_);
-    
     if((revents_ & EPOLLHUP) && !(revents_ & EPOLLIN)) {
         if(closeCallBack_) {
             closeCallBack_();

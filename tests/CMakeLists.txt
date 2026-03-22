@@ -1,8 +1,6 @@
 include(FetchContent)
 include(GoogleTest)
 
-find_package(Threads REQUIRED)
-
 FetchContent_Declare(
     googletest
     URL https://github.com/google/googletest/archive/refs/tags/v1.14.0.zip
@@ -14,7 +12,6 @@ set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
 add_executable(runtime_unit_tests
-    ../src/task/thread_pool.cpp
     unit/test_sanity.cpp
     unit/test_thread_pool.cpp
 )
@@ -22,7 +19,7 @@ add_executable(runtime_unit_tests
 target_link_libraries(runtime_unit_tests
     PRIVATE
         GTest::gtest_main
-        Threads::Threads
+        runtime_task
 )
 
 gtest_discover_tests(runtime_unit_tests)
