@@ -11,8 +11,8 @@ namespace runtime::net {
 
 class EventLoop ;
 /**
- * Channel -> 封装fd 和 感兴趣的event
- * 绑定了poller返回的具体事件
+ * Channel -> fd的事件代理对象: 封装fd和感兴趣的事件
+ * Channel 是 事件解释器 + 回调分发器
  * 
  * fd + interested events + returned events + callbacks
  */
@@ -24,26 +24,15 @@ public:
     explicit Channel(EventLoop *loop, int fd); 
     ~Channel();
 
-    // fd 得到poller通知以后，处理事件的
     void handleEvent(runtime::time::Timestamp receiveTime);
 
     // 设置回调对象
-    void setReadCallBack(ReadEventCallBack&& cb) {
-        readCallBack_ = std::forward<ReadEventCallBack>(cb);
-    }
-    void setWriteCallBack(EventCallBack&& cb) {
-        writeCallBack_ = std::forward<EventCallBack>(cb);
-    }
+    void setReadCallBack(ReadEventCallBack&& cb) { readCallBack_ = std::forward<ReadEventCallBack>(cb); }
+    void setWriteCallBack(EventCallBack&& cb) { writeCallBack_ = std::forward<EventCallBack>(cb); }
+    void setCloseCallBack(EventCallBack&& cb) { closeCallBack_ = std::forward<EventCallBack>(cb); }
+    void setErrorCallBack(EventCallBack&& cb) { errorCallBack_ = std::forward<EventCallBack>(cb); }
 
-    void setCloseCallBack(EventCallBack&& cb) {
-        closeCallBack_ = std::forward<EventCallBack>(cb);
-    }
-
-    void setErrorCallBack(EventCallBack&& cb) {
-        errorCallBack_ = std::forward<EventCallBack>(cb);
-    }
-
-    // 防止Channel被手动remove掉， channel依旧执行回调操作
+    // 保护回调宿主对象的生命周期
     void tie(const std::shared_ptr<void>&) ;
 
     int fd() const { return fd_; }
@@ -63,15 +52,18 @@ public:
     bool isReading() const { return events_ & kReadEvent; }
 
     int index() {return index_;}
+    //Poller返回活跃事件->设置Channel的方法
     void set_index(int idx) { index_ = idx; }
 
     // one loop per thread
     EventLoop *ownerLoop() { return loop_; }
     void remove();
 private:
+    // 关心的事件变化同步给底层
     void update();
     void handleEventWithGuard(runtime::time::Timestamp receiveTime);
 private:
+    //定义 "read/write/None" 常量
     static const int kNoneEvent;
     static const int kReadEvent;
     static const int kWriteEvent;
@@ -81,7 +73,8 @@ private:
     int events_; // 想监听的事件
     int revents_; // 实际发生的事件
     int index_;
-    std::weak_ptr<void> tie_;
+
+    std::weak_ptr<void> tie_; // Channel 与宿主对象生命周期关联
     bool tied_;
     
     ReadEventCallBack readCallBack_;

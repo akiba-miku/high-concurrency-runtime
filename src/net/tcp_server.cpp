@@ -13,8 +13,10 @@ TcpServer::TcpServer(
     : loop_(loop),
       name_(name),
       acceptor_(std::make_unique<Acceptor>(loop, listenaddr, true)),
+      thread_pool_(std::make_unique<EventLoopThreadPool>(loop,0)),
       started_(false),
-      next_conn_id_(1) {
+      next_conn_id_(1),
+      thread_num_(0) {
 
     acceptor_->setNewConnectionCallBack(
         [this](int sockfd, const InetAddress &peeraddr) {
@@ -33,6 +35,9 @@ TcpServer::~TcpServer() {
 void TcpServer::start() {
     if(!started_) {
         started_ = true;
+
+        thread_pool_ = std::make_unique<EventLoopThreadPool>(loop_, thread_num_);
+        thread_pool_->start();
         loop_->runInLoop([this]{
             acceptor_->listen();
         });
@@ -40,6 +45,8 @@ void TcpServer::start() {
 }
 
 void TcpServer::newConnection(int sockfd, const InetAddress &peeraddr) {
+    EventLoop *ioLoop = thread_pool_->getNextLoop();
+
     char buf[64];
     std::snprintf(buf, sizeof(buf), "#%d", next_conn_id_);
     ++next_conn_id_;
@@ -49,7 +56,7 @@ void TcpServer::newConnection(int sockfd, const InetAddress &peeraddr) {
     InetAddress localaddr(GetLocalAddr(sockfd));
 
     TcpConnectionPtr conn = std::make_shared<TcpConnection>(
-        loop_,
+        ioLoop,
         conn_name,
         sockfd,
         localaddr,
@@ -65,7 +72,9 @@ void TcpServer::newConnection(int sockfd, const InetAddress &peeraddr) {
         removeConnection(connection);
     });
 
-    conn->connectEstablished();
+    ioLoop->runInLoop([conn] {
+        conn->connectEstablished();
+    });
 }
 
 void TcpServer::removeConnection(const TcpConnectionPtr &conn) {
@@ -76,7 +85,11 @@ void TcpServer::removeConnection(const TcpConnectionPtr &conn) {
 
 void TcpServer::removeConnectionInLoop(const TcpConnectionPtr &conn) {
     connections_.erase(conn->name());
-    conn->connectDestroyed();
+
+    EventLoop *ioLoop = conn->getLoop();
+    ioLoop->queueInLoop([conn] {
+        conn->connectDestroyed();
+    });
 }
 
 }   // namespace runtime::net

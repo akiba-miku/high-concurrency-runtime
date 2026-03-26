@@ -12,7 +12,7 @@ class EventLoop;
 class InetAddress;
 
 /**
- * acceptor 类 监听端口 + accept新连接
+ * acceptor 类 监听端口+accept新连接
  */
 class Acceptor : public runtime::base::NonCopyable {
 public:
