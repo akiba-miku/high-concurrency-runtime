@@ -20,13 +20,13 @@ class TcpConnection
 public:
         using TcpConnectionPtr = std::shared_ptr<TcpConnection>;
 
-        using ConnectionCallBack = std::function<void(const TcpConnectionPtr&)>;
-        using MessageCallBack = std::function<void(
+        using ConnectionCallback = std::function<void(const TcpConnectionPtr&)>;
+        using MessageCallback = std::function<void(
             const TcpConnectionPtr&,
             const std::string&,
             runtime::time::Timestamp)>;
-        using CloseCallBack = std::function<void(const TcpConnectionPtr&)>;
-        using WriteCompleteCallBack = std::function<void(const TcpConnectionPtr&)>;
+        using CloseCallback = std::function<void(const TcpConnectionPtr&)>;
+        using WriteCompleteCallback = std::function<void(const TcpConnectionPtr&)>;
 
         TcpConnection(
             EventLoop *loop,
@@ -37,35 +37,35 @@ public:
         
         ~TcpConnection();
 
-        EventLoop *getLoop() const { return loop_; }
-        const std::string &name() const { return name_; }
+        EventLoop *GetLoop() const { return loop_; }
+        const std::string &Name() const { return name_; }
 
-        const InetAddress &localAddress() const { return local_addr_; }
-        const InetAddress &peerAddress() const { return peer_addr_; }
+        const InetAddress &LocalAddress() const { return local_addr_; }
+        const InetAddress &PeerAddress() const { return peer_addr_; }
 
-        bool connected() const { return state_ == StateE::kConnected; }
+        bool Connected() const { return state_ == StateE::kConnected; }
 
-        void send(const std::string &message);
-        void shutdown();
+        void Send(const std::string &message);
+        void Shutdown();
 
-        void setConnectionCallBack(const ConnectionCallBack &cb) {
+        void SetConnectionCallback(const ConnectionCallback &cb) {
             connection_callback_ = cb;
         }
 
-        void setMessageCallBack(const MessageCallBack &cb) {
+        void SetMessageCallback(const MessageCallback &cb) {
             message_callback_ = cb;
         }
 
-        void setCloseCallBack(const CloseCallBack &cb) {
+        void SetCloseCallback(const CloseCallback &cb) {
             close_callback_ = cb;
         }
 
-        void setWriteCompleteCallBack(const WriteCompleteCallBack &cb) {
+        void SetWriteCompleteCallback(const WriteCompleteCallback &cb) {
             write_complete_callback_ = cb;
         }
 
-        void connectEstablished();
-        void connectDestroyed();
+        void ConnectEstablished();
+        void ConnectDestroyed();
 
 private:
       enum class StateE {
@@ -75,15 +75,15 @@ private:
         kDisconnecting
       };
 
-      void setState(StateE state) { state_ = state; }
+      void SetState(StateE state) { state_ = state; }
 
-      void handleRead(runtime::time::Timestamp receive_time);
-      void handleWrite();
-      void handleClose();
-      void handleError();
+      void HandleRead(runtime::time::Timestamp receive_time);
+      void HandleWrite();
+      void HandleClose();
+      void HandleError();
 
-      void sendInLoop(const std::string &message);
-      void shutdownInLoop();
+      void SendInLoop(const std::string &message);
+      void ShutdownInLoop();
 
 private:
       EventLoop *loop_;
@@ -98,10 +98,10 @@ private:
 
       std::string output_buffer_;
 
-      ConnectionCallBack connection_callback_;
-      MessageCallBack message_callback_;
-      CloseCallBack close_callback_;
-      WriteCompleteCallBack write_complete_callback_;
+      ConnectionCallback connection_callback_;
+      MessageCallback message_callback_;
+      CloseCallback close_callback_;
+      WriteCompleteCallback write_complete_callback_;
 };
 
 }   // namespace rumtime::net

@@ -16,9 +16,9 @@ class EventLoop;
  *  EventLoop
  *      |__->Poller
  *             |_>channels_ // 管理哪些Channel？
- *             |_>poll(）   // 去问内核: 谁活跃
- *             |_>updateChannel() // 某个Channel的关注事件变了，去更新
- *             |_>remove Channel() // 某个Channel 不玩了，别监视了 删。
+ *             |_>Poll()   // 去问内核: 谁活跃
+ *             |_>UpdateChannel() // 某个Channel的关注事件变了，去更新
+ *             |_>RemoveChannel() // 某个Channel 不玩了，别监视了 删。
  */
 class Poller : public runtime::base::NonCopyable {
 public:
@@ -29,16 +29,16 @@ public:
     virtual ~Poller() = default;
 
     // 给所有IO复用保留统一的接口 纯虚函数和抽象基类
-    virtual runtime::time::Timestamp poll(int timeout_ms, ChannelList *active_channels) = 0;
-    virtual void updateChannel(Channel *channel) = 0;
-    virtual void removeChannel(Channel *channel) = 0;
+    virtual runtime::time::Timestamp Poll(int timeout_ms, ChannelList *active_channels) = 0;
+    virtual void UpdateChannel(Channel *channel) = 0;
+    virtual void RemoveChannel(Channel *channel) = 0;
 
     // 判断参数Channel在当前Poller当中
-    bool hasChannel(Channel *channel) const;
+    bool HasChannel(Channel *channel) const;
 
     // EventLoop通过该接口获取默认的IO复用的具体实现
     // 工厂模式: Poller决定在当前平台上创建具体实现
-    static Poller* newDefaultPoller(EventLoop *loop);
+    static Poller* NewDefaultPoller(EventLoop *loop);
 
 protected:
     // key: fd -> value: Channel

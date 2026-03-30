@@ -26,7 +26,7 @@ Channel::~Channel() = default;
 
 // 避免use-after-free
 // 使用weak_ptr 观察宿主对象的生命周期
-void Channel::tie(const std::shared_ptr<void> &obj) {
+void Channel::Tie(const std::shared_ptr<void> &obj) {
     tie_ = obj;
     tied_ = true;
 }
@@ -35,53 +35,53 @@ void Channel::tie(const std::shared_ptr<void> &obj) {
  * 改变Channel所表示的fd的Events事件后， update负责在Poller
  * 在更改fd相应的事件epoll_ctl
  */
-void Channel::update() {
+void Channel::Update() {
     // 通过Channel所属的eventloop, 调用poller的相应方法，注册fd的events
-    loop_->updateChannel(this);
+    loop_->UpdateChannel(this);
 }
 
 // 从EventLoop中删除Channel， 本质删除不再关心fd的事件代理。
-void Channel::remove() {
-    loop_->removeChannel(this);
+void Channel::Remove() {
+    loop_->RemoveChannel(this);
 }
 
 // handleEvent负责判断要不要生命周期保护
-void Channel::handleEvent(runtime::time::Timestamp receiveTime) {
+void Channel::HandleEvent(runtime::time::Timestamp receive_time) {
     if(tied_) {
         std::shared_ptr<void> guard = tie_.lock();
         if(guard) {
-            handleEventWithGuard(receiveTime);
+            HandleEventWithGuard(receive_time);
         }
     }
     else {
-        handleEventWithGuard(receiveTime);
+        HandleEventWithGuard(receive_time);
     }
 }
 
 // 真正执行
-void Channel::handleEventWithGuard(runtime::time::Timestamp receiveTime) {
+void Channel::HandleEventWithGuard(runtime::time::Timestamp receive_time) {
     // 对端关闭 + 缓冲区数据判断
     if((revents_ & EPOLLHUP) && !(revents_ & EPOLLIN)) {
-        if(closeCallBack_) {
-            closeCallBack_();
+        if(close_callback_) {
+            close_callback_();
         }
     }
     // EPOLLERR: 错误状态
     if((revents_ & EPOLLERR)) {
-        if(errorCallBack_) {
-            errorCallBack_();
+        if(error_callback_) {
+            error_callback_();
         }
     }
 
     if(revents_ & (EPOLLIN | EPOLLPRI)) {
-        if(readCallBack_) {
-            readCallBack_(receiveTime);
+        if(read_callback_) {
+            read_callback_(receive_time);
         }
     }
 
     if(revents_ & (EPOLLOUT)) {
-        if(writeCallBack_) {
-            writeCallBack_();
+        if(write_callback_) {
+            write_callback_();
         }
     }
 }

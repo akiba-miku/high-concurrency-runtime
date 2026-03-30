@@ -16,13 +16,13 @@ EventLoopThreadPool::EventLoopThreadPool(EventLoop *base_loop, int num_threads)
 
 EventLoopThreadPool::~EventLoopThreadPool() = default;
 
-void EventLoopThreadPool::start(const ThreadInitCallBack &cb) {
+void EventLoopThreadPool::Start(const ThreadInitCallback &cb) {
     assert(!started_);
     started_ = true;
 
     for(int i = 0; i < num_threads_; ++i) {
         auto thread = std::make_unique<EventLoopThread>(cb);
-        EventLoop *loop = thread->startLoop();
+        EventLoop *loop = thread->StartLoop();
         threads_.push_back(std::move(thread));
         loops_.push_back(loop);
     }
@@ -32,7 +32,7 @@ void EventLoopThreadPool::start(const ThreadInitCallBack &cb) {
     }
 }
 
-EventLoop *EventLoopThreadPool::getNextLoop() {
+EventLoop *EventLoopThreadPool::GetNextLoop() {
     assert(started_);
 
     EventLoop *loop = base_loop_;
@@ -47,7 +47,7 @@ EventLoop *EventLoopThreadPool::getNextLoop() {
     return loop;
 }
 
-std::vector<EventLoop*> EventLoopThreadPool::getAllLoops() const {
+std::vector<EventLoop*> EventLoopThreadPool::GetAllLoops() const {
     if(loops_.empty()){
         return std::vector<EventLoop*>(1, base_loop_);
     }

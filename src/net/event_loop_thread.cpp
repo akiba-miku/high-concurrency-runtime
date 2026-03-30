@@ -6,7 +6,7 @@
 
 namespace runtime::net {
 
-EventLoopThread::EventLoopThread(const ThreadInitCallBack &cb)
+EventLoopThread::EventLoopThread(const ThreadInitCallback &cb)
     : loop_(nullptr),
       exiting_(false),
       callback_(cb) {}
@@ -14,15 +14,15 @@ EventLoopThread::EventLoopThread(const ThreadInitCallBack &cb)
 EventLoopThread::~EventLoopThread() {
     exiting_ = true;
     if(loop_ != nullptr) {
-        loop_->quit();
+        loop_->Quit();
         if(thread_.joinable()) {
             thread_.join();
         }
     }
 }
 
-EventLoop *EventLoopThread::startLoop() {
-    thread_ = std::thread(&EventLoopThread::threadFunc, this);
+EventLoop *EventLoopThread::StartLoop() {
+    thread_ = std::thread(&EventLoopThread::ThreadFunc, this);
 
     EventLoop *loop = nullptr;
     {
@@ -35,7 +35,7 @@ EventLoop *EventLoopThread::startLoop() {
     return loop;
 }
 
-void EventLoopThread::threadFunc() {
+void EventLoopThread::ThreadFunc() {
     EventLoop loop;
 
     if(callback_) {
@@ -48,7 +48,7 @@ void EventLoopThread::threadFunc() {
         cond_.notify_one();
     }
 
-    loop.loop();
+    loop.Loop();
 
     {
         std::lock_guard<std::mutex> lock(mutex_);

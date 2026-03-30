@@ -18,50 +18,50 @@ class EventLoop ;
  */
 class Channel : public runtime::base::NonCopyable {
 public:
-    using EventCallBack = std::function<void()> ;
-    using ReadEventCallBack = std::function<void(runtime::time::Timestamp)> ;
+    using EventCallback = std::function<void()>;
+    using ReadEventCallback = std::function<void(runtime::time::Timestamp)>;
     
     explicit Channel(EventLoop *loop, int fd); 
     ~Channel();
 
-    void handleEvent(runtime::time::Timestamp receiveTime);
+    void HandleEvent(runtime::time::Timestamp receive_time);
 
     // 设置回调对象
-    void setReadCallBack(ReadEventCallBack&& cb) { readCallBack_ = std::forward<ReadEventCallBack>(cb); }
-    void setWriteCallBack(EventCallBack&& cb) { writeCallBack_ = std::forward<EventCallBack>(cb); }
-    void setCloseCallBack(EventCallBack&& cb) { closeCallBack_ = std::forward<EventCallBack>(cb); }
-    void setErrorCallBack(EventCallBack&& cb) { errorCallBack_ = std::forward<EventCallBack>(cb); }
+    void SetReadCallback(ReadEventCallback&& cb) { read_callback_ = std::forward<ReadEventCallback>(cb); }
+    void SetWriteCallback(EventCallback&& cb) { write_callback_ = std::forward<EventCallback>(cb); }
+    void SetCloseCallback(EventCallback&& cb) { close_callback_ = std::forward<EventCallback>(cb); }
+    void SetErrorCallback(EventCallback&& cb) { error_callback_ = std::forward<EventCallback>(cb); }
 
     // 保护回调宿主对象的生命周期
-    void tie(const std::shared_ptr<void>&) ;
+    void Tie(const std::shared_ptr<void>&);
 
-    int fd() const { return fd_; }
-    int events() const { return events_; }
-    int revents() const { return revents_; }
-    void set_revents(int revt) { revents_ = revt; }
+    int Fd() const { return fd_; }
+    int Events() const { return events_; }
+    int Revents() const { return revents_; }
+    void SetRevents(int revt) { revents_ = revt; }
 
-    void enableReading() { events_ |= kReadEvent; update();}
-    void disableReading() { events_ &= ~kReadEvent; update();}
-    void enableWriting() { events_ |= kWriteEvent; update(); }
-    void disableWriting() { events_ &= ~kWriteEvent; update(); }
-    void disableAll() { events_ = kNoneEvent; update(); }
+    void EnableReading() { events_ |= kReadEvent; Update(); }
+    void DisableReading() { events_ &= ~kReadEvent; Update(); }
+    void EnableWriting() { events_ |= kWriteEvent; Update(); }
+    void DisableWriting() { events_ &= ~kWriteEvent; Update(); }
+    void DisableAll() { events_ = kNoneEvent; Update(); }
 
     // 返回fd当前的事件状态
-    bool isNonEvent() const { return events_ == kNoneEvent; }
-    bool isWriting() const { return events_ & kWriteEvent; }
-    bool isReading() const { return events_ & kReadEvent; }
+    bool IsNoneEvent() const { return events_ == kNoneEvent; }
+    bool IsWriting() const { return events_ & kWriteEvent; }
+    bool IsReading() const { return events_ & kReadEvent; }
 
-    int index() {return index_;}
+    int Index() const { return index_; }
     //Poller返回活跃事件->设置Channel的方法
-    void set_index(int idx) { index_ = idx; }
+    void SetIndex(int idx) { index_ = idx; }
 
     // one loop per thread
-    EventLoop *ownerLoop() { return loop_; }
-    void remove();
+    EventLoop *OwnerLoop() { return loop_; }
+    void Remove();
 private:
     // 关心的事件变化同步给底层
-    void update();
-    void handleEventWithGuard(runtime::time::Timestamp receiveTime);
+    void Update();
+    void HandleEventWithGuard(runtime::time::Timestamp receive_time);
 private:
     //定义 "read/write/None" 常量
     static const int kNoneEvent;
@@ -77,10 +77,10 @@ private:
     std::weak_ptr<void> tie_; // Channel 与宿主对象生命周期关联
     bool tied_;
     
-    ReadEventCallBack readCallBack_;
-    EventCallBack writeCallBack_;
-    EventCallBack closeCallBack_;
-    EventCallBack errorCallBack_;
+    ReadEventCallback read_callback_;
+    EventCallback write_callback_;
+    EventCallback close_callback_;
+    EventCallback error_callback_;
 };
 
 }   // namespace runtime::net

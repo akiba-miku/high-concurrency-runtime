@@ -12,18 +12,18 @@ class EventLoop;
 
 class EventLoopThreadPool : public runtime::base::NonCopyable {
 public:
-    using ThreadInitCallBack = EventLoopThread::ThreadInitCallBack;
+    using ThreadInitCallback = EventLoopThread::ThreadInitCallback;
 
     EventLoopThreadPool(EventLoop *base_loop, int num_threads);
 
     ~EventLoopThreadPool();
 
-    void start(const ThreadInitCallBack &cb = ThreadInitCallBack());
+    void Start(const ThreadInitCallback &cb = ThreadInitCallback());
 
-    EventLoop *getNextLoop();
-    std::vector<EventLoop*> getAllLoops() const;
+    EventLoop *GetNextLoop();
+    std::vector<EventLoop*> GetAllLoops() const;
 
-    bool started() const { return started_; }
+    bool Started() const { return started_; }
 private:
 
     EventLoop *base_loop_;

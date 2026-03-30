@@ -13,23 +13,23 @@ class EventLoop;
 
 class EventLoopThread : public runtime::base::NonCopyable {
 public:
-    using ThreadInitCallBack = std::function<void(EventLoop*)>;
+    using ThreadInitCallback = std::function<void(EventLoop*)>;
 
     explicit EventLoopThread(
-        const ThreadInitCallBack &cb = ThreadInitCallBack());
+        const ThreadInitCallback &cb = ThreadInitCallback());
     
     ~EventLoopThread();
 
-    EventLoop *startLoop();
+    EventLoop *StartLoop();
 
 private:
-    void threadFunc();
+    void ThreadFunc();
 private:
     EventLoop *loop_;
     bool exiting_;
     std::thread thread_;
     std::mutex mutex_;
     std::condition_variable cond_;
-    ThreadInitCallBack callback_;
+    ThreadInitCallback callback_;
 };
 } // namespace runtime::net

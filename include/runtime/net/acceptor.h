@@ -16,24 +16,24 @@ class InetAddress;
  */
 class Acceptor : public runtime::base::NonCopyable {
 public:
-    using NewConnectionCallBack = std::function<void(int sockfd, const InetAddress)>;
+    using NewConnectionCallback = std::function<void(int sockfd, const InetAddress)>;
 
     Acceptor(EventLoop *loop, const InetAddress &listen_addr, bool reuse_port);
     ~Acceptor();
 
-    void setNewConnectionCallBack(const NewConnectionCallBack &cb){
+    void SetNewConnectionCallback(const NewConnectionCallback &cb) {
         new_connection_callback_ = cb;
     }
 
-    bool listening() const { return listening_; }
-    void listen();
+    bool Listening() const { return listening_; }
+    void Listen();
 private:
-    void handleRead(runtime::time::Timestamp receive_time);
+    void HandleRead(runtime::time::Timestamp receive_time);
     
     EventLoop *loop_;
     Socket accept_socket_;
     Channel accept_channel_;
-    NewConnectionCallBack new_connection_callback_;
+    NewConnectionCallback new_connection_callback_;
     bool listening_;
 };
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "poller.h"
+#include "runtime/net/poller.h"
 
 #include <sys/epoll.h>
 #include <vector>
@@ -22,12 +22,12 @@ public:
     ~EPollPoller() override ;
 
     // 重写基类的抽象方法
-    runtime::time::Timestamp poll(int timesout_ms, ChannelList *active_channels) override;
-    void updateChannel(Channel *channel) override;
-    void removeChannel(Channel *channel) override;
+    runtime::time::Timestamp Poll(int timeout_ms, ChannelList *active_channels) override;
+    void UpdateChannel(Channel *channel) override;
+    void RemoveChannel(Channel *channel) override;
 private:
-    void update(int operation, Channel *channel);
-    void fillActiveChannels(int num_events, ChannelList *active_channels) const ;
+    void Update(int operation, Channel *channel);
+    void FillActiveChannels(int num_events, ChannelList *active_channels) const;
 private:
     static constexpr int kInitEventListSize = 16;
     
@@ -40,16 +40,16 @@ private:
 /**
  *  调用链
  *  > 注册事件
- *  Channel::enableReading()
- *         -> Channel::update()
- *         -> EventLoop::updateChannel(channel)
- *         -> EPollPoller::updateChannel(channel)
+ *  Channel::EnableReading()
+ *         -> Channel::Update()
+ *         -> EventLoop::UpdateChannel(channel)
+ *         -> EPollPoller::UpdateChannel(channel)
  *         -> epoll_ctl(...)
  *  > 等待事件
- *  EventLoop::loop()
- *         -> EPoller::poll(timeout, &activeChannels)
+ *  EventLoop::Loop()
+ *         -> EPoller::Poll(timeout, &activeChannels)
  *         -> epoll_wait(...)
- *         -> fillActiveChannels(...)
+ *         -> FillActiveChannels(...)
  *         -> EventLoop for ... in activeChannels
- *         -> Channel::handleEvent(...)
+ *         -> Channel::HandleEvent(...)
  */

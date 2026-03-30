@@ -6,14 +6,13 @@ namespace runtime::net {
 Poller::Poller(EventLoop *loop) 
     : ownerLoop_(loop){}
 
-bool Poller::hasChannel(Channel *channel) const {
-    auto it = channels_.find(channel->fd());
+bool Poller::HasChannel(Channel *channel) const {
+    auto it = channels_.find(channel->Fd());
     return it != channels_.end() && it->second == channel;
 }
 
-Poller *Poller::newDefaultPoller(EventLoop *loop) {
+Poller *Poller::NewDefaultPoller(EventLoop *loop) {
     return new EPollPoller(loop);
 }
 
 }   // namespace runtime::net
-

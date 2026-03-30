@@ -22,24 +22,24 @@ public:
     EventLoop();
     ~EventLoop();
 
-    void loop();
-    void quit();
+    void Loop();
+    void Quit();
 
-    runtime::time::Timestamp pollReturnTime() const{ return poll_return_time_;}
+    runtime::time::Timestamp PollReturnTime() const { return poll_return_time_; }
 
-    void runInLoop(Functor cb);
-    void queueInLoop(Functor cb);
+    void RunInLoop(Functor cb);
+    void QueueInLoop(Functor cb);
 
-    void updateChannel(Channel *channel);
-    void removeChannel(Channel *channel);
-    bool hasChannel(Channel *channe);
+    void UpdateChannel(Channel *channel);
+    void RemoveChannel(Channel *channel);
+    bool HasChannel(Channel *channel);
 
-    bool isInLoopThread() const;
+    bool IsInLoopThread() const;
 
 private:
-    void wakeup();
-    void handleRead();
-    void doPendingFunctors();
+    void Wakeup();
+    void HandleRead();
+    void DoPendingFunctors();
 
     std::atomic<bool> looping_; // CAS实现
     std::atomic<bool> quit_; // 退出标志

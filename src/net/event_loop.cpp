@@ -11,7 +11,7 @@ namespace runtime::net {
 
 namespace {
 
-int createEventfd() {
+int CreateEventfd() {
     int evtfd = ::eventfd(0, EFD_NONBLOCK | EFD_CLOEXEC);
     assert(evtfd >= 0);
     return evtfd;
@@ -24,97 +24,97 @@ EventLoop::EventLoop()
       quit_(false),
       calling_pending_functors_(false),
       thread_id_(std::this_thread::get_id()),
-      poller_(Poller::newDefaultPoller(this)),
-      wakeup_fd_(createEventfd()),
+      poller_(Poller::NewDefaultPoller(this)),
+      wakeup_fd_(CreateEventfd()),
       wakeup_channel_(std::make_unique<Channel>(this, wakeup_fd_)) {
         assert(t_loop_in_this_thread == nullptr);
         t_loop_in_this_thread = this;
 
-        wakeup_channel_->setReadCallBack([this](runtime::time::Timestamp){
-            handleRead();
+        wakeup_channel_->SetReadCallback([this](runtime::time::Timestamp) {
+            HandleRead();
         });
-        wakeup_channel_->enableReading();
+        wakeup_channel_->EnableReading();
       }
 
 EventLoop::~EventLoop() {
-    wakeup_channel_->disableAll();
-    wakeup_channel_->remove();
+    wakeup_channel_->DisableAll();
+    wakeup_channel_->Remove();
     ::close(wakeup_fd_);
     t_loop_in_this_thread = nullptr;
 }
 
-void EventLoop::loop() {
+void EventLoop::Loop() {
     assert(!looping_);
     looping_ = true;
     quit_ = false;
 
     while(!quit_) {
         active_channels_.clear();
-        poll_return_time_ = poller_->poll(10000, &active_channels_);
+        poll_return_time_ = poller_->Poll(10000, &active_channels_);
 
         for(Channel *channel : active_channels_) {
-            channel->handleEvent(poll_return_time_);
+            channel->HandleEvent(poll_return_time_);
         }
 
-        doPendingFunctors();
+        DoPendingFunctors();
     }
 
     looping_ = false;
 }
 
-void EventLoop::quit() {
+void EventLoop::Quit() {
     quit_ = true;
-    if(!isInLoopThread()) {
-        wakeup();
+    if(!IsInLoopThread()) {
+        Wakeup();
     }
 }
 
-void EventLoop::runInLoop(Functor cb){
-    if(isInLoopThread()){
+void EventLoop::RunInLoop(Functor cb){
+    if(IsInLoopThread()){
         cb();
     } else {
-        queueInLoop(std::move(cb));
+        QueueInLoop(std::move(cb));
     }
 }
 
-void EventLoop::queueInLoop(Functor cb) {
+void EventLoop::QueueInLoop(Functor cb) {
     {
         std::lock_guard<std::mutex> lock(mutex_);
         pending_functors_.push_back(std::move(cb));
     }
 
-    if(!isInLoopThread() || calling_pending_functors_) {
-        wakeup();
+    if(!IsInLoopThread() || calling_pending_functors_) {
+        Wakeup();
     }
 }
 
-void EventLoop::updateChannel(Channel *channel) {
-    poller_->updateChannel(channel);
+void EventLoop::UpdateChannel(Channel *channel) {
+    poller_->UpdateChannel(channel);
 }
 
-void EventLoop::removeChannel(Channel *channel) {
-    poller_->removeChannel(channel);
+void EventLoop::RemoveChannel(Channel *channel) {
+    poller_->RemoveChannel(channel);
 }
 
-bool EventLoop::hasChannel(Channel *channel){
-    return poller_->hasChannel(channel);
+bool EventLoop::HasChannel(Channel *channel){
+    return poller_->HasChannel(channel);
 }
 
-bool EventLoop::isInLoopThread() const {
+bool EventLoop::IsInLoopThread() const {
     return thread_id_ == std::this_thread::get_id();
 }
 
-void EventLoop::wakeup() {
+void EventLoop::Wakeup() {
     uint64_t one = 1;
     ::write(wakeup_fd_, &one, sizeof(one));
 }
 
-void EventLoop::handleRead(){
+void EventLoop::HandleRead() {
     uint64_t one = 1;
     ::read(wakeup_fd_, &one, sizeof(one));
 }
 
-void EventLoop::doPendingFunctors() {
+void EventLoop::DoPendingFunctors() {
     std::vector<Functor> functors;
     calling_pending_functors_ = true;
 

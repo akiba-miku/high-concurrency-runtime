@@ -5,7 +5,7 @@
 
 namespace runtime::net {
 
-InetAddress::InetAddress(runtime::base::u16 port, runtime::base::String ip) {
+InetAddress::InetAddress(std::uint16_t port, std::string ip) {
     std::memset(&addr_, 0, sizeof(addr_));
     addr_.sin_family = AF_INET;
     addr_.sin_port = htons(port);
@@ -16,17 +16,17 @@ InetAddress::InetAddress(runtime::base::u16 port, runtime::base::String ip) {
     }
 }
 
-runtime::base::String InetAddress::toIp() const {
+std::string InetAddress::ToIp() const {
     char buffer[INET_ADDRSTRLEN] = {0};
     const char* result = ::inet_ntop(AF_INET, &addr_.sin_addr, buffer, sizeof(buffer));
-    return result == nullptr ? runtime::base::String() : runtime::base::String(result);
+    return result == nullptr ? std::string() : std::string(result);
 }
 
-runtime::base::String InetAddress::toIpPort() const {
-    return toIp() + ":" + std::to_string(toPort());
+std::string InetAddress::ToIpPort() const {
+    return ToIp() + ":" + std::to_string(ToPort());
 }
 
-runtime::base::u16 InetAddress::toPort() const {
+std::uint16_t InetAddress::ToPort() const {
     return ntohs(addr_.sin_port);
 }
 

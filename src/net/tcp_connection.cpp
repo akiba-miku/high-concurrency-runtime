@@ -22,74 +22,74 @@ TcpConnection::TcpConnection(
       channel_(std::make_unique<Channel>(loop, sockfd)),
       local_addr_(local_addr),
       peer_addr_(peer_addr) {
-        channel_->setReadCallBack(
+        channel_->SetReadCallback(
             [this](runtime::time::Timestamp receive_time) {
-                handleRead(receive_time);
+                HandleRead(receive_time);
             }
         );
-        channel_->setWriteCallBack([this] {
-            handleWrite();
+        channel_->SetWriteCallback([this] {
+            HandleWrite();
         });
-        channel_->setErrorCallBack([this] {
-            handleError();
+        channel_->SetErrorCallback([this] {
+            HandleError();
         });
-        channel_->setCloseCallBack([this] {
-            handleClose();
+        channel_->SetCloseCallback([this] {
+            HandleClose();
         });
       }
 
 TcpConnection::~TcpConnection() = default;
 
-void TcpConnection::send(const std::string &message) {
+void TcpConnection::Send(const std::string &message) {
     if(state_ == StateE::kConnected) {
-        if(loop_->isInLoopThread()) {
-            sendInLoop(message);
+        if(loop_->IsInLoopThread()) {
+            SendInLoop(message);
         }
         else {
             auto self = shared_from_this();
-            loop_->runInLoop([self, message] {
-                self->sendInLoop(message);
+            loop_->RunInLoop([self, message] {
+                self->SendInLoop(message);
             });
         }
     }
 }
 
-void TcpConnection::shutdown() {
+void TcpConnection::Shutdown() {
     if(state_ == StateE::kConnected) {
-        setState(StateE::kDisconnecting);
+        SetState(StateE::kDisconnecting);
         auto self = shared_from_this();
-        loop_->runInLoop([self] {
-            self->shutdownInLoop();
+        loop_->RunInLoop([self] {
+            self->ShutdownInLoop();
         });
     }
 }
 
-void TcpConnection::connectEstablished() {
-    setState(StateE::kConnected);
-    channel_->tie(shared_from_this());
-    channel_->enableReading();
+void TcpConnection::ConnectEstablished() {
+    SetState(StateE::kConnected);
+    channel_->Tie(shared_from_this());
+    channel_->EnableReading();
 
     if(connection_callback_) {
         connection_callback_(shared_from_this());
     }
 }
 
-void TcpConnection::connectDestroyed() {
+void TcpConnection::ConnectDestroyed() {
     if(state_ == StateE::kConnected) {
-        setState(StateE::kDisconnected);
-        channel_->disableAll();
+        SetState(StateE::kDisconnected);
+        channel_->DisableAll();
     }
 
     if(connection_callback_) {
         connection_callback_(shared_from_this());
     }
 
-    channel_->remove();
+    channel_->Remove();
 }
 
-void TcpConnection::handleRead(runtime::time::Timestamp receive_time) {
+void TcpConnection::HandleRead(runtime::time::Timestamp receive_time) {
     char buf[4096];
-    ssize_t n = ::read(channel_->fd(), buf, sizeof(buf));
+    ssize_t n = ::read(channel_->Fd(), buf, sizeof(buf));
 
     if(n > 0) {
         if(message_callback_) {
@@ -100,19 +100,19 @@ void TcpConnection::handleRead(runtime::time::Timestamp receive_time) {
         }
     }
     else if(n == 0) {
-        handleClose();
+        HandleClose();
     }
     else {
         if(errno != EAGAIN && errno != EWOULDBLOCK) {
-            handleError();
+            HandleError();
         }
     }
 }
 
-void TcpConnection::handleWrite() {
-    if(channel_->isWriting()) {
+void TcpConnection::HandleWrite() {
+    if(channel_->IsWriting()) {
         ssize_t n = ::write(
-            channel_->fd(),
+            channel_->Fd(),
             output_buffer_.data(),
             output_buffer_.size()
         );
@@ -121,27 +121,27 @@ void TcpConnection::handleWrite() {
             output_buffer_.erase(0, static_cast<std::size_t>(n));
 
             if(output_buffer_.empty()) {
-                channel_->disableWriting();
+                channel_->DisableWriting();
                 if(write_complete_callback_) {
                     write_complete_callback_(shared_from_this());
                 }
 
                 if(state_ == StateE::kDisconnecting) {
-                    shutdownInLoop();
+                    ShutdownInLoop();
                 }
             }
         }
         else {
             if(errno != EAGAIN && errno != EWOULDBLOCK) {
-                handleError();
+                HandleError();
             }
         }
     }
 }
 
-void TcpConnection::handleClose() {
-    setState(StateE::kDisconnected);
-    channel_->disableAll();
+void TcpConnection::HandleClose() {
+    SetState(StateE::kDisconnected);
+    channel_->DisableAll();
 
     TcpConnectionPtr guard(shared_from_this());
     if(connection_callback_) {
@@ -153,20 +153,20 @@ void TcpConnection::handleClose() {
     
 }
 
-void TcpConnection::handleError() {
+void TcpConnection::HandleError() {
     int err = 0;
     socklen_t len = static_cast<socklen_t>(sizeof(err));
-    ::getsockopt(channel_->fd(), SOL_SOCKET, SO_ERROR, &err, &len);
+    ::getsockopt(channel_->Fd(), SOL_SOCKET, SO_ERROR, &err, &len);
 }
 
-void TcpConnection::sendInLoop(const std::string &message) {
+void TcpConnection::SendInLoop(const std::string &message) {
     if(state_ == StateE::kDisconnected) {
         return ;
     }
 
     ssize_t nwrote = 0;
-    if(!channel_->isWriting() && output_buffer_.empty()) {
-        nwrote = ::write(channel_->fd(), message.data(), message.size());
+    if(!channel_->IsWriting() && output_buffer_.empty()) {
+        nwrote = ::write(channel_->Fd(), message.data(), message.size());
         if(nwrote < 0) {
             nwrote = 0;
             if(errno != EWOULDBLOCK) {
@@ -177,8 +177,8 @@ void TcpConnection::sendInLoop(const std::string &message) {
 
     if(static_cast<std::size_t>(nwrote) < message.size()) {
         output_buffer_.append(message.data() + nwrote, message.size() - nwrote);
-        if(!channel_->isWriting()) {
-            channel_->enableWriting();
+        if(!channel_->IsWriting()) {
+            channel_->EnableWriting();
         }
     }
     else {
@@ -188,9 +188,9 @@ void TcpConnection::sendInLoop(const std::string &message) {
     }
 }
 
-void TcpConnection::shutdownInLoop() {
-    if(!channel_->isWriting()) {
-        socket_->shutdownWrite();
+void TcpConnection::ShutdownInLoop() {
+    if(!channel_->IsWriting()) {
+        socket_->ShutdownWrite();
     }
 }
 }

@@ -16,10 +16,10 @@ class EventLoop;
 class TcpServer : public runtime::base::NonCopyable {
 public:
     using TcpConnectionPtr = std::shared_ptr<TcpConnection>;
-    using ConnectionCallBack = TcpConnection::ConnectionCallBack;
-    using MessageCallBack = TcpConnection::MessageCallBack;
-    using WriteCompleteCallBack = TcpConnection::WriteCompleteCallBack;
-    using ThreadInitCallBack = EventLoopThreadPool::ThreadInitCallBack;
+    using ConnectionCallback = TcpConnection::ConnectionCallback;
+    using MessageCallback = TcpConnection::MessageCallback;
+    using WriteCompleteCallback = TcpConnection::WriteCompleteCallback;
+    using ThreadInitCallback = EventLoopThreadPool::ThreadInitCallback;
     
     TcpServer(EventLoop *loop, 
               const InetAddress &listenaddr, 
@@ -27,31 +27,31 @@ public:
     ~TcpServer();
 
     // 0 表示单线程，4 表示多线程
-    void setThreadNum(int num_threads) {
+    void SetThreadNum(int num_threads) {
         thread_num_ = num_threads;
     }
 
-    void setThreadInitCallBack(ThreadInitCallBack &&cb) { 
-        thread_init_callback_ = std::forward<ThreadInitCallBack>(cb);
+    void SetThreadInitCallback(ThreadInitCallback&& cb) {
+        thread_init_callback_ = std::forward<ThreadInitCallback>(cb);
     }
-    void setConnectionCallBack(ConnectionCallBack &&cb) {
-        connection_callback_ = std::forward<ConnectionCallBack>(cb);
-    }
-
-    void setMessageCallBack(MessageCallBack &&cb) {
-        message_callback_ = std::forward<MessageCallBack>(cb);
+    void SetConnectionCallback(ConnectionCallback&& cb) {
+        connection_callback_ = std::forward<ConnectionCallback>(cb);
     }
 
-    void setWriteCompleteCallBack(WriteCompleteCallBack &&cb) {
-        write_complete_callback_ = std::forward<WriteCompleteCallBack>(cb);
+    void SetMessageCallback(MessageCallback&& cb) {
+        message_callback_ = std::forward<MessageCallback>(cb);
     }
 
-    void start();
+    void SetWriteCompleteCallback(WriteCompleteCallback&& cb) {
+        write_complete_callback_ = std::forward<WriteCompleteCallback>(cb);
+    }
+
+    void Start();
 
 private:
-    void newConnection(int sockfd, const InetAddress &peeraddr);
-    void removeConnection(const TcpConnectionPtr &conn);
-    void removeConnectionInLoop(const TcpConnectionPtr &conn);
+    void NewConnection(int sockfd, const InetAddress &peeraddr);
+    void RemoveConnection(const TcpConnectionPtr &conn);
+    void RemoveConnectionInLoop(const TcpConnectionPtr &conn);
 private:
     using ConnectionMap = std::map<std::string, TcpConnectionPtr>;
 
@@ -65,10 +65,10 @@ private:
     int next_conn_id_;
 
 
-    ConnectionCallBack connection_callback_;
-    MessageCallBack message_callback_;
-    WriteCompleteCallBack write_complete_callback_;
-    ThreadInitCallBack thread_init_callback_ ;
+    ConnectionCallback connection_callback_;
+    MessageCallback message_callback_;
+    WriteCompleteCallback write_complete_callback_;
+    ThreadInitCallback thread_init_callback_;
 
     ConnectionMap connections_;
 };

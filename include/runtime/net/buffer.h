@@ -15,34 +15,34 @@ public:
 
     explicit Buffer(std::size_t inital_size = kInitalSize);
 
-    std::size_t readableBytes() const;
-    std::size_t writableBytes() const;
-    std::size_t prependableBytes() const;
+    std::size_t ReadableBytes() const;
+    std::size_t WritableBytes() const;
+    std::size_t PrependableBytes() const;
 
     const char *peek() const;
 
-    void retrieve(std::size_t len);
-    void retrieveUntil(const char *end);
-    void retrieveAll();
+    void Retrieve(std::size_t len);
+    void RetrieveUntil(const char *end);
+    void RetrieveAll();
 
-    std::string retrieveAsString(std::size_t len);
-    std::string retrieveAllAsString();
+    std::string RetrieveAsString(std::size_t len);
+    std::string RetrieveAllAsString();
 
     void append(const char *data, std::size_t len);
     void append(const std::string &str);
 
-    char *beginWrite();
-    const char *beginWrite() const;
-    void hasWritten(std::size_t len);
+    char *BeginWrite();
+    const char *BeginWrite() const;
+    void HasWritten(std::size_t len);
 
-    void ensureWritableBytes(std::size_t len);
+    void EnsureWritableBytes(std::size_t len);
 
-    ssize_t readFd(int fd, int *saved_errno);
-    ssize_t writeFd(int fd, int *saved_errno);
+    ssize_t ReadFd(int fd, int *saved_errno);
+    ssize_t WriteFd(int fd, int *saved_errno);
 private:
-    char *begin();
-    const char *begin() const;
-    void makeSpace(std::size_t len);
+    char *Begin();
+    const char *Begin() const;
+    void MakeSpace(std::size_t len);
 private:
     std::vector<char> buffer_;
     std::size_t reader_index_;
