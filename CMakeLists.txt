@@ -15,12 +15,19 @@ find_package(Threads REQUIRED)
 # 网络主链还在持续实现中，后续 echo server 可以继续在 examples/ 下接入。
 add_library(runtime_foundation STATIC
     src/base/current_thread.cpp
+    src/log/async_logger.cpp
+    src/log/logger.cpp
     src/time/timestamp.cpp
 )
 
 target_include_directories(runtime_foundation
     PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/include
+)
+
+target_link_libraries(runtime_foundation
+    PUBLIC
+        Threads::Threads
 )
 
 target_compile_features(runtime_foundation PUBLIC cxx_std_20)
@@ -44,6 +51,7 @@ target_compile_features(runtime_task PUBLIC cxx_std_20)
 
 add_library(runtime_net STATIC
     src/net/acceptor.cpp
+    src/net/buffer.cpp
     src/net/channel.cpp
     src/net/epoll_poller.cpp
     src/net/event_loop.cpp

@@ -8,43 +8,43 @@
 namespace runtime::time {
 
 // Timestamp 内部统一用微秒保存时间，兼顾日志展示和后续定时器精度。
-Timestamp Timestamp::now() {
+Timestamp Timestamp::Now() {
     const auto now = std::chrono::system_clock::now();
     const auto micros = std::chrono::duration_cast<std::chrono::microseconds>(
         now.time_since_epoch());
-    return Timestamp(static_cast<runtime::base::u64>(micros.count()));
+    return Timestamp(static_cast<std::uint64_t>(micros.count()));
 }
 
-Timestamp Timestamp::invalid() {
+Timestamp Timestamp::Invalid() {
     return Timestamp();
 }
 
-bool Timestamp::valid() const {
+bool Timestamp::Valid() const {
     return microseconds_since_epoch_ > 0;
 }
 
-runtime::base::u64 Timestamp::microsecondsSinceEpoch() const {
+std::uint64_t Timestamp::MicrosecondsSinceEpoch() const {
     return microseconds_since_epoch_;
 }
 
-runtime::base::u64 Timestamp::millisecondsSinceEpoch() const {
+std::uint64_t Timestamp::MillisecondsSinceEpoch() const {
     return microseconds_since_epoch_ / 1000;
 }
 
-runtime::base::u64 Timestamp::secondsSinceEpoch() const {
+std::uint64_t Timestamp::SecondsSinceEpoch() const {
     return microseconds_since_epoch_ / 1000000;
 }
 
-runtime::base::String Timestamp::toString() const {
+std::string Timestamp::ToString() const {
     std::ostringstream oss;
-    oss << secondsSinceEpoch() << '.'
+    oss << SecondsSinceEpoch() << '.'
         << std::setw(6) << std::setfill('0')
         << (microseconds_since_epoch_ % 1000000);
     return oss.str();
 }
 
-runtime::base::String Timestamp::toFormattedString(bool show_microseconds) const {
-    const std::time_t seconds = static_cast<std::time_t>(secondsSinceEpoch());
+std::string Timestamp::ToFormattedString(bool show_microseconds) const {
+    const std::time_t seconds = static_cast<std::time_t>(SecondsSinceEpoch());
     std::tm tm_time {};
 #if defined(_WIN32)
     localtime_s(&tm_time, &seconds);
@@ -71,16 +71,16 @@ bool operator==(const Timestamp& lhs, const Timestamp& rhs) {
     return lhs.microseconds_since_epoch_ == rhs.microseconds_since_epoch_;
 }
 
-double timeDifference(const Timestamp& high, const Timestamp& low) {
-    const auto delta = static_cast<double>(high.microsecondsSinceEpoch())
-        - static_cast<double>(low.microsecondsSinceEpoch());
+double TimeDifference(const Timestamp& high, const Timestamp& low) {
+    const auto delta = static_cast<double>(high.MicrosecondsSinceEpoch())
+        - static_cast<double>(low.MicrosecondsSinceEpoch());
     return delta / 1000000.0;
 }
 
-Timestamp addTime(const Timestamp& timestamp, double seconds) {
+Timestamp AddTime(const Timestamp& timestamp, double seconds) {
     // 日志和定时器常用秒作为外部接口，内部仍转换成微秒存储。
-    const auto delta = static_cast<runtime::base::u64>(seconds * 1000000.0);
-    return Timestamp(timestamp.microsecondsSinceEpoch() + delta);
+    const auto delta = static_cast<std::uint64_t>(seconds * 1000000.0);
+    return Timestamp(timestamp.MicrosecondsSinceEpoch() + delta);
 }
 
 }  // namespace runtime::time

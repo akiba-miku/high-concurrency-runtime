@@ -14,37 +14,37 @@ int main() {
     runtime::net::TcpServer server(&main_loop, listen_addr, "EchoServer");
 
     // 先开 4 个 IO 线程，one loop per thread
-    server.setThreadNum(4);
+    server.SetThreadNum(4);
 
-    server.setConnectionCallBack(
+    server.SetConnectionCallback(
         [](const std::shared_ptr<runtime::net::TcpConnection>& conn) {
             std::cout << "[connection] "
-                      << conn->name()
-                      << " local=" << conn->localAddress().toIpPort()
-                      << " peer=" << conn->peerAddress().toIpPort()
+                      << conn->Name()
+                      << " local=" << conn->LocalAddress().ToIpPort()
+                      << " peer=" << conn->PeerAddress().ToIpPort()
                       << '\n';
         });
 
-    server.setMessageCallBack(
+    server.SetMessageCallback(
         [](const std::shared_ptr<runtime::net::TcpConnection>& conn,
            const std::string& message,
            runtime::time::Timestamp receive_time) {
             std::cout << "[message] "
-                      << conn->name()
-                      << " at " << receive_time.toFormattedString()
+                      << conn->Name()
+                      << " at " << receive_time.ToFormattedString()
                       << " => " << message;
 
-            conn->send(message);
+            conn->Send(message);
         });
 
-    server.setWriteCompleteCallBack(
+    server.SetWriteCompleteCallback(
         [](const std::shared_ptr<runtime::net::TcpConnection>& conn) {
-            std::cout << "[write complete] " << conn->name() << '\n';
+            std::cout << "[write complete] " << conn->Name() << '\n';
         });
 
-    server.start();
+    server.Start();
 
     std::cout << "echo server listen on 127.0.0.1:8080\n";
-    main_loop.loop();
+    main_loop.Loop();
     return 0;
 }

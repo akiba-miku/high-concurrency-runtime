@@ -19,7 +19,7 @@ public:
     std::size_t WritableBytes() const;
     std::size_t PrependableBytes() const;
 
-    const char *peek() const;
+    const char *Peek() const;
 
     void Retrieve(std::size_t len);
     void RetrieveUntil(const char *end);
@@ -28,8 +28,8 @@ public:
     std::string RetrieveAsString(std::size_t len);
     std::string RetrieveAllAsString();
 
-    void append(const char *data, std::size_t len);
-    void append(const std::string &str);
+    void Append(const char *data, std::size_t len);
+    void Append(const std::string &str);
 
     char *BeginWrite();
     const char *BeginWrite() const;

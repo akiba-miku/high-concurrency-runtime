@@ -1,86 +1,92 @@
 #pragma once
 
 #include "runtime/base/noncopyable.h"
-#include "runtime/base/types.h"
 
-#include <mutex>
-#include <iostream>
-#include <ostream>
+#include <atomic>
+#include <memory>
+#include <sstream>
+#include <string>
+#include <string_view>
 
 namespace runtime::log {
+
+class AsyncLogger;
 
 // 日志级别 按严重程度从低到高排列，做阈值过滤。
-enum class LogLevel {
-    DEBUG,
-    INFO,
-    ERROR,
-    FATAL
+enum class LogLevel { 
+  DEBUG = 0, 
+  INFO, 
+  WARN, 
+  ERROR, 
+  FATAL 
 };
 
-// 第一版先保留单例模式
 class Logger : public runtime::base::NonCopyable {
 public:
-    static Logger& instance();
+  static Logger &Instance();
 
-    void setLogLevel(LogLevel level);
-    LogLevel logLevel() const;
-    void write(LogLevel level, const runtime::base::String& msg);
+  void Init(const std::string &filename, 
+            LogLevel level = LogLevel::INFO,
+            int flush_interval_ms = 1000,
+            std::size_t roll_size = 10 * 1024 * 1024);
+
+  void Shutdown();
+
+  void SetLogLevel(LogLevel level);
+  LogLevel GetLogLevel() const;
+
+  // 供外部调用的日志接口
+  // 1. 日志级别的过滤
+  // 2. 调用 formatter 格式化和生成完整日志行
+  // 3. 交给 AsyncLogger 异步写入
+  void Log(LogLevel level, 
+           const char *file, 
+           int line, 
+           const char *func,
+           std::string_view message);
 
 private:
-    Logger() = default;
-    LogLevel logLevel_{LogLevel::INFO};
-    mutable std::mutex mutex_;
+  Logger() = default;
+
+private:
+  std::atomic<LogLevel> level_{LogLevel::INFO};
+  std::unique_ptr<AsyncLogger> async_logger_;
 };
 
-}  // namespace runtime::log
+const char *ToString(LogLevel level);
 
-namespace runtime::log {
-
-namespace {
-
-int LogLevelPriority(LogLevel level) {
-    switch (level) {
-        case LogLevel::DEBUG:
-            return 0;
-        case LogLevel::INFO:
-            return 1;
-        case LogLevel::ERROR:
-            return 2;
-        case LogLevel::FATAL:
-            return 3;
-        default:
-            return 0;
+class LogMessage : public runtime::base::NonCopyable {
+public:
+    LogMessage(LogLevel level, const char *file, int line, const char *func)
+        : level_(level), file_(file), line_(line), func_(func) {}
+    ~LogMessage() {
+        Logger::Instance().Log(level_, file_, line_, func_, stream_.str());
+    }    
+    std::ostringstream &Stream() {
+        return stream_;
     }
-}
+private:
+    LogLevel level_;
+    const char *file_;
+    int line_;
+    const char *func_;
+    std::ostringstream stream_;
+};
 
-}  // namespace
+} // namespace runtime::log
 
-Logger& Logger::instance() {
-    static Logger logger;
-    return logger;
-}
 
-void Logger::setLogLevel(LogLevel level) {
-    std::lock_guard<std::mutex> lock(mutex_);
-    logLevel_ = level;
-}
+#define LOG_DEBUG() \
+  ::runtime::log::LogMessage(::runtime::log::LogLevel::DEBUG, __FILE__, __LINE__, __func__).Stream()
 
-LogLevel Logger::logLevel() const {
-    std::lock_guard<std::mutex> lock(mutex_);
-    return logLevel_;
-}
+#define LOG_INFO() \
+  ::runtime::log::LogMessage(::runtime::log::LogLevel::INFO, __FILE__, __LINE__, __func__).Stream()
 
-void Logger::write(LogLevel level, const runtime::base::String& msg) {
-    std::lock_guard<std::mutex> lock(mutex_);
-    if (LogLevelPriority(level) < LogLevelPriority(logLevel_)) {
-        return;
-    }
+#define LOG_WARN() \
+  ::runtime::log::LogMessage(::runtime::log::LogLevel::WARN, __FILE__, __LINE__, __func__).Stream()
 
-    // 选择输出位置
-    std::ostream& out = (level == LogLevel::ERROR || level == LogLevel::FATAL)
-        ? std::cerr
-        : std::cout;
-    out << msg << '\n';
-}
+#define LOG_ERROR() \
+  ::runtime::log::LogMessage(::runtime::log::LogLevel::ERROR, __FILE__, __LINE__, __func__).Stream()
 
-}  // namespace runtime::log
+#define LOG_FATAL() \
+  ::runtime::log::LogMessage(::runtime::log::LogLevel::FATAL, __FILE__, __LINE__, __func__).Stream()

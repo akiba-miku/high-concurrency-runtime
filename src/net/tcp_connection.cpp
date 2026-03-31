@@ -88,14 +88,14 @@ void TcpConnection::ConnectDestroyed() {
 }
 
 void TcpConnection::HandleRead(runtime::time::Timestamp receive_time) {
-    char buf[4096];
-    ssize_t n = ::read(channel_->Fd(), buf, sizeof(buf));
+    int saved_errno = 0;
+    ssize_t n = input_buffer_.ReadFd(channel_->Fd(), &saved_errno);
 
     if(n > 0) {
         if(message_callback_) {
             message_callback_(
                 shared_from_this(), 
-                std::string(buf, static_cast<std::size_t>(n)),
+                input_buffer_.RetrieveAllAsString(),
                 receive_time);
         }
     }
@@ -103,7 +103,8 @@ void TcpConnection::HandleRead(runtime::time::Timestamp receive_time) {
         HandleClose();
     }
     else {
-        if(errno != EAGAIN && errno != EWOULDBLOCK) {
+        errno = saved_errno;
+        if(saved_errno != EAGAIN && saved_errno != EWOULDBLOCK) {
             HandleError();
         }
     }
@@ -111,16 +112,11 @@ void TcpConnection::HandleRead(runtime::time::Timestamp receive_time) {
 
 void TcpConnection::HandleWrite() {
     if(channel_->IsWriting()) {
-        ssize_t n = ::write(
-            channel_->Fd(),
-            output_buffer_.data(),
-            output_buffer_.size()
-        );
+        int saved_errno = 0;
+        ssize_t n = output_buffer_.WriteFd(channel_->Fd(), &saved_errno);
 
         if(n > 0) {
-            output_buffer_.erase(0, static_cast<std::size_t>(n));
-
-            if(output_buffer_.empty()) {
+            if(output_buffer_.ReadableBytes() == 0) {
                 channel_->DisableWriting();
                 if(write_complete_callback_) {
                     write_complete_callback_(shared_from_this());
@@ -132,7 +128,8 @@ void TcpConnection::HandleWrite() {
             }
         }
         else {
-            if(errno != EAGAIN && errno != EWOULDBLOCK) {
+            errno = saved_errno;
+            if(saved_errno != EAGAIN && saved_errno != EWOULDBLOCK) {
                 HandleError();
             }
         }
@@ -165,7 +162,7 @@ void TcpConnection::SendInLoop(const std::string &message) {
     }
 
     ssize_t nwrote = 0;
-    if(!channel_->IsWriting() && output_buffer_.empty()) {
+    if(!channel_->IsWriting() && output_buffer_.ReadableBytes() == 0) {
         nwrote = ::write(channel_->Fd(), message.data(), message.size());
         if(nwrote < 0) {
             nwrote = 0;
@@ -176,7 +173,7 @@ void TcpConnection::SendInLoop(const std::string &message) {
     }
 
     if(static_cast<std::size_t>(nwrote) < message.size()) {
-        output_buffer_.append(message.data() + nwrote, message.size() - nwrote);
+        output_buffer_.Append(message.data() + nwrote, message.size() - nwrote);
         if(!channel_->IsWriting()) {
             channel_->EnableWriting();
         }

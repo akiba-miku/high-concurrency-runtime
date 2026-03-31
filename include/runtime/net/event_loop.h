@@ -15,6 +15,7 @@ class Channel;
 class Poller;
 
 // 时间循环类 主要包含了两个大模块 Channel Poller(epoll抽象)
+// IO事件分发器 ， 线程内串行任务队列执行器
 class EventLoop : public runtime::base::NonCopyable {
 public:
     using Functor = std::function<void()>;
@@ -32,7 +33,7 @@ public:
 
     void UpdateChannel(Channel *channel);
     void RemoveChannel(Channel *channel);
-    bool HasChannel(Channel *channel);
+    bool HasChannel(Channel *channel) const;
 
     bool IsInLoopThread() const;
 
@@ -41,7 +42,7 @@ private:
     void HandleRead();
     void DoPendingFunctors();
 
-    std::atomic<bool> looping_; // CAS实现
+    std::atomic<bool> looping_; // 线程安全状态标志
     std::atomic<bool> quit_; // 退出标志
     std::atomic<bool> calling_pending_functors_; // 当前loop是否有需要执行的回调操作
 
@@ -51,6 +52,7 @@ private:
     std::unique_ptr<Poller> poller_;
     std::vector<Channel*> active_channels_;
 
+    // wakeup mechanism
     int wakeup_fd_; // main_loop 获取新用户的channel， 通过轮询算法选择一个subloop, 
                     //通过该成员通知唤醒subloop处理Channel
     std::unique_ptr<Channel> wakeup_channel_;

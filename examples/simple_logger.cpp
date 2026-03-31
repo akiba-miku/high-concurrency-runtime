@@ -1,17 +1,19 @@
-#include "runtime/log/log_formatter.h"
 #include "runtime/log/logger.h"
 
 int main() {
-    auto& logger = runtime::log::Logger::instance();
+    auto& logger = runtime::log::Logger::Instance();
 
-    logger.setLogLevel(runtime::log::LogLevel::DEBUG);
-    LOG_DEBUG("debug message, value=%d", 7);
-    LOG_INFO("server started on port %d", 8080);
-    LOG_ERROR("request failed: %s", "timeout");
+    logger.Init("simple_logger.log", runtime::log::LogLevel::DEBUG);
 
-    logger.setLogLevel(runtime::log::LogLevel::ERROR);
-    LOG_INFO("this info message should be filtered");
-    LOG_FATAL("fatal message for shutdown path");
+    LOG_DEBUG() << "debug message, value=" << 7;
+    LOG_INFO() << "server started on port " << 8080;
+    LOG_ERROR() << "request failed: " << "timeout";
+
+    logger.SetLogLevel(runtime::log::LogLevel::ERROR);
+    LOG_INFO() << "this info message should be filtered";
+    LOG_FATAL() << "fatal message for shutdown path";
+
+    logger.Shutdown();
 
     return 0;
 }

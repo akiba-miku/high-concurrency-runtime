@@ -10,5 +10,6 @@
         "future": "cpp",
         "mutex": "cpp",
         "condition_variable": "cpp"
-    }
+    },
+    "C_Cpp.errorSquiggles": "disabled"
 }

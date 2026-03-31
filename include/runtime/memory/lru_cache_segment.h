@@ -1,18 +1,26 @@
 #pragma once
 
 #include "runtime/base/noncopyable.h"
+#include "runtime/time/timestamp.h"
 
 #include <list>
 #include <mutex>
 #include <optional>
 #include <unordered_map>
-#include <utility>
 
 namespace runtime::memory {
 
 // 单个分段 LRU 
 // front() -> 最久未使用
 // back() -> 最近使用
+
+/**
+ *  数据结构
+ *  哈希表 key -> Node {key, value, expire_at}
+ *  双向链表 std::list : Node {key, value, expire_at}
+ * 
+ *  每个LRU单独持有一个互斥锁 mutex_ 来降低锁竞争
+ */
 template<typename Key, typename Value>
 class LRUCacheSegment : public runtime::base::NonCopyable {
 public:
@@ -24,9 +32,13 @@ public:
         auto it = mp_.find(key);
         if(it == mp_.end()) return false;
 
-        // 移到链表尾部
-        lru_list_.splice(lru_list_.end(), lru_list_, it->second);
-        value = it->second->second;
+        // 检查是否过期 
+        if(isExpired(it->second)) {
+            eraseInternal(it);
+            return false;
+        }
+        touch(it->second);
+        value = it->second->value;
         return true;
     }
 
@@ -36,28 +48,31 @@ public:
         auto it = mp_.find(key);
         if(it == mp_.end()) return std::nullopt;
 
-        lru_list_.splice(lru_list_.end(), lru_list_, it->second);
-        return it->second->second;
+        if(isExpired(it->second)) {
+            eraseInternal(it);
+            return std::nullopt;
+        }
+        touch(it->second);
+        return it->second->value;
     }
-    void put(const Key& key, const Value& value) {
+
+    // -------------------
+    // put 提供三种过期策略: 持久化 ， 设定写入固定时间过期。
+    void put(const Key &key, const Value &value) {
         std::lock_guard<std::mutex> lk{mutex_};
+        putInternal(key, value , std::nullopt);
+    }
 
-        if(capacity_ == 0) return ;
-        
-        auto it = mp_.find(key);
+    void put(const Key& key, const Value& value, runtime::time::Timestamp expire_at) {
+        std::lock_guard<std::mutex> lk{mutex_};
+        putInternal(key, value, expire_at);
+    }
 
-        if(it != mp_.end()) {
-            it->second->second = value;
-            lru_list_.splice(lru_list_.end(), lru_list_, it->second);
-            return ;
-        }
-        if(mp_.size() >= capacity_) {
-            auto &old = lru_list_.front();
-            mp_.erase(old.first);
-            lru_list_.pop_front();
-        }
-        lru_list_.emplace_back(key, value);
-        mp_[key] = std::prev(lru_list_.end());
+    void put(const Key &key, const Value &value, double ttl_seconds) {
+        std::lock_guard<std::mutex> lk{mutex_};
+        const auto expire_at 
+            = runtime::time::AddTime(runtime::time::Timestamp::Now(), ttl_seconds);
+        putInternal(key, value, expire_at);
     }
 
     bool erase(const Key& key) {
@@ -66,8 +81,7 @@ public:
         auto it = mp_.find(key);
         if(it == mp_.end()) return false;
         
-        lru_list_.erase(it->second);
-        mp_.erase(it);
+        eraseInternal(it);
         return true;
     }
 
@@ -78,7 +92,16 @@ public:
     
     bool contains(const Key &key) const {
         std::lock_guard<std::mutex> lk{mutex_};
-        return mp_.find(key) != mp_.end();
+
+        auto it = mp_.find(key);
+        if(it == mp_.end()) {
+            return false;
+        }
+
+        if(isExpired(it->second)) {
+            return false;
+        }
+        return true;
     }
 
     bool empty() const {
@@ -95,12 +118,92 @@ public:
         lru_list_.clear();
     }
 
+    std::size_t pruneExpired() {
+        std::lock_guard<std::mutex> lk{mutex_};
+        return pruneExpiredUnlocked();
+    }
+
 private:
-    using ListIt = typename std::list<std::pair<Key, Value>>::iterator;
+    struct Entry {
+        Key key;
+        Value value;
+        std::optional<runtime::time::Timestamp> expire_at;
+    };
+
+    using List = std::list<Entry>;
+    using ListIt = typename List::iterator;
+    using Map = std::unordered_map<Key, ListIt>;
+    using MapIt = typename Map::iterator;
+
+    bool isExpired(ListIt it) const {
+        if(!it->expire_at.has_value()) {
+            return false;
+        }
+        return runtime::time::Timestamp::Now().MicrosecondsSinceEpoch()
+            >= it->expire_at->MicrosecondsSinceEpoch();
+    }
+
+    // 节点重新移到链表尾部
+    void touch(ListIt it) {
+        lru_list_.splice(lru_list_.end(), lru_list_, it);
+    }
+
+    // 删除节点
+    void eraseInternal(MapIt it) {
+        lru_list_.erase(it->second);
+        mp_.erase(it);
+    }
+
+    // 删除链表头部节点
+    void evictOne() {
+        const auto& oldest = lru_list_.front();
+        mp_.erase(oldest.key);
+        lru_list_.pop_front();
+    }
+
+    void putInternal(const Key& key,
+                     const Value& value,
+                     std::optional<runtime::time::Timestamp> expire_at) {
+        if (capacity_ == 0) {
+            return;
+        }
+
+        auto it = mp_.find(key);
+        if (it != mp_.end()) {
+            it->second->value = value;
+            it->second->expire_at = expire_at;
+            touch(it->second);
+            return;
+        }
+
+        pruneExpiredUnlocked();
+
+        if (mp_.size() >= capacity_) {
+            evictOne();
+        }
+
+        lru_list_.push_back(Entry{key, value, expire_at});
+        auto list_it = std::prev(lru_list_.end());
+        mp_[key] = list_it;
+    }
+
+    std::size_t pruneExpiredUnlocked() {
+        std::size_t removed = 0;
+        for (auto list_it = lru_list_.begin(); list_it != lru_list_.end();) {
+            if (isExpired(list_it)) {
+                mp_.erase(list_it->key);
+                list_it = lru_list_.erase(list_it);
+                ++removed;
+            } else {
+                ++list_it;
+            }
+        }
+        return removed;
+    }
 
     mutable std::mutex mutex_;
-    std::list<std::pair<Key, Value>> lru_list_;
-    std::unordered_map<Key, ListIt> mp_;
+    List lru_list_;
+    Map mp_;
     std::size_t capacity_;
 };
 

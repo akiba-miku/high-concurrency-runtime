@@ -43,6 +43,16 @@ public:
         get_segment(key).put(key, value);
     }
 
+    void put(const Key& key,
+             const Value& value,
+             runtime::time::Timestamp expire_at) {
+        get_segment(key).put(key, value, expire_at);
+    }
+
+    void put(const Key& key, const Value& value, double ttl_seconds) {
+        get_segment(key).put(key, value, ttl_seconds);
+    }
+
     bool erase(const Key &key) {
         return get_segment(key).erase(key);
     }
@@ -71,6 +81,14 @@ public:
         for(auto &seg : segments_) {
             seg->clear();
         }
+    }
+
+    std::size_t pruneExpired() {
+        std::size_t total_removed = 0;
+        for (auto& seg : segments_) {
+            total_removed += seg->pruneExpired();
+        }
+        return total_removed;
     }
 
 private:

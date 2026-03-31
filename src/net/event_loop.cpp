@@ -4,6 +4,10 @@
 #include "runtime/net/poller.h"
 
 #include <cassert>
+#include <cerrno>
+#include <cstdio>
+#include <cstdlib>
+#include <cstdint>
 #include <sys/eventfd.h>
 #include <unistd.h>
 
@@ -11,11 +15,54 @@ namespace runtime::net {
 
 namespace {
 
+constexpr int kPollTimeMs = 10000;
 int CreateEventfd() {
     int evtfd = ::eventfd(0, EFD_NONBLOCK | EFD_CLOEXEC);
-    assert(evtfd >= 0);
+    if (evtfd < 0) {
+        std::perror("eventfd");
+        std::abort();
+    }
     return evtfd;
 }
+
+void WriteEventfd(int fd) {
+    const uint64_t one = 1;
+    while (true) {
+        const ssize_t n = ::write(fd, &one, sizeof(one));
+        if (n == static_cast<ssize_t>(sizeof(one))) {
+            return;
+        }
+        if (n < 0 && errno == EINTR) {
+            continue;
+        }
+        if (n < 0 && errno == EAGAIN) {
+            return;
+        }
+
+        std::perror("eventfd write");
+        return;
+    }
+}
+
+void ReadEventfd(int fd) {
+    uint64_t one = 0;
+    while (true) {
+        const ssize_t n = ::read(fd, &one, sizeof(one));
+        if (n == static_cast<ssize_t>(sizeof(one))) {
+            return;
+        }
+        if (n < 0 && errno == EINTR) {
+            continue;
+        }
+        if (n < 0 && errno == EAGAIN) {
+            return;
+        }
+
+        std::perror("eventfd read");
+        return;
+    }
+}
+
 thread_local EventLoop *t_loop_in_this_thread = nullptr;
 }   // namespace
 
@@ -37,6 +84,9 @@ EventLoop::EventLoop()
       }
 
 EventLoop::~EventLoop() {
+    assert(IsInLoopThread());
+    assert(!looping_);
+
     wakeup_channel_->DisableAll();
     wakeup_channel_->Remove();
     ::close(wakeup_fd_);
@@ -44,13 +94,14 @@ EventLoop::~EventLoop() {
 }
 
 void EventLoop::Loop() {
+    assert(IsInLoopThread());
     assert(!looping_);
     looping_ = true;
     quit_ = false;
 
     while(!quit_) {
         active_channels_.clear();
-        poll_return_time_ = poller_->Poll(10000, &active_channels_);
+        poll_return_time_ = poller_->Poll(kPollTimeMs, &active_channels_);
 
         for(Channel *channel : active_channels_) {
             channel->HandleEvent(poll_return_time_);
@@ -83,20 +134,23 @@ void EventLoop::QueueInLoop(Functor cb) {
         pending_functors_.push_back(std::move(cb));
     }
 
-    if(!IsInLoopThread() || calling_pending_functors_) {
+    if(!IsInLoopThread() || calling_pending_functors_.load()) {
         Wakeup();
     }
 }
 
 void EventLoop::UpdateChannel(Channel *channel) {
+    assert(IsInLoopThread());
     poller_->UpdateChannel(channel);
 }
 
 void EventLoop::RemoveChannel(Channel *channel) {
+    assert(IsInLoopThread());
     poller_->RemoveChannel(channel);
 }
 
-bool EventLoop::HasChannel(Channel *channel){
+bool EventLoop::HasChannel(Channel *channel) const{
+    assert(IsInLoopThread());
     return poller_->HasChannel(channel);
 }
 
@@ -105,13 +159,11 @@ bool EventLoop::IsInLoopThread() const {
 }
 
 void EventLoop::Wakeup() {
-    uint64_t one = 1;
-    ::write(wakeup_fd_, &one, sizeof(one));
+    WriteEventfd(wakeup_fd_);
 }
 
 void EventLoop::HandleRead() {
-    uint64_t one = 1;
-    ::read(wakeup_fd_, &one, sizeof(one));
+    ReadEventfd(wakeup_fd_);
 }
 
 void EventLoop::DoPendingFunctors() {
