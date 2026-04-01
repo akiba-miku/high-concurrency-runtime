@@ -1,8 +1,14 @@
 #include "runtime/log/async_logger.h"
 
 #include <chrono>
+#include <ctime>
 #include <cstring>
+#include <errno.h>
+#include <filesystem>
+#include <iomanip>
+#include <sstream>
 #include <string_view>
+#include <system_error>
 #include <utility>
 
 namespace runtime::log {
@@ -88,6 +94,7 @@ void AsyncLogger::Append(const char *data, std::size_t len) {
 
   if (!current_buffer_->Append(write_data, write_len)) {
     // 单条日志最多截断到一个 buffer 大小，理论上不应失败；失败时静默丢弃比写坏内存更安全。
+    ++dropped_messages_;
     return;
   }
   cv_.notify_one();
@@ -129,6 +136,9 @@ void AsyncLogger::WriteBuffer(const Buffer &buffer) {
   if (file_ == nullptr || buffer.Empty()) {
     return;
   }
+
+  RotateIfNeeded();
+
   std::size_t size = buffer.Size();
   std::size_t written = 0;
   while (written < size) {
@@ -140,6 +150,7 @@ void AsyncLogger::WriteBuffer(const Buffer &buffer) {
     }
 
     if (std::ferror(file_) != 0) {
+      last_error_code_ = errno;
       std::clearerr(file_);
       break;
     }
@@ -149,7 +160,47 @@ void AsyncLogger::WriteBuffer(const Buffer &buffer) {
 }
 
 void AsyncLogger::RotateIfNeeded() {
-  // ... 省略日志文件滚动逻辑，实际实现中会根据文件大小和时间戳进行滚动。
+  if (file_ == nullptr || file_ == stdout || filename_.empty()) {
+    return;
+  }
+
+  if (written_bytes_ < roll_size_) {
+    return;
+  }
+
+  std::fflush(file_);
+  std::fclose(file_);
+  file_ = nullptr;
+
+  std::error_code ec;
+  const std::filesystem::path current_path(filename_);
+  const std::filesystem::path rotate_path(BuildRotateFilename());
+  std::filesystem::rename(current_path, rotate_path, ec);
+  if (ec) {
+    last_error_code_ = ec.value();
+  } else {
+    ++rotate_sequence_;
+  }
+
+  OpenFile();
+  written_bytes_ = 0;
+}
+
+std::string AsyncLogger::BuildRotateFilename() const {
+  const auto now = std::chrono::system_clock::now();
+  const auto current_time = std::chrono::system_clock::to_time_t(now);
+  std::tm tm_time {};
+#if defined(_WIN32)
+  localtime_s(&tm_time, &current_time);
+#else
+  localtime_r(&current_time, &tm_time);
+#endif
+
+  std::ostringstream oss;
+  oss << filename_ << '.'
+      << std::put_time(&tm_time, "%Y%m%d-%H%M%S")
+      << '.' << rotate_sequence_;
+  return oss.str();
 }
 
 void AsyncLogger::ThreadFunc(std::stop_token stop_token) {
@@ -204,7 +255,6 @@ void AsyncLogger::ThreadFunc(std::stop_token stop_token) {
     }
 
     FlushFile();
-    RotateIfNeeded();
 
     while (!spare_buffer1 && !buffers_to_write.empty()) {
       auto buffer = std::move(buffers_to_write.back());

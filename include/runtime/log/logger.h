@@ -34,6 +34,7 @@ public:
 
   void SetLogLevel(LogLevel level);
   LogLevel GetLogLevel() const;
+  bool ShouldLog(LogLevel level) const;
 
   // 供外部调用的日志接口
   // 1. 日志级别的过滤
@@ -57,36 +58,60 @@ const char *ToString(LogLevel level);
 
 class LogMessage : public runtime::base::NonCopyable {
 public:
-    LogMessage(LogLevel level, const char *file, int line, const char *func)
-        : level_(level), file_(file), line_(line), func_(func) {}
-    ~LogMessage() {
-        Logger::Instance().Log(level_, file_, line_, func_, stream_.str());
-    }    
-    std::ostringstream &Stream() {
-        return stream_;
-    }
+  LogMessage(LogLevel level, const char *file, int line, const char *func)
+      : level_(level), file_(file), line_(line), func_(func) {}
+
+  ~LogMessage() { Logger::Instance().Log(level_, file_, line_, func_, stream_.str()); }
+
+  std::ostringstream &Stream() { return stream_; }
+
 private:
-    LogLevel level_;
-    const char *file_;
-    int line_;
-    const char *func_;
-    std::ostringstream stream_;
+  LogLevel level_;
+  const char *file_;
+  int line_;
+  const char *func_;
+  std::ostringstream stream_;
 };
 
 } // namespace runtime::log
 
 
-#define LOG_DEBUG() \
-  ::runtime::log::LogMessage(::runtime::log::LogLevel::DEBUG, __FILE__, __LINE__, __func__).Stream()
+#define LOG_DEBUG()                                                                   \
+  if (!::runtime::log::Logger::Instance().ShouldLog(::runtime::log::LogLevel::DEBUG)) \
+    ;                                                                                 \
+  else                                                                                \
+    ::runtime::log::LogMessage(::runtime::log::LogLevel::DEBUG, __FILE__, __LINE__,   \
+                               __func__)                                               \
+        .Stream()
 
-#define LOG_INFO() \
-  ::runtime::log::LogMessage(::runtime::log::LogLevel::INFO, __FILE__, __LINE__, __func__).Stream()
+#define LOG_INFO()                                                                   \
+  if (!::runtime::log::Logger::Instance().ShouldLog(::runtime::log::LogLevel::INFO)) \
+    ;                                                                                \
+  else                                                                               \
+    ::runtime::log::LogMessage(::runtime::log::LogLevel::INFO, __FILE__, __LINE__,   \
+                               __func__)                                              \
+        .Stream()
 
-#define LOG_WARN() \
-  ::runtime::log::LogMessage(::runtime::log::LogLevel::WARN, __FILE__, __LINE__, __func__).Stream()
+#define LOG_WARN()                                                                   \
+  if (!::runtime::log::Logger::Instance().ShouldLog(::runtime::log::LogLevel::WARN)) \
+    ;                                                                                \
+  else                                                                               \
+    ::runtime::log::LogMessage(::runtime::log::LogLevel::WARN, __FILE__, __LINE__,   \
+                               __func__)                                              \
+        .Stream()
 
-#define LOG_ERROR() \
-  ::runtime::log::LogMessage(::runtime::log::LogLevel::ERROR, __FILE__, __LINE__, __func__).Stream()
+#define LOG_ERROR()                                                                   \
+  if (!::runtime::log::Logger::Instance().ShouldLog(::runtime::log::LogLevel::ERROR)) \
+    ;                                                                                 \
+  else                                                                                \
+    ::runtime::log::LogMessage(::runtime::log::LogLevel::ERROR, __FILE__, __LINE__,   \
+                               __func__)                                               \
+        .Stream()
 
-#define LOG_FATAL() \
-  ::runtime::log::LogMessage(::runtime::log::LogLevel::FATAL, __FILE__, __LINE__, __func__).Stream()
+#define LOG_FATAL()                                                                   \
+  if (!::runtime::log::Logger::Instance().ShouldLog(::runtime::log::LogLevel::FATAL)) \
+    ;                                                                                 \
+  else                                                                                \
+    ::runtime::log::LogMessage(::runtime::log::LogLevel::FATAL, __FILE__, __LINE__,   \
+                               __func__)                                               \
+        .Stream()

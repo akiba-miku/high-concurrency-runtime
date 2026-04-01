@@ -16,7 +16,11 @@ void Logger::Init(const std::string &filename,
                   LogLevel level, 
                   int flush_interval_ms, 
                   std::size_t roll_size) {
-    level_.store(level, std::memory_order_release);
+    if (async_logger_) {
+        async_logger_->Stop();
+    }
+
+    level_.store(level, std::memory_order_relaxed);
     async_logger_ = std::make_unique<AsyncLogger>(filename, flush_interval_ms, roll_size);
     async_logger_->Start();
 }
@@ -29,11 +33,15 @@ void Logger::Shutdown() {
 }
 
 void Logger::SetLogLevel(LogLevel level) {
-    level_.store(level, std::memory_order_release);
+    level_.store(level, std::memory_order_relaxed);
 }
 
 LogLevel Logger::GetLogLevel() const {
-    return level_.load(std::memory_order_acquire);
+    return level_.load(std::memory_order_relaxed);
+}
+
+bool Logger::ShouldLog(LogLevel level) const {
+    return level >= level_.load(std::memory_order_relaxed);
 }
 
 void Logger::Log(LogLevel level, 

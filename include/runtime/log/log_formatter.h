@@ -1,5 +1,6 @@
 #pragma once
 
+#include "runtime/base/current_thread.h"
 #include "runtime/log/logger.h"
 #include "runtime/time/timestamp.h"
 
@@ -18,6 +19,7 @@ inline std::string FormatLogMessage(
 
   return '[' + now.ToFormattedString() + "] "
       + '[' + std::string(ToString(level)) + "] "
+      + "[tid:" + std::to_string(runtime::base::tid()) + "] "
       + '[' + std::string(file) + ':' + std::to_string(line) + "] "
       + '[' + std::string(func) + "] "
       + std::string(message) + '\n';
