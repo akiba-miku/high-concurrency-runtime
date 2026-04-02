@@ -24,26 +24,32 @@ class TcpConnection : public runtime::base::NonCopyable,
 public:
   using TcpConnectionPtr = std::shared_ptr<TcpConnection>;
 
-  using ConnectionCallback = std::function<void(const TcpConnectionPtr &)>;
+  using ConnectionCallback = std::function<void(const TcpConnectionPtr&)>;
   using MessageCallback = std::function<void(
-      const TcpConnectionPtr &, const std::string &, runtime::time::Timestamp)>;
-  using CloseCallback = std::function<void(const TcpConnectionPtr &)>;
-  using WriteCompleteCallback = std::function<void(const TcpConnectionPtr &)>;
+      const TcpConnectionPtr &, 
+      const std::string &, 
+      runtime::time::Timestamp)>;
+  using CloseCallback = std::function<void(const TcpConnectionPtr&)>;
+  using WriteCompleteCallback = std::function<void(
+    const TcpConnectionPtr &)>;
 
-  TcpConnection(EventLoop *loop, const std::string &name, int sockfd,
-                const InetAddress &local_addr, const InetAddress &peeraddr);
+  TcpConnection(
+      EventLoop *loop, 
+      const std::string &name, 
+      int sockfd,
+      const InetAddress &local_addr, 
+      const InetAddress &peeraddr);
 
   ~TcpConnection();
 
   EventLoop *GetLoop() const { return loop_; }
   const std::string &Name() const { return name_; }
-
   const InetAddress &LocalAddress() const { return local_addr_; }
   const InetAddress &PeerAddress() const { return peer_addr_; }
-
   bool Connected() const { return state_ == StateE::kConnected; }
 
   void Send(const std::string &message);
+  // 主动关闭写端
   void Shutdown();
 
   void SetConnectionCallback(const ConnectionCallback &cb) {
@@ -81,15 +87,15 @@ private:
   void ShutdownInLoop();
 
 private:
-  EventLoop *loop_;
-  const std::string name_;
-  StateE state_;
+  EventLoop *loop_; // 连接归属事件循环
+  const std::string name_; // for debug
+  StateE state_; // 连接生命周期状态机
 
-  std::unique_ptr<Socket> socket_;
-  std::unique_ptr<Channel> channel_;
+  std::unique_ptr<Socket> socket_; // 管理 fd, socket 语义
+  std::unique_ptr<Channel> channel_; // 把 fd 接入 Reactor事件系统
 
-  InetAddress local_addr_;
-  InetAddress peer_addr_;
+  const InetAddress local_addr_; // 当前地址
+  const InetAddress peer_addr_; // 对端地址
 
   Buffer input_buffer_;
   Buffer output_buffer_;

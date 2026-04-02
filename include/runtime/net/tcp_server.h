@@ -13,6 +13,12 @@
 namespace runtime::net {
 
 class EventLoop;
+
+/**
+ * TcpServer 封装了一个TCP服务器实例， 监听端口， 接受新连接；
+ * 连接分配到一个新EventLoop， 创建持有TcpConnection.
+ * 监听，接收， 分配， 创建，回收。
+ */
 class TcpServer : public runtime::base::NonCopyable {
 public:
     using TcpConnectionPtr = std::shared_ptr<TcpConnection>;
@@ -26,7 +32,7 @@ public:
               const std::string &name);
     ~TcpServer();
 
-    // 0 表示单线程，4 表示多线程
+    // 0 表示单线程，>0 表示多线程
     void SetThreadNum(int num_threads) {
         thread_num_ = num_threads;
     }
@@ -59,11 +65,10 @@ private:
     const std::string name_;
 
     std::unique_ptr<Acceptor> acceptor_;
-    std::unique_ptr<EventLoopThreadPool> thread_pool_;
+    std::unique_ptr<EventLoopThreadPool> thread_pool_; // 多个subloop线程， 负责已建立连接的IO.
     int thread_num_;
     bool started_;
     int next_conn_id_;
-
 
     ConnectionCallback connection_callback_;
     MessageCallback message_callback_;
