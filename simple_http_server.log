@@ -1,0 +1,7 @@
+[2026-04-02 17:58:51.796220] [INFO] [tid:1912589] [/home/yun/design/high-concurrency-runtime/src/net/tcp_server.cpp:20] [TcpServer] tcp server created: name=SimpleHttpServer
+[2026-04-02 17:58:51.796550] [INFO] [tid:1912591] [/home/yun/design/high-concurrency-runtime/src/net/event_loop.cpp:109] [Loop] event loop entering loop
+[2026-04-02 17:58:51.797214] [INFO] [tid:1912589] [/home/yun/design/high-concurrency-runtime/src/net/tcp_server.cpp:46] [Start] tcp server starting: name=SimpleHttpServer io_threads=2
+[2026-04-02 17:58:51.797237] [INFO] [tid:1912589] [/home/yun/design/high-concurrency-runtime/src/net/acceptor.cpp:43] [Listen] acceptor listening on fd=6
+[2026-04-02 17:58:51.797248] [INFO] [tid:1912589] [/home/yun/design/high-concurrency-runtime/examples/simple_http_server.cpp:111] [main] simple http server listening on 127.0.0.1:18081 with 2 io threads
+[2026-04-02 17:58:51.797251] [INFO] [tid:1912589] [/home/yun/design/high-concurrency-runtime/src/net/event_loop.cpp:109] [Loop] event loop entering loop
+[2026-04-02 17:58:51.797273] [INFO] [tid:1912592] [/home/yun/design/high-concurrency-runtime/src/net/event_loop.cpp:109] [Loop] event loop entering loop

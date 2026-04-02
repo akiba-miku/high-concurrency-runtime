@@ -1,5 +1,6 @@
 #include "runtime/net/tcp_connection.h"
 
+#include "runtime/log/logger.h"
 #include "runtime/net/event_loop.h"
 
 #include <cassert>
@@ -9,6 +10,7 @@
 #include <unistd.h>
 
 namespace runtime::net {
+    
 TcpConnection::TcpConnection(
     EventLoop *loop,
     const std::string &name,
@@ -52,6 +54,9 @@ void TcpConnection::Send(const std::string &message) {
             });
         }
     }
+    else {
+        LOG_WARN() << "send ignored on disconnected connection: name=" << name_;
+    }
 }
 
 void TcpConnection::Shutdown() {
@@ -69,6 +74,10 @@ void TcpConnection::ConnectEstablished() {
     channel_->Tie(shared_from_this());
     channel_->EnableReading();
 
+    LOG_INFO() << "tcp connection established: name=" << name_
+               << " local=" << local_addr_.ToIpPort()
+               << " peer=" << peer_addr_.ToIpPort();
+
     if(connection_callback_) {
         connection_callback_(shared_from_this());
     }
@@ -80,6 +89,9 @@ void TcpConnection::ConnectDestroyed() {
         channel_->DisableAll();
     }
 
+    LOG_INFO() << "tcp connection destroyed: name=" << name_
+               << " peer=" << peer_addr_.ToIpPort();
+
     if(connection_callback_) {
         connection_callback_(shared_from_this());
     }
@@ -87,6 +99,9 @@ void TcpConnection::ConnectDestroyed() {
     channel_->Remove();
 }
 
+// n > 0, 读到数据 触发消息回调
+// n == 0, 对端关闭，HandleClose()
+// n < 0, 读错误， 区分 EAGAIN/EWOULDBLOCK和真正错误
 void TcpConnection::HandleRead(runtime::time::Timestamp receive_time) {
     int saved_errno = 0;
     ssize_t n = input_buffer_.ReadFd(channel_->Fd(), &saved_errno);
@@ -105,6 +120,10 @@ void TcpConnection::HandleRead(runtime::time::Timestamp receive_time) {
     else {
         errno = saved_errno;
         if(saved_errno != EAGAIN && saved_errno != EWOULDBLOCK) {
+            LOG_ERROR() << "tcp read failed: name=" << name_
+                        << " fd=" << channel_->Fd()
+                        << " errno=" << saved_errno
+                        << " message=" << std::strerror(saved_errno);
             HandleError();
         }
     }
@@ -130,6 +149,10 @@ void TcpConnection::HandleWrite() {
         else {
             errno = saved_errno;
             if(saved_errno != EAGAIN && saved_errno != EWOULDBLOCK) {
+                LOG_ERROR() << "tcp write failed: name=" << name_
+                            << " fd=" << channel_->Fd()
+                            << " errno=" << saved_errno
+                            << " message=" << std::strerror(saved_errno);
                 HandleError();
             }
         }
@@ -139,6 +162,9 @@ void TcpConnection::HandleWrite() {
 void TcpConnection::HandleClose() {
     SetState(StateE::kDisconnected);
     channel_->DisableAll();
+
+    LOG_INFO() << "tcp connection closed: name=" << name_
+               << " peer=" << peer_addr_.ToIpPort();
 
     TcpConnectionPtr guard(shared_from_this());
     if(connection_callback_) {
@@ -154,6 +180,10 @@ void TcpConnection::HandleError() {
     int err = 0;
     socklen_t len = static_cast<socklen_t>(sizeof(err));
     ::getsockopt(channel_->Fd(), SOL_SOCKET, SO_ERROR, &err, &len);
+    LOG_ERROR() << "tcp connection socket error: name=" << name_
+                << " fd=" << channel_->Fd()
+                << " error=" << err
+                << " message=" << std::strerror(err);
 }
 
 void TcpConnection::SendInLoop(const std::string &message) {
@@ -167,6 +197,10 @@ void TcpConnection::SendInLoop(const std::string &message) {
         if(nwrote < 0) {
             nwrote = 0;
             if(errno != EWOULDBLOCK) {
+                LOG_ERROR() << "tcp direct write failed: name=" << name_
+                            << " fd=" << channel_->Fd()
+                            << " errno=" << errno
+                            << " message=" << std::strerror(errno);
                 return ;
             }
         }

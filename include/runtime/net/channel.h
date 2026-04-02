@@ -15,6 +15,7 @@ class EventLoop ;
  * Channel 是 事件解释器 + 回调分发器
  * 
  * fd + interested events + returned events + callbacks
+ * 维护channel->poller中fd状态的一致性
  */
 class Channel : public runtime::base::NonCopyable {
 public:
@@ -24,6 +25,7 @@ public:
     explicit Channel(EventLoop *loop, int fd); 
     ~Channel();
 
+    // 核心：事件处理
     void HandleEvent(runtime::time::Timestamp receive_time);
 
     // 设置回调对象
@@ -40,6 +42,7 @@ public:
     int Revents() const { return revents_; }
     void SetRevents(int revt) { revents_ = revt; }
 
+    // 先修改本地状态机 然后同步底层。
     void EnableReading() { events_ |= kReadEvent; Update(); }
     void DisableReading() { events_ &= ~kReadEvent; Update(); }
     void EnableWriting() { events_ |= kWriteEvent; Update(); }
@@ -59,28 +62,28 @@ public:
     EventLoop *OwnerLoop() { return loop_; }
     void Remove();
 private:
-    // 关心的事件变化同步给底层
+    // 一致性：关心的事件变化同步给底层
     void Update();
     void HandleEventWithGuard(runtime::time::Timestamp receive_time);
 private:
     //定义 "read/write/None" 常量
-    static const int kNoneEvent;
-    static const int kReadEvent;
-    static const int kWriteEvent;
+    static const int kNoneEvent; // -> 0
+    static const int kReadEvent; // -> EPOLLIN | EPOLLPRI
+    static const int kWriteEvent; // -> EPOLLOUT
 
     EventLoop *loop_; // 属于哪个eventloop
-    const int fd_; // channel 绑定的哪个文件符
+    const int fd_; // channel 绑定的哪个文件描述符
     int events_; // 想监听的事件
     int revents_; // 实际发生的事件
-    int index_;
+    int index_; // 底层poller的适配状态
 
     std::weak_ptr<void> tie_; // Channel 与宿主对象生命周期关联
     bool tied_;
     
-    ReadEventCallback read_callback_;
-    EventCallback write_callback_;
-    EventCallback close_callback_;
-    EventCallback error_callback_;
+    ReadEventCallback read_callback_; // 可读事件
+    EventCallback write_callback_; // 可写事件
+    EventCallback close_callback_; // 连接关闭 / 对端关闭
+    EventCallback error_callback_; // 错误事件
 };
 
 }   // namespace runtime::net

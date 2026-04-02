@@ -1,13 +1,14 @@
 #include "runtime/net/event_loop.h"
 
+#include "runtime/log/logger.h"
 #include "runtime/net/channel.h"
 #include "runtime/net/poller.h"
 
 #include <cassert>
 #include <cerrno>
-#include <cstdio>
 #include <cstdlib>
 #include <cstdint>
+#include <cstring>
 #include <sys/eventfd.h>
 #include <unistd.h>
 
@@ -19,7 +20,8 @@ constexpr int kPollTimeMs = 10000;
 int CreateEventfd() {
     int evtfd = ::eventfd(0, EFD_NONBLOCK | EFD_CLOEXEC);
     if (evtfd < 0) {
-        std::perror("eventfd");
+        LOG_FATAL() << "eventfd creation failed: errno=" << errno
+                    << " message=" << std::strerror(errno);
         std::abort();
     }
     return evtfd;
@@ -39,7 +41,9 @@ void WriteEventfd(int fd) {
             return;
         }
 
-        std::perror("eventfd write");
+        LOG_ERROR() << "eventfd write failed: fd=" << fd
+                    << " errno=" << errno
+                    << " message=" << std::strerror(errno);
         return;
     }
 }
@@ -58,7 +62,9 @@ void ReadEventfd(int fd) {
             return;
         }
 
-        std::perror("eventfd read");
+        LOG_ERROR() << "eventfd read failed: fd=" << fd
+                    << " errno=" << errno
+                    << " message=" << std::strerror(errno);
         return;
     }
 }
@@ -81,6 +87,7 @@ EventLoop::EventLoop()
             HandleRead();
         });
         wakeup_channel_->EnableReading();
+        LOG_DEBUG() << "event loop created: wakeup_fd=" << wakeup_fd_;
       }
 
 EventLoop::~EventLoop() {
@@ -99,6 +106,8 @@ void EventLoop::Loop() {
     looping_ = true;
     quit_ = false;
 
+    LOG_INFO() << "event loop entering loop";
+
     while(!quit_) {
         active_channels_.clear();
         poll_return_time_ = poller_->Poll(kPollTimeMs, &active_channels_);
@@ -111,6 +120,7 @@ void EventLoop::Loop() {
     }
 
     looping_ = false;
+    LOG_INFO() << "event loop exited loop";
 }
 
 void EventLoop::Quit() {

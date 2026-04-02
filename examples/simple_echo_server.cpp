@@ -1,13 +1,16 @@
+#include "runtime/log/logger.h"
 #include "runtime/net/event_loop.h"
 #include "runtime/net/inet_address.h"
 #include "runtime/net/tcp_server.h"
 #include "runtime/time/timestamp.h"
 
-#include <iostream>
 #include <memory>
 #include <string>
 
 int main() {
+    auto& logger = runtime::log::Logger::Instance();
+    logger.Init("simple_echo_server.log", runtime::log::LogLevel::DEBUG);
+
     runtime::net::EventLoop main_loop;
     runtime::net::InetAddress listen_addr(8080, "127.0.0.1");
 
@@ -18,33 +21,32 @@ int main() {
 
     server.SetConnectionCallback(
         [](const std::shared_ptr<runtime::net::TcpConnection>& conn) {
-            std::cout << "[connection] "
-                      << conn->Name()
-                      << " local=" << conn->LocalAddress().ToIpPort()
-                      << " peer=" << conn->PeerAddress().ToIpPort()
-                      << '\n';
+            LOG_INFO() << "[connection] "
+                       << conn->Name()
+                       << " local=" << conn->LocalAddress().ToIpPort()
+                       << " peer=" << conn->PeerAddress().ToIpPort();
         });
 
     server.SetMessageCallback(
         [](const std::shared_ptr<runtime::net::TcpConnection>& conn,
            const std::string& message,
            runtime::time::Timestamp receive_time) {
-            std::cout << "[message] "
-                      << conn->Name()
-                      << " at " << receive_time.ToFormattedString()
-                      << " => " << message;
+            LOG_INFO() << "[message] "
+                       << conn->Name()
+                       << " at " << receive_time.ToFormattedString()
+                       << " => " << message;
 
             conn->Send(message);
         });
 
     server.SetWriteCompleteCallback(
         [](const std::shared_ptr<runtime::net::TcpConnection>& conn) {
-            std::cout << "[write complete] " << conn->Name() << '\n';
+            LOG_INFO() << "[write complete] " << conn->Name();
         });
 
     server.Start();
 
-    std::cout << "echo server listen on 127.0.0.1:8080\n";
+    LOG_INFO() << "echo server listen on 127.0.0.1:8080";
     main_loop.Loop();
     return 0;
 }

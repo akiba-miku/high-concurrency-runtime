@@ -23,6 +23,15 @@ target_link_libraries(simple_echo_server
         runtime_net
 )
 
+add_executable(simple_http_server
+    simple_http_server.cpp
+)
+
+target_link_libraries(simple_http_server
+    PRIVATE
+        runtime_net
+)
+
 # 把 example 挂进 CTest，便于直接通过 ctest 跑通日志 smoke test。
 if(BUILD_TESTS)
     add_test(NAME simple_logger_example_smoke COMMAND simple_logger_example)

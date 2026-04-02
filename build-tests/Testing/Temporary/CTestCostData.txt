@@ -1,0 +1,5 @@
+logger_smoke_test 6 0.00145198
+simple_logger_example_smoke 0 0
+memory_pool_smoke_test 0 0
+object_pool_smoke_test 0 0
+---

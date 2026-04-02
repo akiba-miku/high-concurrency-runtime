@@ -1,0 +1,19 @@
+Start testing: Apr 02 18:09 CST
+----------------------------------------------------------
+4/4 Testing: logger_smoke_test
+4/4 Test: logger_smoke_test
+Command: "/home/yun/design/high-concurrency-runtime/build-tests/tests/logger_smoke_test"
+Directory: /home/yun/design/high-concurrency-runtime/build-tests/tests
+"logger_smoke_test" start time: Apr 02 18:09 CST
+Output:
+----------------------------------------------------------
+[PASS] logger_smoke_test
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"logger_smoke_test" end time: Apr 02 18:09 CST
+"logger_smoke_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Apr 02 18:09 CST
