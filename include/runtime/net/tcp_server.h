@@ -2,6 +2,7 @@
 
 #include "runtime/base/noncopyable.h"
 #include "runtime/net/acceptor.h"
+#include "runtime/net/event_loop_thread_pool.h"
 #include "runtime/net/inet_address.h"
 #include "runtime/net/tcp_connection.h"
 
@@ -12,50 +13,73 @@
 namespace runtime::net {
 
 class EventLoop;
+
+/**
+ * TcpServer 封装了一个TCP服务器实例
+ * 连接分配到一个新EventLoop， 创建持有TcpConnection.
+ * 监听端口，
+ * 接收新连接
+ * 分配IO线程
+ * 创建，回收 连接对象。
+ */
 class TcpServer : public runtime::base::NonCopyable {
 public:
-    using TcpConnectionPtr = std::shared_ptr<TcpConnection>;
-    using ConnectionCallBack = TcpConnection::ConnectionCallBack;
-    using MessageCallBack = TcpConnection::MessageCallBack;
-    using WriteCompleteCallBack = TcpConnection::WriteCompleteCallBack;
+  using TcpConnectionPtr = std::shared_ptr<TcpConnection>;
+  using ConnectionCallback = TcpConnection::ConnectionCallback;
+  using MessageCallback = TcpConnection::MessageCallback;
+  using WriteCompleteCallback = TcpConnection::WriteCompleteCallback;
+  using ThreadInitCallback = EventLoopThreadPool::ThreadInitCallback;
 
-    TcpServer(EventLoop *loop, const InetAddress &listenaddr, const std::string &name);
-    ~TcpServer();
+  TcpServer(EventLoop *loop, 
+            const InetAddress &listenaddr,
+            const std::string &name);
+  ~TcpServer();
 
-    void setConnectionCallBack(ConnectionCallBack &&cb) {
-        connection_callback_ = std::forward<ConnectionCallBack>(cb);
-    }
+  // 0 表示单线程，1+ 表示创建对应的多线程数
+  void SetThreadNum(int num_threads) { thread_num_ = num_threads; }
 
-    void setMessageCallBack(MessageCallBack &&cb) {
-        message_callback_ = std::forward<MessageCallBack>(cb);
-    }
+  void SetThreadInitCallback(ThreadInitCallback &&cb) {
+    thread_init_callback_ = std::forward<ThreadInitCallback>(cb);
+  }
+  void SetConnectionCallback(ConnectionCallback &&cb) {
+    connection_callback_ = std::forward<ConnectionCallback>(cb);
+  }
 
-    void setWriteCompleteCallBack(WriteCompleteCallBack &&cb) {
-        write_complete_callback_ = std::forward<WriteCompleteCallBack>(cb);
-    }
+  void SetMessageCallback(MessageCallback &&cb) {
+    message_callback_ = std::forward<MessageCallback>(cb);
+  }
 
-    void start();
+  void SetWriteCompleteCallback(WriteCompleteCallback &&cb) {
+    write_complete_callback_ = std::forward<WriteCompleteCallback>(cb);
+  }
+
+  // 启动 ： 1. 启动线程池 2. 启动Acceptor
+  void Start();
 
 private:
-    void newConnection(int sockfd, const InetAddress &peeraddr);
-    void removeConnection(const TcpConnectionPtr &conn);
-    void removeConnectionInLoop(const TcpConnectionPtr &conn);
+  void NewConnection(int sockfd, const InetAddress &peeraddr);
+  void RemoveConnection(const TcpConnectionPtr &conn);
+  void RemoveConnectionInLoop(const TcpConnectionPtr &conn);
+
 private:
-    using ConnectionMap = std::map<std::string, TcpConnectionPtr>;
+  using ConnectionMap = std::map<std::string, TcpConnectionPtr>;
 
-    EventLoop *loop_;
-    const std::string name_;
+  EventLoop *loop_; // 主loop, 做accept
+  const std::string name_;
 
-    std::unique_ptr<Acceptor> acceptor_;
-    bool started_;
-    int next_conn_id_;
+  std::unique_ptr<Acceptor> acceptor_;
+  std::unique_ptr<EventLoopThreadPool>
+      thread_pool_; // 多个subloop线程， 负责已建立连接的IO.
+  int thread_num_; // 线程数
+  bool started_; // 启动标志
+  int next_conn_id_;
 
-    ConnectionCallBack connection_callback_;
-    MessageCallBack message_callback_;
-    WriteCompleteCallBack write_complete_callback_;
+  ConnectionCallback connection_callback_;
+  MessageCallback message_callback_;
+  WriteCompleteCallback write_complete_callback_;
+  ThreadInitCallback thread_init_callback_;
 
-    ConnectionMap connections_;
+  ConnectionMap connections_;
 };
 
-
-}   // namespace runtime::net;
+} // namespace runtime::net

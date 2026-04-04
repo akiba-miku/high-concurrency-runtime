@@ -11,83 +11,79 @@ namespace runtime::net {
 
 class EventLoop ;
 /**
- * Channel -> 封装fd 和 感兴趣的event
- * 绑定了poller返回的具体事件
+ * Channel -> fd的事件代理对象: 封装fd和感兴趣的事件
+ * Channel 是 事件解释器 + 回调分发器
  * 
  * fd + interested events + returned events + callbacks
+ * 维护channel->poller中fd状态的一致性
  */
 class Channel : public runtime::base::NonCopyable {
 public:
-    using EventCallBack = std::function<void()> ;
-    using ReadEventCallBack = std::function<void(runtime::time::Timestamp)> ;
+    using EventCallback = std::function<void()>;
+    using ReadEventCallback = std::function<void(runtime::time::Timestamp)>;
     
     explicit Channel(EventLoop *loop, int fd); 
     ~Channel();
 
-    // fd 得到poller通知以后，处理事件的
-    void handleEvent(runtime::time::Timestamp receiveTime);
+    // 核心：事件处理
+    void HandleEvent(runtime::time::Timestamp receive_time);
 
     // 设置回调对象
-    void setReadCallBack(ReadEventCallBack&& cb) {
-        readCallBack_ = std::forward<ReadEventCallBack>(cb);
-    }
-    void setWriteCallBack(EventCallBack&& cb) {
-        writeCallBack_ = std::forward<EventCallBack>(cb);
-    }
+    void SetReadCallback(ReadEventCallback&& cb) { read_callback_ = std::forward<ReadEventCallback>(cb); }
+    void SetWriteCallback(EventCallback&& cb) { write_callback_ = std::forward<EventCallback>(cb); }
+    void SetCloseCallback(EventCallback&& cb) { close_callback_ = std::forward<EventCallback>(cb); }
+    void SetErrorCallback(EventCallback&& cb) { error_callback_ = std::forward<EventCallback>(cb); }
 
-    void setCloseCallBack(EventCallBack&& cb) {
-        closeCallBack_ = std::forward<EventCallBack>(cb);
-    }
+    // 保护回调宿主对象的生命周期
+    void Tie(const std::shared_ptr<void>&);
 
-    void setErrorCallBack(EventCallBack&& cb) {
-        errorCallBack_ = std::forward<EventCallBack>(cb);
-    }
+    int Fd() const { return fd_; }
+    int Events() const { return events_; }
+    int Revents() const { return revents_; }
+    void SetRevents(int revt) { revents_ = revt; }
 
-    // 防止Channel被手动remove掉， channel依旧执行回调操作
-    void tie(const std::shared_ptr<void>&) ;
-
-    int fd() const { return fd_; }
-    int events() const { return events_; }
-    int revents() const { return revents_; }
-    void set_revents(int revt) { revents_ = revt; }
-
-    void enableReading() { events_ |= kReadEvent; update();}
-    void disableReading() { events_ &= ~kReadEvent; update();}
-    void enableWriting() { events_ |= kWriteEvent; update(); }
-    void disableWriting() { events_ &= ~kWriteEvent; update(); }
-    void disableAll() { events_ = kNoneEvent; update(); }
+    // 先修改本地状态机 然后同步底层。
+    void EnableReading() { events_ |= kReadEvent; Update(); }
+    void DisableReading() { events_ &= ~kReadEvent; Update(); }
+    void EnableWriting() { events_ |= kWriteEvent; Update(); }
+    void DisableWriting() { events_ &= ~kWriteEvent; Update(); }
+    void DisableAll() { events_ = kNoneEvent; Update(); }
 
     // 返回fd当前的事件状态
-    bool isNonEvent() const { return events_ == kNoneEvent; }
-    bool isWriting() const { return events_ & kWriteEvent; }
-    bool isReading() const { return events_ & kReadEvent; }
+    bool IsNoneEvent() const { return events_ == kNoneEvent; }
+    bool IsWriting() const { return events_ & kWriteEvent; }
+    bool IsReading() const { return events_ & kReadEvent; }
 
-    int index() {return index_;}
-    void set_index(int idx) { index_ = idx; }
+    int Index() const { return index_; }
+    //Poller返回活跃事件->设置Channel的方法
+    void SetIndex(int idx) { index_ = idx; }
 
     // one loop per thread
-    EventLoop *ownerLoop() { return loop_; }
-    void remove();
+    EventLoop *OwnerLoop() { return loop_; }
+    void Remove();
 private:
-    void update();
-    void handleEventWithGuard(runtime::time::Timestamp receiveTime);
+    // 一致性：关心的事件变化同步给底层
+    void Update();
+    void HandleEventWithGuard(runtime::time::Timestamp receive_time);
 private:
-    static const int kNoneEvent;
-    static const int kReadEvent;
-    static const int kWriteEvent;
+    //定义 "read/write/None" 常量
+    static const int kNoneEvent; // -> 0
+    static const int kReadEvent; // -> EPOLLIN | EPOLLPRI
+    static const int kWriteEvent; // -> EPOLLOUT
 
     EventLoop *loop_; // 属于哪个eventloop
-    const int fd_; // channel 绑定的哪个文件符
+    const int fd_; // channel 绑定的哪个文件描述符
     int events_; // 想监听的事件
     int revents_; // 实际发生的事件
-    int index_;
-    std::weak_ptr<void> tie_;
+    int index_; // 底层poller的适配状态
+
+    std::weak_ptr<void> tie_; // Channel 与宿主对象生命周期关联
     bool tied_;
     
-    ReadEventCallBack readCallBack_;
-    EventCallBack writeCallBack_;
-    EventCallBack closeCallBack_;
-    EventCallBack errorCallBack_;
+    ReadEventCallback read_callback_; // 可读事件
+    EventCallback write_callback_; // 可写事件
+    EventCallback close_callback_; // 连接关闭 / 对端关闭
+    EventCallback error_callback_; // 错误事件
 };
 
 }   // namespace runtime::net

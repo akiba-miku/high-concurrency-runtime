@@ -141,6 +141,20 @@ build CMakeFiles/runtime_net.dir/src/net/event_loop.cpp.o: CXX_COMPILER__runtime
   OBJECT_DIR = CMakeFiles/runtime_net.dir
   OBJECT_FILE_DIR = CMakeFiles/runtime_net.dir/src/net
 
+build CMakeFiles/runtime_net.dir/src/net/event_loop_thread.cpp.o: CXX_COMPILER__runtime_net_ /home/yun/design/high-concurrency-runtime/src/net/event_loop_thread.cpp || cmake_object_order_depends_target_runtime_net
+  DEP_FILE = CMakeFiles/runtime_net.dir/src/net/event_loop_thread.cpp.o.d
+  FLAGS = -std=c++20
+  INCLUDES = -I/home/yun/design/high-concurrency-runtime/include
+  OBJECT_DIR = CMakeFiles/runtime_net.dir
+  OBJECT_FILE_DIR = CMakeFiles/runtime_net.dir/src/net
+
+build CMakeFiles/runtime_net.dir/src/net/event_loop_thread_pool.cpp.o: CXX_COMPILER__runtime_net_ /home/yun/design/high-concurrency-runtime/src/net/event_loop_thread_pool.cpp || cmake_object_order_depends_target_runtime_net
+  DEP_FILE = CMakeFiles/runtime_net.dir/src/net/event_loop_thread_pool.cpp.o.d
+  FLAGS = -std=c++20
+  INCLUDES = -I/home/yun/design/high-concurrency-runtime/include
+  OBJECT_DIR = CMakeFiles/runtime_net.dir
+  OBJECT_FILE_DIR = CMakeFiles/runtime_net.dir/src/net
+
 build CMakeFiles/runtime_net.dir/src/net/inet_address.cpp.o: CXX_COMPILER__runtime_net_ /home/yun/design/high-concurrency-runtime/src/net/inet_address.cpp || cmake_object_order_depends_target_runtime_net
   DEP_FILE = CMakeFiles/runtime_net.dir/src/net/inet_address.cpp.o.d
   FLAGS = -std=c++20
@@ -191,7 +205,7 @@ build CMakeFiles/runtime_net.dir/src/net/tcp_server.cpp.o: CXX_COMPILER__runtime
 #############################################
 # Link the static library libruntime_net.a
 
-build libruntime_net.a: CXX_STATIC_LIBRARY_LINKER__runtime_net_ CMakeFiles/runtime_net.dir/src/net/acceptor.cpp.o CMakeFiles/runtime_net.dir/src/net/channel.cpp.o CMakeFiles/runtime_net.dir/src/net/epoll_poller.cpp.o CMakeFiles/runtime_net.dir/src/net/event_loop.cpp.o CMakeFiles/runtime_net.dir/src/net/inet_address.cpp.o CMakeFiles/runtime_net.dir/src/net/net_utils.cpp.o CMakeFiles/runtime_net.dir/src/net/poller.cpp.o CMakeFiles/runtime_net.dir/src/net/socket.cpp.o CMakeFiles/runtime_net.dir/src/net/tcp_connection.cpp.o CMakeFiles/runtime_net.dir/src/net/tcp_server.cpp.o || libruntime_foundation.a
+build libruntime_net.a: CXX_STATIC_LIBRARY_LINKER__runtime_net_ CMakeFiles/runtime_net.dir/src/net/acceptor.cpp.o CMakeFiles/runtime_net.dir/src/net/channel.cpp.o CMakeFiles/runtime_net.dir/src/net/epoll_poller.cpp.o CMakeFiles/runtime_net.dir/src/net/event_loop.cpp.o CMakeFiles/runtime_net.dir/src/net/event_loop_thread.cpp.o CMakeFiles/runtime_net.dir/src/net/event_loop_thread_pool.cpp.o CMakeFiles/runtime_net.dir/src/net/inet_address.cpp.o CMakeFiles/runtime_net.dir/src/net/net_utils.cpp.o CMakeFiles/runtime_net.dir/src/net/poller.cpp.o CMakeFiles/runtime_net.dir/src/net/socket.cpp.o CMakeFiles/runtime_net.dir/src/net/tcp_connection.cpp.o CMakeFiles/runtime_net.dir/src/net/tcp_server.cpp.o || libruntime_foundation.a
   OBJECT_DIR = CMakeFiles/runtime_net.dir
   POST_BUILD = :
   PRE_LINK = :

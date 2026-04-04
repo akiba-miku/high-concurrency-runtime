@@ -10,92 +10,102 @@ namespace runtime::net {
 
 namespace {
 
-constexpr int kNew = -1;     // channel未添加到poller，channel => index_
-constexpr int kAdded = 1;    // 已添加到poller中
-constexpr int kDeleted = 2;  // channel从poller删除
+enum class ChannelState : int {
+  kNew = -1,
+  kAdded = 1,
+  kDeleted = 2,
+};
 
-}  // namespace
+} // namespace
 
-EPollPoller::EPollPoller(EventLoop* loop)
-    : Poller(loop),
-      epollfd_(epoll_create1(EPOLL_CLOEXEC)),
+EPollPoller::EPollPoller(EventLoop *loop)
+    : Poller(loop), epollfd_(::epoll_create1(EPOLL_CLOEXEC)),
       events_(kInitEventListSize) {
-    assert(epollfd_ >= 0);
+  if (epollfd_ < 0) {
+    // 用日志替换 / 异常abort
+    assert(false && "epoll_create1 failed");
+  }
 }
 
 EPollPoller::~EPollPoller() {
+  if (epollfd_ >= 0)
     ::close(epollfd_);
 }
 
-runtime::time::Timestamp EPollPoller::poll(int timeout_ms,
-                                           ChannelList* active_channels) {
-    int num_events =
-        ::epoll_wait(epollfd_, &*events_.begin(), events_.size(), timeout_ms);
-    int saved_errno = errno;
-    runtime::time::Timestamp now(runtime::time::Timestamp::now());
+runtime::time::Timestamp EPollPoller::Poll(int timeout_ms,
+                                           ChannelList *active_channels) {
+  const int max_events = static_cast<int>(events_.size());
+  int num_events =
+      ::epoll_wait(epollfd_, events_.data(), events_.size(), timeout_ms);
+  const int saved_errno = errno;
+  auto now = runtime::time::Timestamp::Now();
 
-    if (num_events > 0) {
-        fillActiveChannels(num_events, active_channels);
-        if (static_cast<std::size_t>(num_events) == events_.size()) {
-            events_.resize(events_.size() * 2);
-        }
-    } else if (num_events < 0 && saved_errno != EINTR) {
-        errno = saved_errno;
+  if (num_events > 0) {
+    FillActiveChannels(num_events, active_channels);
+    if (num_events == max_events) {
+      events_.resize(events_.size() * 2);
     }
+  } else if (num_events < 0 && saved_errno != EINTR) {
+    errno = saved_errno;
+    // 日志
+  }
 
-    return now;
+  return now;
 }
 
-void EPollPoller::fillActiveChannels(int num_events,
-                                     ChannelList* active_channels) const {
-    for (int i = 0; i < num_events; ++i) {
-        auto* channel = static_cast<Channel*>(events_[i].data.ptr);
-        channel->set_revents(events_[i].events);
-        active_channels->push_back(channel);
+void EPollPoller::FillActiveChannels(int num_events,
+                                     ChannelList *active_channels) const {
+  active_channels->reserve(active_channels->size() +
+                           static_cast<size_t>(num_events));
+  for (int i = 0; i < num_events; ++i) {
+    auto *channel = static_cast<Channel *>(events_[i].data.ptr);
+    channel->SetRevents(events_[i].events);
+    active_channels->push_back(channel);
+  }
+}
+
+void EPollPoller::UpdateChannel(Channel *channel) {
+  const int fd = channel->Fd();
+  const auto state = static_cast<ChannelState>(channel->Index());
+
+  if (state == ChannelState::kNew || state == ChannelState::kDeleted) {
+    if (state == ChannelState::kNew) {
+      channels_[fd] = channel;
     }
+    channel->SetIndex(static_cast<int>(ChannelState::kAdded));
+    Update(EPOLL_CTL_ADD, channel);
+    return;
+  }
+
+  // state == kAdded
+  if (channel->IsNoneEvent()) {
+    Update(EPOLL_CTL_DEL, channel);
+    channel->SetIndex(static_cast<int>(ChannelState::kDeleted));
+  } else {
+    Update(EPOLL_CTL_MOD, channel);
+  }
 }
 
-// channel => eventloop => Poller => epoll
-void EPollPoller::updateChannel(Channel* channel) {
-    const int index = channel->index();
-    const int fd = channel->fd();
+void EPollPoller::RemoveChannel(Channel *channel) {
+  const int fd = channel->Fd();
+  channels_.erase(fd);
 
-    // for debug
-    if (index == kNew || index == kDeleted) {
-        if (index == kNew) {
-            channels_[fd] = channel;
-        }
+  if (static_cast<ChannelState>(channel->Index()) == ChannelState::kAdded) {
+    Update(EPOLL_CTL_DEL, channel);
+  }
 
-        // index == kDeleted
-        channel->set_index(kAdded);
-        update(EPOLL_CTL_ADD, channel);
-    } else {
-        if (channel->isNonEvent()) {
-            update(EPOLL_CTL_DEL, channel);
-            channel->set_index(kDeleted);
-        } else {
-            update(EPOLL_CTL_MOD, channel);
-        }
-    }
+  channel->SetIndex(static_cast<int>(ChannelState::kNew));
 }
 
-void EPollPoller::removeChannel(Channel* channel) {
-    const int fd = channel->fd();
-    channels_.erase(fd);
+void EPollPoller::Update(int operation, Channel *channel) {
+  epoll_event event{};
+  event.events = channel->Events();
+  event.data.ptr = channel;
 
-    if (channel->index() == kAdded) {
-        update(EPOLL_CTL_DEL, channel);
-    }
-
-    channel->set_index(kNew);
+  if (::epoll_ctl(epollfd_, operation, channel->Fd(), &event) < 0) {
+    // 加日志：operation/fd/events/errno
+    // LOG_SYSERR << "epoll_ctl op=" << operation << " fd=" <<
+    // channel->fd();
+  }
 }
-
-void EPollPoller::update(int operation, Channel* channel) {
-    epoll_event event{};
-    event.events = channel->events();
-    event.data.ptr = channel;
-
-    ::epoll_ctl(epollfd_, operation, channel->fd(), &event);
-}
-
-}  // namespace runtime::net
+} // namespace runtime::net

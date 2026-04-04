@@ -1,6 +1,7 @@
 #pragma once
 
 #include "runtime/base/noncopyable.h"
+#include "runtime/net/buffer.h"
 #include "runtime/net/channel.h"
 #include "runtime/net/inet_address.h"
 #include "runtime/net/socket.h"
@@ -14,94 +15,95 @@ namespace runtime::net {
 
 class EventLoop;
 
-class TcpConnection
-    : public runtime::base::NonCopyable,
-      public std::enable_shared_from_this<TcpConnection> {
+/**
+ * - between Reactor and User connection brige.
+ *
+ */
+class TcpConnection : public runtime::base::NonCopyable,
+                      public std::enable_shared_from_this<TcpConnection> {
 public:
-        using TcpConnectionPtr = std::shared_ptr<TcpConnection>;
+  using TcpConnectionPtr = std::shared_ptr<TcpConnection>;
 
-        using ConnectionCallBack = std::function<void(const TcpConnectionPtr&)>;
-        using MessageCallBack = std::function<void(
-            const TcpConnectionPtr&,
-            const std::string&,
-            runtime::time::Timestamp)>;
-        using CloseCallBack = std::function<void(const TcpConnectionPtr&)>;
-        using WriteCompleteCallBack = std::function<void(const TcpConnectionPtr&)>;
+  using ConnectionCallback = std::function<void(const TcpConnectionPtr&)>;
+  using MessageCallback = std::function<void(
+      const TcpConnectionPtr &, 
+      const std::string &, 
+      runtime::time::Timestamp)>;
+  using CloseCallback = std::function<void(const TcpConnectionPtr&)>;
+  using WriteCompleteCallback = std::function<void(
+    const TcpConnectionPtr &)>;
 
-        TcpConnection(
-            EventLoop *loop,
-            const std::string &name,
-            int sockfd,
-            const InetAddress &local_addr,
-            const InetAddress &peeraddr);
-        
-        ~TcpConnection();
+  TcpConnection(
+      EventLoop *loop, 
+      const std::string &name, 
+      int sockfd,
+      const InetAddress &local_addr, 
+      const InetAddress &peeraddr);
 
-        EventLoop *getLoop() const { return loop_; }
-        const std::string &name() const { return name_; }
+  ~TcpConnection();
 
-        const InetAddress &localAddress() const { return local_addr_; }
-        const InetAddress &peerAddress() const { return peer_addr_; }
+  EventLoop *GetLoop() const { return loop_; }
+  const std::string &Name() const { return name_; }
+  const InetAddress &LocalAddress() const { return local_addr_; }
+  const InetAddress &PeerAddress() const { return peer_addr_; }
+  bool Connected() const { return state_ == StateE::kConnected; }
 
-        bool connected() const { return state_ == StateE::kConnected; }
+  void Send(const std::string &message);
+  // 主动关闭写端
+  void Shutdown();
 
-        void send(const std::string &message);
-        void shutdown();
+  void SetConnectionCallback(const ConnectionCallback &cb) {
+    connection_callback_ = cb;
+  }
 
-        void setConnectionCallBack(const ConnectionCallBack &cb) {
-            connection_callback_ = cb;
-        }
+  void SetMessageCallback(const MessageCallback &cb) { message_callback_ = cb; }
 
-        void setMessageCallBack(const MessageCallBack &cb) {
-            message_callback_ = cb;
-        }
+  void SetCloseCallback(const CloseCallback &cb) { close_callback_ = cb; }
 
-        void setCloseCallBack(const CloseCallBack &cb) {
-            close_callback_ = cb;
-        }
+  void SetWriteCompleteCallback(const WriteCompleteCallback &cb) {
+    write_complete_callback_ = cb;
+  }
 
-        void setWriteCompleteCallBack(const WriteCompleteCallBack &cb) {
-            write_complete_callback_ = cb;
-        }
-
-        void connectEstablished();
-        void connectDestroyed();
+  void ConnectEstablished();
+  void ConnectDestroyed();
 
 private:
-      enum class StateE {
-        kDisconnected,
-        kConnecting,
-        kConnected,
-        kDisconnecting
-      };
+    // 状态机
+    enum class StateE {
+    kDisconnected,
+    kConnecting,
+    kConnected,
+    kDisconnecting
+  };
 
-      void setState(StateE state) { state_ = state; }
+  void SetState(StateE state) { state_ = state; }
 
-      void handleRead(runtime::time::Timestamp receive_time);
-      void handleWrite();
-      void handleClose();
-      void handleError();
+  void HandleRead(runtime::time::Timestamp receive_time);
+  void HandleWrite();
+  void HandleClose();
+  void HandleError();
 
-      void sendInLoop(const std::string &message);
-      void shutdownInLoop();
+  void SendInLoop(const std::string &message);
+  void ShutdownInLoop();
 
 private:
-      EventLoop *loop_;
-      const std::string name_;
-      StateE state_;
+  EventLoop *loop_; // 连接归属事件循环
+  const std::string name_; // for debug
+  StateE state_; // 连接生命周期状态机
 
-      std::unique_ptr<Socket> socket_;
-      std::unique_ptr<Channel> channel_;
+  std::unique_ptr<Socket> socket_; // 管理 fd, socket 语义
+  std::unique_ptr<Channel> channel_; // 把 fd 接入 Reactor事件系统
 
-      InetAddress local_addr_;
-      InetAddress peer_addr_;
+  const InetAddress local_addr_; // 当前地址
+  const InetAddress peer_addr_; // 对端地址
 
-      std::string output_buffer_;
+  Buffer input_buffer_;
+  Buffer output_buffer_;
 
-      ConnectionCallBack connection_callback_;
-      MessageCallBack message_callback_;
-      CloseCallBack close_callback_;
-      WriteCompleteCallBack write_complete_callback_;
+  ConnectionCallback connection_callback_;
+  MessageCallback message_callback_;
+  CloseCallback close_callback_;
+  WriteCompleteCallback write_complete_callback_;
 };
 
-}   // namespace rumtime::net
+} // namespace runtime::net

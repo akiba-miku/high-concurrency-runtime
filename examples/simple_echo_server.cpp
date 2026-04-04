@@ -1,34 +1,52 @@
+#include "runtime/log/logger.h"
 #include "runtime/net/event_loop.h"
 #include "runtime/net/inet_address.h"
 #include "runtime/net/tcp_server.h"
+#include "runtime/time/timestamp.h"
 
-#include <iostream>
+#include <memory>
 #include <string>
 
 int main() {
-    runtime::net::EventLoop loop;
-    runtime::net::InetAddress listen_addr(8080);
-    runtime::net::TcpServer server(&loop, listen_addr, "EchoServer");
+    auto& logger = runtime::log::Logger::Instance();
+    logger.Init("simple_echo_server.log", runtime::log::LogLevel::DEBUG);
 
-    server.setConnectionCallBack(
-        [](const std::shared_ptr<runtime::net::TcpConnection> &conn) {
-            std::cout << "[conn]"
-                      << conn->name()
-                      << " local=" << conn->localAddress().toIpPort()
-                      << " peer="  << conn->peerAddress().toIpPort()
-                      << '\n';
-        }
-    );
+    runtime::net::EventLoop main_loop;
+    runtime::net::InetAddress listen_addr(8080, "127.0.0.1");
 
-    server.setMessageCallBack(
-        [](const std::shared_ptr<runtime::net::TcpConnection> &conn,
-           const std::string &message,
-           runtime::time::Timestamp) {
-            conn->send(message);
-           });
-    server.start();
+    runtime::net::TcpServer server(&main_loop, listen_addr, "EchoServer");
 
-    std::cout << "echo server listen on 127.0.0.1:8080\n";
-    loop.loop();
+    // 先开 4 个 IO 线程，one loop per thread
+    server.SetThreadNum(4);
+
+    server.SetConnectionCallback(
+        [](const std::shared_ptr<runtime::net::TcpConnection>& conn) {
+            LOG_INFO() << "[connection] "
+                       << conn->Name()
+                       << " local=" << conn->LocalAddress().ToIpPort()
+                       << " peer=" << conn->PeerAddress().ToIpPort();
+        });
+
+    server.SetMessageCallback(
+        [](const std::shared_ptr<runtime::net::TcpConnection>& conn,
+           const std::string& message,
+           runtime::time::Timestamp receive_time) {
+            LOG_INFO() << "[message] "
+                       << conn->Name()
+                       << " at " << receive_time.ToFormattedString()
+                       << " => " << message;
+
+            conn->Send(message);
+        });
+
+    server.SetWriteCompleteCallback(
+        [](const std::shared_ptr<runtime::net::TcpConnection>& conn) {
+            LOG_INFO() << "[write complete] " << conn->Name();
+        });
+
+    server.Start();
+
+    LOG_INFO() << "echo server listen on 127.0.0.1:8080";
+    main_loop.Loop();
     return 0;
 }

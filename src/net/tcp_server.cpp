@@ -1,4 +1,5 @@
 #include "runtime/net/tcp_server.h"
+#include "runtime/log/logger.h"
 #include "runtime/net/event_loop.h"
 #include "runtime/net/net_utils.h"
 
@@ -14,42 +15,58 @@ TcpServer::TcpServer(
       name_(name),
       acceptor_(std::make_unique<Acceptor>(loop, listenaddr, true)),
       started_(false),
-      next_conn_id_(1) {
+      next_conn_id_(1),
+      thread_num_(0) {
+    LOG_INFO() << "tcp server created: name=" << name_;
 
-    acceptor_->setNewConnectionCallBack(
+    acceptor_->SetNewConnectionCallback(
         [this](int sockfd, const InetAddress &peeraddr) {
-            newConnection(sockfd, peeraddr);
+            NewConnection(sockfd, peeraddr);
         }
     );
 }
 
 TcpServer::~TcpServer() {
+    LOG_INFO() << "tcp server destroying: name=" << name_
+               << " active_connections=" << connections_.size();
     for(auto &item : connections_) {
         TcpConnectionPtr conn(item.second);
-        conn->connectDestroyed();
+        conn->ConnectDestroyed();
     }
 }
 
-void TcpServer::start() {
+// 1. 启动线程池
+// 2. 开始监听
+void TcpServer::Start() {
     if(!started_) {
         started_ = true;
-        loop_->runInLoop([this]{
-            acceptor_->listen();
+
+        thread_pool_ = std::make_unique<EventLoopThreadPool>(loop_, thread_num_);
+        thread_pool_->Start();
+        LOG_INFO() << "tcp server starting: name=" << name_
+                   << " io_threads=" << thread_num_;
+        loop_->RunInLoop([this] {
+            acceptor_->Listen();
         });
     }
 }
 
-void TcpServer::newConnection(int sockfd, const InetAddress &peeraddr) {
-    char buf[64];
-    std::snprintf(buf, sizeof(buf), "#%d", next_conn_id_);
-    ++next_conn_id_;
+// 最重要的函数
+void TcpServer::NewConnection(int sockfd, const InetAddress &peeraddr) {
+    // 1. 从线程池挑一个subLoop 负责后续IO
+    EventLoop *ioLoop = thread_pool_->GetNextLoop();
 
+    // 2. 生成连接名
+    char buf[64];
+    std::snprintf(buf, sizeof(buf), "#%d", next_conn_id_++);
     std::string conn_name = name_ + buf;
 
+    // 3. 获取本端地址
     InetAddress localaddr(GetLocalAddr(sockfd));
 
+    // 4. 创建 TcpConnection
     TcpConnectionPtr conn = std::make_shared<TcpConnection>(
-        loop_,
+        ioLoop,
         conn_name,
         sockfd,
         localaddr,
@@ -57,26 +74,39 @@ void TcpServer::newConnection(int sockfd, const InetAddress &peeraddr) {
 
     connections_[conn_name] = conn;
 
-    conn->setConnectionCallBack(connection_callback_);
-    conn->setMessageCallBack(message_callback_);
-    conn->setWriteCompleteCallBack(write_complete_callback_);
+    LOG_INFO() << "new tcp connection: name=" << conn_name
+               << " local=" << localaddr.ToIpPort()
+               << " peer=" << peeraddr.ToIpPort();
 
-    conn->setCloseCallBack([this](const TcpConnectionPtr &connection){
-        removeConnection(connection);
+    conn->SetConnectionCallback(connection_callback_);
+    conn->SetMessageCallback(message_callback_);
+    conn->SetWriteCompleteCallback(write_complete_callback_);
+
+    conn->SetCloseCallback([this](const TcpConnectionPtr &connection) {
+        RemoveConnection(connection);
     });
 
-    conn->connectEstablished();
-}
-
-void TcpServer::removeConnection(const TcpConnectionPtr &conn) {
-    loop_->runInLoop([this, conn] {
-        removeConnectionInLoop(conn);
+    ioLoop->RunInLoop([conn] {
+        conn->ConnectEstablished();
     });
 }
 
-void TcpServer::removeConnectionInLoop(const TcpConnectionPtr &conn) {
-    connections_.erase(conn->name());
-    conn->connectDestroyed();
+// 无论连接在哪个ioLoop上关闭的， 都会回落到TcpServer的base_loop
+void TcpServer::RemoveConnection(const TcpConnectionPtr &conn) {
+    loop_->RunInLoop([this, conn] {
+        RemoveConnectionInLoop(conn);
+    });
+}
+
+void TcpServer::RemoveConnectionInLoop(const TcpConnectionPtr &conn) {
+    LOG_INFO() << "removing tcp connection: name=" << conn->Name()
+               << " peer=" << conn->PeerAddress().ToIpPort();
+    connections_.erase(conn->Name());
+
+    EventLoop *ioLoop = conn->GetLoop();
+    ioLoop->QueueInLoop([conn] {
+        conn->ConnectDestroyed();
+    });
 }
 
 }   // namespace runtime::net

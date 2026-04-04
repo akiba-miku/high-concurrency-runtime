@@ -1,9 +1,9 @@
 #pragma once
 
-#include "runtime/base/types.h"
-
 #include <arpa/inet.h>
+#include <cstdint>
 #include <netinet/in.h>
+#include <string>
 #include <sys/socket.h>
 
 namespace runtime::net {
@@ -12,15 +12,15 @@ namespace runtime::net {
 class InetAddress {
 public:
     explicit InetAddress(
-        runtime::base::u16 port,
-        runtime::base::String ip = "127.0.0.1");
+        std::uint16_t port,
+        std::string ip = "127.0.0.1");
     explicit InetAddress(const struct sockaddr_in& addr) : addr_(addr) {}
 
-    runtime::base::String toIp() const;
-    runtime::base::String toIpPort() const;
-    runtime::base::u16 toPort() const;
+    std::string ToIp() const;
+    std::string ToIpPort() const;
+    std::uint16_t ToPort() const;
 
-    const struct sockaddr_in& getSockaddr() const { return addr_; }
+    const struct sockaddr_in& GetSockAddr() const { return addr_; }
 
 private:
     struct sockaddr_in addr_{};

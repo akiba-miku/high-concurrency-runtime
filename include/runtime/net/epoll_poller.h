@@ -1,6 +1,6 @@
 #pragma once
 
-#include "poller.h"
+#include "runtime/net/poller.h"
 
 #include <sys/epoll.h>
 #include <vector>
@@ -12,21 +12,24 @@ namespace runtime::net {
  * epoll_ctl; add/mod/del
  * epoll_wait;
  */
+
+ // Poller 对 Linux/epoll的具体实现
+ // 对下： 和内核打交道把fd注册到epoll
+ // 对上:  把活跃事件的Channel提供给Channel
 class EPollPoller : public Poller {
 public:
     explicit EPollPoller(EventLoop *loop);
     ~EPollPoller() override ;
 
     // 重写基类的抽象方法
-    runtime::time::Timestamp poll(int timesout_ms, ChannelList *active_channels) override;
-    void updateChannel(Channel *channel) override;
-    void removeChannel(Channel *channel) override;
+    runtime::time::Timestamp Poll(int timeout_ms, ChannelList *active_channels) override;
+    void UpdateChannel(Channel *channel) override;
+    void RemoveChannel(Channel *channel) override;
+private:
+    void Update(int operation, Channel *channel);
+    void FillActiveChannels(int num_events, ChannelList *active_channels) const;
 private:
     static constexpr int kInitEventListSize = 16;
-    // 填写活跃的连接
-    void fillActiveChannels(int num_events, ChannelList *active_channels) const ;
-    // 更新Channel通道
-    void update(int operation, Channel *channel);
     
     int epollfd_;
     std::vector<epoll_event> events_;
@@ -34,3 +37,19 @@ private:
 
 }   // namespace runtime::net
 
+/**
+ *  调用链
+ *  > 注册事件
+ *  Channel::EnableReading()
+ *         -> Channel::Update()
+ *         -> EventLoop::UpdateChannel(channel)
+ *         -> EPollPoller::UpdateChannel(channel)
+ *         -> epoll_ctl(...)
+ *  > 等待事件
+ *  EventLoop::Loop()
+ *         -> EPoller::Poll(timeout, &activeChannels)
+ *         -> epoll_wait(...)
+ *         -> FillActiveChannels(...)
+ *         -> EventLoop for ... in activeChannels
+ *         -> Channel::HandleEvent(...)
+ */
