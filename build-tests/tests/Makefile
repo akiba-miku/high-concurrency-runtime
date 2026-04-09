@@ -560,6 +560,368 @@ logger_smoke_test/fast:
 	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/logger_smoke_test.dir/build.make tests/CMakeFiles/logger_smoke_test.dir/build
 .PHONY : logger_smoke_test/fast
 
+# Convenience name for target.
+tests/CMakeFiles/buffer_smoke_test.dir/rule:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/buffer_smoke_test.dir/rule
+.PHONY : tests/CMakeFiles/buffer_smoke_test.dir/rule
+
+# Convenience name for target.
+buffer_smoke_test: tests/CMakeFiles/buffer_smoke_test.dir/rule
+.PHONY : buffer_smoke_test
+
+# fast build rule for target.
+buffer_smoke_test/fast:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/buffer_smoke_test.dir/build.make tests/CMakeFiles/buffer_smoke_test.dir/build
+.PHONY : buffer_smoke_test/fast
+
+# Convenience name for target.
+tests/CMakeFiles/http_smoke_test.dir/rule:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/http_smoke_test.dir/rule
+.PHONY : tests/CMakeFiles/http_smoke_test.dir/rule
+
+# Convenience name for target.
+http_smoke_test: tests/CMakeFiles/http_smoke_test.dir/rule
+.PHONY : http_smoke_test
+
+# fast build rule for target.
+http_smoke_test/fast:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/http_smoke_test.dir/build.make tests/CMakeFiles/http_smoke_test.dir/build
+.PHONY : http_smoke_test/fast
+
+# Convenience name for target.
+tests/CMakeFiles/event_loop_smoke_test.dir/rule:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/event_loop_smoke_test.dir/rule
+.PHONY : tests/CMakeFiles/event_loop_smoke_test.dir/rule
+
+# Convenience name for target.
+event_loop_smoke_test: tests/CMakeFiles/event_loop_smoke_test.dir/rule
+.PHONY : event_loop_smoke_test
+
+# fast build rule for target.
+event_loop_smoke_test/fast:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/event_loop_smoke_test.dir/build.make tests/CMakeFiles/event_loop_smoke_test.dir/build
+.PHONY : event_loop_smoke_test/fast
+
+# Convenience name for target.
+tests/CMakeFiles/tcp_server_smoke_test.dir/rule:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/tcp_server_smoke_test.dir/rule
+.PHONY : tests/CMakeFiles/tcp_server_smoke_test.dir/rule
+
+# Convenience name for target.
+tcp_server_smoke_test: tests/CMakeFiles/tcp_server_smoke_test.dir/rule
+.PHONY : tcp_server_smoke_test
+
+# fast build rule for target.
+tcp_server_smoke_test/fast:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/tcp_server_smoke_test.dir/build.make tests/CMakeFiles/tcp_server_smoke_test.dir/build
+.PHONY : tcp_server_smoke_test/fast
+
+# Convenience name for target.
+tests/CMakeFiles/concurrency_smoke_test.dir/rule:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/concurrency_smoke_test.dir/rule
+.PHONY : tests/CMakeFiles/concurrency_smoke_test.dir/rule
+
+# Convenience name for target.
+concurrency_smoke_test: tests/CMakeFiles/concurrency_smoke_test.dir/rule
+.PHONY : concurrency_smoke_test
+
+# fast build rule for target.
+concurrency_smoke_test/fast:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/concurrency_smoke_test.dir/build.make tests/CMakeFiles/concurrency_smoke_test.dir/build
+.PHONY : concurrency_smoke_test/fast
+
+# Convenience name for target.
+tests/CMakeFiles/runtime_unit_tests.dir/rule:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/runtime_unit_tests.dir/rule
+.PHONY : tests/CMakeFiles/runtime_unit_tests.dir/rule
+
+# Convenience name for target.
+runtime_unit_tests: tests/CMakeFiles/runtime_unit_tests.dir/rule
+.PHONY : runtime_unit_tests
+
+# fast build rule for target.
+runtime_unit_tests/fast:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/runtime_unit_tests.dir/build.make tests/CMakeFiles/runtime_unit_tests.dir/build
+.PHONY : runtime_unit_tests/fast
+
+# Convenience name for target.
+tests/CMakeFiles/runtime_integration_tests.dir/rule:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/runtime_integration_tests.dir/rule
+.PHONY : tests/CMakeFiles/runtime_integration_tests.dir/rule
+
+# Convenience name for target.
+runtime_integration_tests: tests/CMakeFiles/runtime_integration_tests.dir/rule
+.PHONY : runtime_integration_tests
+
+# fast build rule for target.
+runtime_integration_tests/fast:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/runtime_integration_tests.dir/build.make tests/CMakeFiles/runtime_integration_tests.dir/build
+.PHONY : runtime_integration_tests/fast
+
+integration/test_event_loop.o: integration/test_event_loop.cpp.o
+.PHONY : integration/test_event_loop.o
+
+# target to build an object file
+integration/test_event_loop.cpp.o:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/runtime_integration_tests.dir/build.make tests/CMakeFiles/runtime_integration_tests.dir/integration/test_event_loop.cpp.o
+.PHONY : integration/test_event_loop.cpp.o
+
+integration/test_event_loop.i: integration/test_event_loop.cpp.i
+.PHONY : integration/test_event_loop.i
+
+# target to preprocess a source file
+integration/test_event_loop.cpp.i:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/runtime_integration_tests.dir/build.make tests/CMakeFiles/runtime_integration_tests.dir/integration/test_event_loop.cpp.i
+.PHONY : integration/test_event_loop.cpp.i
+
+integration/test_event_loop.s: integration/test_event_loop.cpp.s
+.PHONY : integration/test_event_loop.s
+
+# target to generate assembly for a file
+integration/test_event_loop.cpp.s:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/runtime_integration_tests.dir/build.make tests/CMakeFiles/runtime_integration_tests.dir/integration/test_event_loop.cpp.s
+.PHONY : integration/test_event_loop.cpp.s
+
+integration/test_event_loop_smoke.o: integration/test_event_loop_smoke.cpp.o
+.PHONY : integration/test_event_loop_smoke.o
+
+# target to build an object file
+integration/test_event_loop_smoke.cpp.o:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/event_loop_smoke_test.dir/build.make tests/CMakeFiles/event_loop_smoke_test.dir/integration/test_event_loop_smoke.cpp.o
+.PHONY : integration/test_event_loop_smoke.cpp.o
+
+integration/test_event_loop_smoke.i: integration/test_event_loop_smoke.cpp.i
+.PHONY : integration/test_event_loop_smoke.i
+
+# target to preprocess a source file
+integration/test_event_loop_smoke.cpp.i:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/event_loop_smoke_test.dir/build.make tests/CMakeFiles/event_loop_smoke_test.dir/integration/test_event_loop_smoke.cpp.i
+.PHONY : integration/test_event_loop_smoke.cpp.i
+
+integration/test_event_loop_smoke.s: integration/test_event_loop_smoke.cpp.s
+.PHONY : integration/test_event_loop_smoke.s
+
+# target to generate assembly for a file
+integration/test_event_loop_smoke.cpp.s:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/event_loop_smoke_test.dir/build.make tests/CMakeFiles/event_loop_smoke_test.dir/integration/test_event_loop_smoke.cpp.s
+.PHONY : integration/test_event_loop_smoke.cpp.s
+
+integration/test_http_server.o: integration/test_http_server.cpp.o
+.PHONY : integration/test_http_server.o
+
+# target to build an object file
+integration/test_http_server.cpp.o:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/runtime_integration_tests.dir/build.make tests/CMakeFiles/runtime_integration_tests.dir/integration/test_http_server.cpp.o
+.PHONY : integration/test_http_server.cpp.o
+
+integration/test_http_server.i: integration/test_http_server.cpp.i
+.PHONY : integration/test_http_server.i
+
+# target to preprocess a source file
+integration/test_http_server.cpp.i:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/runtime_integration_tests.dir/build.make tests/CMakeFiles/runtime_integration_tests.dir/integration/test_http_server.cpp.i
+.PHONY : integration/test_http_server.cpp.i
+
+integration/test_http_server.s: integration/test_http_server.cpp.s
+.PHONY : integration/test_http_server.s
+
+# target to generate assembly for a file
+integration/test_http_server.cpp.s:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/runtime_integration_tests.dir/build.make tests/CMakeFiles/runtime_integration_tests.dir/integration/test_http_server.cpp.s
+.PHONY : integration/test_http_server.cpp.s
+
+integration/test_tcp_server.o: integration/test_tcp_server.cpp.o
+.PHONY : integration/test_tcp_server.o
+
+# target to build an object file
+integration/test_tcp_server.cpp.o:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/runtime_integration_tests.dir/build.make tests/CMakeFiles/runtime_integration_tests.dir/integration/test_tcp_server.cpp.o
+.PHONY : integration/test_tcp_server.cpp.o
+
+integration/test_tcp_server.i: integration/test_tcp_server.cpp.i
+.PHONY : integration/test_tcp_server.i
+
+# target to preprocess a source file
+integration/test_tcp_server.cpp.i:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/runtime_integration_tests.dir/build.make tests/CMakeFiles/runtime_integration_tests.dir/integration/test_tcp_server.cpp.i
+.PHONY : integration/test_tcp_server.cpp.i
+
+integration/test_tcp_server.s: integration/test_tcp_server.cpp.s
+.PHONY : integration/test_tcp_server.s
+
+# target to generate assembly for a file
+integration/test_tcp_server.cpp.s:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/runtime_integration_tests.dir/build.make tests/CMakeFiles/runtime_integration_tests.dir/integration/test_tcp_server.cpp.s
+.PHONY : integration/test_tcp_server.cpp.s
+
+integration/test_tcp_server_smoke.o: integration/test_tcp_server_smoke.cpp.o
+.PHONY : integration/test_tcp_server_smoke.o
+
+# target to build an object file
+integration/test_tcp_server_smoke.cpp.o:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/tcp_server_smoke_test.dir/build.make tests/CMakeFiles/tcp_server_smoke_test.dir/integration/test_tcp_server_smoke.cpp.o
+.PHONY : integration/test_tcp_server_smoke.cpp.o
+
+integration/test_tcp_server_smoke.i: integration/test_tcp_server_smoke.cpp.i
+.PHONY : integration/test_tcp_server_smoke.i
+
+# target to preprocess a source file
+integration/test_tcp_server_smoke.cpp.i:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/tcp_server_smoke_test.dir/build.make tests/CMakeFiles/tcp_server_smoke_test.dir/integration/test_tcp_server_smoke.cpp.i
+.PHONY : integration/test_tcp_server_smoke.cpp.i
+
+integration/test_tcp_server_smoke.s: integration/test_tcp_server_smoke.cpp.s
+.PHONY : integration/test_tcp_server_smoke.s
+
+# target to generate assembly for a file
+integration/test_tcp_server_smoke.cpp.s:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/tcp_server_smoke_test.dir/build.make tests/CMakeFiles/tcp_server_smoke_test.dir/integration/test_tcp_server_smoke.cpp.s
+.PHONY : integration/test_tcp_server_smoke.cpp.s
+
+stress/test_concurrency_smoke.o: stress/test_concurrency_smoke.cpp.o
+.PHONY : stress/test_concurrency_smoke.o
+
+# target to build an object file
+stress/test_concurrency_smoke.cpp.o:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/runtime_integration_tests.dir/build.make tests/CMakeFiles/runtime_integration_tests.dir/stress/test_concurrency_smoke.cpp.o
+.PHONY : stress/test_concurrency_smoke.cpp.o
+
+stress/test_concurrency_smoke.i: stress/test_concurrency_smoke.cpp.i
+.PHONY : stress/test_concurrency_smoke.i
+
+# target to preprocess a source file
+stress/test_concurrency_smoke.cpp.i:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/runtime_integration_tests.dir/build.make tests/CMakeFiles/runtime_integration_tests.dir/stress/test_concurrency_smoke.cpp.i
+.PHONY : stress/test_concurrency_smoke.cpp.i
+
+stress/test_concurrency_smoke.s: stress/test_concurrency_smoke.cpp.s
+.PHONY : stress/test_concurrency_smoke.s
+
+# target to generate assembly for a file
+stress/test_concurrency_smoke.cpp.s:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/runtime_integration_tests.dir/build.make tests/CMakeFiles/runtime_integration_tests.dir/stress/test_concurrency_smoke.cpp.s
+.PHONY : stress/test_concurrency_smoke.cpp.s
+
+stress/test_concurrency_smoke_standalone.o: stress/test_concurrency_smoke_standalone.cpp.o
+.PHONY : stress/test_concurrency_smoke_standalone.o
+
+# target to build an object file
+stress/test_concurrency_smoke_standalone.cpp.o:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/concurrency_smoke_test.dir/build.make tests/CMakeFiles/concurrency_smoke_test.dir/stress/test_concurrency_smoke_standalone.cpp.o
+.PHONY : stress/test_concurrency_smoke_standalone.cpp.o
+
+stress/test_concurrency_smoke_standalone.i: stress/test_concurrency_smoke_standalone.cpp.i
+.PHONY : stress/test_concurrency_smoke_standalone.i
+
+# target to preprocess a source file
+stress/test_concurrency_smoke_standalone.cpp.i:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/concurrency_smoke_test.dir/build.make tests/CMakeFiles/concurrency_smoke_test.dir/stress/test_concurrency_smoke_standalone.cpp.i
+.PHONY : stress/test_concurrency_smoke_standalone.cpp.i
+
+stress/test_concurrency_smoke_standalone.s: stress/test_concurrency_smoke_standalone.cpp.s
+.PHONY : stress/test_concurrency_smoke_standalone.s
+
+# target to generate assembly for a file
+stress/test_concurrency_smoke_standalone.cpp.s:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/concurrency_smoke_test.dir/build.make tests/CMakeFiles/concurrency_smoke_test.dir/stress/test_concurrency_smoke_standalone.cpp.s
+.PHONY : stress/test_concurrency_smoke_standalone.cpp.s
+
+unit/test_buffer.o: unit/test_buffer.cpp.o
+.PHONY : unit/test_buffer.o
+
+# target to build an object file
+unit/test_buffer.cpp.o:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/runtime_unit_tests.dir/build.make tests/CMakeFiles/runtime_unit_tests.dir/unit/test_buffer.cpp.o
+.PHONY : unit/test_buffer.cpp.o
+
+unit/test_buffer.i: unit/test_buffer.cpp.i
+.PHONY : unit/test_buffer.i
+
+# target to preprocess a source file
+unit/test_buffer.cpp.i:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/runtime_unit_tests.dir/build.make tests/CMakeFiles/runtime_unit_tests.dir/unit/test_buffer.cpp.i
+.PHONY : unit/test_buffer.cpp.i
+
+unit/test_buffer.s: unit/test_buffer.cpp.s
+.PHONY : unit/test_buffer.s
+
+# target to generate assembly for a file
+unit/test_buffer.cpp.s:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/runtime_unit_tests.dir/build.make tests/CMakeFiles/runtime_unit_tests.dir/unit/test_buffer.cpp.s
+.PHONY : unit/test_buffer.cpp.s
+
+unit/test_buffer_smoke.o: unit/test_buffer_smoke.cpp.o
+.PHONY : unit/test_buffer_smoke.o
+
+# target to build an object file
+unit/test_buffer_smoke.cpp.o:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/buffer_smoke_test.dir/build.make tests/CMakeFiles/buffer_smoke_test.dir/unit/test_buffer_smoke.cpp.o
+.PHONY : unit/test_buffer_smoke.cpp.o
+
+unit/test_buffer_smoke.i: unit/test_buffer_smoke.cpp.i
+.PHONY : unit/test_buffer_smoke.i
+
+# target to preprocess a source file
+unit/test_buffer_smoke.cpp.i:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/buffer_smoke_test.dir/build.make tests/CMakeFiles/buffer_smoke_test.dir/unit/test_buffer_smoke.cpp.i
+.PHONY : unit/test_buffer_smoke.cpp.i
+
+unit/test_buffer_smoke.s: unit/test_buffer_smoke.cpp.s
+.PHONY : unit/test_buffer_smoke.s
+
+# target to generate assembly for a file
+unit/test_buffer_smoke.cpp.s:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/buffer_smoke_test.dir/build.make tests/CMakeFiles/buffer_smoke_test.dir/unit/test_buffer_smoke.cpp.s
+.PHONY : unit/test_buffer_smoke.cpp.s
+
+unit/test_http_smoke.o: unit/test_http_smoke.cpp.o
+.PHONY : unit/test_http_smoke.o
+
+# target to build an object file
+unit/test_http_smoke.cpp.o:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/http_smoke_test.dir/build.make tests/CMakeFiles/http_smoke_test.dir/unit/test_http_smoke.cpp.o
+.PHONY : unit/test_http_smoke.cpp.o
+
+unit/test_http_smoke.i: unit/test_http_smoke.cpp.i
+.PHONY : unit/test_http_smoke.i
+
+# target to preprocess a source file
+unit/test_http_smoke.cpp.i:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/http_smoke_test.dir/build.make tests/CMakeFiles/http_smoke_test.dir/unit/test_http_smoke.cpp.i
+.PHONY : unit/test_http_smoke.cpp.i
+
+unit/test_http_smoke.s: unit/test_http_smoke.cpp.s
+.PHONY : unit/test_http_smoke.s
+
+# target to generate assembly for a file
+unit/test_http_smoke.cpp.s:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/http_smoke_test.dir/build.make tests/CMakeFiles/http_smoke_test.dir/unit/test_http_smoke.cpp.s
+.PHONY : unit/test_http_smoke.cpp.s
+
+unit/test_logger.o: unit/test_logger.cpp.o
+.PHONY : unit/test_logger.o
+
+# target to build an object file
+unit/test_logger.cpp.o:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/runtime_unit_tests.dir/build.make tests/CMakeFiles/runtime_unit_tests.dir/unit/test_logger.cpp.o
+.PHONY : unit/test_logger.cpp.o
+
+unit/test_logger.i: unit/test_logger.cpp.i
+.PHONY : unit/test_logger.i
+
+# target to preprocess a source file
+unit/test_logger.cpp.i:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/runtime_unit_tests.dir/build.make tests/CMakeFiles/runtime_unit_tests.dir/unit/test_logger.cpp.i
+.PHONY : unit/test_logger.cpp.i
+
+unit/test_logger.s: unit/test_logger.cpp.s
+.PHONY : unit/test_logger.s
+
+# target to generate assembly for a file
+unit/test_logger.cpp.s:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/runtime_unit_tests.dir/build.make tests/CMakeFiles/runtime_unit_tests.dir/unit/test_logger.cpp.s
+.PHONY : unit/test_logger.cpp.s
+
 unit/test_logger_smoke.o: unit/test_logger_smoke.cpp.o
 .PHONY : unit/test_logger_smoke.o
 
@@ -583,6 +945,30 @@ unit/test_logger_smoke.s: unit/test_logger_smoke.cpp.s
 unit/test_logger_smoke.cpp.s:
 	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/logger_smoke_test.dir/build.make tests/CMakeFiles/logger_smoke_test.dir/unit/test_logger_smoke.cpp.s
 .PHONY : unit/test_logger_smoke.cpp.s
+
+unit/test_memory_pool.o: unit/test_memory_pool.cpp.o
+.PHONY : unit/test_memory_pool.o
+
+# target to build an object file
+unit/test_memory_pool.cpp.o:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/runtime_unit_tests.dir/build.make tests/CMakeFiles/runtime_unit_tests.dir/unit/test_memory_pool.cpp.o
+.PHONY : unit/test_memory_pool.cpp.o
+
+unit/test_memory_pool.i: unit/test_memory_pool.cpp.i
+.PHONY : unit/test_memory_pool.i
+
+# target to preprocess a source file
+unit/test_memory_pool.cpp.i:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/runtime_unit_tests.dir/build.make tests/CMakeFiles/runtime_unit_tests.dir/unit/test_memory_pool.cpp.i
+.PHONY : unit/test_memory_pool.cpp.i
+
+unit/test_memory_pool.s: unit/test_memory_pool.cpp.s
+.PHONY : unit/test_memory_pool.s
+
+# target to generate assembly for a file
+unit/test_memory_pool.cpp.s:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/runtime_unit_tests.dir/build.make tests/CMakeFiles/runtime_unit_tests.dir/unit/test_memory_pool.cpp.s
+.PHONY : unit/test_memory_pool.cpp.s
 
 unit/test_memory_pool_smoke.o: unit/test_memory_pool_smoke.cpp.o
 .PHONY : unit/test_memory_pool_smoke.o
@@ -608,6 +994,30 @@ unit/test_memory_pool_smoke.cpp.s:
 	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/memory_pool_smoke_test.dir/build.make tests/CMakeFiles/memory_pool_smoke_test.dir/unit/test_memory_pool_smoke.cpp.s
 .PHONY : unit/test_memory_pool_smoke.cpp.s
 
+unit/test_object_pool.o: unit/test_object_pool.cpp.o
+.PHONY : unit/test_object_pool.o
+
+# target to build an object file
+unit/test_object_pool.cpp.o:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/runtime_unit_tests.dir/build.make tests/CMakeFiles/runtime_unit_tests.dir/unit/test_object_pool.cpp.o
+.PHONY : unit/test_object_pool.cpp.o
+
+unit/test_object_pool.i: unit/test_object_pool.cpp.i
+.PHONY : unit/test_object_pool.i
+
+# target to preprocess a source file
+unit/test_object_pool.cpp.i:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/runtime_unit_tests.dir/build.make tests/CMakeFiles/runtime_unit_tests.dir/unit/test_object_pool.cpp.i
+.PHONY : unit/test_object_pool.cpp.i
+
+unit/test_object_pool.s: unit/test_object_pool.cpp.s
+.PHONY : unit/test_object_pool.s
+
+# target to generate assembly for a file
+unit/test_object_pool.cpp.s:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/runtime_unit_tests.dir/build.make tests/CMakeFiles/runtime_unit_tests.dir/unit/test_object_pool.cpp.s
+.PHONY : unit/test_object_pool.cpp.s
+
 unit/test_object_pool_smoke.o: unit/test_object_pool_smoke.cpp.o
 .PHONY : unit/test_object_pool_smoke.o
 
@@ -631,6 +1041,54 @@ unit/test_object_pool_smoke.s: unit/test_object_pool_smoke.cpp.s
 unit/test_object_pool_smoke.cpp.s:
 	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/object_pool_smoke_test.dir/build.make tests/CMakeFiles/object_pool_smoke_test.dir/unit/test_object_pool_smoke.cpp.s
 .PHONY : unit/test_object_pool_smoke.cpp.s
+
+unit/test_sanity.o: unit/test_sanity.cpp.o
+.PHONY : unit/test_sanity.o
+
+# target to build an object file
+unit/test_sanity.cpp.o:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/runtime_unit_tests.dir/build.make tests/CMakeFiles/runtime_unit_tests.dir/unit/test_sanity.cpp.o
+.PHONY : unit/test_sanity.cpp.o
+
+unit/test_sanity.i: unit/test_sanity.cpp.i
+.PHONY : unit/test_sanity.i
+
+# target to preprocess a source file
+unit/test_sanity.cpp.i:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/runtime_unit_tests.dir/build.make tests/CMakeFiles/runtime_unit_tests.dir/unit/test_sanity.cpp.i
+.PHONY : unit/test_sanity.cpp.i
+
+unit/test_sanity.s: unit/test_sanity.cpp.s
+.PHONY : unit/test_sanity.s
+
+# target to generate assembly for a file
+unit/test_sanity.cpp.s:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/runtime_unit_tests.dir/build.make tests/CMakeFiles/runtime_unit_tests.dir/unit/test_sanity.cpp.s
+.PHONY : unit/test_sanity.cpp.s
+
+unit/test_thread_pool.o: unit/test_thread_pool.cpp.o
+.PHONY : unit/test_thread_pool.o
+
+# target to build an object file
+unit/test_thread_pool.cpp.o:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/runtime_unit_tests.dir/build.make tests/CMakeFiles/runtime_unit_tests.dir/unit/test_thread_pool.cpp.o
+.PHONY : unit/test_thread_pool.cpp.o
+
+unit/test_thread_pool.i: unit/test_thread_pool.cpp.i
+.PHONY : unit/test_thread_pool.i
+
+# target to preprocess a source file
+unit/test_thread_pool.cpp.i:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/runtime_unit_tests.dir/build.make tests/CMakeFiles/runtime_unit_tests.dir/unit/test_thread_pool.cpp.i
+.PHONY : unit/test_thread_pool.cpp.i
+
+unit/test_thread_pool.s: unit/test_thread_pool.cpp.s
+.PHONY : unit/test_thread_pool.s
+
+# target to generate assembly for a file
+unit/test_thread_pool.cpp.s:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/runtime_unit_tests.dir/build.make tests/CMakeFiles/runtime_unit_tests.dir/unit/test_thread_pool.cpp.s
+.PHONY : unit/test_thread_pool.cpp.s
 
 # Help Target
 help:
@@ -669,18 +1127,70 @@ help:
 	@echo "... NightlySubmit"
 	@echo "... NightlyTest"
 	@echo "... NightlyUpdate"
+	@echo "... buffer_smoke_test"
+	@echo "... concurrency_smoke_test"
+	@echo "... event_loop_smoke_test"
+	@echo "... http_smoke_test"
 	@echo "... logger_smoke_test"
 	@echo "... memory_pool_smoke_test"
 	@echo "... object_pool_smoke_test"
+	@echo "... runtime_integration_tests"
+	@echo "... runtime_unit_tests"
+	@echo "... tcp_server_smoke_test"
+	@echo "... integration/test_event_loop.o"
+	@echo "... integration/test_event_loop.i"
+	@echo "... integration/test_event_loop.s"
+	@echo "... integration/test_event_loop_smoke.o"
+	@echo "... integration/test_event_loop_smoke.i"
+	@echo "... integration/test_event_loop_smoke.s"
+	@echo "... integration/test_http_server.o"
+	@echo "... integration/test_http_server.i"
+	@echo "... integration/test_http_server.s"
+	@echo "... integration/test_tcp_server.o"
+	@echo "... integration/test_tcp_server.i"
+	@echo "... integration/test_tcp_server.s"
+	@echo "... integration/test_tcp_server_smoke.o"
+	@echo "... integration/test_tcp_server_smoke.i"
+	@echo "... integration/test_tcp_server_smoke.s"
+	@echo "... stress/test_concurrency_smoke.o"
+	@echo "... stress/test_concurrency_smoke.i"
+	@echo "... stress/test_concurrency_smoke.s"
+	@echo "... stress/test_concurrency_smoke_standalone.o"
+	@echo "... stress/test_concurrency_smoke_standalone.i"
+	@echo "... stress/test_concurrency_smoke_standalone.s"
+	@echo "... unit/test_buffer.o"
+	@echo "... unit/test_buffer.i"
+	@echo "... unit/test_buffer.s"
+	@echo "... unit/test_buffer_smoke.o"
+	@echo "... unit/test_buffer_smoke.i"
+	@echo "... unit/test_buffer_smoke.s"
+	@echo "... unit/test_http_smoke.o"
+	@echo "... unit/test_http_smoke.i"
+	@echo "... unit/test_http_smoke.s"
+	@echo "... unit/test_logger.o"
+	@echo "... unit/test_logger.i"
+	@echo "... unit/test_logger.s"
 	@echo "... unit/test_logger_smoke.o"
 	@echo "... unit/test_logger_smoke.i"
 	@echo "... unit/test_logger_smoke.s"
+	@echo "... unit/test_memory_pool.o"
+	@echo "... unit/test_memory_pool.i"
+	@echo "... unit/test_memory_pool.s"
 	@echo "... unit/test_memory_pool_smoke.o"
 	@echo "... unit/test_memory_pool_smoke.i"
 	@echo "... unit/test_memory_pool_smoke.s"
+	@echo "... unit/test_object_pool.o"
+	@echo "... unit/test_object_pool.i"
+	@echo "... unit/test_object_pool.s"
 	@echo "... unit/test_object_pool_smoke.o"
 	@echo "... unit/test_object_pool_smoke.i"
 	@echo "... unit/test_object_pool_smoke.s"
+	@echo "... unit/test_sanity.o"
+	@echo "... unit/test_sanity.i"
+	@echo "... unit/test_sanity.s"
+	@echo "... unit/test_thread_pool.o"
+	@echo "... unit/test_thread_pool.i"
+	@echo "... unit/test_thread_pool.s"
 .PHONY : help
 
 

@@ -29,7 +29,7 @@ add_executable(simple_http_server
 
 target_link_libraries(simple_http_server
     PRIVATE
-        runtime_net
+        runtime_http
 )
 
 # 把 example 挂进 CTest，便于直接通过 ctest 跑通日志 smoke test。

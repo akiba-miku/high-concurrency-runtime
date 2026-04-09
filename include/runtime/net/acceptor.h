@@ -35,7 +35,7 @@ private:
   EventLoop *loop_; // 主loop
   Socket accept_socket_; // 监听socket
   Channel accept_channel_; // 封装监听socket
-  NewConnectionCallback new_connection_callback_; // 
+  NewConnectionCallback new_connection_callback_; // TcpServer提供。
   bool listening_; // 是否已经listen的状态位
 };
 

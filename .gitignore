@@ -3,5 +3,9 @@ README.md
 .out
 .o
 .exe
+.codex
+.claude
+.vscode
+
 
 /build

@@ -1,5 +1,10 @@
-logger_smoke_test 6 0.00145198
-simple_logger_example_smoke 0 0
-memory_pool_smoke_test 0 0
-object_pool_smoke_test 0 0
+logger_smoke_test 9 0.00176787
+simple_logger_example_smoke 3 0.00596772
+memory_pool_smoke_test 3 0.00360987
+object_pool_smoke_test 3 0.00243358
+buffer_smoke_test 3 0.00164958
+event_loop_smoke_test 3 0.00290274
+tcp_server_smoke_test 2 0
+concurrency_smoke_test 2 0
+http_smoke_test 1 0.0033616
 ---

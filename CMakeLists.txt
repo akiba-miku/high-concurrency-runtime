@@ -78,6 +78,27 @@ target_link_libraries(runtime_net
 
 target_compile_features(runtime_net PUBLIC cxx_std_20)
 
+add_library(runtime_http STATIC
+    src/http/http_context.cpp
+    src/http/http_request.cpp
+    src/http/http_response.cpp
+    src/http/http_server.cpp
+)
+
+target_include_directories(runtime_http
+    PUBLIC
+        ${CMAKE_CURRENT_SOURCE_DIR}/include
+)
+
+target_link_libraries(runtime_http
+    PUBLIC
+        runtime_net
+        runtime_foundation
+        Threads::Threads
+)
+
+target_compile_features(runtime_http PUBLIC cxx_std_20)
+
 if(BUILD_TESTS)
     enable_testing()
 endif()

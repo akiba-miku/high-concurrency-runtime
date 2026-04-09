@@ -42,7 +42,7 @@ void TcpServer::Start() {
         started_ = true;
 
         thread_pool_ = std::make_unique<EventLoopThreadPool>(loop_, thread_num_);
-        thread_pool_->Start();
+        thread_pool_->Start(thread_init_callback_);
         LOG_INFO() << "tcp server starting: name=" << name_
                    << " io_threads=" << thread_num_;
         loop_->RunInLoop([this] {

@@ -166,6 +166,19 @@ runtime_net/fast:
 .PHONY : runtime_net/fast
 
 #=============================================================================
+# Target rules for targets named runtime_http
+
+# Build rule for target.
+runtime_http: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 runtime_http
+.PHONY : runtime_http
+
+# fast build rule for target.
+runtime_http/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_http.dir/build.make CMakeFiles/runtime_http.dir/build
+.PHONY : runtime_http/fast
+
+#=============================================================================
 # Target rules for targets named simple_logger_example
 
 # Build rule for target.
@@ -607,6 +620,97 @@ logger_smoke_test/fast:
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/logger_smoke_test.dir/build.make tests/CMakeFiles/logger_smoke_test.dir/build
 .PHONY : logger_smoke_test/fast
 
+#=============================================================================
+# Target rules for targets named buffer_smoke_test
+
+# Build rule for target.
+buffer_smoke_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 buffer_smoke_test
+.PHONY : buffer_smoke_test
+
+# fast build rule for target.
+buffer_smoke_test/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/buffer_smoke_test.dir/build.make tests/CMakeFiles/buffer_smoke_test.dir/build
+.PHONY : buffer_smoke_test/fast
+
+#=============================================================================
+# Target rules for targets named http_smoke_test
+
+# Build rule for target.
+http_smoke_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 http_smoke_test
+.PHONY : http_smoke_test
+
+# fast build rule for target.
+http_smoke_test/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/http_smoke_test.dir/build.make tests/CMakeFiles/http_smoke_test.dir/build
+.PHONY : http_smoke_test/fast
+
+#=============================================================================
+# Target rules for targets named event_loop_smoke_test
+
+# Build rule for target.
+event_loop_smoke_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 event_loop_smoke_test
+.PHONY : event_loop_smoke_test
+
+# fast build rule for target.
+event_loop_smoke_test/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/event_loop_smoke_test.dir/build.make tests/CMakeFiles/event_loop_smoke_test.dir/build
+.PHONY : event_loop_smoke_test/fast
+
+#=============================================================================
+# Target rules for targets named tcp_server_smoke_test
+
+# Build rule for target.
+tcp_server_smoke_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tcp_server_smoke_test
+.PHONY : tcp_server_smoke_test
+
+# fast build rule for target.
+tcp_server_smoke_test/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/tcp_server_smoke_test.dir/build.make tests/CMakeFiles/tcp_server_smoke_test.dir/build
+.PHONY : tcp_server_smoke_test/fast
+
+#=============================================================================
+# Target rules for targets named concurrency_smoke_test
+
+# Build rule for target.
+concurrency_smoke_test: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 concurrency_smoke_test
+.PHONY : concurrency_smoke_test
+
+# fast build rule for target.
+concurrency_smoke_test/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/concurrency_smoke_test.dir/build.make tests/CMakeFiles/concurrency_smoke_test.dir/build
+.PHONY : concurrency_smoke_test/fast
+
+#=============================================================================
+# Target rules for targets named runtime_unit_tests
+
+# Build rule for target.
+runtime_unit_tests: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 runtime_unit_tests
+.PHONY : runtime_unit_tests
+
+# fast build rule for target.
+runtime_unit_tests/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/runtime_unit_tests.dir/build.make tests/CMakeFiles/runtime_unit_tests.dir/build
+.PHONY : runtime_unit_tests/fast
+
+#=============================================================================
+# Target rules for targets named runtime_integration_tests
+
+# Build rule for target.
+runtime_integration_tests: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 runtime_integration_tests
+.PHONY : runtime_integration_tests
+
+# fast build rule for target.
+runtime_integration_tests/fast:
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/runtime_integration_tests.dir/build.make tests/CMakeFiles/runtime_integration_tests.dir/build
+.PHONY : runtime_integration_tests/fast
+
 src/base/current_thread.o: src/base/current_thread.cpp.o
 .PHONY : src/base/current_thread.o
 
@@ -630,6 +734,102 @@ src/base/current_thread.s: src/base/current_thread.cpp.s
 src/base/current_thread.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_foundation.dir/build.make CMakeFiles/runtime_foundation.dir/src/base/current_thread.cpp.s
 .PHONY : src/base/current_thread.cpp.s
+
+src/http/http_context.o: src/http/http_context.cpp.o
+.PHONY : src/http/http_context.o
+
+# target to build an object file
+src/http/http_context.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_http.dir/build.make CMakeFiles/runtime_http.dir/src/http/http_context.cpp.o
+.PHONY : src/http/http_context.cpp.o
+
+src/http/http_context.i: src/http/http_context.cpp.i
+.PHONY : src/http/http_context.i
+
+# target to preprocess a source file
+src/http/http_context.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_http.dir/build.make CMakeFiles/runtime_http.dir/src/http/http_context.cpp.i
+.PHONY : src/http/http_context.cpp.i
+
+src/http/http_context.s: src/http/http_context.cpp.s
+.PHONY : src/http/http_context.s
+
+# target to generate assembly for a file
+src/http/http_context.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_http.dir/build.make CMakeFiles/runtime_http.dir/src/http/http_context.cpp.s
+.PHONY : src/http/http_context.cpp.s
+
+src/http/http_request.o: src/http/http_request.cpp.o
+.PHONY : src/http/http_request.o
+
+# target to build an object file
+src/http/http_request.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_http.dir/build.make CMakeFiles/runtime_http.dir/src/http/http_request.cpp.o
+.PHONY : src/http/http_request.cpp.o
+
+src/http/http_request.i: src/http/http_request.cpp.i
+.PHONY : src/http/http_request.i
+
+# target to preprocess a source file
+src/http/http_request.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_http.dir/build.make CMakeFiles/runtime_http.dir/src/http/http_request.cpp.i
+.PHONY : src/http/http_request.cpp.i
+
+src/http/http_request.s: src/http/http_request.cpp.s
+.PHONY : src/http/http_request.s
+
+# target to generate assembly for a file
+src/http/http_request.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_http.dir/build.make CMakeFiles/runtime_http.dir/src/http/http_request.cpp.s
+.PHONY : src/http/http_request.cpp.s
+
+src/http/http_response.o: src/http/http_response.cpp.o
+.PHONY : src/http/http_response.o
+
+# target to build an object file
+src/http/http_response.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_http.dir/build.make CMakeFiles/runtime_http.dir/src/http/http_response.cpp.o
+.PHONY : src/http/http_response.cpp.o
+
+src/http/http_response.i: src/http/http_response.cpp.i
+.PHONY : src/http/http_response.i
+
+# target to preprocess a source file
+src/http/http_response.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_http.dir/build.make CMakeFiles/runtime_http.dir/src/http/http_response.cpp.i
+.PHONY : src/http/http_response.cpp.i
+
+src/http/http_response.s: src/http/http_response.cpp.s
+.PHONY : src/http/http_response.s
+
+# target to generate assembly for a file
+src/http/http_response.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_http.dir/build.make CMakeFiles/runtime_http.dir/src/http/http_response.cpp.s
+.PHONY : src/http/http_response.cpp.s
+
+src/http/http_server.o: src/http/http_server.cpp.o
+.PHONY : src/http/http_server.o
+
+# target to build an object file
+src/http/http_server.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_http.dir/build.make CMakeFiles/runtime_http.dir/src/http/http_server.cpp.o
+.PHONY : src/http/http_server.cpp.o
+
+src/http/http_server.i: src/http/http_server.cpp.i
+.PHONY : src/http/http_server.i
+
+# target to preprocess a source file
+src/http/http_server.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_http.dir/build.make CMakeFiles/runtime_http.dir/src/http/http_server.cpp.i
+.PHONY : src/http/http_server.cpp.i
+
+src/http/http_server.s: src/http/http_server.cpp.s
+.PHONY : src/http/http_server.s
+
+# target to generate assembly for a file
+src/http/http_server.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_http.dir/build.make CMakeFiles/runtime_http.dir/src/http/http_server.cpp.s
+.PHONY : src/http/http_server.cpp.s
 
 src/log/async_logger.o: src/log/async_logger.cpp.o
 .PHONY : src/log/async_logger.o
@@ -1076,18 +1276,38 @@ help:
 	@echo "... NightlySubmit"
 	@echo "... NightlyTest"
 	@echo "... NightlyUpdate"
+	@echo "... buffer_smoke_test"
+	@echo "... concurrency_smoke_test"
+	@echo "... event_loop_smoke_test"
+	@echo "... http_smoke_test"
 	@echo "... logger_smoke_test"
 	@echo "... memory_pool_smoke_test"
 	@echo "... object_pool_smoke_test"
 	@echo "... runtime_foundation"
+	@echo "... runtime_http"
+	@echo "... runtime_integration_tests"
 	@echo "... runtime_net"
 	@echo "... runtime_task"
+	@echo "... runtime_unit_tests"
 	@echo "... simple_echo_server"
 	@echo "... simple_http_server"
 	@echo "... simple_logger_example"
+	@echo "... tcp_server_smoke_test"
 	@echo "... src/base/current_thread.o"
 	@echo "... src/base/current_thread.i"
 	@echo "... src/base/current_thread.s"
+	@echo "... src/http/http_context.o"
+	@echo "... src/http/http_context.i"
+	@echo "... src/http/http_context.s"
+	@echo "... src/http/http_request.o"
+	@echo "... src/http/http_request.i"
+	@echo "... src/http/http_request.s"
+	@echo "... src/http/http_response.o"
+	@echo "... src/http/http_response.i"
+	@echo "... src/http/http_response.s"
+	@echo "... src/http/http_server.o"
+	@echo "... src/http/http_server.i"
+	@echo "... src/http/http_server.s"
 	@echo "... src/log/async_logger.o"
 	@echo "... src/log/async_logger.i"
 	@echo "... src/log/async_logger.s"

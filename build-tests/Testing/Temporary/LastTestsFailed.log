@@ -1,3 +1,2 @@
-1:simple_logger_example_smoke
-2:memory_pool_smoke_test
-3:object_pool_smoke_test
+7:tcp_server_smoke_test
+8:concurrency_smoke_test

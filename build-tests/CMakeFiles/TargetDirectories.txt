@@ -1,6 +1,7 @@
 /home/yun/design/high-concurrency-runtime/build-tests/CMakeFiles/runtime_foundation.dir
 /home/yun/design/high-concurrency-runtime/build-tests/CMakeFiles/runtime_task.dir
 /home/yun/design/high-concurrency-runtime/build-tests/CMakeFiles/runtime_net.dir
+/home/yun/design/high-concurrency-runtime/build-tests/CMakeFiles/runtime_http.dir
 /home/yun/design/high-concurrency-runtime/build-tests/CMakeFiles/test.dir
 /home/yun/design/high-concurrency-runtime/build-tests/CMakeFiles/edit_cache.dir
 /home/yun/design/high-concurrency-runtime/build-tests/CMakeFiles/rebuild_cache.dir
@@ -41,6 +42,13 @@
 /home/yun/design/high-concurrency-runtime/build-tests/tests/CMakeFiles/memory_pool_smoke_test.dir
 /home/yun/design/high-concurrency-runtime/build-tests/tests/CMakeFiles/object_pool_smoke_test.dir
 /home/yun/design/high-concurrency-runtime/build-tests/tests/CMakeFiles/logger_smoke_test.dir
+/home/yun/design/high-concurrency-runtime/build-tests/tests/CMakeFiles/buffer_smoke_test.dir
+/home/yun/design/high-concurrency-runtime/build-tests/tests/CMakeFiles/http_smoke_test.dir
+/home/yun/design/high-concurrency-runtime/build-tests/tests/CMakeFiles/event_loop_smoke_test.dir
+/home/yun/design/high-concurrency-runtime/build-tests/tests/CMakeFiles/tcp_server_smoke_test.dir
+/home/yun/design/high-concurrency-runtime/build-tests/tests/CMakeFiles/concurrency_smoke_test.dir
+/home/yun/design/high-concurrency-runtime/build-tests/tests/CMakeFiles/runtime_unit_tests.dir
+/home/yun/design/high-concurrency-runtime/build-tests/tests/CMakeFiles/runtime_integration_tests.dir
 /home/yun/design/high-concurrency-runtime/build-tests/tests/CMakeFiles/test.dir
 /home/yun/design/high-concurrency-runtime/build-tests/tests/CMakeFiles/edit_cache.dir
 /home/yun/design/high-concurrency-runtime/build-tests/tests/CMakeFiles/rebuild_cache.dir

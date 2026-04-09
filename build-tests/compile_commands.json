@@ -90,6 +90,26 @@
   "file": "/home/yun/design/high-concurrency-runtime/src/net/tcp_server.cpp"
 },
 {
+  "directory": "/home/yun/design/high-concurrency-runtime/build-tests",
+  "command": "/usr/bin/c++  -I/home/yun/design/high-concurrency-runtime/include -std=c++20 -o CMakeFiles/runtime_http.dir/src/http/http_context.cpp.o -c /home/yun/design/high-concurrency-runtime/src/http/http_context.cpp",
+  "file": "/home/yun/design/high-concurrency-runtime/src/http/http_context.cpp"
+},
+{
+  "directory": "/home/yun/design/high-concurrency-runtime/build-tests",
+  "command": "/usr/bin/c++  -I/home/yun/design/high-concurrency-runtime/include -std=c++20 -o CMakeFiles/runtime_http.dir/src/http/http_request.cpp.o -c /home/yun/design/high-concurrency-runtime/src/http/http_request.cpp",
+  "file": "/home/yun/design/high-concurrency-runtime/src/http/http_request.cpp"
+},
+{
+  "directory": "/home/yun/design/high-concurrency-runtime/build-tests",
+  "command": "/usr/bin/c++  -I/home/yun/design/high-concurrency-runtime/include -std=c++20 -o CMakeFiles/runtime_http.dir/src/http/http_response.cpp.o -c /home/yun/design/high-concurrency-runtime/src/http/http_response.cpp",
+  "file": "/home/yun/design/high-concurrency-runtime/src/http/http_response.cpp"
+},
+{
+  "directory": "/home/yun/design/high-concurrency-runtime/build-tests",
+  "command": "/usr/bin/c++  -I/home/yun/design/high-concurrency-runtime/include -std=c++20 -o CMakeFiles/runtime_http.dir/src/http/http_server.cpp.o -c /home/yun/design/high-concurrency-runtime/src/http/http_server.cpp",
+  "file": "/home/yun/design/high-concurrency-runtime/src/http/http_server.cpp"
+},
+{
   "directory": "/home/yun/design/high-concurrency-runtime/build-tests/examples",
   "command": "/usr/bin/c++  -I/home/yun/design/high-concurrency-runtime/include -std=c++20 -o CMakeFiles/simple_logger_example.dir/simple_logger.cpp.o -c /home/yun/design/high-concurrency-runtime/examples/simple_logger.cpp",
   "file": "/home/yun/design/high-concurrency-runtime/examples/simple_logger.cpp"
@@ -118,5 +138,80 @@
   "directory": "/home/yun/design/high-concurrency-runtime/build-tests/tests",
   "command": "/usr/bin/c++  -I/home/yun/design/high-concurrency-runtime/tests/../include -I/home/yun/design/high-concurrency-runtime/include -std=c++20 -o CMakeFiles/logger_smoke_test.dir/unit/test_logger_smoke.cpp.o -c /home/yun/design/high-concurrency-runtime/tests/unit/test_logger_smoke.cpp",
   "file": "/home/yun/design/high-concurrency-runtime/tests/unit/test_logger_smoke.cpp"
+},
+{
+  "directory": "/home/yun/design/high-concurrency-runtime/build-tests/tests",
+  "command": "/usr/bin/c++  -I/home/yun/design/high-concurrency-runtime/tests/../include -I/home/yun/design/high-concurrency-runtime/include -std=c++20 -o CMakeFiles/buffer_smoke_test.dir/unit/test_buffer_smoke.cpp.o -c /home/yun/design/high-concurrency-runtime/tests/unit/test_buffer_smoke.cpp",
+  "file": "/home/yun/design/high-concurrency-runtime/tests/unit/test_buffer_smoke.cpp"
+},
+{
+  "directory": "/home/yun/design/high-concurrency-runtime/build-tests/tests",
+  "command": "/usr/bin/c++  -I/home/yun/design/high-concurrency-runtime/tests/../include -I/home/yun/design/high-concurrency-runtime/include -std=c++20 -o CMakeFiles/http_smoke_test.dir/unit/test_http_smoke.cpp.o -c /home/yun/design/high-concurrency-runtime/tests/unit/test_http_smoke.cpp",
+  "file": "/home/yun/design/high-concurrency-runtime/tests/unit/test_http_smoke.cpp"
+},
+{
+  "directory": "/home/yun/design/high-concurrency-runtime/build-tests/tests",
+  "command": "/usr/bin/c++  -I/home/yun/design/high-concurrency-runtime/tests/../include -I/home/yun/design/high-concurrency-runtime/include -std=c++20 -o CMakeFiles/event_loop_smoke_test.dir/integration/test_event_loop_smoke.cpp.o -c /home/yun/design/high-concurrency-runtime/tests/integration/test_event_loop_smoke.cpp",
+  "file": "/home/yun/design/high-concurrency-runtime/tests/integration/test_event_loop_smoke.cpp"
+},
+{
+  "directory": "/home/yun/design/high-concurrency-runtime/build-tests/tests",
+  "command": "/usr/bin/c++  -I/home/yun/design/high-concurrency-runtime/tests/../include -I/home/yun/design/high-concurrency-runtime/include -std=c++20 -o CMakeFiles/tcp_server_smoke_test.dir/integration/test_tcp_server_smoke.cpp.o -c /home/yun/design/high-concurrency-runtime/tests/integration/test_tcp_server_smoke.cpp",
+  "file": "/home/yun/design/high-concurrency-runtime/tests/integration/test_tcp_server_smoke.cpp"
+},
+{
+  "directory": "/home/yun/design/high-concurrency-runtime/build-tests/tests",
+  "command": "/usr/bin/c++  -I/home/yun/design/high-concurrency-runtime/tests/../include -I/home/yun/design/high-concurrency-runtime/include -std=c++20 -o CMakeFiles/concurrency_smoke_test.dir/stress/test_concurrency_smoke_standalone.cpp.o -c /home/yun/design/high-concurrency-runtime/tests/stress/test_concurrency_smoke_standalone.cpp",
+  "file": "/home/yun/design/high-concurrency-runtime/tests/stress/test_concurrency_smoke_standalone.cpp"
+},
+{
+  "directory": "/home/yun/design/high-concurrency-runtime/build-tests/tests",
+  "command": "/usr/bin/c++  -I/home/yun/design/high-concurrency-runtime/include -std=c++20 -o CMakeFiles/runtime_unit_tests.dir/unit/test_buffer.cpp.o -c /home/yun/design/high-concurrency-runtime/tests/unit/test_buffer.cpp",
+  "file": "/home/yun/design/high-concurrency-runtime/tests/unit/test_buffer.cpp"
+},
+{
+  "directory": "/home/yun/design/high-concurrency-runtime/build-tests/tests",
+  "command": "/usr/bin/c++  -I/home/yun/design/high-concurrency-runtime/include -std=c++20 -o CMakeFiles/runtime_unit_tests.dir/unit/test_logger.cpp.o -c /home/yun/design/high-concurrency-runtime/tests/unit/test_logger.cpp",
+  "file": "/home/yun/design/high-concurrency-runtime/tests/unit/test_logger.cpp"
+},
+{
+  "directory": "/home/yun/design/high-concurrency-runtime/build-tests/tests",
+  "command": "/usr/bin/c++  -I/home/yun/design/high-concurrency-runtime/include -std=c++20 -o CMakeFiles/runtime_unit_tests.dir/unit/test_memory_pool.cpp.o -c /home/yun/design/high-concurrency-runtime/tests/unit/test_memory_pool.cpp",
+  "file": "/home/yun/design/high-concurrency-runtime/tests/unit/test_memory_pool.cpp"
+},
+{
+  "directory": "/home/yun/design/high-concurrency-runtime/build-tests/tests",
+  "command": "/usr/bin/c++  -I/home/yun/design/high-concurrency-runtime/include -std=c++20 -o CMakeFiles/runtime_unit_tests.dir/unit/test_object_pool.cpp.o -c /home/yun/design/high-concurrency-runtime/tests/unit/test_object_pool.cpp",
+  "file": "/home/yun/design/high-concurrency-runtime/tests/unit/test_object_pool.cpp"
+},
+{
+  "directory": "/home/yun/design/high-concurrency-runtime/build-tests/tests",
+  "command": "/usr/bin/c++  -I/home/yun/design/high-concurrency-runtime/include -std=c++20 -o CMakeFiles/runtime_unit_tests.dir/unit/test_sanity.cpp.o -c /home/yun/design/high-concurrency-runtime/tests/unit/test_sanity.cpp",
+  "file": "/home/yun/design/high-concurrency-runtime/tests/unit/test_sanity.cpp"
+},
+{
+  "directory": "/home/yun/design/high-concurrency-runtime/build-tests/tests",
+  "command": "/usr/bin/c++  -I/home/yun/design/high-concurrency-runtime/include -std=c++20 -o CMakeFiles/runtime_unit_tests.dir/unit/test_thread_pool.cpp.o -c /home/yun/design/high-concurrency-runtime/tests/unit/test_thread_pool.cpp",
+  "file": "/home/yun/design/high-concurrency-runtime/tests/unit/test_thread_pool.cpp"
+},
+{
+  "directory": "/home/yun/design/high-concurrency-runtime/build-tests/tests",
+  "command": "/usr/bin/c++  -I/home/yun/design/high-concurrency-runtime/include -std=c++20 -o CMakeFiles/runtime_integration_tests.dir/integration/test_event_loop.cpp.o -c /home/yun/design/high-concurrency-runtime/tests/integration/test_event_loop.cpp",
+  "file": "/home/yun/design/high-concurrency-runtime/tests/integration/test_event_loop.cpp"
+},
+{
+  "directory": "/home/yun/design/high-concurrency-runtime/build-tests/tests",
+  "command": "/usr/bin/c++  -I/home/yun/design/high-concurrency-runtime/include -std=c++20 -o CMakeFiles/runtime_integration_tests.dir/integration/test_tcp_server.cpp.o -c /home/yun/design/high-concurrency-runtime/tests/integration/test_tcp_server.cpp",
+  "file": "/home/yun/design/high-concurrency-runtime/tests/integration/test_tcp_server.cpp"
+},
+{
+  "directory": "/home/yun/design/high-concurrency-runtime/build-tests/tests",
+  "command": "/usr/bin/c++  -I/home/yun/design/high-concurrency-runtime/include -std=c++20 -o CMakeFiles/runtime_integration_tests.dir/integration/test_http_server.cpp.o -c /home/yun/design/high-concurrency-runtime/tests/integration/test_http_server.cpp",
+  "file": "/home/yun/design/high-concurrency-runtime/tests/integration/test_http_server.cpp"
+},
+{
+  "directory": "/home/yun/design/high-concurrency-runtime/build-tests/tests",
+  "command": "/usr/bin/c++  -I/home/yun/design/high-concurrency-runtime/include -std=c++20 -o CMakeFiles/runtime_integration_tests.dir/stress/test_concurrency_smoke.cpp.o -c /home/yun/design/high-concurrency-runtime/tests/stress/test_concurrency_smoke.cpp",
+  "file": "/home/yun/design/high-concurrency-runtime/tests/stress/test_concurrency_smoke.cpp"
 }
 ]

@@ -84,7 +84,8 @@ void TcpConnection::ConnectEstablished() {
 }
 
 void TcpConnection::ConnectDestroyed() {
-    if(state_ == StateE::kConnected) {
+    const bool notify_state_change = state_ != StateE::kDisconnected;
+    if(notify_state_change) {
         SetState(StateE::kDisconnected);
         channel_->DisableAll();
     }
@@ -92,7 +93,7 @@ void TcpConnection::ConnectDestroyed() {
     LOG_INFO() << "tcp connection destroyed: name=" << name_
                << " peer=" << peer_addr_.ToIpPort();
 
-    if(connection_callback_) {
+    if(notify_state_change && connection_callback_) {
         connection_callback_(shared_from_this());
     }
 
@@ -101,7 +102,7 @@ void TcpConnection::ConnectDestroyed() {
 
 // n > 0, 读到数据 触发消息回调
 // n == 0, 对端关闭，HandleClose()
-// n < 0, 读错误， 区分 EAGAIN/EWOULDBLOCK和真正错误
+// n < 0, 读错误， 区分 EAGAIN/EWOULDBLOCK和真正错误。
 void TcpConnection::HandleRead(runtime::time::Timestamp receive_time) {
     int saved_errno = 0;
     ssize_t n = input_buffer_.ReadFd(channel_->Fd(), &saved_errno);
@@ -129,6 +130,7 @@ void TcpConnection::HandleRead(runtime::time::Timestamp receive_time) {
     }
 }
 
+// 
 void TcpConnection::HandleWrite() {
     if(channel_->IsWriting()) {
         int saved_errno = 0;
