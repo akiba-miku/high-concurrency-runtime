@@ -63,6 +63,8 @@ add_library(runtime_net STATIC
     src/net/socket.cpp
     src/net/tcp_connection.cpp
     src/net/tcp_server.cpp
+    src/net/timer.cpp
+    src/net/timer_queue.cpp
 )
 
 target_include_directories(runtime_net
