@@ -1,6 +1,10 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/runtime_gateway.dir/src/lb/least_connections.cpp.o"
+  "CMakeFiles/runtime_gateway.dir/src/lb/least_connections.cpp.o.d"
   "CMakeFiles/runtime_gateway.dir/src/lb/round_robin.cpp.o"
   "CMakeFiles/runtime_gateway.dir/src/lb/round_robin.cpp.o.d"
+  "CMakeFiles/runtime_gateway.dir/src/lb/weighted_round_robin.cpp.o"
+  "CMakeFiles/runtime_gateway.dir/src/lb/weighted_round_robin.cpp.o.d"
   "CMakeFiles/runtime_gateway.dir/src/registry/service_registry.cpp.o"
   "CMakeFiles/runtime_gateway.dir/src/registry/service_registry.cpp.o.d"
   "CMakeFiles/runtime_gateway.dir/src/upstream/upstream.cpp.o"

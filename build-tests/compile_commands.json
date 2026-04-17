@@ -155,6 +155,16 @@
   "file": "/home/yun/design/high-concurrency-runtime/src/lb/round_robin.cpp"
 },
 {
+  "directory": "/home/yun/design/high-concurrency-runtime/build-tests",
+  "command": "/usr/bin/c++  -I/home/yun/design/high-concurrency-runtime/include -g -std=c++20 -o CMakeFiles/runtime_gateway.dir/src/lb/weighted_round_robin.cpp.o -c /home/yun/design/high-concurrency-runtime/src/lb/weighted_round_robin.cpp",
+  "file": "/home/yun/design/high-concurrency-runtime/src/lb/weighted_round_robin.cpp"
+},
+{
+  "directory": "/home/yun/design/high-concurrency-runtime/build-tests",
+  "command": "/usr/bin/c++  -I/home/yun/design/high-concurrency-runtime/include -g -std=c++20 -o CMakeFiles/runtime_gateway.dir/src/lb/least_connections.cpp.o -c /home/yun/design/high-concurrency-runtime/src/lb/least_connections.cpp",
+  "file": "/home/yun/design/high-concurrency-runtime/src/lb/least_connections.cpp"
+},
+{
   "directory": "/home/yun/design/high-concurrency-runtime/build-tests/examples",
   "command": "/usr/bin/c++  -I/home/yun/design/high-concurrency-runtime/include -g -std=c++20 -o CMakeFiles/simple_logger_example.dir/simple_logger.cpp.o -c /home/yun/design/high-concurrency-runtime/examples/simple_logger.cpp",
   "file": "/home/yun/design/high-concurrency-runtime/examples/simple_logger.cpp"

@@ -111,11 +111,41 @@ CMakeFiles/runtime_gateway.dir/src/lb/round_robin.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/runtime_gateway.dir/src/lb/round_robin.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/yun/design/high-concurrency-runtime/src/lb/round_robin.cpp -o CMakeFiles/runtime_gateway.dir/src/lb/round_robin.cpp.s
 
+CMakeFiles/runtime_gateway.dir/src/lb/weighted_round_robin.cpp.o: CMakeFiles/runtime_gateway.dir/flags.make
+CMakeFiles/runtime_gateway.dir/src/lb/weighted_round_robin.cpp.o: /home/yun/design/high-concurrency-runtime/src/lb/weighted_round_robin.cpp
+CMakeFiles/runtime_gateway.dir/src/lb/weighted_round_robin.cpp.o: CMakeFiles/runtime_gateway.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yun/design/high-concurrency-runtime/build-tests/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/runtime_gateway.dir/src/lb/weighted_round_robin.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/runtime_gateway.dir/src/lb/weighted_round_robin.cpp.o -MF CMakeFiles/runtime_gateway.dir/src/lb/weighted_round_robin.cpp.o.d -o CMakeFiles/runtime_gateway.dir/src/lb/weighted_round_robin.cpp.o -c /home/yun/design/high-concurrency-runtime/src/lb/weighted_round_robin.cpp
+
+CMakeFiles/runtime_gateway.dir/src/lb/weighted_round_robin.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/runtime_gateway.dir/src/lb/weighted_round_robin.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/yun/design/high-concurrency-runtime/src/lb/weighted_round_robin.cpp > CMakeFiles/runtime_gateway.dir/src/lb/weighted_round_robin.cpp.i
+
+CMakeFiles/runtime_gateway.dir/src/lb/weighted_round_robin.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/runtime_gateway.dir/src/lb/weighted_round_robin.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/yun/design/high-concurrency-runtime/src/lb/weighted_round_robin.cpp -o CMakeFiles/runtime_gateway.dir/src/lb/weighted_round_robin.cpp.s
+
+CMakeFiles/runtime_gateway.dir/src/lb/least_connections.cpp.o: CMakeFiles/runtime_gateway.dir/flags.make
+CMakeFiles/runtime_gateway.dir/src/lb/least_connections.cpp.o: /home/yun/design/high-concurrency-runtime/src/lb/least_connections.cpp
+CMakeFiles/runtime_gateway.dir/src/lb/least_connections.cpp.o: CMakeFiles/runtime_gateway.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yun/design/high-concurrency-runtime/build-tests/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/runtime_gateway.dir/src/lb/least_connections.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/runtime_gateway.dir/src/lb/least_connections.cpp.o -MF CMakeFiles/runtime_gateway.dir/src/lb/least_connections.cpp.o.d -o CMakeFiles/runtime_gateway.dir/src/lb/least_connections.cpp.o -c /home/yun/design/high-concurrency-runtime/src/lb/least_connections.cpp
+
+CMakeFiles/runtime_gateway.dir/src/lb/least_connections.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/runtime_gateway.dir/src/lb/least_connections.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/yun/design/high-concurrency-runtime/src/lb/least_connections.cpp > CMakeFiles/runtime_gateway.dir/src/lb/least_connections.cpp.i
+
+CMakeFiles/runtime_gateway.dir/src/lb/least_connections.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/runtime_gateway.dir/src/lb/least_connections.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/yun/design/high-concurrency-runtime/src/lb/least_connections.cpp -o CMakeFiles/runtime_gateway.dir/src/lb/least_connections.cpp.s
+
 # Object files for target runtime_gateway
 runtime_gateway_OBJECTS = \
 "CMakeFiles/runtime_gateway.dir/src/upstream/upstream.cpp.o" \
 "CMakeFiles/runtime_gateway.dir/src/registry/service_registry.cpp.o" \
-"CMakeFiles/runtime_gateway.dir/src/lb/round_robin.cpp.o"
+"CMakeFiles/runtime_gateway.dir/src/lb/round_robin.cpp.o" \
+"CMakeFiles/runtime_gateway.dir/src/lb/weighted_round_robin.cpp.o" \
+"CMakeFiles/runtime_gateway.dir/src/lb/least_connections.cpp.o"
 
 # External object files for target runtime_gateway
 runtime_gateway_EXTERNAL_OBJECTS =
@@ -123,9 +153,11 @@ runtime_gateway_EXTERNAL_OBJECTS =
 libruntime_gateway.a: CMakeFiles/runtime_gateway.dir/src/upstream/upstream.cpp.o
 libruntime_gateway.a: CMakeFiles/runtime_gateway.dir/src/registry/service_registry.cpp.o
 libruntime_gateway.a: CMakeFiles/runtime_gateway.dir/src/lb/round_robin.cpp.o
+libruntime_gateway.a: CMakeFiles/runtime_gateway.dir/src/lb/weighted_round_robin.cpp.o
+libruntime_gateway.a: CMakeFiles/runtime_gateway.dir/src/lb/least_connections.cpp.o
 libruntime_gateway.a: CMakeFiles/runtime_gateway.dir/build.make
 libruntime_gateway.a: CMakeFiles/runtime_gateway.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/yun/design/high-concurrency-runtime/build-tests/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX static library libruntime_gateway.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/yun/design/high-concurrency-runtime/build-tests/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX static library libruntime_gateway.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/runtime_gateway.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/runtime_gateway.dir/link.txt --verbose=$(VERBOSE)
 

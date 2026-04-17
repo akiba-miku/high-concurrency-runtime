@@ -1,2 +1,2 @@
-/usr/bin/ar qc libruntime_gateway.a CMakeFiles/runtime_gateway.dir/src/upstream/upstream.cpp.o CMakeFiles/runtime_gateway.dir/src/registry/service_registry.cpp.o CMakeFiles/runtime_gateway.dir/src/lb/round_robin.cpp.o
+/usr/bin/ar qc libruntime_gateway.a CMakeFiles/runtime_gateway.dir/src/upstream/upstream.cpp.o CMakeFiles/runtime_gateway.dir/src/registry/service_registry.cpp.o CMakeFiles/runtime_gateway.dir/src/lb/round_robin.cpp.o CMakeFiles/runtime_gateway.dir/src/lb/weighted_round_robin.cpp.o CMakeFiles/runtime_gateway.dir/src/lb/least_connections.cpp.o
 /usr/bin/ranlib libruntime_gateway.a

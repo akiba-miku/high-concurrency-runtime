@@ -300,10 +300,12 @@ tests/CMakeFiles/runtime_unit_tests.dir/unit/test_lb.cpp.o: \
  /usr/local/include/gtest/gtest-typed-test.h \
  /usr/local/include/gtest/gtest_pred_impl.h \
  /usr/local/include/gtest/gtest_prod.h \
- /home/yun/design/high-concurrency-runtime/include/runtime/lb/round_robin.h \
+ /home/yun/design/high-concurrency-runtime/include/runtime/lb/least_connections.h \
  /home/yun/design/high-concurrency-runtime/include/runtime/lb/load_balancer.h \
  /home/yun/design/high-concurrency-runtime/include/runtime/upstream/backend.h \
  /home/yun/design/high-concurrency-runtime/include/runtime/base/noncopyable.h \
  /home/yun/design/high-concurrency-runtime/include/runtime/upstream/upstream.h \
+ /home/yun/design/high-concurrency-runtime/include/runtime/lb/round_robin.h \
+ /home/yun/design/high-concurrency-runtime/include/runtime/lb/weighted_round_robin.h \
  /home/yun/design/high-concurrency-runtime/include/runtime/registry/service_registry.h \
  /home/yun/design/high-concurrency-runtime/include/runtime/base/nonmoveable.h

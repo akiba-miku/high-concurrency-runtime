@@ -905,6 +905,30 @@ src/http/router.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_http.dir/build.make CMakeFiles/runtime_http.dir/src/http/router.cpp.s
 .PHONY : src/http/router.cpp.s
 
+src/lb/least_connections.o: src/lb/least_connections.cpp.o
+.PHONY : src/lb/least_connections.o
+
+# target to build an object file
+src/lb/least_connections.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_gateway.dir/build.make CMakeFiles/runtime_gateway.dir/src/lb/least_connections.cpp.o
+.PHONY : src/lb/least_connections.cpp.o
+
+src/lb/least_connections.i: src/lb/least_connections.cpp.i
+.PHONY : src/lb/least_connections.i
+
+# target to preprocess a source file
+src/lb/least_connections.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_gateway.dir/build.make CMakeFiles/runtime_gateway.dir/src/lb/least_connections.cpp.i
+.PHONY : src/lb/least_connections.cpp.i
+
+src/lb/least_connections.s: src/lb/least_connections.cpp.s
+.PHONY : src/lb/least_connections.s
+
+# target to generate assembly for a file
+src/lb/least_connections.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_gateway.dir/build.make CMakeFiles/runtime_gateway.dir/src/lb/least_connections.cpp.s
+.PHONY : src/lb/least_connections.cpp.s
+
 src/lb/round_robin.o: src/lb/round_robin.cpp.o
 .PHONY : src/lb/round_robin.o
 
@@ -928,6 +952,30 @@ src/lb/round_robin.s: src/lb/round_robin.cpp.s
 src/lb/round_robin.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_gateway.dir/build.make CMakeFiles/runtime_gateway.dir/src/lb/round_robin.cpp.s
 .PHONY : src/lb/round_robin.cpp.s
+
+src/lb/weighted_round_robin.o: src/lb/weighted_round_robin.cpp.o
+.PHONY : src/lb/weighted_round_robin.o
+
+# target to build an object file
+src/lb/weighted_round_robin.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_gateway.dir/build.make CMakeFiles/runtime_gateway.dir/src/lb/weighted_round_robin.cpp.o
+.PHONY : src/lb/weighted_round_robin.cpp.o
+
+src/lb/weighted_round_robin.i: src/lb/weighted_round_robin.cpp.i
+.PHONY : src/lb/weighted_round_robin.i
+
+# target to preprocess a source file
+src/lb/weighted_round_robin.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_gateway.dir/build.make CMakeFiles/runtime_gateway.dir/src/lb/weighted_round_robin.cpp.i
+.PHONY : src/lb/weighted_round_robin.cpp.i
+
+src/lb/weighted_round_robin.s: src/lb/weighted_round_robin.cpp.s
+.PHONY : src/lb/weighted_round_robin.s
+
+# target to generate assembly for a file
+src/lb/weighted_round_robin.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_gateway.dir/build.make CMakeFiles/runtime_gateway.dir/src/lb/weighted_round_robin.cpp.s
+.PHONY : src/lb/weighted_round_robin.cpp.s
 
 src/log/async_logger.o: src/log/async_logger.cpp.o
 .PHONY : src/log/async_logger.o
@@ -1558,9 +1606,15 @@ help:
 	@echo "... src/http/router.o"
 	@echo "... src/http/router.i"
 	@echo "... src/http/router.s"
+	@echo "... src/lb/least_connections.o"
+	@echo "... src/lb/least_connections.i"
+	@echo "... src/lb/least_connections.s"
 	@echo "... src/lb/round_robin.o"
 	@echo "... src/lb/round_robin.i"
 	@echo "... src/lb/round_robin.s"
+	@echo "... src/lb/weighted_round_robin.o"
+	@echo "... src/lb/weighted_round_robin.i"
+	@echo "... src/lb/weighted_round_robin.s"
 	@echo "... src/log/async_logger.o"
 	@echo "... src/log/async_logger.i"
 	@echo "... src/log/async_logger.s"

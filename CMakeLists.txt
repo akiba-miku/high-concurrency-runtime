@@ -108,6 +108,8 @@ add_library(runtime_gateway STATIC
     src/upstream/upstream.cpp
     src/registry/service_registry.cpp
     src/lb/round_robin.cpp
+    src/lb/weighted_round_robin.cpp
+    src/lb/least_connections.cpp
 )
 
 target_include_directories(runtime_gateway

@@ -765,8 +765,10 @@ tests/CMakeFiles/runtime_unit_tests.dir/unit/test_lb.cpp.o: /home/yun/design/hig
   /home/yun/design/high-concurrency-runtime/include/runtime/lb/round_robin.h \
   /home/yun/design/high-concurrency-runtime/include/runtime/lb/load_balancer.h \
   /home/yun/design/high-concurrency-runtime/include/runtime/upstream/backend.h \
+  /home/yun/design/high-concurrency-runtime/include/runtime/base/noncopyable.h \
   /home/yun/design/high-concurrency-runtime/include/runtime/upstream/upstream.h \
-  /home/yun/design/high-concurrency-runtime/include/runtime/registry/service_registry.h
+  /home/yun/design/high-concurrency-runtime/include/runtime/registry/service_registry.h \
+  /home/yun/design/high-concurrency-runtime/include/runtime/base/nonmoveable.h
 
 tests/CMakeFiles/runtime_unit_tests.dir/unit/test_logger.cpp.o: /home/yun/design/high-concurrency-runtime/tests/unit/test_logger.cpp \
   /usr/include/stdc-predef.h \
@@ -3108,8 +3110,6 @@ tests/CMakeFiles/runtime_unit_tests.dir/unit/test_thread_pool.cpp.o: /home/yun/d
 
 /usr/include/c++/12/filesystem:
 
-/home/yun/design/high-concurrency-runtime/include/runtime/time/timestamp.h:
-
 /home/yun/design/high-concurrency-runtime/include/runtime/log/logger.h:
 
 /home/yun/design/high-concurrency-runtime/include/runtime/log/log_formatter.h:
@@ -3117,6 +3117,10 @@ tests/CMakeFiles/runtime_unit_tests.dir/unit/test_thread_pool.cpp.o: /home/yun/d
 /home/yun/design/high-concurrency-runtime/include/runtime/log/log_buffer.h:
 
 /home/yun/design/high-concurrency-runtime/tests/unit/test_logger.cpp:
+
+/home/yun/design/high-concurrency-runtime/include/runtime/time/timestamp.h:
+
+/home/yun/design/high-concurrency-runtime/include/runtime/base/nonmoveable.h:
 
 /home/yun/design/high-concurrency-runtime/include/runtime/registry/service_registry.h:
 
