@@ -59,8 +59,7 @@ public:
 
   void SetCloseCallback(const CloseCallback& cb) { close_callback_ = cb; }
 
-  void SetWriteCompleteCallback(const WriteCompleteCallback& cb) { write_complete_callback_ = cb;
-  }
+  void SetWriteCompleteCallback(const WriteCompleteCallback& cb) { write_complete_callback_ = cb; }
 
   // Associates arbitrary upper-layer context with the connection.
   void SetContext(std::any ctx) { context_ = std::move(ctx); }
@@ -89,7 +88,7 @@ private:
   void HandleClose();
   void HandleError();
 
-  void SendInLoop(const std::string &message);
+  void SendInLoop(const std::string& message);
   void ShutdownInLoop();
 
 private:

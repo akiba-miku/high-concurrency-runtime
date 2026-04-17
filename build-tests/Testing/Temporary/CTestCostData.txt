@@ -1,12 +1,65 @@
-logger_smoke_test 9 0.00176787
+logger_smoke_test 10 0.00328185
 simple_logger_example_smoke 3 0.00596772
-memory_pool_smoke_test 3 0.00360987
-object_pool_smoke_test 3 0.00243358
-buffer_smoke_test 3 0.00164958
-event_loop_smoke_test 3 0.00290274
-tcp_server_smoke_test 2 0
+memory_pool_smoke_test 4 0.00542568
+object_pool_smoke_test 4 0.00569775
+buffer_smoke_test 4 0.00658684
+event_loop_smoke_test 4 0.00550829
+tcp_server_smoke_test 3 0.00936885
 concurrency_smoke_test 2 0
-http_smoke_test 2 0.00248918
+http_smoke_test 3 0.00762788
 runtime_integration_tests_NOT_BUILT 0 0
+BufferTest.ReusesPrependableSpaceWhenAppendingAfterRetrieve 1 0.0127276
+BufferTest.ReadFdAndWriteFdTransferPayloadThroughSocketPair 1 0.0242917
+BufferTest.ReadFdExpandsStorageForLargePayload 1 0.00444107
+LogBufferTest.AppendAndReset 1 0.0128076
+LogFormatterTest.IncludesExpectedMetadata 1 0.00754458
+LoggerIntegrationTest.FiltersByLogLevelAndFlushesOnShutdown 1 0.0131303
+LoggerIntegrationTest.StreamingMacroWritesExpectedContent 1 0.0153362
+LoggerIntegrationTest.SupportsLargeMessageTruncationMarker 1 0.0368875
+MemoryPoolTest.AllocateAndDeallocateReuseSlots 1 0.0127175
+MemoryPoolTest.ReturnsNullWhenExhausted 1 0.00549475
+MemoryPoolTest.OwnsRecognizesPoolAddresses 1 0.0156994
+MemoryPoolTest.ConcurrentAllocateAndDeallocatePreservesCapacity 1 0.0207528
+ObjectPoolTest.AcquireAndReleaseManageLifetime 1 0.00798785
+ObjectPoolTest.AcquireReturnsNullWhenExhausted 1 0.0112199
+ObjectPoolTest.AcquireScopedReturnsObjectAutomatically 1 0.0132766
+ObjectPoolTest.OwnsRecognizesPoolPointers 1 0.0127653
+SanityTest.Basic 1 0.011089
+ThreadPoolTest.ExecutesTasksAndReturnsFutureValues 1 0.0089266
+TaskTest.RunsFunction 1 0.0104019
+TaskTest.SkipsWhenCancelled 1 0.0124553
+TaskTest.SkipsWhenPastDeadline 1 0.012121
+TaskTest.RunsBeforeDeadline 1 0.0129529
+TaskTest.NoDeadlineAlwaysRuns 1 0.0152434
+SchedulerTest.ExecutesOnWorkerThread 1 0.0259888
+SchedulerTest.PendingCountDecrementsAfterRun 1 0.0253937
+SchedulerTest.ThrowsWhenQueueFull 1 0.0461589
+RoundRobinLbTest.AlternatesAcrossHealthyBackends 1 0.00482532
+RoundRobinLbTest.NeverSelectsUnhealthyBackend 1 0.00542504
+RoundRobinLbTest.ReturnsNullWhenAllUnhealthy 1 0.00562047
+RoundRobinLbTest.ReturnsNullForEmptyUpstream 1 0.0208099
+RoundRobinLbTest.RecoveryAfterMarkingBackendHealthyAgain 1 0.0162061
+ServiceRegistryTest.RegisterAndGet 1 0.00565816
+ServiceRegistryTest.GetMissingServiceReturnsNull 1 0.0119817
+ServiceRegistryTest.HealthyCountExcludesUnhealthyBackends 1 0.0117842
+ServiceRegistryTest.RegisterOverwritesPreviousEntry 1 0.00619298
+ServiceRegistryTest.BackendAddressFormat 1 0.0141343
+EventLoopTest.RunInLoopExecutesImmediatelyOnOwningThread 1 0.0125716
+EventLoopTest.QueueInLoopFromAnotherThreadWakesLoop 1 0.00937284
+EventLoopTest.QueueInLoopFromPendingFunctorSchedulesNextTurn 1 0.0242903
+TcpServerTest.ConstructServer 1 0.00517836
+TcpServerTest.StartInvokesThreadInitCallbackForEachIoLoop 0 0
+TcpServerTest.AcceptsConnectionAndEchoesPayloadOnce 1 0.0305715
+TriggerModeTest.ET_DrainLargePayload 1 0.0157301
+TriggerModeTest.LT_DrainLargePayload 1 0.0162599
+TriggerModeTest.ET_AcceptsBurstConnections 1 0.0226363
+TriggerModeTest.ET_SendsLargeResponse 1 0.012846
+HttpRouterTest.Distinguishes404And405 1 0.00893011
+HttpRouterTest.StaticRouteWinsOverDynamicRoute 1 0.00769201
+LtAndEt/TriggerModeEchoTest.EchoesSmallPayload/LT  # GetParam() = false 1 0.0147189
+LtAndEt/TriggerModeEchoTest.EchoesSmallPayload/ET  # GetParam() = true 1 0.00895249
+LtAndEt/TriggerModeEchoTest.EchoesMultipleMessages/LT  # GetParam() = false 1 0.0101595
+LtAndEt/TriggerModeEchoTest.EchoesMultipleMessages/ET  # GetParam() = true 1 0.01283
+epoll_poller_smoke_test 1 0.0252621
 ---
-runtime_integration_tests_NOT_BUILT
+TcpServerTest.StartInvokesThreadInitCallbackForEachIoLoop

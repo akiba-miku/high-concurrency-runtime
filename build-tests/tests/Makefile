@@ -936,6 +936,30 @@ unit/test_http_smoke.cpp.s:
 	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/http_smoke_test.dir/build.make tests/CMakeFiles/http_smoke_test.dir/unit/test_http_smoke.cpp.s
 .PHONY : unit/test_http_smoke.cpp.s
 
+unit/test_lb.o: unit/test_lb.cpp.o
+.PHONY : unit/test_lb.o
+
+# target to build an object file
+unit/test_lb.cpp.o:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/runtime_unit_tests.dir/build.make tests/CMakeFiles/runtime_unit_tests.dir/unit/test_lb.cpp.o
+.PHONY : unit/test_lb.cpp.o
+
+unit/test_lb.i: unit/test_lb.cpp.i
+.PHONY : unit/test_lb.i
+
+# target to preprocess a source file
+unit/test_lb.cpp.i:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/runtime_unit_tests.dir/build.make tests/CMakeFiles/runtime_unit_tests.dir/unit/test_lb.cpp.i
+.PHONY : unit/test_lb.cpp.i
+
+unit/test_lb.s: unit/test_lb.cpp.s
+.PHONY : unit/test_lb.s
+
+# target to generate assembly for a file
+unit/test_lb.cpp.s:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/runtime_unit_tests.dir/build.make tests/CMakeFiles/runtime_unit_tests.dir/unit/test_lb.cpp.s
+.PHONY : unit/test_lb.cpp.s
+
 unit/test_logger.o: unit/test_logger.cpp.o
 .PHONY : unit/test_logger.o
 
@@ -1233,6 +1257,9 @@ help:
 	@echo "... unit/test_http_smoke.o"
 	@echo "... unit/test_http_smoke.i"
 	@echo "... unit/test_http_smoke.s"
+	@echo "... unit/test_lb.o"
+	@echo "... unit/test_lb.i"
+	@echo "... unit/test_lb.s"
 	@echo "... unit/test_logger.o"
 	@echo "... unit/test_logger.i"
 	@echo "... unit/test_logger.s"

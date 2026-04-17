@@ -143,6 +143,7 @@ if(GTest_FOUND)
         unit/test_sanity.cpp
         unit/test_thread_pool.cpp
         unit/test_scheduler.cpp
+        unit/test_lb.cpp
     )
 
     target_link_libraries(runtime_unit_tests
@@ -150,6 +151,7 @@ if(GTest_FOUND)
             GTest::gtest_main
             runtime_net
             runtime_task
+            runtime_gateway
     )
 
     gtest_discover_tests(runtime_unit_tests)

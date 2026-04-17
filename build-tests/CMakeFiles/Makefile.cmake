@@ -65,6 +65,7 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/runtime_task.dir/DependInfo.cmake"
   "CMakeFiles/runtime_net.dir/DependInfo.cmake"
   "CMakeFiles/runtime_http.dir/DependInfo.cmake"
+  "CMakeFiles/runtime_gateway.dir/DependInfo.cmake"
   "examples/CMakeFiles/simple_logger_example.dir/DependInfo.cmake"
   "examples/CMakeFiles/simple_echo_server.dir/DependInfo.cmake"
   "examples/CMakeFiles/demo_http_server.dir/DependInfo.cmake"

@@ -19,10 +19,9 @@ static int CreateTimerfd() {
 }
 
 static void SetTimerfd(int timerfd, runtime::time::Timestamp expiration) {
-  using namespace runtime::time;
   itimerspec new_value{};
   int64_t us =
-      static_cast<int64_t>(TimeDifference(expiration, Timestamp::Now()) * 1e6);
+      static_cast<int64_t>(TimeDifference(expiration, runtime::time::Timestamp::Now()) * 1e6);
   if (us < 100) {
     us = 100;
   }

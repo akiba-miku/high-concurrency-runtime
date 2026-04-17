@@ -1,3 +1,1519 @@
-Start testing: Apr 15 01:56 CST
+Start testing: Apr 17 20:37 CST
 ----------------------------------------------------------
-End testing: Apr 15 01:56 CST
+1/60 Testing: BufferTest.ReusesPrependableSpaceWhenAppendingAfterRetrieve
+1/60 Test: BufferTest.ReusesPrependableSpaceWhenAppendingAfterRetrieve
+Command: "/home/yun/design/high-concurrency-runtime/build-tests/tests/runtime_unit_tests" "--gtest_filter=BufferTest.ReusesPrependableSpaceWhenAppendingAfterRetrieve" "--gtest_also_run_disabled_tests"
+Directory: /home/yun/design/high-concurrency-runtime/build-tests/tests
+"BufferTest.ReusesPrependableSpaceWhenAppendingAfterRetrieve" start time: Apr 17 20:37 CST
+Output:
+----------------------------------------------------------
+Running main() from /home/yun/envirments/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = BufferTest.ReusesPrependableSpaceWhenAppendingAfterRetrieve
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from BufferTest
+[ RUN      ] BufferTest.ReusesPrependableSpaceWhenAppendingAfterRetrieve
+[       OK ] BufferTest.ReusesPrependableSpaceWhenAppendingAfterRetrieve (0 ms)
+[----------] 1 test from BufferTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"BufferTest.ReusesPrependableSpaceWhenAppendingAfterRetrieve" end time: Apr 17 20:37 CST
+"BufferTest.ReusesPrependableSpaceWhenAppendingAfterRetrieve" time elapsed: 00:00:00
+----------------------------------------------------------
+
+2/60 Testing: BufferTest.ReadFdAndWriteFdTransferPayloadThroughSocketPair
+2/60 Test: BufferTest.ReadFdAndWriteFdTransferPayloadThroughSocketPair
+Command: "/home/yun/design/high-concurrency-runtime/build-tests/tests/runtime_unit_tests" "--gtest_filter=BufferTest.ReadFdAndWriteFdTransferPayloadThroughSocketPair" "--gtest_also_run_disabled_tests"
+Directory: /home/yun/design/high-concurrency-runtime/build-tests/tests
+"BufferTest.ReadFdAndWriteFdTransferPayloadThroughSocketPair" start time: Apr 17 20:37 CST
+Output:
+----------------------------------------------------------
+Running main() from /home/yun/envirments/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = BufferTest.ReadFdAndWriteFdTransferPayloadThroughSocketPair
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from BufferTest
+[ RUN      ] BufferTest.ReadFdAndWriteFdTransferPayloadThroughSocketPair
+[       OK ] BufferTest.ReadFdAndWriteFdTransferPayloadThroughSocketPair (0 ms)
+[----------] 1 test from BufferTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"BufferTest.ReadFdAndWriteFdTransferPayloadThroughSocketPair" end time: Apr 17 20:37 CST
+"BufferTest.ReadFdAndWriteFdTransferPayloadThroughSocketPair" time elapsed: 00:00:00
+----------------------------------------------------------
+
+3/60 Testing: BufferTest.ReadFdExpandsStorageForLargePayload
+3/60 Test: BufferTest.ReadFdExpandsStorageForLargePayload
+Command: "/home/yun/design/high-concurrency-runtime/build-tests/tests/runtime_unit_tests" "--gtest_filter=BufferTest.ReadFdExpandsStorageForLargePayload" "--gtest_also_run_disabled_tests"
+Directory: /home/yun/design/high-concurrency-runtime/build-tests/tests
+"BufferTest.ReadFdExpandsStorageForLargePayload" start time: Apr 17 20:37 CST
+Output:
+----------------------------------------------------------
+Running main() from /home/yun/envirments/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = BufferTest.ReadFdExpandsStorageForLargePayload
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from BufferTest
+[ RUN      ] BufferTest.ReadFdExpandsStorageForLargePayload
+[       OK ] BufferTest.ReadFdExpandsStorageForLargePayload (0 ms)
+[----------] 1 test from BufferTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"BufferTest.ReadFdExpandsStorageForLargePayload" end time: Apr 17 20:37 CST
+"BufferTest.ReadFdExpandsStorageForLargePayload" time elapsed: 00:00:00
+----------------------------------------------------------
+
+4/60 Testing: LogBufferTest.AppendAndReset
+4/60 Test: LogBufferTest.AppendAndReset
+Command: "/home/yun/design/high-concurrency-runtime/build-tests/tests/runtime_unit_tests" "--gtest_filter=LogBufferTest.AppendAndReset" "--gtest_also_run_disabled_tests"
+Directory: /home/yun/design/high-concurrency-runtime/build-tests/tests
+"LogBufferTest.AppendAndReset" start time: Apr 17 20:37 CST
+Output:
+----------------------------------------------------------
+Running main() from /home/yun/envirments/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = LogBufferTest.AppendAndReset
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from LogBufferTest
+[ RUN      ] LogBufferTest.AppendAndReset
+[       OK ] LogBufferTest.AppendAndReset (0 ms)
+[----------] 1 test from LogBufferTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"LogBufferTest.AppendAndReset" end time: Apr 17 20:37 CST
+"LogBufferTest.AppendAndReset" time elapsed: 00:00:00
+----------------------------------------------------------
+
+5/60 Testing: LogFormatterTest.IncludesExpectedMetadata
+5/60 Test: LogFormatterTest.IncludesExpectedMetadata
+Command: "/home/yun/design/high-concurrency-runtime/build-tests/tests/runtime_unit_tests" "--gtest_filter=LogFormatterTest.IncludesExpectedMetadata" "--gtest_also_run_disabled_tests"
+Directory: /home/yun/design/high-concurrency-runtime/build-tests/tests
+"LogFormatterTest.IncludesExpectedMetadata" start time: Apr 17 20:37 CST
+Output:
+----------------------------------------------------------
+Running main() from /home/yun/envirments/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = LogFormatterTest.IncludesExpectedMetadata
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from LogFormatterTest
+[ RUN      ] LogFormatterTest.IncludesExpectedMetadata
+[       OK ] LogFormatterTest.IncludesExpectedMetadata (0 ms)
+[----------] 1 test from LogFormatterTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"LogFormatterTest.IncludesExpectedMetadata" end time: Apr 17 20:37 CST
+"LogFormatterTest.IncludesExpectedMetadata" time elapsed: 00:00:00
+----------------------------------------------------------
+
+6/60 Testing: LoggerIntegrationTest.FiltersByLogLevelAndFlushesOnShutdown
+6/60 Test: LoggerIntegrationTest.FiltersByLogLevelAndFlushesOnShutdown
+Command: "/home/yun/design/high-concurrency-runtime/build-tests/tests/runtime_unit_tests" "--gtest_filter=LoggerIntegrationTest.FiltersByLogLevelAndFlushesOnShutdown" "--gtest_also_run_disabled_tests"
+Directory: /home/yun/design/high-concurrency-runtime/build-tests/tests
+"LoggerIntegrationTest.FiltersByLogLevelAndFlushesOnShutdown" start time: Apr 17 20:37 CST
+Output:
+----------------------------------------------------------
+Running main() from /home/yun/envirments/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = LoggerIntegrationTest.FiltersByLogLevelAndFlushesOnShutdown
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from LoggerIntegrationTest
+[ RUN      ] LoggerIntegrationTest.FiltersByLogLevelAndFlushesOnShutdown
+[       OK ] LoggerIntegrationTest.FiltersByLogLevelAndFlushesOnShutdown (5 ms)
+[----------] 1 test from LoggerIntegrationTest (5 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (5 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"LoggerIntegrationTest.FiltersByLogLevelAndFlushesOnShutdown" end time: Apr 17 20:37 CST
+"LoggerIntegrationTest.FiltersByLogLevelAndFlushesOnShutdown" time elapsed: 00:00:00
+----------------------------------------------------------
+
+7/60 Testing: LoggerIntegrationTest.StreamingMacroWritesExpectedContent
+7/60 Test: LoggerIntegrationTest.StreamingMacroWritesExpectedContent
+Command: "/home/yun/design/high-concurrency-runtime/build-tests/tests/runtime_unit_tests" "--gtest_filter=LoggerIntegrationTest.StreamingMacroWritesExpectedContent" "--gtest_also_run_disabled_tests"
+Directory: /home/yun/design/high-concurrency-runtime/build-tests/tests
+"LoggerIntegrationTest.StreamingMacroWritesExpectedContent" start time: Apr 17 20:37 CST
+Output:
+----------------------------------------------------------
+Running main() from /home/yun/envirments/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = LoggerIntegrationTest.StreamingMacroWritesExpectedContent
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from LoggerIntegrationTest
+[ RUN      ] LoggerIntegrationTest.StreamingMacroWritesExpectedContent
+[       OK ] LoggerIntegrationTest.StreamingMacroWritesExpectedContent (1 ms)
+[----------] 1 test from LoggerIntegrationTest (1 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (2 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"LoggerIntegrationTest.StreamingMacroWritesExpectedContent" end time: Apr 17 20:37 CST
+"LoggerIntegrationTest.StreamingMacroWritesExpectedContent" time elapsed: 00:00:00
+----------------------------------------------------------
+
+8/60 Testing: LoggerIntegrationTest.SupportsLargeMessageTruncationMarker
+8/60 Test: LoggerIntegrationTest.SupportsLargeMessageTruncationMarker
+Command: "/home/yun/design/high-concurrency-runtime/build-tests/tests/runtime_unit_tests" "--gtest_filter=LoggerIntegrationTest.SupportsLargeMessageTruncationMarker" "--gtest_also_run_disabled_tests"
+Directory: /home/yun/design/high-concurrency-runtime/build-tests/tests
+"LoggerIntegrationTest.SupportsLargeMessageTruncationMarker" start time: Apr 17 20:37 CST
+Output:
+----------------------------------------------------------
+Running main() from /home/yun/envirments/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = LoggerIntegrationTest.SupportsLargeMessageTruncationMarker
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from LoggerIntegrationTest
+[ RUN      ] LoggerIntegrationTest.SupportsLargeMessageTruncationMarker
+[       OK ] LoggerIntegrationTest.SupportsLargeMessageTruncationMarker (6 ms)
+[----------] 1 test from LoggerIntegrationTest (6 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (6 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"LoggerIntegrationTest.SupportsLargeMessageTruncationMarker" end time: Apr 17 20:37 CST
+"LoggerIntegrationTest.SupportsLargeMessageTruncationMarker" time elapsed: 00:00:00
+----------------------------------------------------------
+
+9/60 Testing: MemoryPoolTest.AllocateAndDeallocateReuseSlots
+9/60 Test: MemoryPoolTest.AllocateAndDeallocateReuseSlots
+Command: "/home/yun/design/high-concurrency-runtime/build-tests/tests/runtime_unit_tests" "--gtest_filter=MemoryPoolTest.AllocateAndDeallocateReuseSlots" "--gtest_also_run_disabled_tests"
+Directory: /home/yun/design/high-concurrency-runtime/build-tests/tests
+"MemoryPoolTest.AllocateAndDeallocateReuseSlots" start time: Apr 17 20:37 CST
+Output:
+----------------------------------------------------------
+Running main() from /home/yun/envirments/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = MemoryPoolTest.AllocateAndDeallocateReuseSlots
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from MemoryPoolTest
+[ RUN      ] MemoryPoolTest.AllocateAndDeallocateReuseSlots
+[       OK ] MemoryPoolTest.AllocateAndDeallocateReuseSlots (0 ms)
+[----------] 1 test from MemoryPoolTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"MemoryPoolTest.AllocateAndDeallocateReuseSlots" end time: Apr 17 20:37 CST
+"MemoryPoolTest.AllocateAndDeallocateReuseSlots" time elapsed: 00:00:00
+----------------------------------------------------------
+
+10/60 Testing: MemoryPoolTest.ReturnsNullWhenExhausted
+10/60 Test: MemoryPoolTest.ReturnsNullWhenExhausted
+Command: "/home/yun/design/high-concurrency-runtime/build-tests/tests/runtime_unit_tests" "--gtest_filter=MemoryPoolTest.ReturnsNullWhenExhausted" "--gtest_also_run_disabled_tests"
+Directory: /home/yun/design/high-concurrency-runtime/build-tests/tests
+"MemoryPoolTest.ReturnsNullWhenExhausted" start time: Apr 17 20:37 CST
+Output:
+----------------------------------------------------------
+Running main() from /home/yun/envirments/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = MemoryPoolTest.ReturnsNullWhenExhausted
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from MemoryPoolTest
+[ RUN      ] MemoryPoolTest.ReturnsNullWhenExhausted
+[       OK ] MemoryPoolTest.ReturnsNullWhenExhausted (0 ms)
+[----------] 1 test from MemoryPoolTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"MemoryPoolTest.ReturnsNullWhenExhausted" end time: Apr 17 20:37 CST
+"MemoryPoolTest.ReturnsNullWhenExhausted" time elapsed: 00:00:00
+----------------------------------------------------------
+
+11/60 Testing: MemoryPoolTest.OwnsRecognizesPoolAddresses
+11/60 Test: MemoryPoolTest.OwnsRecognizesPoolAddresses
+Command: "/home/yun/design/high-concurrency-runtime/build-tests/tests/runtime_unit_tests" "--gtest_filter=MemoryPoolTest.OwnsRecognizesPoolAddresses" "--gtest_also_run_disabled_tests"
+Directory: /home/yun/design/high-concurrency-runtime/build-tests/tests
+"MemoryPoolTest.OwnsRecognizesPoolAddresses" start time: Apr 17 20:37 CST
+Output:
+----------------------------------------------------------
+Running main() from /home/yun/envirments/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = MemoryPoolTest.OwnsRecognizesPoolAddresses
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from MemoryPoolTest
+[ RUN      ] MemoryPoolTest.OwnsRecognizesPoolAddresses
+[       OK ] MemoryPoolTest.OwnsRecognizesPoolAddresses (0 ms)
+[----------] 1 test from MemoryPoolTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"MemoryPoolTest.OwnsRecognizesPoolAddresses" end time: Apr 17 20:37 CST
+"MemoryPoolTest.OwnsRecognizesPoolAddresses" time elapsed: 00:00:00
+----------------------------------------------------------
+
+12/60 Testing: MemoryPoolTest.ConcurrentAllocateAndDeallocatePreservesCapacity
+12/60 Test: MemoryPoolTest.ConcurrentAllocateAndDeallocatePreservesCapacity
+Command: "/home/yun/design/high-concurrency-runtime/build-tests/tests/runtime_unit_tests" "--gtest_filter=MemoryPoolTest.ConcurrentAllocateAndDeallocatePreservesCapacity" "--gtest_also_run_disabled_tests"
+Directory: /home/yun/design/high-concurrency-runtime/build-tests/tests
+"MemoryPoolTest.ConcurrentAllocateAndDeallocatePreservesCapacity" start time: Apr 17 20:37 CST
+Output:
+----------------------------------------------------------
+Running main() from /home/yun/envirments/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = MemoryPoolTest.ConcurrentAllocateAndDeallocatePreservesCapacity
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from MemoryPoolTest
+[ RUN      ] MemoryPoolTest.ConcurrentAllocateAndDeallocatePreservesCapacity
+[       OK ] MemoryPoolTest.ConcurrentAllocateAndDeallocatePreservesCapacity (3 ms)
+[----------] 1 test from MemoryPoolTest (3 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (3 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.02 sec
+----------------------------------------------------------
+Test Passed.
+"MemoryPoolTest.ConcurrentAllocateAndDeallocatePreservesCapacity" end time: Apr 17 20:37 CST
+"MemoryPoolTest.ConcurrentAllocateAndDeallocatePreservesCapacity" time elapsed: 00:00:00
+----------------------------------------------------------
+
+13/60 Testing: ObjectPoolTest.AcquireAndReleaseManageLifetime
+13/60 Test: ObjectPoolTest.AcquireAndReleaseManageLifetime
+Command: "/home/yun/design/high-concurrency-runtime/build-tests/tests/runtime_unit_tests" "--gtest_filter=ObjectPoolTest.AcquireAndReleaseManageLifetime" "--gtest_also_run_disabled_tests"
+Directory: /home/yun/design/high-concurrency-runtime/build-tests/tests
+"ObjectPoolTest.AcquireAndReleaseManageLifetime" start time: Apr 17 20:37 CST
+Output:
+----------------------------------------------------------
+Running main() from /home/yun/envirments/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = ObjectPoolTest.AcquireAndReleaseManageLifetime
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from ObjectPoolTest
+[ RUN      ] ObjectPoolTest.AcquireAndReleaseManageLifetime
+[       OK ] ObjectPoolTest.AcquireAndReleaseManageLifetime (0 ms)
+[----------] 1 test from ObjectPoolTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"ObjectPoolTest.AcquireAndReleaseManageLifetime" end time: Apr 17 20:37 CST
+"ObjectPoolTest.AcquireAndReleaseManageLifetime" time elapsed: 00:00:00
+----------------------------------------------------------
+
+14/60 Testing: ObjectPoolTest.AcquireReturnsNullWhenExhausted
+14/60 Test: ObjectPoolTest.AcquireReturnsNullWhenExhausted
+Command: "/home/yun/design/high-concurrency-runtime/build-tests/tests/runtime_unit_tests" "--gtest_filter=ObjectPoolTest.AcquireReturnsNullWhenExhausted" "--gtest_also_run_disabled_tests"
+Directory: /home/yun/design/high-concurrency-runtime/build-tests/tests
+"ObjectPoolTest.AcquireReturnsNullWhenExhausted" start time: Apr 17 20:37 CST
+Output:
+----------------------------------------------------------
+Running main() from /home/yun/envirments/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = ObjectPoolTest.AcquireReturnsNullWhenExhausted
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from ObjectPoolTest
+[ RUN      ] ObjectPoolTest.AcquireReturnsNullWhenExhausted
+[       OK ] ObjectPoolTest.AcquireReturnsNullWhenExhausted (0 ms)
+[----------] 1 test from ObjectPoolTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"ObjectPoolTest.AcquireReturnsNullWhenExhausted" end time: Apr 17 20:37 CST
+"ObjectPoolTest.AcquireReturnsNullWhenExhausted" time elapsed: 00:00:00
+----------------------------------------------------------
+
+15/60 Testing: ObjectPoolTest.AcquireScopedReturnsObjectAutomatically
+15/60 Test: ObjectPoolTest.AcquireScopedReturnsObjectAutomatically
+Command: "/home/yun/design/high-concurrency-runtime/build-tests/tests/runtime_unit_tests" "--gtest_filter=ObjectPoolTest.AcquireScopedReturnsObjectAutomatically" "--gtest_also_run_disabled_tests"
+Directory: /home/yun/design/high-concurrency-runtime/build-tests/tests
+"ObjectPoolTest.AcquireScopedReturnsObjectAutomatically" start time: Apr 17 20:37 CST
+Output:
+----------------------------------------------------------
+Running main() from /home/yun/envirments/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = ObjectPoolTest.AcquireScopedReturnsObjectAutomatically
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from ObjectPoolTest
+[ RUN      ] ObjectPoolTest.AcquireScopedReturnsObjectAutomatically
+[       OK ] ObjectPoolTest.AcquireScopedReturnsObjectAutomatically (0 ms)
+[----------] 1 test from ObjectPoolTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"ObjectPoolTest.AcquireScopedReturnsObjectAutomatically" end time: Apr 17 20:37 CST
+"ObjectPoolTest.AcquireScopedReturnsObjectAutomatically" time elapsed: 00:00:00
+----------------------------------------------------------
+
+16/60 Testing: ObjectPoolTest.OwnsRecognizesPoolPointers
+16/60 Test: ObjectPoolTest.OwnsRecognizesPoolPointers
+Command: "/home/yun/design/high-concurrency-runtime/build-tests/tests/runtime_unit_tests" "--gtest_filter=ObjectPoolTest.OwnsRecognizesPoolPointers" "--gtest_also_run_disabled_tests"
+Directory: /home/yun/design/high-concurrency-runtime/build-tests/tests
+"ObjectPoolTest.OwnsRecognizesPoolPointers" start time: Apr 17 20:37 CST
+Output:
+----------------------------------------------------------
+Running main() from /home/yun/envirments/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = ObjectPoolTest.OwnsRecognizesPoolPointers
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from ObjectPoolTest
+[ RUN      ] ObjectPoolTest.OwnsRecognizesPoolPointers
+[       OK ] ObjectPoolTest.OwnsRecognizesPoolPointers (0 ms)
+[----------] 1 test from ObjectPoolTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"ObjectPoolTest.OwnsRecognizesPoolPointers" end time: Apr 17 20:37 CST
+"ObjectPoolTest.OwnsRecognizesPoolPointers" time elapsed: 00:00:00
+----------------------------------------------------------
+
+17/60 Testing: SanityTest.Basic
+17/60 Test: SanityTest.Basic
+Command: "/home/yun/design/high-concurrency-runtime/build-tests/tests/runtime_unit_tests" "--gtest_filter=SanityTest.Basic" "--gtest_also_run_disabled_tests"
+Directory: /home/yun/design/high-concurrency-runtime/build-tests/tests
+"SanityTest.Basic" start time: Apr 17 20:37 CST
+Output:
+----------------------------------------------------------
+Running main() from /home/yun/envirments/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = SanityTest.Basic
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from SanityTest
+[ RUN      ] SanityTest.Basic
+[       OK ] SanityTest.Basic (0 ms)
+[----------] 1 test from SanityTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"SanityTest.Basic" end time: Apr 17 20:37 CST
+"SanityTest.Basic" time elapsed: 00:00:00
+----------------------------------------------------------
+
+18/60 Testing: ThreadPoolTest.ExecutesTasksAndReturnsFutureValues
+18/60 Test: ThreadPoolTest.ExecutesTasksAndReturnsFutureValues
+Command: "/home/yun/design/high-concurrency-runtime/build-tests/tests/runtime_unit_tests" "--gtest_filter=ThreadPoolTest.ExecutesTasksAndReturnsFutureValues" "--gtest_also_run_disabled_tests"
+Directory: /home/yun/design/high-concurrency-runtime/build-tests/tests
+"ThreadPoolTest.ExecutesTasksAndReturnsFutureValues" start time: Apr 17 20:37 CST
+Output:
+----------------------------------------------------------
+Running main() from /home/yun/envirments/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = ThreadPoolTest.ExecutesTasksAndReturnsFutureValues
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from ThreadPoolTest
+[ RUN      ] ThreadPoolTest.ExecutesTasksAndReturnsFutureValues
+[       OK ] ThreadPoolTest.ExecutesTasksAndReturnsFutureValues (7 ms)
+[----------] 1 test from ThreadPoolTest (7 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (7 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"ThreadPoolTest.ExecutesTasksAndReturnsFutureValues" end time: Apr 17 20:37 CST
+"ThreadPoolTest.ExecutesTasksAndReturnsFutureValues" time elapsed: 00:00:00
+----------------------------------------------------------
+
+19/60 Testing: TaskTest.RunsFunction
+19/60 Test: TaskTest.RunsFunction
+Command: "/home/yun/design/high-concurrency-runtime/build-tests/tests/runtime_unit_tests" "--gtest_filter=TaskTest.RunsFunction" "--gtest_also_run_disabled_tests"
+Directory: /home/yun/design/high-concurrency-runtime/build-tests/tests
+"TaskTest.RunsFunction" start time: Apr 17 20:37 CST
+Output:
+----------------------------------------------------------
+Running main() from /home/yun/envirments/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = TaskTest.RunsFunction
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from TaskTest
+[ RUN      ] TaskTest.RunsFunction
+[       OK ] TaskTest.RunsFunction (0 ms)
+[----------] 1 test from TaskTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"TaskTest.RunsFunction" end time: Apr 17 20:37 CST
+"TaskTest.RunsFunction" time elapsed: 00:00:00
+----------------------------------------------------------
+
+20/60 Testing: TaskTest.SkipsWhenCancelled
+20/60 Test: TaskTest.SkipsWhenCancelled
+Command: "/home/yun/design/high-concurrency-runtime/build-tests/tests/runtime_unit_tests" "--gtest_filter=TaskTest.SkipsWhenCancelled" "--gtest_also_run_disabled_tests"
+Directory: /home/yun/design/high-concurrency-runtime/build-tests/tests
+"TaskTest.SkipsWhenCancelled" start time: Apr 17 20:37 CST
+Output:
+----------------------------------------------------------
+Running main() from /home/yun/envirments/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = TaskTest.SkipsWhenCancelled
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from TaskTest
+[ RUN      ] TaskTest.SkipsWhenCancelled
+[       OK ] TaskTest.SkipsWhenCancelled (0 ms)
+[----------] 1 test from TaskTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (6 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"TaskTest.SkipsWhenCancelled" end time: Apr 17 20:37 CST
+"TaskTest.SkipsWhenCancelled" time elapsed: 00:00:00
+----------------------------------------------------------
+
+21/60 Testing: TaskTest.SkipsWhenPastDeadline
+21/60 Test: TaskTest.SkipsWhenPastDeadline
+Command: "/home/yun/design/high-concurrency-runtime/build-tests/tests/runtime_unit_tests" "--gtest_filter=TaskTest.SkipsWhenPastDeadline" "--gtest_also_run_disabled_tests"
+Directory: /home/yun/design/high-concurrency-runtime/build-tests/tests
+"TaskTest.SkipsWhenPastDeadline" start time: Apr 17 20:37 CST
+Output:
+----------------------------------------------------------
+Running main() from /home/yun/envirments/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = TaskTest.SkipsWhenPastDeadline
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from TaskTest
+[ RUN      ] TaskTest.SkipsWhenPastDeadline
+[       OK ] TaskTest.SkipsWhenPastDeadline (0 ms)
+[----------] 1 test from TaskTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"TaskTest.SkipsWhenPastDeadline" end time: Apr 17 20:37 CST
+"TaskTest.SkipsWhenPastDeadline" time elapsed: 00:00:00
+----------------------------------------------------------
+
+22/60 Testing: TaskTest.RunsBeforeDeadline
+22/60 Test: TaskTest.RunsBeforeDeadline
+Command: "/home/yun/design/high-concurrency-runtime/build-tests/tests/runtime_unit_tests" "--gtest_filter=TaskTest.RunsBeforeDeadline" "--gtest_also_run_disabled_tests"
+Directory: /home/yun/design/high-concurrency-runtime/build-tests/tests
+"TaskTest.RunsBeforeDeadline" start time: Apr 17 20:37 CST
+Output:
+----------------------------------------------------------
+Running main() from /home/yun/envirments/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = TaskTest.RunsBeforeDeadline
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from TaskTest
+[ RUN      ] TaskTest.RunsBeforeDeadline
+[       OK ] TaskTest.RunsBeforeDeadline (0 ms)
+[----------] 1 test from TaskTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"TaskTest.RunsBeforeDeadline" end time: Apr 17 20:37 CST
+"TaskTest.RunsBeforeDeadline" time elapsed: 00:00:00
+----------------------------------------------------------
+
+23/60 Testing: TaskTest.NoDeadlineAlwaysRuns
+23/60 Test: TaskTest.NoDeadlineAlwaysRuns
+Command: "/home/yun/design/high-concurrency-runtime/build-tests/tests/runtime_unit_tests" "--gtest_filter=TaskTest.NoDeadlineAlwaysRuns" "--gtest_also_run_disabled_tests"
+Directory: /home/yun/design/high-concurrency-runtime/build-tests/tests
+"TaskTest.NoDeadlineAlwaysRuns" start time: Apr 17 20:37 CST
+Output:
+----------------------------------------------------------
+Running main() from /home/yun/envirments/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = TaskTest.NoDeadlineAlwaysRuns
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from TaskTest
+[ RUN      ] TaskTest.NoDeadlineAlwaysRuns
+[       OK ] TaskTest.NoDeadlineAlwaysRuns (0 ms)
+[----------] 1 test from TaskTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"TaskTest.NoDeadlineAlwaysRuns" end time: Apr 17 20:37 CST
+"TaskTest.NoDeadlineAlwaysRuns" time elapsed: 00:00:00
+----------------------------------------------------------
+
+24/60 Testing: SchedulerTest.ExecutesOnWorkerThread
+24/60 Test: SchedulerTest.ExecutesOnWorkerThread
+Command: "/home/yun/design/high-concurrency-runtime/build-tests/tests/runtime_unit_tests" "--gtest_filter=SchedulerTest.ExecutesOnWorkerThread" "--gtest_also_run_disabled_tests"
+Directory: /home/yun/design/high-concurrency-runtime/build-tests/tests
+"SchedulerTest.ExecutesOnWorkerThread" start time: Apr 17 20:37 CST
+Output:
+----------------------------------------------------------
+Running main() from /home/yun/envirments/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = SchedulerTest.ExecutesOnWorkerThread
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from SchedulerTest
+[ RUN      ] SchedulerTest.ExecutesOnWorkerThread
+[       OK ] SchedulerTest.ExecutesOnWorkerThread (11 ms)
+[----------] 1 test from SchedulerTest (11 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (12 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.02 sec
+----------------------------------------------------------
+Test Passed.
+"SchedulerTest.ExecutesOnWorkerThread" end time: Apr 17 20:37 CST
+"SchedulerTest.ExecutesOnWorkerThread" time elapsed: 00:00:00
+----------------------------------------------------------
+
+25/60 Testing: SchedulerTest.PendingCountDecrementsAfterRun
+25/60 Test: SchedulerTest.PendingCountDecrementsAfterRun
+Command: "/home/yun/design/high-concurrency-runtime/build-tests/tests/runtime_unit_tests" "--gtest_filter=SchedulerTest.PendingCountDecrementsAfterRun" "--gtest_also_run_disabled_tests"
+Directory: /home/yun/design/high-concurrency-runtime/build-tests/tests
+"SchedulerTest.PendingCountDecrementsAfterRun" start time: Apr 17 20:37 CST
+Output:
+----------------------------------------------------------
+Running main() from /home/yun/envirments/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = SchedulerTest.PendingCountDecrementsAfterRun
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from SchedulerTest
+[ RUN      ] SchedulerTest.PendingCountDecrementsAfterRun
+[       OK ] SchedulerTest.PendingCountDecrementsAfterRun (20 ms)
+[----------] 1 test from SchedulerTest (20 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (20 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Passed.
+"SchedulerTest.PendingCountDecrementsAfterRun" end time: Apr 17 20:37 CST
+"SchedulerTest.PendingCountDecrementsAfterRun" time elapsed: 00:00:00
+----------------------------------------------------------
+
+26/60 Testing: SchedulerTest.ThrowsWhenQueueFull
+26/60 Test: SchedulerTest.ThrowsWhenQueueFull
+Command: "/home/yun/design/high-concurrency-runtime/build-tests/tests/runtime_unit_tests" "--gtest_filter=SchedulerTest.ThrowsWhenQueueFull" "--gtest_also_run_disabled_tests"
+Directory: /home/yun/design/high-concurrency-runtime/build-tests/tests
+"SchedulerTest.ThrowsWhenQueueFull" start time: Apr 17 20:37 CST
+Output:
+----------------------------------------------------------
+Running main() from /home/yun/envirments/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = SchedulerTest.ThrowsWhenQueueFull
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from SchedulerTest
+[ RUN      ] SchedulerTest.ThrowsWhenQueueFull
+[       OK ] SchedulerTest.ThrowsWhenQueueFull (30 ms)
+[----------] 1 test from SchedulerTest (30 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (30 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"SchedulerTest.ThrowsWhenQueueFull" end time: Apr 17 20:37 CST
+"SchedulerTest.ThrowsWhenQueueFull" time elapsed: 00:00:00
+----------------------------------------------------------
+
+27/60 Testing: RoundRobinLbTest.AlternatesAcrossHealthyBackends
+27/60 Test: RoundRobinLbTest.AlternatesAcrossHealthyBackends
+Command: "/home/yun/design/high-concurrency-runtime/build-tests/tests/runtime_unit_tests" "--gtest_filter=RoundRobinLbTest.AlternatesAcrossHealthyBackends" "--gtest_also_run_disabled_tests"
+Directory: /home/yun/design/high-concurrency-runtime/build-tests/tests
+"RoundRobinLbTest.AlternatesAcrossHealthyBackends" start time: Apr 17 20:37 CST
+Output:
+----------------------------------------------------------
+Running main() from /home/yun/envirments/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = RoundRobinLbTest.AlternatesAcrossHealthyBackends
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RoundRobinLbTest
+[ RUN      ] RoundRobinLbTest.AlternatesAcrossHealthyBackends
+[       OK ] RoundRobinLbTest.AlternatesAcrossHealthyBackends (0 ms)
+[----------] 1 test from RoundRobinLbTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"RoundRobinLbTest.AlternatesAcrossHealthyBackends" end time: Apr 17 20:37 CST
+"RoundRobinLbTest.AlternatesAcrossHealthyBackends" time elapsed: 00:00:00
+----------------------------------------------------------
+
+28/60 Testing: RoundRobinLbTest.NeverSelectsUnhealthyBackend
+28/60 Test: RoundRobinLbTest.NeverSelectsUnhealthyBackend
+Command: "/home/yun/design/high-concurrency-runtime/build-tests/tests/runtime_unit_tests" "--gtest_filter=RoundRobinLbTest.NeverSelectsUnhealthyBackend" "--gtest_also_run_disabled_tests"
+Directory: /home/yun/design/high-concurrency-runtime/build-tests/tests
+"RoundRobinLbTest.NeverSelectsUnhealthyBackend" start time: Apr 17 20:37 CST
+Output:
+----------------------------------------------------------
+Running main() from /home/yun/envirments/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = RoundRobinLbTest.NeverSelectsUnhealthyBackend
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RoundRobinLbTest
+[ RUN      ] RoundRobinLbTest.NeverSelectsUnhealthyBackend
+[       OK ] RoundRobinLbTest.NeverSelectsUnhealthyBackend (0 ms)
+[----------] 1 test from RoundRobinLbTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"RoundRobinLbTest.NeverSelectsUnhealthyBackend" end time: Apr 17 20:37 CST
+"RoundRobinLbTest.NeverSelectsUnhealthyBackend" time elapsed: 00:00:00
+----------------------------------------------------------
+
+29/60 Testing: RoundRobinLbTest.ReturnsNullWhenAllUnhealthy
+29/60 Test: RoundRobinLbTest.ReturnsNullWhenAllUnhealthy
+Command: "/home/yun/design/high-concurrency-runtime/build-tests/tests/runtime_unit_tests" "--gtest_filter=RoundRobinLbTest.ReturnsNullWhenAllUnhealthy" "--gtest_also_run_disabled_tests"
+Directory: /home/yun/design/high-concurrency-runtime/build-tests/tests
+"RoundRobinLbTest.ReturnsNullWhenAllUnhealthy" start time: Apr 17 20:37 CST
+Output:
+----------------------------------------------------------
+Running main() from /home/yun/envirments/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = RoundRobinLbTest.ReturnsNullWhenAllUnhealthy
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RoundRobinLbTest
+[ RUN      ] RoundRobinLbTest.ReturnsNullWhenAllUnhealthy
+[       OK ] RoundRobinLbTest.ReturnsNullWhenAllUnhealthy (0 ms)
+[----------] 1 test from RoundRobinLbTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"RoundRobinLbTest.ReturnsNullWhenAllUnhealthy" end time: Apr 17 20:37 CST
+"RoundRobinLbTest.ReturnsNullWhenAllUnhealthy" time elapsed: 00:00:00
+----------------------------------------------------------
+
+30/60 Testing: RoundRobinLbTest.ReturnsNullForEmptyUpstream
+30/60 Test: RoundRobinLbTest.ReturnsNullForEmptyUpstream
+Command: "/home/yun/design/high-concurrency-runtime/build-tests/tests/runtime_unit_tests" "--gtest_filter=RoundRobinLbTest.ReturnsNullForEmptyUpstream" "--gtest_also_run_disabled_tests"
+Directory: /home/yun/design/high-concurrency-runtime/build-tests/tests
+"RoundRobinLbTest.ReturnsNullForEmptyUpstream" start time: Apr 17 20:37 CST
+Output:
+----------------------------------------------------------
+Running main() from /home/yun/envirments/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = RoundRobinLbTest.ReturnsNullForEmptyUpstream
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RoundRobinLbTest
+[ RUN      ] RoundRobinLbTest.ReturnsNullForEmptyUpstream
+[       OK ] RoundRobinLbTest.ReturnsNullForEmptyUpstream (0 ms)
+[----------] 1 test from RoundRobinLbTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"RoundRobinLbTest.ReturnsNullForEmptyUpstream" end time: Apr 17 20:37 CST
+"RoundRobinLbTest.ReturnsNullForEmptyUpstream" time elapsed: 00:00:00
+----------------------------------------------------------
+
+31/60 Testing: RoundRobinLbTest.RecoveryAfterMarkingBackendHealthyAgain
+31/60 Test: RoundRobinLbTest.RecoveryAfterMarkingBackendHealthyAgain
+Command: "/home/yun/design/high-concurrency-runtime/build-tests/tests/runtime_unit_tests" "--gtest_filter=RoundRobinLbTest.RecoveryAfterMarkingBackendHealthyAgain" "--gtest_also_run_disabled_tests"
+Directory: /home/yun/design/high-concurrency-runtime/build-tests/tests
+"RoundRobinLbTest.RecoveryAfterMarkingBackendHealthyAgain" start time: Apr 17 20:37 CST
+Output:
+----------------------------------------------------------
+Running main() from /home/yun/envirments/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = RoundRobinLbTest.RecoveryAfterMarkingBackendHealthyAgain
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RoundRobinLbTest
+[ RUN      ] RoundRobinLbTest.RecoveryAfterMarkingBackendHealthyAgain
+[       OK ] RoundRobinLbTest.RecoveryAfterMarkingBackendHealthyAgain (0 ms)
+[----------] 1 test from RoundRobinLbTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"RoundRobinLbTest.RecoveryAfterMarkingBackendHealthyAgain" end time: Apr 17 20:37 CST
+"RoundRobinLbTest.RecoveryAfterMarkingBackendHealthyAgain" time elapsed: 00:00:00
+----------------------------------------------------------
+
+32/60 Testing: ServiceRegistryTest.RegisterAndGet
+32/60 Test: ServiceRegistryTest.RegisterAndGet
+Command: "/home/yun/design/high-concurrency-runtime/build-tests/tests/runtime_unit_tests" "--gtest_filter=ServiceRegistryTest.RegisterAndGet" "--gtest_also_run_disabled_tests"
+Directory: /home/yun/design/high-concurrency-runtime/build-tests/tests
+"ServiceRegistryTest.RegisterAndGet" start time: Apr 17 20:37 CST
+Output:
+----------------------------------------------------------
+Running main() from /home/yun/envirments/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = ServiceRegistryTest.RegisterAndGet
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from ServiceRegistryTest
+[ RUN      ] ServiceRegistryTest.RegisterAndGet
+[       OK ] ServiceRegistryTest.RegisterAndGet (0 ms)
+[----------] 1 test from ServiceRegistryTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"ServiceRegistryTest.RegisterAndGet" end time: Apr 17 20:37 CST
+"ServiceRegistryTest.RegisterAndGet" time elapsed: 00:00:00
+----------------------------------------------------------
+
+33/60 Testing: ServiceRegistryTest.GetMissingServiceReturnsNull
+33/60 Test: ServiceRegistryTest.GetMissingServiceReturnsNull
+Command: "/home/yun/design/high-concurrency-runtime/build-tests/tests/runtime_unit_tests" "--gtest_filter=ServiceRegistryTest.GetMissingServiceReturnsNull" "--gtest_also_run_disabled_tests"
+Directory: /home/yun/design/high-concurrency-runtime/build-tests/tests
+"ServiceRegistryTest.GetMissingServiceReturnsNull" start time: Apr 17 20:37 CST
+Output:
+----------------------------------------------------------
+Running main() from /home/yun/envirments/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = ServiceRegistryTest.GetMissingServiceReturnsNull
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from ServiceRegistryTest
+[ RUN      ] ServiceRegistryTest.GetMissingServiceReturnsNull
+[       OK ] ServiceRegistryTest.GetMissingServiceReturnsNull (0 ms)
+[----------] 1 test from ServiceRegistryTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"ServiceRegistryTest.GetMissingServiceReturnsNull" end time: Apr 17 20:37 CST
+"ServiceRegistryTest.GetMissingServiceReturnsNull" time elapsed: 00:00:00
+----------------------------------------------------------
+
+34/60 Testing: ServiceRegistryTest.HealthyCountExcludesUnhealthyBackends
+34/60 Test: ServiceRegistryTest.HealthyCountExcludesUnhealthyBackends
+Command: "/home/yun/design/high-concurrency-runtime/build-tests/tests/runtime_unit_tests" "--gtest_filter=ServiceRegistryTest.HealthyCountExcludesUnhealthyBackends" "--gtest_also_run_disabled_tests"
+Directory: /home/yun/design/high-concurrency-runtime/build-tests/tests
+"ServiceRegistryTest.HealthyCountExcludesUnhealthyBackends" start time: Apr 17 20:37 CST
+Output:
+----------------------------------------------------------
+Running main() from /home/yun/envirments/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = ServiceRegistryTest.HealthyCountExcludesUnhealthyBackends
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from ServiceRegistryTest
+[ RUN      ] ServiceRegistryTest.HealthyCountExcludesUnhealthyBackends
+[       OK ] ServiceRegistryTest.HealthyCountExcludesUnhealthyBackends (0 ms)
+[----------] 1 test from ServiceRegistryTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"ServiceRegistryTest.HealthyCountExcludesUnhealthyBackends" end time: Apr 17 20:37 CST
+"ServiceRegistryTest.HealthyCountExcludesUnhealthyBackends" time elapsed: 00:00:00
+----------------------------------------------------------
+
+35/60 Testing: ServiceRegistryTest.RegisterOverwritesPreviousEntry
+35/60 Test: ServiceRegistryTest.RegisterOverwritesPreviousEntry
+Command: "/home/yun/design/high-concurrency-runtime/build-tests/tests/runtime_unit_tests" "--gtest_filter=ServiceRegistryTest.RegisterOverwritesPreviousEntry" "--gtest_also_run_disabled_tests"
+Directory: /home/yun/design/high-concurrency-runtime/build-tests/tests
+"ServiceRegistryTest.RegisterOverwritesPreviousEntry" start time: Apr 17 20:37 CST
+Output:
+----------------------------------------------------------
+Running main() from /home/yun/envirments/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = ServiceRegistryTest.RegisterOverwritesPreviousEntry
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from ServiceRegistryTest
+[ RUN      ] ServiceRegistryTest.RegisterOverwritesPreviousEntry
+[       OK ] ServiceRegistryTest.RegisterOverwritesPreviousEntry (0 ms)
+[----------] 1 test from ServiceRegistryTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"ServiceRegistryTest.RegisterOverwritesPreviousEntry" end time: Apr 17 20:37 CST
+"ServiceRegistryTest.RegisterOverwritesPreviousEntry" time elapsed: 00:00:00
+----------------------------------------------------------
+
+36/60 Testing: ServiceRegistryTest.BackendAddressFormat
+36/60 Test: ServiceRegistryTest.BackendAddressFormat
+Command: "/home/yun/design/high-concurrency-runtime/build-tests/tests/runtime_unit_tests" "--gtest_filter=ServiceRegistryTest.BackendAddressFormat" "--gtest_also_run_disabled_tests"
+Directory: /home/yun/design/high-concurrency-runtime/build-tests/tests
+"ServiceRegistryTest.BackendAddressFormat" start time: Apr 17 20:37 CST
+Output:
+----------------------------------------------------------
+Running main() from /home/yun/envirments/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = ServiceRegistryTest.BackendAddressFormat
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from ServiceRegistryTest
+[ RUN      ] ServiceRegistryTest.BackendAddressFormat
+[       OK ] ServiceRegistryTest.BackendAddressFormat (0 ms)
+[----------] 1 test from ServiceRegistryTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"ServiceRegistryTest.BackendAddressFormat" end time: Apr 17 20:37 CST
+"ServiceRegistryTest.BackendAddressFormat" time elapsed: 00:00:00
+----------------------------------------------------------
+
+37/60 Testing: EventLoopTest.RunInLoopExecutesImmediatelyOnOwningThread
+37/60 Test: EventLoopTest.RunInLoopExecutesImmediatelyOnOwningThread
+Command: "/home/yun/design/high-concurrency-runtime/build-tests/tests/runtime_integration_tests" "--gtest_filter=EventLoopTest.RunInLoopExecutesImmediatelyOnOwningThread" "--gtest_also_run_disabled_tests"
+Directory: /home/yun/design/high-concurrency-runtime/build-tests/tests
+"EventLoopTest.RunInLoopExecutesImmediatelyOnOwningThread" start time: Apr 17 20:37 CST
+Output:
+----------------------------------------------------------
+Running main() from /home/yun/envirments/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = EventLoopTest.RunInLoopExecutesImmediatelyOnOwningThread
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from EventLoopTest
+[ RUN      ] EventLoopTest.RunInLoopExecutesImmediatelyOnOwningThread
+[       OK ] EventLoopTest.RunInLoopExecutesImmediatelyOnOwningThread (0 ms)
+[----------] 1 test from EventLoopTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"EventLoopTest.RunInLoopExecutesImmediatelyOnOwningThread" end time: Apr 17 20:37 CST
+"EventLoopTest.RunInLoopExecutesImmediatelyOnOwningThread" time elapsed: 00:00:00
+----------------------------------------------------------
+
+38/60 Testing: EventLoopTest.QueueInLoopFromAnotherThreadWakesLoop
+38/60 Test: EventLoopTest.QueueInLoopFromAnotherThreadWakesLoop
+Command: "/home/yun/design/high-concurrency-runtime/build-tests/tests/runtime_integration_tests" "--gtest_filter=EventLoopTest.QueueInLoopFromAnotherThreadWakesLoop" "--gtest_also_run_disabled_tests"
+Directory: /home/yun/design/high-concurrency-runtime/build-tests/tests
+"EventLoopTest.QueueInLoopFromAnotherThreadWakesLoop" start time: Apr 17 20:37 CST
+Output:
+----------------------------------------------------------
+Running main() from /home/yun/envirments/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = EventLoopTest.QueueInLoopFromAnotherThreadWakesLoop
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from EventLoopTest
+[ RUN      ] EventLoopTest.QueueInLoopFromAnotherThreadWakesLoop
+[       OK ] EventLoopTest.QueueInLoopFromAnotherThreadWakesLoop (0 ms)
+[----------] 1 test from EventLoopTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"EventLoopTest.QueueInLoopFromAnotherThreadWakesLoop" end time: Apr 17 20:37 CST
+"EventLoopTest.QueueInLoopFromAnotherThreadWakesLoop" time elapsed: 00:00:00
+----------------------------------------------------------
+
+39/60 Testing: EventLoopTest.QueueInLoopFromPendingFunctorSchedulesNextTurn
+39/60 Test: EventLoopTest.QueueInLoopFromPendingFunctorSchedulesNextTurn
+Command: "/home/yun/design/high-concurrency-runtime/build-tests/tests/runtime_integration_tests" "--gtest_filter=EventLoopTest.QueueInLoopFromPendingFunctorSchedulesNextTurn" "--gtest_also_run_disabled_tests"
+Directory: /home/yun/design/high-concurrency-runtime/build-tests/tests
+"EventLoopTest.QueueInLoopFromPendingFunctorSchedulesNextTurn" start time: Apr 17 20:37 CST
+Output:
+----------------------------------------------------------
+Running main() from /home/yun/envirments/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = EventLoopTest.QueueInLoopFromPendingFunctorSchedulesNextTurn
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from EventLoopTest
+[ RUN      ] EventLoopTest.QueueInLoopFromPendingFunctorSchedulesNextTurn
+[       OK ] EventLoopTest.QueueInLoopFromPendingFunctorSchedulesNextTurn (0 ms)
+[----------] 1 test from EventLoopTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"EventLoopTest.QueueInLoopFromPendingFunctorSchedulesNextTurn" end time: Apr 17 20:37 CST
+"EventLoopTest.QueueInLoopFromPendingFunctorSchedulesNextTurn" time elapsed: 00:00:00
+----------------------------------------------------------
+
+40/60 Testing: TcpServerTest.ConstructServer
+40/60 Test: TcpServerTest.ConstructServer
+Command: "/home/yun/design/high-concurrency-runtime/build-tests/tests/runtime_integration_tests" "--gtest_filter=TcpServerTest.ConstructServer" "--gtest_also_run_disabled_tests"
+Directory: /home/yun/design/high-concurrency-runtime/build-tests/tests
+"TcpServerTest.ConstructServer" start time: Apr 17 20:37 CST
+Output:
+----------------------------------------------------------
+Running main() from /home/yun/envirments/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = TcpServerTest.ConstructServer
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from TcpServerTest
+[ RUN      ] TcpServerTest.ConstructServer
+[       OK ] TcpServerTest.ConstructServer (0 ms)
+[----------] 1 test from TcpServerTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"TcpServerTest.ConstructServer" end time: Apr 17 20:37 CST
+"TcpServerTest.ConstructServer" time elapsed: 00:00:00
+----------------------------------------------------------
+
+41/60 Testing: TcpServerTest.StartInvokesThreadInitCallbackForEachIoLoop
+41/60 Test: TcpServerTest.StartInvokesThreadInitCallbackForEachIoLoop
+Command: "/home/yun/design/high-concurrency-runtime/build-tests/tests/runtime_integration_tests" "--gtest_filter=TcpServerTest.StartInvokesThreadInitCallbackForEachIoLoop" "--gtest_also_run_disabled_tests"
+Directory: /home/yun/design/high-concurrency-runtime/build-tests/tests
+"TcpServerTest.StartInvokesThreadInitCallbackForEachIoLoop" start time: Apr 17 20:37 CST
+Output:
+----------------------------------------------------------
+Running main() from /home/yun/envirments/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = TcpServerTest.StartInvokesThreadInitCallbackForEachIoLoop
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from TcpServerTest
+[ RUN      ] TcpServerTest.StartInvokesThreadInitCallbackForEachIoLoop
+<end of output>
+Test time = 1500.10 sec
+----------------------------------------------------------
+Test Failed.
+"TcpServerTest.StartInvokesThreadInitCallbackForEachIoLoop" end time: Apr 17 21:02 CST
+"TcpServerTest.StartInvokesThreadInitCallbackForEachIoLoop" time elapsed: 00:25:00
+----------------------------------------------------------
+
+42/60 Testing: TcpServerTest.AcceptsConnectionAndEchoesPayloadOnce
+42/60 Test: TcpServerTest.AcceptsConnectionAndEchoesPayloadOnce
+Command: "/home/yun/design/high-concurrency-runtime/build-tests/tests/runtime_integration_tests" "--gtest_filter=TcpServerTest.AcceptsConnectionAndEchoesPayloadOnce" "--gtest_also_run_disabled_tests"
+Directory: /home/yun/design/high-concurrency-runtime/build-tests/tests
+"TcpServerTest.AcceptsConnectionAndEchoesPayloadOnce" start time: Apr 17 21:02 CST
+Output:
+----------------------------------------------------------
+Running main() from /home/yun/envirments/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = TcpServerTest.AcceptsConnectionAndEchoesPayloadOnce
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from TcpServerTest
+[ RUN      ] TcpServerTest.AcceptsConnectionAndEchoesPayloadOnce
+[       OK ] TcpServerTest.AcceptsConnectionAndEchoesPayloadOnce (22 ms)
+[----------] 1 test from TcpServerTest (22 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (22 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Passed.
+"TcpServerTest.AcceptsConnectionAndEchoesPayloadOnce" end time: Apr 17 21:02 CST
+"TcpServerTest.AcceptsConnectionAndEchoesPayloadOnce" time elapsed: 00:00:00
+----------------------------------------------------------
+
+43/60 Testing: TriggerModeTest.ET_DrainLargePayload
+43/60 Test: TriggerModeTest.ET_DrainLargePayload
+Command: "/home/yun/design/high-concurrency-runtime/build-tests/tests/runtime_integration_tests" "--gtest_filter=TriggerModeTest.ET_DrainLargePayload" "--gtest_also_run_disabled_tests"
+Directory: /home/yun/design/high-concurrency-runtime/build-tests/tests
+"TriggerModeTest.ET_DrainLargePayload" start time: Apr 17 21:02 CST
+Output:
+----------------------------------------------------------
+Running main() from /home/yun/envirments/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = TriggerModeTest.ET_DrainLargePayload
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from TriggerModeTest
+[ RUN      ] TriggerModeTest.ET_DrainLargePayload
+[       OK ] TriggerModeTest.ET_DrainLargePayload (5 ms)
+[----------] 1 test from TriggerModeTest (5 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (6 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"TriggerModeTest.ET_DrainLargePayload" end time: Apr 17 21:02 CST
+"TriggerModeTest.ET_DrainLargePayload" time elapsed: 00:00:00
+----------------------------------------------------------
+
+44/60 Testing: TriggerModeTest.LT_DrainLargePayload
+44/60 Test: TriggerModeTest.LT_DrainLargePayload
+Command: "/home/yun/design/high-concurrency-runtime/build-tests/tests/runtime_integration_tests" "--gtest_filter=TriggerModeTest.LT_DrainLargePayload" "--gtest_also_run_disabled_tests"
+Directory: /home/yun/design/high-concurrency-runtime/build-tests/tests
+"TriggerModeTest.LT_DrainLargePayload" start time: Apr 17 21:02 CST
+Output:
+----------------------------------------------------------
+Running main() from /home/yun/envirments/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = TriggerModeTest.LT_DrainLargePayload
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from TriggerModeTest
+[ RUN      ] TriggerModeTest.LT_DrainLargePayload
+[       OK ] TriggerModeTest.LT_DrainLargePayload (4 ms)
+[----------] 1 test from TriggerModeTest (4 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (4 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"TriggerModeTest.LT_DrainLargePayload" end time: Apr 17 21:02 CST
+"TriggerModeTest.LT_DrainLargePayload" time elapsed: 00:00:00
+----------------------------------------------------------
+
+45/60 Testing: TriggerModeTest.ET_AcceptsBurstConnections
+45/60 Test: TriggerModeTest.ET_AcceptsBurstConnections
+Command: "/home/yun/design/high-concurrency-runtime/build-tests/tests/runtime_integration_tests" "--gtest_filter=TriggerModeTest.ET_AcceptsBurstConnections" "--gtest_also_run_disabled_tests"
+Directory: /home/yun/design/high-concurrency-runtime/build-tests/tests
+"TriggerModeTest.ET_AcceptsBurstConnections" start time: Apr 17 21:02 CST
+Output:
+----------------------------------------------------------
+Running main() from /home/yun/envirments/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = TriggerModeTest.ET_AcceptsBurstConnections
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from TriggerModeTest
+[ RUN      ] TriggerModeTest.ET_AcceptsBurstConnections
+[       OK ] TriggerModeTest.ET_AcceptsBurstConnections (4 ms)
+[----------] 1 test from TriggerModeTest (4 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (4 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"TriggerModeTest.ET_AcceptsBurstConnections" end time: Apr 17 21:02 CST
+"TriggerModeTest.ET_AcceptsBurstConnections" time elapsed: 00:00:00
+----------------------------------------------------------
+
+46/60 Testing: TriggerModeTest.ET_SendsLargeResponse
+46/60 Test: TriggerModeTest.ET_SendsLargeResponse
+Command: "/home/yun/design/high-concurrency-runtime/build-tests/tests/runtime_integration_tests" "--gtest_filter=TriggerModeTest.ET_SendsLargeResponse" "--gtest_also_run_disabled_tests"
+Directory: /home/yun/design/high-concurrency-runtime/build-tests/tests
+"TriggerModeTest.ET_SendsLargeResponse" start time: Apr 17 21:02 CST
+Output:
+----------------------------------------------------------
+Running main() from /home/yun/envirments/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = TriggerModeTest.ET_SendsLargeResponse
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from TriggerModeTest
+[ RUN      ] TriggerModeTest.ET_SendsLargeResponse
+[       OK ] TriggerModeTest.ET_SendsLargeResponse (5 ms)
+[----------] 1 test from TriggerModeTest (5 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (5 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"TriggerModeTest.ET_SendsLargeResponse" end time: Apr 17 21:02 CST
+"TriggerModeTest.ET_SendsLargeResponse" time elapsed: 00:00:00
+----------------------------------------------------------
+
+47/60 Testing: HttpRouterTest.Distinguishes404And405
+47/60 Test: HttpRouterTest.Distinguishes404And405
+Command: "/home/yun/design/high-concurrency-runtime/build-tests/tests/runtime_integration_tests" "--gtest_filter=HttpRouterTest.Distinguishes404And405" "--gtest_also_run_disabled_tests"
+Directory: /home/yun/design/high-concurrency-runtime/build-tests/tests
+"HttpRouterTest.Distinguishes404And405" start time: Apr 17 21:02 CST
+Output:
+----------------------------------------------------------
+Running main() from /home/yun/envirments/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = HttpRouterTest.Distinguishes404And405
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from HttpRouterTest
+[ RUN      ] HttpRouterTest.Distinguishes404And405
+[       OK ] HttpRouterTest.Distinguishes404And405 (0 ms)
+[----------] 1 test from HttpRouterTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"HttpRouterTest.Distinguishes404And405" end time: Apr 17 21:02 CST
+"HttpRouterTest.Distinguishes404And405" time elapsed: 00:00:00
+----------------------------------------------------------
+
+48/60 Testing: HttpRouterTest.StaticRouteWinsOverDynamicRoute
+48/60 Test: HttpRouterTest.StaticRouteWinsOverDynamicRoute
+Command: "/home/yun/design/high-concurrency-runtime/build-tests/tests/runtime_integration_tests" "--gtest_filter=HttpRouterTest.StaticRouteWinsOverDynamicRoute" "--gtest_also_run_disabled_tests"
+Directory: /home/yun/design/high-concurrency-runtime/build-tests/tests
+"HttpRouterTest.StaticRouteWinsOverDynamicRoute" start time: Apr 17 21:02 CST
+Output:
+----------------------------------------------------------
+Running main() from /home/yun/envirments/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = HttpRouterTest.StaticRouteWinsOverDynamicRoute
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from HttpRouterTest
+[ RUN      ] HttpRouterTest.StaticRouteWinsOverDynamicRoute
+[       OK ] HttpRouterTest.StaticRouteWinsOverDynamicRoute (0 ms)
+[----------] 1 test from HttpRouterTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"HttpRouterTest.StaticRouteWinsOverDynamicRoute" end time: Apr 17 21:02 CST
+"HttpRouterTest.StaticRouteWinsOverDynamicRoute" time elapsed: 00:00:00
+----------------------------------------------------------
+
+49/60 Testing: LtAndEt/TriggerModeEchoTest.EchoesSmallPayload/LT  # GetParam() = false
+49/60 Test: LtAndEt/TriggerModeEchoTest.EchoesSmallPayload/LT  # GetParam() = false
+Command: "/home/yun/design/high-concurrency-runtime/build-tests/tests/runtime_integration_tests" "--gtest_filter=LtAndEt/TriggerModeEchoTest.EchoesSmallPayload/LT" "--gtest_also_run_disabled_tests"
+Directory: /home/yun/design/high-concurrency-runtime/build-tests/tests
+"LtAndEt/TriggerModeEchoTest.EchoesSmallPayload/LT  # GetParam() = false" start time: Apr 17 21:02 CST
+Output:
+----------------------------------------------------------
+Running main() from /home/yun/envirments/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = LtAndEt/TriggerModeEchoTest.EchoesSmallPayload/LT
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from LtAndEt/TriggerModeEchoTest
+[ RUN      ] LtAndEt/TriggerModeEchoTest.EchoesSmallPayload/LT
+[       OK ] LtAndEt/TriggerModeEchoTest.EchoesSmallPayload/LT (0 ms)
+[----------] 1 test from LtAndEt/TriggerModeEchoTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"LtAndEt/TriggerModeEchoTest.EchoesSmallPayload/LT  # GetParam() = false" end time: Apr 17 21:02 CST
+"LtAndEt/TriggerModeEchoTest.EchoesSmallPayload/LT  # GetParam() = false" time elapsed: 00:00:00
+----------------------------------------------------------
+
+50/60 Testing: LtAndEt/TriggerModeEchoTest.EchoesSmallPayload/ET  # GetParam() = true
+50/60 Test: LtAndEt/TriggerModeEchoTest.EchoesSmallPayload/ET  # GetParam() = true
+Command: "/home/yun/design/high-concurrency-runtime/build-tests/tests/runtime_integration_tests" "--gtest_filter=LtAndEt/TriggerModeEchoTest.EchoesSmallPayload/ET" "--gtest_also_run_disabled_tests"
+Directory: /home/yun/design/high-concurrency-runtime/build-tests/tests
+"LtAndEt/TriggerModeEchoTest.EchoesSmallPayload/ET  # GetParam() = true" start time: Apr 17 21:02 CST
+Output:
+----------------------------------------------------------
+Running main() from /home/yun/envirments/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = LtAndEt/TriggerModeEchoTest.EchoesSmallPayload/ET
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from LtAndEt/TriggerModeEchoTest
+[ RUN      ] LtAndEt/TriggerModeEchoTest.EchoesSmallPayload/ET
+[       OK ] LtAndEt/TriggerModeEchoTest.EchoesSmallPayload/ET (0 ms)
+[----------] 1 test from LtAndEt/TriggerModeEchoTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"LtAndEt/TriggerModeEchoTest.EchoesSmallPayload/ET  # GetParam() = true" end time: Apr 17 21:02 CST
+"LtAndEt/TriggerModeEchoTest.EchoesSmallPayload/ET  # GetParam() = true" time elapsed: 00:00:00
+----------------------------------------------------------
+
+51/60 Testing: LtAndEt/TriggerModeEchoTest.EchoesMultipleMessages/LT  # GetParam() = false
+51/60 Test: LtAndEt/TriggerModeEchoTest.EchoesMultipleMessages/LT  # GetParam() = false
+Command: "/home/yun/design/high-concurrency-runtime/build-tests/tests/runtime_integration_tests" "--gtest_filter=LtAndEt/TriggerModeEchoTest.EchoesMultipleMessages/LT" "--gtest_also_run_disabled_tests"
+Directory: /home/yun/design/high-concurrency-runtime/build-tests/tests
+"LtAndEt/TriggerModeEchoTest.EchoesMultipleMessages/LT  # GetParam() = false" start time: Apr 17 21:02 CST
+Output:
+----------------------------------------------------------
+Running main() from /home/yun/envirments/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = LtAndEt/TriggerModeEchoTest.EchoesMultipleMessages/LT
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from LtAndEt/TriggerModeEchoTest
+[ RUN      ] LtAndEt/TriggerModeEchoTest.EchoesMultipleMessages/LT
+[       OK ] LtAndEt/TriggerModeEchoTest.EchoesMultipleMessages/LT (0 ms)
+[----------] 1 test from LtAndEt/TriggerModeEchoTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"LtAndEt/TriggerModeEchoTest.EchoesMultipleMessages/LT  # GetParam() = false" end time: Apr 17 21:02 CST
+"LtAndEt/TriggerModeEchoTest.EchoesMultipleMessages/LT  # GetParam() = false" time elapsed: 00:00:00
+----------------------------------------------------------
+
+52/60 Testing: LtAndEt/TriggerModeEchoTest.EchoesMultipleMessages/ET  # GetParam() = true
+52/60 Test: LtAndEt/TriggerModeEchoTest.EchoesMultipleMessages/ET  # GetParam() = true
+Command: "/home/yun/design/high-concurrency-runtime/build-tests/tests/runtime_integration_tests" "--gtest_filter=LtAndEt/TriggerModeEchoTest.EchoesMultipleMessages/ET" "--gtest_also_run_disabled_tests"
+Directory: /home/yun/design/high-concurrency-runtime/build-tests/tests
+"LtAndEt/TriggerModeEchoTest.EchoesMultipleMessages/ET  # GetParam() = true" start time: Apr 17 21:02 CST
+Output:
+----------------------------------------------------------
+Running main() from /home/yun/envirments/googletest/googletest/src/gtest_main.cc
+Note: Google Test filter = LtAndEt/TriggerModeEchoTest.EchoesMultipleMessages/ET
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from LtAndEt/TriggerModeEchoTest
+[ RUN      ] LtAndEt/TriggerModeEchoTest.EchoesMultipleMessages/ET
+[       OK ] LtAndEt/TriggerModeEchoTest.EchoesMultipleMessages/ET (0 ms)
+[----------] 1 test from LtAndEt/TriggerModeEchoTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"LtAndEt/TriggerModeEchoTest.EchoesMultipleMessages/ET  # GetParam() = true" end time: Apr 17 21:02 CST
+"LtAndEt/TriggerModeEchoTest.EchoesMultipleMessages/ET  # GetParam() = true" time elapsed: 00:00:00
+----------------------------------------------------------
+
+53/60 Testing: memory_pool_smoke_test
+53/60 Test: memory_pool_smoke_test
+Command: "/home/yun/design/high-concurrency-runtime/build-tests/tests/memory_pool_smoke_test"
+Directory: /home/yun/design/high-concurrency-runtime/build-tests/tests
+"memory_pool_smoke_test" start time: Apr 17 21:02 CST
+Output:
+----------------------------------------------------------
+[PASS] memory_pool_smoke_test
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"memory_pool_smoke_test" end time: Apr 17 21:02 CST
+"memory_pool_smoke_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+54/60 Testing: object_pool_smoke_test
+54/60 Test: object_pool_smoke_test
+Command: "/home/yun/design/high-concurrency-runtime/build-tests/tests/object_pool_smoke_test"
+Directory: /home/yun/design/high-concurrency-runtime/build-tests/tests
+"object_pool_smoke_test" start time: Apr 17 21:02 CST
+Output:
+----------------------------------------------------------
+[PASS] object_pool_smoke_test
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"object_pool_smoke_test" end time: Apr 17 21:02 CST
+"object_pool_smoke_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+55/60 Testing: logger_smoke_test
+55/60 Test: logger_smoke_test
+Command: "/home/yun/design/high-concurrency-runtime/build-tests/tests/logger_smoke_test"
+Directory: /home/yun/design/high-concurrency-runtime/build-tests/tests
+"logger_smoke_test" start time: Apr 17 21:02 CST
+Output:
+----------------------------------------------------------
+[PASS] logger_smoke_test
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"logger_smoke_test" end time: Apr 17 21:02 CST
+"logger_smoke_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+56/60 Testing: buffer_smoke_test
+56/60 Test: buffer_smoke_test
+Command: "/home/yun/design/high-concurrency-runtime/build-tests/tests/buffer_smoke_test"
+Directory: /home/yun/design/high-concurrency-runtime/build-tests/tests
+"buffer_smoke_test" start time: Apr 17 21:02 CST
+Output:
+----------------------------------------------------------
+[PASS] buffer_smoke_test
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"buffer_smoke_test" end time: Apr 17 21:02 CST
+"buffer_smoke_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+57/60 Testing: http_smoke_test
+57/60 Test: http_smoke_test
+Command: "/home/yun/design/high-concurrency-runtime/build-tests/tests/http_smoke_test"
+Directory: /home/yun/design/high-concurrency-runtime/build-tests/tests
+"http_smoke_test" start time: Apr 17 21:02 CST
+Output:
+----------------------------------------------------------
+[PASS] http_smoke_test
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"http_smoke_test" end time: Apr 17 21:02 CST
+"http_smoke_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+58/60 Testing: epoll_poller_smoke_test
+58/60 Test: epoll_poller_smoke_test
+Command: "/home/yun/design/high-concurrency-runtime/build-tests/tests/epoll_poller_smoke_test"
+Directory: /home/yun/design/high-concurrency-runtime/build-tests/tests
+"epoll_poller_smoke_test" start time: Apr 17 21:02 CST
+Output:
+----------------------------------------------------------
+[PASS] Construction
+[PASS] ChannelRegistration
+[PASS] ChannelRemoval
+[PASS] PollDetectsReadEvent
+[PASS] DisableAllKeepsChannelInMap
+[PASS] ReenableAfterDisable
+[PASS] EventsVectorResizes
+[PASS] epoll_poller_smoke_test (7 cases)
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Passed.
+"epoll_poller_smoke_test" end time: Apr 17 21:02 CST
+"epoll_poller_smoke_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+59/60 Testing: event_loop_smoke_test
+59/60 Test: event_loop_smoke_test
+Command: "/home/yun/design/high-concurrency-runtime/build-tests/tests/event_loop_smoke_test"
+Directory: /home/yun/design/high-concurrency-runtime/build-tests/tests
+"event_loop_smoke_test" start time: Apr 17 21:02 CST
+Output:
+----------------------------------------------------------
+[PASS] event_loop_smoke_test
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"event_loop_smoke_test" end time: Apr 17 21:02 CST
+"event_loop_smoke_test" time elapsed: 00:00:00
+----------------------------------------------------------
+

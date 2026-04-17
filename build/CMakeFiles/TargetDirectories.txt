@@ -2,6 +2,7 @@
 /home/yun/design/high-concurrency-runtime/build/CMakeFiles/runtime_task.dir
 /home/yun/design/high-concurrency-runtime/build/CMakeFiles/runtime_net.dir
 /home/yun/design/high-concurrency-runtime/build/CMakeFiles/runtime_http.dir
+/home/yun/design/high-concurrency-runtime/build/CMakeFiles/runtime_gateway.dir
 /home/yun/design/high-concurrency-runtime/build/CMakeFiles/test.dir
 /home/yun/design/high-concurrency-runtime/build/CMakeFiles/edit_cache.dir
 /home/yun/design/high-concurrency-runtime/build/CMakeFiles/rebuild_cache.dir

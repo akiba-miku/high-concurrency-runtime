@@ -104,6 +104,25 @@ target_link_libraries(runtime_http
 
 target_compile_features(runtime_http PUBLIC cxx_std_20)
 
+add_library(runtime_gateway STATIC
+    src/upstream/upstream.cpp
+    src/registry/service_registry.cpp
+    src/lb/round_robin.cpp
+)
+
+target_include_directories(runtime_gateway
+    PUBLIC
+        ${CMAKE_CURRENT_SOURCE_DIR}/include
+)
+
+target_link_libraries(runtime_gateway
+    PUBLIC
+        runtime_http
+        Threads::Threads
+)
+
+target_compile_features(runtime_gateway PUBLIC cxx_std_20)
+
 if(BUILD_TESTS)
     enable_testing()
 endif()

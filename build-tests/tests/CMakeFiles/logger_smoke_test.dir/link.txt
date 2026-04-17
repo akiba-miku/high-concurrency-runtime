@@ -1,1 +1,1 @@
-/usr/bin/c++ CMakeFiles/logger_smoke_test.dir/unit/test_logger_smoke.cpp.o -o logger_smoke_test  ../libruntime_foundation.a 
+/usr/bin/c++ -g CMakeFiles/logger_smoke_test.dir/unit/test_logger_smoke.cpp.o -o logger_smoke_test  ../libruntime_foundation.a 

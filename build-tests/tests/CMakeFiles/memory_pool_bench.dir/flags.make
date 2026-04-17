@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/home/yun/design/high-concurrency-runtime/tests/../include
 
-CXX_FLAGS = -O2 -std=c++20
+CXX_FLAGS = -g -O2 -std=c++20
 

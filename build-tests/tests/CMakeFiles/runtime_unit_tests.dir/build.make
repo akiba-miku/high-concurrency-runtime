@@ -167,6 +167,20 @@ tests/CMakeFiles/runtime_unit_tests.dir/unit/test_scheduler.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/runtime_unit_tests.dir/unit/test_scheduler.cpp.s"
 	cd /home/yun/design/high-concurrency-runtime/build-tests/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/yun/design/high-concurrency-runtime/tests/unit/test_scheduler.cpp -o CMakeFiles/runtime_unit_tests.dir/unit/test_scheduler.cpp.s
 
+tests/CMakeFiles/runtime_unit_tests.dir/unit/test_lb.cpp.o: tests/CMakeFiles/runtime_unit_tests.dir/flags.make
+tests/CMakeFiles/runtime_unit_tests.dir/unit/test_lb.cpp.o: /home/yun/design/high-concurrency-runtime/tests/unit/test_lb.cpp
+tests/CMakeFiles/runtime_unit_tests.dir/unit/test_lb.cpp.o: tests/CMakeFiles/runtime_unit_tests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yun/design/high-concurrency-runtime/build-tests/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object tests/CMakeFiles/runtime_unit_tests.dir/unit/test_lb.cpp.o"
+	cd /home/yun/design/high-concurrency-runtime/build-tests/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/runtime_unit_tests.dir/unit/test_lb.cpp.o -MF CMakeFiles/runtime_unit_tests.dir/unit/test_lb.cpp.o.d -o CMakeFiles/runtime_unit_tests.dir/unit/test_lb.cpp.o -c /home/yun/design/high-concurrency-runtime/tests/unit/test_lb.cpp
+
+tests/CMakeFiles/runtime_unit_tests.dir/unit/test_lb.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/runtime_unit_tests.dir/unit/test_lb.cpp.i"
+	cd /home/yun/design/high-concurrency-runtime/build-tests/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/yun/design/high-concurrency-runtime/tests/unit/test_lb.cpp > CMakeFiles/runtime_unit_tests.dir/unit/test_lb.cpp.i
+
+tests/CMakeFiles/runtime_unit_tests.dir/unit/test_lb.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/runtime_unit_tests.dir/unit/test_lb.cpp.s"
+	cd /home/yun/design/high-concurrency-runtime/build-tests/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/yun/design/high-concurrency-runtime/tests/unit/test_lb.cpp -o CMakeFiles/runtime_unit_tests.dir/unit/test_lb.cpp.s
+
 # Object files for target runtime_unit_tests
 runtime_unit_tests_OBJECTS = \
 "CMakeFiles/runtime_unit_tests.dir/unit/test_buffer.cpp.o" \
@@ -175,7 +189,8 @@ runtime_unit_tests_OBJECTS = \
 "CMakeFiles/runtime_unit_tests.dir/unit/test_object_pool.cpp.o" \
 "CMakeFiles/runtime_unit_tests.dir/unit/test_sanity.cpp.o" \
 "CMakeFiles/runtime_unit_tests.dir/unit/test_thread_pool.cpp.o" \
-"CMakeFiles/runtime_unit_tests.dir/unit/test_scheduler.cpp.o"
+"CMakeFiles/runtime_unit_tests.dir/unit/test_scheduler.cpp.o" \
+"CMakeFiles/runtime_unit_tests.dir/unit/test_lb.cpp.o"
 
 # External object files for target runtime_unit_tests
 runtime_unit_tests_EXTERNAL_OBJECTS =
@@ -187,14 +202,19 @@ tests/runtime_unit_tests: tests/CMakeFiles/runtime_unit_tests.dir/unit/test_obje
 tests/runtime_unit_tests: tests/CMakeFiles/runtime_unit_tests.dir/unit/test_sanity.cpp.o
 tests/runtime_unit_tests: tests/CMakeFiles/runtime_unit_tests.dir/unit/test_thread_pool.cpp.o
 tests/runtime_unit_tests: tests/CMakeFiles/runtime_unit_tests.dir/unit/test_scheduler.cpp.o
+tests/runtime_unit_tests: tests/CMakeFiles/runtime_unit_tests.dir/unit/test_lb.cpp.o
 tests/runtime_unit_tests: tests/CMakeFiles/runtime_unit_tests.dir/build.make
 tests/runtime_unit_tests: /usr/local/lib/libgtest_main.a
 tests/runtime_unit_tests: libruntime_net.a
 tests/runtime_unit_tests: libruntime_task.a
+tests/runtime_unit_tests: libruntime_gateway.a
 tests/runtime_unit_tests: /usr/local/lib/libgtest.a
+tests/runtime_unit_tests: libruntime_http.a
+tests/runtime_unit_tests: libruntime_net.a
+tests/runtime_unit_tests: libruntime_task.a
 tests/runtime_unit_tests: libruntime_foundation.a
 tests/runtime_unit_tests: tests/CMakeFiles/runtime_unit_tests.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/yun/design/high-concurrency-runtime/build-tests/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable runtime_unit_tests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/yun/design/high-concurrency-runtime/build-tests/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable runtime_unit_tests"
 	cd /home/yun/design/high-concurrency-runtime/build-tests/tests && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/runtime_unit_tests.dir/link.txt --verbose=$(VERBOSE)
 	cd /home/yun/design/high-concurrency-runtime/build-tests/tests && /usr/bin/cmake -D TEST_TARGET=runtime_unit_tests -D TEST_EXECUTABLE=/home/yun/design/high-concurrency-runtime/build-tests/tests/runtime_unit_tests -D TEST_EXECUTOR= -D TEST_WORKING_DIR=/home/yun/design/high-concurrency-runtime/build-tests/tests -D TEST_EXTRA_ARGS= -D TEST_PROPERTIES= -D TEST_PREFIX= -D TEST_SUFFIX= -D TEST_FILTER= -D NO_PRETTY_TYPES=FALSE -D NO_PRETTY_VALUES=FALSE -D TEST_LIST=runtime_unit_tests_TESTS -D CTEST_FILE=/home/yun/design/high-concurrency-runtime/build-tests/tests/runtime_unit_tests[1]_tests.cmake -D TEST_DISCOVERY_TIMEOUT=5 -D TEST_XML_OUTPUT_DIR= -P /usr/share/cmake-3.25/Modules/GoogleTestAddTests.cmake
 

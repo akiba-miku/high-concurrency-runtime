@@ -179,6 +179,19 @@ runtime_http/fast:
 .PHONY : runtime_http/fast
 
 #=============================================================================
+# Target rules for targets named runtime_gateway
+
+# Build rule for target.
+runtime_gateway: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 runtime_gateway
+.PHONY : runtime_gateway
+
+# fast build rule for target.
+runtime_gateway/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_gateway.dir/build.make CMakeFiles/runtime_gateway.dir/build
+.PHONY : runtime_gateway/fast
+
+#=============================================================================
 # Target rules for targets named simple_logger_example
 
 # Build rule for target.
@@ -892,6 +905,30 @@ src/http/router.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_http.dir/build.make CMakeFiles/runtime_http.dir/src/http/router.cpp.s
 .PHONY : src/http/router.cpp.s
 
+src/lb/round_robin.o: src/lb/round_robin.cpp.o
+.PHONY : src/lb/round_robin.o
+
+# target to build an object file
+src/lb/round_robin.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_gateway.dir/build.make CMakeFiles/runtime_gateway.dir/src/lb/round_robin.cpp.o
+.PHONY : src/lb/round_robin.cpp.o
+
+src/lb/round_robin.i: src/lb/round_robin.cpp.i
+.PHONY : src/lb/round_robin.i
+
+# target to preprocess a source file
+src/lb/round_robin.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_gateway.dir/build.make CMakeFiles/runtime_gateway.dir/src/lb/round_robin.cpp.i
+.PHONY : src/lb/round_robin.cpp.i
+
+src/lb/round_robin.s: src/lb/round_robin.cpp.s
+.PHONY : src/lb/round_robin.s
+
+# target to generate assembly for a file
+src/lb/round_robin.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_gateway.dir/build.make CMakeFiles/runtime_gateway.dir/src/lb/round_robin.cpp.s
+.PHONY : src/lb/round_robin.cpp.s
+
 src/log/async_logger.o: src/log/async_logger.cpp.o
 .PHONY : src/log/async_logger.o
 
@@ -1300,6 +1337,30 @@ src/net/timer_queue.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_net.dir/build.make CMakeFiles/runtime_net.dir/src/net/timer_queue.cpp.s
 .PHONY : src/net/timer_queue.cpp.s
 
+src/registry/service_registry.o: src/registry/service_registry.cpp.o
+.PHONY : src/registry/service_registry.o
+
+# target to build an object file
+src/registry/service_registry.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_gateway.dir/build.make CMakeFiles/runtime_gateway.dir/src/registry/service_registry.cpp.o
+.PHONY : src/registry/service_registry.cpp.o
+
+src/registry/service_registry.i: src/registry/service_registry.cpp.i
+.PHONY : src/registry/service_registry.i
+
+# target to preprocess a source file
+src/registry/service_registry.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_gateway.dir/build.make CMakeFiles/runtime_gateway.dir/src/registry/service_registry.cpp.i
+.PHONY : src/registry/service_registry.cpp.i
+
+src/registry/service_registry.s: src/registry/service_registry.cpp.s
+.PHONY : src/registry/service_registry.s
+
+# target to generate assembly for a file
+src/registry/service_registry.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_gateway.dir/build.make CMakeFiles/runtime_gateway.dir/src/registry/service_registry.cpp.s
+.PHONY : src/registry/service_registry.cpp.s
+
 src/task/scheduler.o: src/task/scheduler.cpp.o
 .PHONY : src/task/scheduler.o
 
@@ -1396,6 +1457,30 @@ src/time/timestamp.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_foundation.dir/build.make CMakeFiles/runtime_foundation.dir/src/time/timestamp.cpp.s
 .PHONY : src/time/timestamp.cpp.s
 
+src/upstream/upstream.o: src/upstream/upstream.cpp.o
+.PHONY : src/upstream/upstream.o
+
+# target to build an object file
+src/upstream/upstream.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_gateway.dir/build.make CMakeFiles/runtime_gateway.dir/src/upstream/upstream.cpp.o
+.PHONY : src/upstream/upstream.cpp.o
+
+src/upstream/upstream.i: src/upstream/upstream.cpp.i
+.PHONY : src/upstream/upstream.i
+
+# target to preprocess a source file
+src/upstream/upstream.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_gateway.dir/build.make CMakeFiles/runtime_gateway.dir/src/upstream/upstream.cpp.i
+.PHONY : src/upstream/upstream.cpp.i
+
+src/upstream/upstream.s: src/upstream/upstream.cpp.s
+.PHONY : src/upstream/upstream.s
+
+# target to generate assembly for a file
+src/upstream/upstream.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_gateway.dir/build.make CMakeFiles/runtime_gateway.dir/src/upstream/upstream.cpp.s
+.PHONY : src/upstream/upstream.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -1443,6 +1528,7 @@ help:
 	@echo "... memory_pool_smoke_test"
 	@echo "... object_pool_smoke_test"
 	@echo "... runtime_foundation"
+	@echo "... runtime_gateway"
 	@echo "... runtime_http"
 	@echo "... runtime_integration_tests"
 	@echo "... runtime_net"
@@ -1472,6 +1558,9 @@ help:
 	@echo "... src/http/router.o"
 	@echo "... src/http/router.i"
 	@echo "... src/http/router.s"
+	@echo "... src/lb/round_robin.o"
+	@echo "... src/lb/round_robin.i"
+	@echo "... src/lb/round_robin.s"
 	@echo "... src/log/async_logger.o"
 	@echo "... src/log/async_logger.i"
 	@echo "... src/log/async_logger.s"
@@ -1523,6 +1612,9 @@ help:
 	@echo "... src/net/timer_queue.o"
 	@echo "... src/net/timer_queue.i"
 	@echo "... src/net/timer_queue.s"
+	@echo "... src/registry/service_registry.o"
+	@echo "... src/registry/service_registry.i"
+	@echo "... src/registry/service_registry.s"
 	@echo "... src/task/scheduler.o"
 	@echo "... src/task/scheduler.i"
 	@echo "... src/task/scheduler.s"
@@ -1535,6 +1627,9 @@ help:
 	@echo "... src/time/timestamp.o"
 	@echo "... src/time/timestamp.i"
 	@echo "... src/time/timestamp.s"
+	@echo "... src/upstream/upstream.o"
+	@echo "... src/upstream/upstream.i"
+	@echo "... src/upstream/upstream.s"
 .PHONY : help
 
 
