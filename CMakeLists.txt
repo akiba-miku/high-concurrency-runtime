@@ -63,6 +63,7 @@ add_library(runtime_net STATIC
     src/net/socket.cpp
     src/net/tcp_connection.cpp
     src/net/tcp_server.cpp
+    src/net/tcp_client.cpp
     src/net/timer.cpp
     src/net/timer_queue.cpp
 )
@@ -110,6 +111,7 @@ add_library(runtime_gateway STATIC
     src/lb/round_robin.cpp
     src/lb/weighted_round_robin.cpp
     src/lb/least_connections.cpp
+    src/proxy/reverse_proxy.cpp
 )
 
 target_include_directories(runtime_gateway

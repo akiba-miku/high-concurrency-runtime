@@ -239,6 +239,13 @@ build CMakeFiles/runtime_net.dir/src/net/tcp_server.cpp.o: CXX_COMPILER__runtime
   OBJECT_DIR = CMakeFiles/runtime_net.dir
   OBJECT_FILE_DIR = CMakeFiles/runtime_net.dir/src/net
 
+build CMakeFiles/runtime_net.dir/src/net/tcp_client.cpp.o: CXX_COMPILER__runtime_net_Debug /home/yun/design/high-concurrency-runtime/src/net/tcp_client.cpp || cmake_object_order_depends_target_runtime_net
+  DEP_FILE = CMakeFiles/runtime_net.dir/src/net/tcp_client.cpp.o.d
+  FLAGS = -g -std=c++20
+  INCLUDES = -I/home/yun/design/high-concurrency-runtime/include
+  OBJECT_DIR = CMakeFiles/runtime_net.dir
+  OBJECT_FILE_DIR = CMakeFiles/runtime_net.dir/src/net
+
 build CMakeFiles/runtime_net.dir/src/net/timer.cpp.o: CXX_COMPILER__runtime_net_Debug /home/yun/design/high-concurrency-runtime/src/net/timer.cpp || cmake_object_order_depends_target_runtime_net
   DEP_FILE = CMakeFiles/runtime_net.dir/src/net/timer.cpp.o.d
   FLAGS = -g -std=c++20
@@ -261,7 +268,7 @@ build CMakeFiles/runtime_net.dir/src/net/timer_queue.cpp.o: CXX_COMPILER__runtim
 #############################################
 # Link the static library libruntime_net.a
 
-build libruntime_net.a: CXX_STATIC_LIBRARY_LINKER__runtime_net_Debug CMakeFiles/runtime_net.dir/src/net/acceptor.cpp.o CMakeFiles/runtime_net.dir/src/net/buffer.cpp.o CMakeFiles/runtime_net.dir/src/net/channel.cpp.o CMakeFiles/runtime_net.dir/src/net/epoll_poller.cpp.o CMakeFiles/runtime_net.dir/src/net/event_loop.cpp.o CMakeFiles/runtime_net.dir/src/net/event_loop_thread.cpp.o CMakeFiles/runtime_net.dir/src/net/event_loop_thread_pool.cpp.o CMakeFiles/runtime_net.dir/src/net/inet_address.cpp.o CMakeFiles/runtime_net.dir/src/net/net_utils.cpp.o CMakeFiles/runtime_net.dir/src/net/poller.cpp.o CMakeFiles/runtime_net.dir/src/net/socket.cpp.o CMakeFiles/runtime_net.dir/src/net/tcp_connection.cpp.o CMakeFiles/runtime_net.dir/src/net/tcp_server.cpp.o CMakeFiles/runtime_net.dir/src/net/timer.cpp.o CMakeFiles/runtime_net.dir/src/net/timer_queue.cpp.o || libruntime_foundation.a
+build libruntime_net.a: CXX_STATIC_LIBRARY_LINKER__runtime_net_Debug CMakeFiles/runtime_net.dir/src/net/acceptor.cpp.o CMakeFiles/runtime_net.dir/src/net/buffer.cpp.o CMakeFiles/runtime_net.dir/src/net/channel.cpp.o CMakeFiles/runtime_net.dir/src/net/epoll_poller.cpp.o CMakeFiles/runtime_net.dir/src/net/event_loop.cpp.o CMakeFiles/runtime_net.dir/src/net/event_loop_thread.cpp.o CMakeFiles/runtime_net.dir/src/net/event_loop_thread_pool.cpp.o CMakeFiles/runtime_net.dir/src/net/inet_address.cpp.o CMakeFiles/runtime_net.dir/src/net/net_utils.cpp.o CMakeFiles/runtime_net.dir/src/net/poller.cpp.o CMakeFiles/runtime_net.dir/src/net/socket.cpp.o CMakeFiles/runtime_net.dir/src/net/tcp_connection.cpp.o CMakeFiles/runtime_net.dir/src/net/tcp_server.cpp.o CMakeFiles/runtime_net.dir/src/net/tcp_client.cpp.o CMakeFiles/runtime_net.dir/src/net/timer.cpp.o CMakeFiles/runtime_net.dir/src/net/timer_queue.cpp.o || libruntime_foundation.a
   LANGUAGE_COMPILE_FLAGS = -g
   OBJECT_DIR = CMakeFiles/runtime_net.dir
   POST_BUILD = :
@@ -366,6 +373,27 @@ build CMakeFiles/runtime_gateway.dir/src/lb/round_robin.cpp.o: CXX_COMPILER__run
   OBJECT_DIR = CMakeFiles/runtime_gateway.dir
   OBJECT_FILE_DIR = CMakeFiles/runtime_gateway.dir/src/lb
 
+build CMakeFiles/runtime_gateway.dir/src/lb/weighted_round_robin.cpp.o: CXX_COMPILER__runtime_gateway_Debug /home/yun/design/high-concurrency-runtime/src/lb/weighted_round_robin.cpp || cmake_object_order_depends_target_runtime_gateway
+  DEP_FILE = CMakeFiles/runtime_gateway.dir/src/lb/weighted_round_robin.cpp.o.d
+  FLAGS = -g -std=c++20
+  INCLUDES = -I/home/yun/design/high-concurrency-runtime/include
+  OBJECT_DIR = CMakeFiles/runtime_gateway.dir
+  OBJECT_FILE_DIR = CMakeFiles/runtime_gateway.dir/src/lb
+
+build CMakeFiles/runtime_gateway.dir/src/lb/least_connections.cpp.o: CXX_COMPILER__runtime_gateway_Debug /home/yun/design/high-concurrency-runtime/src/lb/least_connections.cpp || cmake_object_order_depends_target_runtime_gateway
+  DEP_FILE = CMakeFiles/runtime_gateway.dir/src/lb/least_connections.cpp.o.d
+  FLAGS = -g -std=c++20
+  INCLUDES = -I/home/yun/design/high-concurrency-runtime/include
+  OBJECT_DIR = CMakeFiles/runtime_gateway.dir
+  OBJECT_FILE_DIR = CMakeFiles/runtime_gateway.dir/src/lb
+
+build CMakeFiles/runtime_gateway.dir/src/proxy/reverse_proxy.cpp.o: CXX_COMPILER__runtime_gateway_Debug /home/yun/design/high-concurrency-runtime/src/proxy/reverse_proxy.cpp || cmake_object_order_depends_target_runtime_gateway
+  DEP_FILE = CMakeFiles/runtime_gateway.dir/src/proxy/reverse_proxy.cpp.o.d
+  FLAGS = -g -std=c++20
+  INCLUDES = -I/home/yun/design/high-concurrency-runtime/include
+  OBJECT_DIR = CMakeFiles/runtime_gateway.dir
+  OBJECT_FILE_DIR = CMakeFiles/runtime_gateway.dir/src/proxy
+
 
 # =============================================================================
 # Link build statements for STATIC_LIBRARY target runtime_gateway
@@ -374,7 +402,7 @@ build CMakeFiles/runtime_gateway.dir/src/lb/round_robin.cpp.o: CXX_COMPILER__run
 #############################################
 # Link the static library libruntime_gateway.a
 
-build libruntime_gateway.a: CXX_STATIC_LIBRARY_LINKER__runtime_gateway_Debug CMakeFiles/runtime_gateway.dir/src/upstream/upstream.cpp.o CMakeFiles/runtime_gateway.dir/src/registry/service_registry.cpp.o CMakeFiles/runtime_gateway.dir/src/lb/round_robin.cpp.o || libruntime_foundation.a libruntime_http.a libruntime_net.a libruntime_task.a
+build libruntime_gateway.a: CXX_STATIC_LIBRARY_LINKER__runtime_gateway_Debug CMakeFiles/runtime_gateway.dir/src/upstream/upstream.cpp.o CMakeFiles/runtime_gateway.dir/src/registry/service_registry.cpp.o CMakeFiles/runtime_gateway.dir/src/lb/round_robin.cpp.o CMakeFiles/runtime_gateway.dir/src/lb/weighted_round_robin.cpp.o CMakeFiles/runtime_gateway.dir/src/lb/least_connections.cpp.o CMakeFiles/runtime_gateway.dir/src/proxy/reverse_proxy.cpp.o || libruntime_foundation.a libruntime_http.a libruntime_net.a libruntime_task.a
   LANGUAGE_COMPILE_FLAGS = -g
   OBJECT_DIR = CMakeFiles/runtime_gateway.dir
   POST_BUILD = :
@@ -1113,7 +1141,7 @@ build tests/runtime_unit_tests tests/runtime_unit_tests[1]_tests.cmake | ${cmake
 #############################################
 # Order-only phony target for runtime_integration_tests
 
-build cmake_object_order_depends_target_runtime_integration_tests: phony || cmake_object_order_depends_target_runtime_foundation cmake_object_order_depends_target_runtime_http cmake_object_order_depends_target_runtime_net cmake_object_order_depends_target_runtime_task
+build cmake_object_order_depends_target_runtime_integration_tests: phony || cmake_object_order_depends_target_runtime_foundation cmake_object_order_depends_target_runtime_gateway cmake_object_order_depends_target_runtime_http cmake_object_order_depends_target_runtime_net cmake_object_order_depends_target_runtime_task
 
 build tests/CMakeFiles/runtime_integration_tests.dir/integration/test_event_loop.cpp.o: CXX_COMPILER__runtime_integration_tests_Debug /home/yun/design/high-concurrency-runtime/tests/integration/test_event_loop.cpp || cmake_object_order_depends_target_runtime_integration_tests
   DEP_FILE = tests/CMakeFiles/runtime_integration_tests.dir/integration/test_event_loop.cpp.o.d
@@ -1143,6 +1171,13 @@ build tests/CMakeFiles/runtime_integration_tests.dir/integration/test_http_serve
   OBJECT_DIR = tests/CMakeFiles/runtime_integration_tests.dir
   OBJECT_FILE_DIR = tests/CMakeFiles/runtime_integration_tests.dir/integration
 
+build tests/CMakeFiles/runtime_integration_tests.dir/integration/test_reverse_proxy.cpp.o: CXX_COMPILER__runtime_integration_tests_Debug /home/yun/design/high-concurrency-runtime/tests/integration/test_reverse_proxy.cpp || cmake_object_order_depends_target_runtime_integration_tests
+  DEP_FILE = tests/CMakeFiles/runtime_integration_tests.dir/integration/test_reverse_proxy.cpp.o.d
+  FLAGS = -g -std=c++20
+  INCLUDES = -I/home/yun/design/high-concurrency-runtime/include
+  OBJECT_DIR = tests/CMakeFiles/runtime_integration_tests.dir
+  OBJECT_FILE_DIR = tests/CMakeFiles/runtime_integration_tests.dir/integration
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target runtime_integration_tests
@@ -1151,9 +1186,9 @@ build tests/CMakeFiles/runtime_integration_tests.dir/integration/test_http_serve
 #############################################
 # Link the executable tests/runtime_integration_tests
 
-build tests/runtime_integration_tests tests/runtime_integration_tests[1]_tests.cmake | ${cmake_ninja_workdir}tests/runtime_integration_tests[1]_tests.cmake: CXX_EXECUTABLE_LINKER__runtime_integration_tests_Debug tests/CMakeFiles/runtime_integration_tests.dir/integration/test_event_loop.cpp.o tests/CMakeFiles/runtime_integration_tests.dir/integration/test_tcp_server.cpp.o tests/CMakeFiles/runtime_integration_tests.dir/integration/test_trigger_mode.cpp.o tests/CMakeFiles/runtime_integration_tests.dir/integration/test_http_server.cpp.o | /usr/local/lib/libgtest_main.a libruntime_net.a libruntime_http.a /usr/local/lib/libgtest.a libruntime_net.a libruntime_task.a libruntime_foundation.a || libruntime_foundation.a libruntime_http.a libruntime_net.a libruntime_task.a
+build tests/runtime_integration_tests tests/runtime_integration_tests[1]_tests.cmake | ${cmake_ninja_workdir}tests/runtime_integration_tests[1]_tests.cmake: CXX_EXECUTABLE_LINKER__runtime_integration_tests_Debug tests/CMakeFiles/runtime_integration_tests.dir/integration/test_event_loop.cpp.o tests/CMakeFiles/runtime_integration_tests.dir/integration/test_tcp_server.cpp.o tests/CMakeFiles/runtime_integration_tests.dir/integration/test_trigger_mode.cpp.o tests/CMakeFiles/runtime_integration_tests.dir/integration/test_http_server.cpp.o tests/CMakeFiles/runtime_integration_tests.dir/integration/test_reverse_proxy.cpp.o | /usr/local/lib/libgtest_main.a libruntime_net.a libruntime_http.a libruntime_gateway.a /usr/local/lib/libgtest.a libruntime_http.a libruntime_net.a libruntime_task.a libruntime_foundation.a || libruntime_foundation.a libruntime_gateway.a libruntime_http.a libruntime_net.a libruntime_task.a
   FLAGS = -g
-  LINK_LIBRARIES = /usr/local/lib/libgtest_main.a  libruntime_net.a  libruntime_http.a  /usr/local/lib/libgtest.a  libruntime_net.a  libruntime_task.a  libruntime_foundation.a
+  LINK_LIBRARIES = /usr/local/lib/libgtest_main.a  libruntime_net.a  libruntime_http.a  libruntime_gateway.a  /usr/local/lib/libgtest.a  libruntime_http.a  libruntime_net.a  libruntime_task.a  libruntime_foundation.a
   OBJECT_DIR = tests/CMakeFiles/runtime_integration_tests.dir
   POST_BUILD = cd /home/yun/design/high-concurrency-runtime/build/tests && /usr/bin/cmake -D TEST_TARGET=runtime_integration_tests -D TEST_EXECUTABLE=/home/yun/design/high-concurrency-runtime/build/tests/runtime_integration_tests -D TEST_EXECUTOR= -D TEST_WORKING_DIR=/home/yun/design/high-concurrency-runtime/build/tests -D TEST_EXTRA_ARGS= -D TEST_PROPERTIES= -D TEST_PREFIX= -D TEST_SUFFIX= -D TEST_FILTER= -D NO_PRETTY_TYPES=FALSE -D NO_PRETTY_VALUES=FALSE -D TEST_LIST=runtime_integration_tests_TESTS -D CTEST_FILE=/home/yun/design/high-concurrency-runtime/build/tests/runtime_integration_tests[1]_tests.cmake -D TEST_DISCOVERY_TIMEOUT=5 -D TEST_XML_OUTPUT_DIR= -P /usr/share/cmake-3.25/Modules/GoogleTestAddTests.cmake
   PRE_LINK = :

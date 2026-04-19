@@ -1,4 +1,5 @@
 #include "runtime/http/http_request.h"
+#include "runtime/http/http_types.h"
 
 #include <cctype>
 
@@ -36,6 +37,30 @@ bool HttpRequest::KeepAlive() const {
     return conn != "close";
   }
   return conn == "keep-alive";
+}
+
+std::string HttpRequest::SerializeToString() const {
+  std::string out;
+  out.reserve(256);
+  out += MethodToString(method_);
+  out += ' ';
+  out += path_;
+  if (!query_.empty()) {
+    out += '?';
+    out += query_;
+  }
+  out += ' ';
+  out += (version_ == Version::Http11) ? "HTTP/1.1" : "HTTP/1.0";
+  out += "\r\n";
+  for (const auto& [k, v] : headers_) {
+    out += k;
+    out += ": ";
+    out += v;
+    out += "\r\n";
+  }
+  out += "\r\n";
+  out += body_;
+  return out;
 }
 
 void HttpRequest::Reset() {

@@ -5,9 +5,11 @@
 #include "runtime/net/tcp_server.h"
 #include "runtime/task/scheduler.h"
 
+#include <functional>
 #include <memory>
 #include <string>
 #include <string_view>
+#include <vector>
 
 namespace runtime::http {
 
@@ -15,6 +17,10 @@ namespace runtime::http {
 class HttpServer : public runtime::base::NonCopyable {
 public:
   using TcpConnectionPtr = runtime::net::TcpConnection::TcpConnectionPtr;
+
+  // Async handler for proxy routes: takes ownership of the request and is
+  // responsible for writing the response directly to the connection.
+  using ProxyHandler = std::function<void(HttpRequest, TcpConnectionPtr)>;
 
   HttpServer(runtime::net::EventLoop* loop,
              const runtime::net::InetAddress& addr,
@@ -32,6 +38,11 @@ public:
   void Post(std::string_view path, Handler handler);
   void Add(Method method, std::string_view path, Handler handler);
 
+  // Registers an async proxy handler for all requests whose path starts with
+  // prefix. Proxy routes are checked before the trie router; the first
+  // matching prefix wins.
+  void Proxy(std::string_view prefix, ProxyHandler handler);
+
   void Start();
 
 private:
@@ -46,9 +57,15 @@ private:
   // Builds a JSON error response for common HTTP failures.
   HttpResponse MakeError(StatusCode code, std::string_view message) const;
 
+  struct ProxyRoute {
+    std::string  prefix;
+    ProxyHandler handler;
+  };
+
   runtime::net::TcpServer server_;
   Router router_;
   std::shared_ptr<runtime::task::Scheduler> scheduler_;
+  std::vector<ProxyRoute> proxy_routes_;
 };
 
 }  // namespace runtime::http

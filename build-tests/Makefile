@@ -1289,6 +1289,30 @@ src/net/socket.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_net.dir/build.make CMakeFiles/runtime_net.dir/src/net/socket.cpp.s
 .PHONY : src/net/socket.cpp.s
 
+src/net/tcp_client.o: src/net/tcp_client.cpp.o
+.PHONY : src/net/tcp_client.o
+
+# target to build an object file
+src/net/tcp_client.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_net.dir/build.make CMakeFiles/runtime_net.dir/src/net/tcp_client.cpp.o
+.PHONY : src/net/tcp_client.cpp.o
+
+src/net/tcp_client.i: src/net/tcp_client.cpp.i
+.PHONY : src/net/tcp_client.i
+
+# target to preprocess a source file
+src/net/tcp_client.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_net.dir/build.make CMakeFiles/runtime_net.dir/src/net/tcp_client.cpp.i
+.PHONY : src/net/tcp_client.cpp.i
+
+src/net/tcp_client.s: src/net/tcp_client.cpp.s
+.PHONY : src/net/tcp_client.s
+
+# target to generate assembly for a file
+src/net/tcp_client.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_net.dir/build.make CMakeFiles/runtime_net.dir/src/net/tcp_client.cpp.s
+.PHONY : src/net/tcp_client.cpp.s
+
 src/net/tcp_connection.o: src/net/tcp_connection.cpp.o
 .PHONY : src/net/tcp_connection.o
 
@@ -1384,6 +1408,30 @@ src/net/timer_queue.s: src/net/timer_queue.cpp.s
 src/net/timer_queue.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_net.dir/build.make CMakeFiles/runtime_net.dir/src/net/timer_queue.cpp.s
 .PHONY : src/net/timer_queue.cpp.s
+
+src/proxy/reverse_proxy.o: src/proxy/reverse_proxy.cpp.o
+.PHONY : src/proxy/reverse_proxy.o
+
+# target to build an object file
+src/proxy/reverse_proxy.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_gateway.dir/build.make CMakeFiles/runtime_gateway.dir/src/proxy/reverse_proxy.cpp.o
+.PHONY : src/proxy/reverse_proxy.cpp.o
+
+src/proxy/reverse_proxy.i: src/proxy/reverse_proxy.cpp.i
+.PHONY : src/proxy/reverse_proxy.i
+
+# target to preprocess a source file
+src/proxy/reverse_proxy.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_gateway.dir/build.make CMakeFiles/runtime_gateway.dir/src/proxy/reverse_proxy.cpp.i
+.PHONY : src/proxy/reverse_proxy.cpp.i
+
+src/proxy/reverse_proxy.s: src/proxy/reverse_proxy.cpp.s
+.PHONY : src/proxy/reverse_proxy.s
+
+# target to generate assembly for a file
+src/proxy/reverse_proxy.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_gateway.dir/build.make CMakeFiles/runtime_gateway.dir/src/proxy/reverse_proxy.cpp.s
+.PHONY : src/proxy/reverse_proxy.cpp.s
 
 src/registry/service_registry.o: src/registry/service_registry.cpp.o
 .PHONY : src/registry/service_registry.o
@@ -1654,6 +1702,9 @@ help:
 	@echo "... src/net/socket.o"
 	@echo "... src/net/socket.i"
 	@echo "... src/net/socket.s"
+	@echo "... src/net/tcp_client.o"
+	@echo "... src/net/tcp_client.i"
+	@echo "... src/net/tcp_client.s"
 	@echo "... src/net/tcp_connection.o"
 	@echo "... src/net/tcp_connection.i"
 	@echo "... src/net/tcp_connection.s"
@@ -1666,6 +1717,9 @@ help:
 	@echo "... src/net/timer_queue.o"
 	@echo "... src/net/timer_queue.i"
 	@echo "... src/net/timer_queue.s"
+	@echo "... src/proxy/reverse_proxy.o"
+	@echo "... src/proxy/reverse_proxy.i"
+	@echo "... src/proxy/reverse_proxy.s"
 	@echo "... src/registry/service_registry.o"
 	@echo "... src/registry/service_registry.i"
 	@echo "... src/registry/service_registry.s"

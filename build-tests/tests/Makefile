@@ -744,6 +744,30 @@ integration/test_http_server.cpp.s:
 	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/runtime_integration_tests.dir/build.make tests/CMakeFiles/runtime_integration_tests.dir/integration/test_http_server.cpp.s
 .PHONY : integration/test_http_server.cpp.s
 
+integration/test_reverse_proxy.o: integration/test_reverse_proxy.cpp.o
+.PHONY : integration/test_reverse_proxy.o
+
+# target to build an object file
+integration/test_reverse_proxy.cpp.o:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/runtime_integration_tests.dir/build.make tests/CMakeFiles/runtime_integration_tests.dir/integration/test_reverse_proxy.cpp.o
+.PHONY : integration/test_reverse_proxy.cpp.o
+
+integration/test_reverse_proxy.i: integration/test_reverse_proxy.cpp.i
+.PHONY : integration/test_reverse_proxy.i
+
+# target to preprocess a source file
+integration/test_reverse_proxy.cpp.i:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/runtime_integration_tests.dir/build.make tests/CMakeFiles/runtime_integration_tests.dir/integration/test_reverse_proxy.cpp.i
+.PHONY : integration/test_reverse_proxy.cpp.i
+
+integration/test_reverse_proxy.s: integration/test_reverse_proxy.cpp.s
+.PHONY : integration/test_reverse_proxy.s
+
+# target to generate assembly for a file
+integration/test_reverse_proxy.cpp.s:
+	cd /home/yun/design/high-concurrency-runtime/build-tests && $(MAKE) $(MAKESILENT) -f tests/CMakeFiles/runtime_integration_tests.dir/build.make tests/CMakeFiles/runtime_integration_tests.dir/integration/test_reverse_proxy.cpp.s
+.PHONY : integration/test_reverse_proxy.cpp.s
+
 integration/test_tcp_server.o: integration/test_tcp_server.cpp.o
 .PHONY : integration/test_tcp_server.o
 
@@ -1233,6 +1257,9 @@ help:
 	@echo "... integration/test_http_server.o"
 	@echo "... integration/test_http_server.i"
 	@echo "... integration/test_http_server.s"
+	@echo "... integration/test_reverse_proxy.o"
+	@echo "... integration/test_reverse_proxy.i"
+	@echo "... integration/test_reverse_proxy.s"
 	@echo "... integration/test_tcp_server.o"
 	@echo "... integration/test_tcp_server.i"
 	@echo "... integration/test_tcp_server.s"

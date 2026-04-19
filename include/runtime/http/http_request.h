@@ -54,6 +54,9 @@ public:
   void SetReceiveTime(runtime::time::Timestamp ts) { receive_time_ = ts; }
   runtime::time::Timestamp ReceiveTime() const { return receive_time_; }
 
+  // Serializes the request back to HTTP/1.x wire format for forwarding.
+  std::string SerializeToString() const;
+
   void Reset();
 
 private:

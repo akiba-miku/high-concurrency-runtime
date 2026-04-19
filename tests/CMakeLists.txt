@@ -161,6 +161,7 @@ if(GTest_FOUND)
         integration/test_tcp_server.cpp
         integration/test_trigger_mode.cpp
         integration/test_http_server.cpp
+        integration/test_reverse_proxy.cpp
     )
 
     target_link_libraries(runtime_integration_tests
@@ -168,6 +169,7 @@ if(GTest_FOUND)
             GTest::gtest_main
             runtime_net
             runtime_http
+            runtime_gateway
     )
 
     gtest_discover_tests(runtime_integration_tests)

@@ -21,6 +21,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/runtime_net.dir/src/net/poller.cpp.o.d"
   "CMakeFiles/runtime_net.dir/src/net/socket.cpp.o"
   "CMakeFiles/runtime_net.dir/src/net/socket.cpp.o.d"
+  "CMakeFiles/runtime_net.dir/src/net/tcp_client.cpp.o"
+  "CMakeFiles/runtime_net.dir/src/net/tcp_client.cpp.o.d"
   "CMakeFiles/runtime_net.dir/src/net/tcp_connection.cpp.o"
   "CMakeFiles/runtime_net.dir/src/net/tcp_connection.cpp.o.d"
   "CMakeFiles/runtime_net.dir/src/net/tcp_server.cpp.o"

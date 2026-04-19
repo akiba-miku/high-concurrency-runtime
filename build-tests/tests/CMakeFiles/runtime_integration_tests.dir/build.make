@@ -125,12 +125,27 @@ tests/CMakeFiles/runtime_integration_tests.dir/integration/test_http_server.cpp.
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/runtime_integration_tests.dir/integration/test_http_server.cpp.s"
 	cd /home/yun/design/high-concurrency-runtime/build-tests/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/yun/design/high-concurrency-runtime/tests/integration/test_http_server.cpp -o CMakeFiles/runtime_integration_tests.dir/integration/test_http_server.cpp.s
 
+tests/CMakeFiles/runtime_integration_tests.dir/integration/test_reverse_proxy.cpp.o: tests/CMakeFiles/runtime_integration_tests.dir/flags.make
+tests/CMakeFiles/runtime_integration_tests.dir/integration/test_reverse_proxy.cpp.o: /home/yun/design/high-concurrency-runtime/tests/integration/test_reverse_proxy.cpp
+tests/CMakeFiles/runtime_integration_tests.dir/integration/test_reverse_proxy.cpp.o: tests/CMakeFiles/runtime_integration_tests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/yun/design/high-concurrency-runtime/build-tests/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object tests/CMakeFiles/runtime_integration_tests.dir/integration/test_reverse_proxy.cpp.o"
+	cd /home/yun/design/high-concurrency-runtime/build-tests/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT tests/CMakeFiles/runtime_integration_tests.dir/integration/test_reverse_proxy.cpp.o -MF CMakeFiles/runtime_integration_tests.dir/integration/test_reverse_proxy.cpp.o.d -o CMakeFiles/runtime_integration_tests.dir/integration/test_reverse_proxy.cpp.o -c /home/yun/design/high-concurrency-runtime/tests/integration/test_reverse_proxy.cpp
+
+tests/CMakeFiles/runtime_integration_tests.dir/integration/test_reverse_proxy.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/runtime_integration_tests.dir/integration/test_reverse_proxy.cpp.i"
+	cd /home/yun/design/high-concurrency-runtime/build-tests/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/yun/design/high-concurrency-runtime/tests/integration/test_reverse_proxy.cpp > CMakeFiles/runtime_integration_tests.dir/integration/test_reverse_proxy.cpp.i
+
+tests/CMakeFiles/runtime_integration_tests.dir/integration/test_reverse_proxy.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/runtime_integration_tests.dir/integration/test_reverse_proxy.cpp.s"
+	cd /home/yun/design/high-concurrency-runtime/build-tests/tests && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/yun/design/high-concurrency-runtime/tests/integration/test_reverse_proxy.cpp -o CMakeFiles/runtime_integration_tests.dir/integration/test_reverse_proxy.cpp.s
+
 # Object files for target runtime_integration_tests
 runtime_integration_tests_OBJECTS = \
 "CMakeFiles/runtime_integration_tests.dir/integration/test_event_loop.cpp.o" \
 "CMakeFiles/runtime_integration_tests.dir/integration/test_tcp_server.cpp.o" \
 "CMakeFiles/runtime_integration_tests.dir/integration/test_trigger_mode.cpp.o" \
-"CMakeFiles/runtime_integration_tests.dir/integration/test_http_server.cpp.o"
+"CMakeFiles/runtime_integration_tests.dir/integration/test_http_server.cpp.o" \
+"CMakeFiles/runtime_integration_tests.dir/integration/test_reverse_proxy.cpp.o"
 
 # External object files for target runtime_integration_tests
 runtime_integration_tests_EXTERNAL_OBJECTS =
@@ -139,16 +154,19 @@ tests/runtime_integration_tests: tests/CMakeFiles/runtime_integration_tests.dir/
 tests/runtime_integration_tests: tests/CMakeFiles/runtime_integration_tests.dir/integration/test_tcp_server.cpp.o
 tests/runtime_integration_tests: tests/CMakeFiles/runtime_integration_tests.dir/integration/test_trigger_mode.cpp.o
 tests/runtime_integration_tests: tests/CMakeFiles/runtime_integration_tests.dir/integration/test_http_server.cpp.o
+tests/runtime_integration_tests: tests/CMakeFiles/runtime_integration_tests.dir/integration/test_reverse_proxy.cpp.o
 tests/runtime_integration_tests: tests/CMakeFiles/runtime_integration_tests.dir/build.make
 tests/runtime_integration_tests: /usr/local/lib/libgtest_main.a
 tests/runtime_integration_tests: libruntime_net.a
 tests/runtime_integration_tests: libruntime_http.a
+tests/runtime_integration_tests: libruntime_gateway.a
 tests/runtime_integration_tests: /usr/local/lib/libgtest.a
+tests/runtime_integration_tests: libruntime_http.a
 tests/runtime_integration_tests: libruntime_net.a
 tests/runtime_integration_tests: libruntime_task.a
 tests/runtime_integration_tests: libruntime_foundation.a
 tests/runtime_integration_tests: tests/CMakeFiles/runtime_integration_tests.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/yun/design/high-concurrency-runtime/build-tests/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable runtime_integration_tests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/yun/design/high-concurrency-runtime/build-tests/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable runtime_integration_tests"
 	cd /home/yun/design/high-concurrency-runtime/build-tests/tests && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/runtime_integration_tests.dir/link.txt --verbose=$(VERBOSE)
 	cd /home/yun/design/high-concurrency-runtime/build-tests/tests && /usr/bin/cmake -D TEST_TARGET=runtime_integration_tests -D TEST_EXECUTABLE=/home/yun/design/high-concurrency-runtime/build-tests/tests/runtime_integration_tests -D TEST_EXECUTOR= -D TEST_WORKING_DIR=/home/yun/design/high-concurrency-runtime/build-tests/tests -D TEST_EXTRA_ARGS= -D TEST_PROPERTIES= -D TEST_PREFIX= -D TEST_SUFFIX= -D TEST_FILTER= -D NO_PRETTY_TYPES=FALSE -D NO_PRETTY_VALUES=FALSE -D TEST_LIST=runtime_integration_tests_TESTS -D CTEST_FILE=/home/yun/design/high-concurrency-runtime/build-tests/tests/runtime_integration_tests[1]_tests.cmake -D TEST_DISCOVERY_TIMEOUT=5 -D TEST_XML_OUTPUT_DIR= -P /usr/share/cmake-3.25/Modules/GoogleTestAddTests.cmake
 

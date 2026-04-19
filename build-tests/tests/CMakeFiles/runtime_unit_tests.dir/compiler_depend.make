@@ -762,11 +762,13 @@ tests/CMakeFiles/runtime_unit_tests.dir/unit/test_lb.cpp.o: /home/yun/design/hig
   /usr/local/include/gtest/gtest-typed-test.h \
   /usr/local/include/gtest/gtest_pred_impl.h \
   /usr/local/include/gtest/gtest_prod.h \
-  /home/yun/design/high-concurrency-runtime/include/runtime/lb/round_robin.h \
+  /home/yun/design/high-concurrency-runtime/include/runtime/lb/least_connections.h \
   /home/yun/design/high-concurrency-runtime/include/runtime/lb/load_balancer.h \
   /home/yun/design/high-concurrency-runtime/include/runtime/upstream/backend.h \
   /home/yun/design/high-concurrency-runtime/include/runtime/base/noncopyable.h \
   /home/yun/design/high-concurrency-runtime/include/runtime/upstream/upstream.h \
+  /home/yun/design/high-concurrency-runtime/include/runtime/lb/round_robin.h \
+  /home/yun/design/high-concurrency-runtime/include/runtime/lb/weighted_round_robin.h \
   /home/yun/design/high-concurrency-runtime/include/runtime/registry/service_registry.h \
   /home/yun/design/high-concurrency-runtime/include/runtime/base/nonmoveable.h
 
@@ -3126,6 +3128,8 @@ tests/CMakeFiles/runtime_unit_tests.dir/unit/test_thread_pool.cpp.o: /home/yun/d
 
 /home/yun/design/high-concurrency-runtime/include/runtime/upstream/upstream.h:
 
+/home/yun/design/high-concurrency-runtime/include/runtime/lb/least_connections.h:
+
 /home/yun/design/high-concurrency-runtime/tests/unit/test_lb.cpp:
 
 /usr/include/asm-generic/socket.h:
@@ -3741,6 +3745,8 @@ tests/CMakeFiles/runtime_unit_tests.dir/unit/test_thread_pool.cpp.o: /home/yun/d
 /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h:
 
 /usr/include/alloca.h:
+
+/home/yun/design/high-concurrency-runtime/include/runtime/lb/weighted_round_robin.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h:
 

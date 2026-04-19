@@ -40,6 +40,10 @@ void HttpServer::Add(Method method, std::string_view path, Handler handler) {
   router_.Add(method, path, std::move(handler));
 }
 
+void HttpServer::Proxy(std::string_view prefix, ProxyHandler handler) {
+  proxy_routes_.push_back({std::string(prefix), std::move(handler)});
+}
+
 void HttpServer::Start() { server_.Start(); }
 
 void HttpServer::OnConnection(const TcpConnectionPtr& conn) {
@@ -51,7 +55,11 @@ void HttpServer::OnConnection(const TcpConnectionPtr& conn) {
 void HttpServer::OnMessage(const TcpConnectionPtr& conn,
                            runtime::net::Buffer& buf,
                            runtime::time::Timestamp ts) {
-  auto& ctx = std::any_cast<HttpContext&>(conn->GetContext());
+  // If the connection context has been replaced (e.g. by a proxy session),
+  // skip HTTP parsing — the context owner is responsible for the connection.
+  auto* ctx_ptr = std::any_cast<HttpContext>(&conn->GetContext());
+  if (!ctx_ptr) return;
+  auto& ctx = *ctx_ptr;
   if (!ctx.ParseRequest(buf, ts)) {
     HttpResponse err = MakeError(StatusCode::BadRequest, "malformed request");
     conn->Send(err.ToString());
@@ -62,6 +70,19 @@ void HttpServer::OnMessage(const TcpConnectionPtr& conn,
   while (ctx.GotAll()) {
     HttpRequest request = ctx.Request();
     ctx.Reset();
+
+    // Proxy routes are checked before the trie router.
+    // The handler calls conn->SetContext(ProxyContext{}) which replaces the
+    // HttpContext, so future OnMessage calls will short-circuit at the top.
+    bool proxied = false;
+    for (const auto& pr : proxy_routes_) {
+      if (request.Path().find(pr.prefix) == 0) {
+        pr.handler(std::move(request), conn);
+        proxied = true;
+        break;
+      }
+    }
+    if (proxied) return;
 
     const bool keep_alive = request.KeepAlive();
     HttpResponse response(!keep_alive);
