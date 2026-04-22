@@ -43,6 +43,8 @@ std::string_view StatusMessage(StatusCode code) {
       return "Request Timeout";
     case StatusCode::InternalServerError:
       return "Internal Server Error";
+    case StatusCode::ServiceUnavailable:
+      return "Service Unavailable";
     default:
       return "Unknown";
   }

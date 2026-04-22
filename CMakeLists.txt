@@ -104,6 +104,110 @@ target_link_libraries(runtime_http
 
 target_compile_features(runtime_http PUBLIC cxx_std_20)
 
+add_library(runtime_trace STATIC
+    src/trace/trace_id.cpp
+)
+
+target_include_directories(runtime_trace
+    PUBLIC
+        ${CMAKE_CURRENT_SOURCE_DIR}/include
+)
+
+target_link_libraries(runtime_trace
+    PUBLIC
+        runtime_foundation
+)
+
+target_compile_features(runtime_trace PUBLIC cxx_std_20)
+
+add_library(runtime_config STATIC
+    src/config/config.cpp
+)
+
+target_include_directories(runtime_config
+    PUBLIC
+        ${CMAKE_CURRENT_SOURCE_DIR}/include
+)
+
+target_link_libraries(runtime_config
+    PUBLIC
+        runtime_foundation
+)
+
+target_compile_features(runtime_config PUBLIC cxx_std_20)
+
+add_library(runtime_metrics STATIC
+    src/metrics/registry.cpp
+)
+
+target_include_directories(runtime_metrics
+    PUBLIC
+        ${CMAKE_CURRENT_SOURCE_DIR}/include
+)
+
+target_link_libraries(runtime_metrics
+    PUBLIC
+        runtime_foundation
+)
+
+target_compile_features(runtime_metrics PUBLIC cxx_std_20)
+
+add_library(runtime_health STATIC
+    src/health/health_handler.cpp
+)
+
+target_include_directories(runtime_health
+    PUBLIC
+        ${CMAKE_CURRENT_SOURCE_DIR}/include
+)
+
+target_link_libraries(runtime_health
+    PUBLIC
+        runtime_http
+        runtime_metrics
+)
+
+target_compile_features(runtime_health PUBLIC cxx_std_20)
+
+add_library(runtime_inference STATIC
+    src/inference/llama_engine.cpp
+    src/inference/batch_scheduler.cpp
+)
+
+target_include_directories(runtime_inference
+    PUBLIC
+        ${CMAKE_CURRENT_SOURCE_DIR}/include
+)
+
+target_link_libraries(runtime_inference
+    PUBLIC
+        runtime_net
+        runtime_task
+        runtime_foundation
+)
+
+target_compile_features(runtime_inference PUBLIC cxx_std_20)
+
+add_library(runtime_api STATIC
+    src/api/sse_writer.cpp
+    src/api/chat_handler.cpp
+    src/api/models_handler.cpp
+)
+
+target_include_directories(runtime_api
+    PUBLIC
+        ${CMAKE_CURRENT_SOURCE_DIR}/include
+)
+
+target_link_libraries(runtime_api
+    PUBLIC
+        runtime_http
+        runtime_inference
+        runtime_metrics
+)
+
+target_compile_features(runtime_api PUBLIC cxx_std_20)
+
 if(BUILD_TESTS)
     enable_testing()
 endif()

@@ -1,6 +1,8 @@
 #pragma once
 
 #include "runtime/http/http_types.h"
+#include "runtime/net/tcp_connection.h"
+#include "runtime/net/event_loop.h"
 #include "runtime/time/timestamp.h"
 
 #include <string>
@@ -54,6 +56,15 @@ public:
   void SetReceiveTime(runtime::time::Timestamp ts) { receive_time_ = ts; }
   runtime::time::Timestamp ReceiveTime() const { return receive_time_; }
 
+  // For streaming handlers: access the underlying connection and its IO loop.
+  using TcpConnectionPtr = runtime::net::TcpConnection::TcpConnectionPtr;
+
+  void SetConnection(TcpConnectionPtr conn) { conn_ = std::move(conn); }
+  const TcpConnectionPtr& Connection() const { return conn_; }
+
+  void SetIoLoop(runtime::net::EventLoop* loop) { io_loop_ = loop; }
+  runtime::net::EventLoop* IoLoop() const { return io_loop_; }
+
   void Reset();
 
 private:
@@ -65,6 +76,8 @@ private:
   std::string body_;
   std::unordered_map<std::string, std::string> headers_;
   runtime::time::Timestamp receive_time_;
+  TcpConnectionPtr conn_;
+  runtime::net::EventLoop* io_loop_{nullptr};
 };
 
 }  // namespace runtime::http

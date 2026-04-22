@@ -34,6 +34,7 @@ public:
 private:
     void RunInferenceLoop();
     void ProcessOne(InferenceRequest &req);
+    void FireDone(InferenceRequest &req, const std::string& reason);
 
     Config config_;
     llama_model *model{nullptr};

@@ -63,6 +63,9 @@ void HttpServer::OnMessage(const TcpConnectionPtr& conn,
     HttpRequest request = ctx.Request();
     ctx.Reset();
 
+    request.SetConnection(conn);
+    request.SetIoLoop(conn->GetLoop());
+
     const bool keep_alive = request.KeepAlive();
     HttpResponse response(!keep_alive);
 

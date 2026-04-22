@@ -33,6 +33,7 @@ enum class StatusCode : int {
   MethodNotAllowed = 405,
   RequestTimeout = 408,
   InternalServerError = 500,
+  ServiceUnavailable = 503,
 };
 
 // Returns the wire-format name for an HTTP method.
