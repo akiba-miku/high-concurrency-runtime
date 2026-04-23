@@ -1,0 +1,2 @@
+/usr/bin/ar qc libruntime_metrics.a CMakeFiles/runtime_metrics.dir/src/metrics/registry.cpp.o
+/usr/bin/ranlib libruntime_metrics.a

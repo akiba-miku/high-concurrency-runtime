@@ -179,6 +179,84 @@ runtime_http/fast:
 .PHONY : runtime_http/fast
 
 #=============================================================================
+# Target rules for targets named runtime_trace
+
+# Build rule for target.
+runtime_trace: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 runtime_trace
+.PHONY : runtime_trace
+
+# fast build rule for target.
+runtime_trace/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_trace.dir/build.make CMakeFiles/runtime_trace.dir/build
+.PHONY : runtime_trace/fast
+
+#=============================================================================
+# Target rules for targets named runtime_config
+
+# Build rule for target.
+runtime_config: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 runtime_config
+.PHONY : runtime_config
+
+# fast build rule for target.
+runtime_config/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_config.dir/build.make CMakeFiles/runtime_config.dir/build
+.PHONY : runtime_config/fast
+
+#=============================================================================
+# Target rules for targets named runtime_metrics
+
+# Build rule for target.
+runtime_metrics: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 runtime_metrics
+.PHONY : runtime_metrics
+
+# fast build rule for target.
+runtime_metrics/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_metrics.dir/build.make CMakeFiles/runtime_metrics.dir/build
+.PHONY : runtime_metrics/fast
+
+#=============================================================================
+# Target rules for targets named runtime_health
+
+# Build rule for target.
+runtime_health: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 runtime_health
+.PHONY : runtime_health
+
+# fast build rule for target.
+runtime_health/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_health.dir/build.make CMakeFiles/runtime_health.dir/build
+.PHONY : runtime_health/fast
+
+#=============================================================================
+# Target rules for targets named runtime_inference
+
+# Build rule for target.
+runtime_inference: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 runtime_inference
+.PHONY : runtime_inference
+
+# fast build rule for target.
+runtime_inference/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_inference.dir/build.make CMakeFiles/runtime_inference.dir/build
+.PHONY : runtime_inference/fast
+
+#=============================================================================
+# Target rules for targets named runtime_api
+
+# Build rule for target.
+runtime_api: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 runtime_api
+.PHONY : runtime_api
+
+# fast build rule for target.
+runtime_api/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_api.dir/build.make CMakeFiles/runtime_api.dir/build
+.PHONY : runtime_api/fast
+
+#=============================================================================
 # Target rules for targets named simple_logger_example
 
 # Build rule for target.
@@ -724,6 +802,78 @@ runtime_integration_tests/fast:
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/runtime_integration_tests.dir/build.make tests/CMakeFiles/runtime_integration_tests.dir/build
 .PHONY : runtime_integration_tests/fast
 
+src/api/chat_handler.o: src/api/chat_handler.cpp.o
+.PHONY : src/api/chat_handler.o
+
+# target to build an object file
+src/api/chat_handler.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_api.dir/build.make CMakeFiles/runtime_api.dir/src/api/chat_handler.cpp.o
+.PHONY : src/api/chat_handler.cpp.o
+
+src/api/chat_handler.i: src/api/chat_handler.cpp.i
+.PHONY : src/api/chat_handler.i
+
+# target to preprocess a source file
+src/api/chat_handler.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_api.dir/build.make CMakeFiles/runtime_api.dir/src/api/chat_handler.cpp.i
+.PHONY : src/api/chat_handler.cpp.i
+
+src/api/chat_handler.s: src/api/chat_handler.cpp.s
+.PHONY : src/api/chat_handler.s
+
+# target to generate assembly for a file
+src/api/chat_handler.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_api.dir/build.make CMakeFiles/runtime_api.dir/src/api/chat_handler.cpp.s
+.PHONY : src/api/chat_handler.cpp.s
+
+src/api/models_handler.o: src/api/models_handler.cpp.o
+.PHONY : src/api/models_handler.o
+
+# target to build an object file
+src/api/models_handler.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_api.dir/build.make CMakeFiles/runtime_api.dir/src/api/models_handler.cpp.o
+.PHONY : src/api/models_handler.cpp.o
+
+src/api/models_handler.i: src/api/models_handler.cpp.i
+.PHONY : src/api/models_handler.i
+
+# target to preprocess a source file
+src/api/models_handler.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_api.dir/build.make CMakeFiles/runtime_api.dir/src/api/models_handler.cpp.i
+.PHONY : src/api/models_handler.cpp.i
+
+src/api/models_handler.s: src/api/models_handler.cpp.s
+.PHONY : src/api/models_handler.s
+
+# target to generate assembly for a file
+src/api/models_handler.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_api.dir/build.make CMakeFiles/runtime_api.dir/src/api/models_handler.cpp.s
+.PHONY : src/api/models_handler.cpp.s
+
+src/api/sse_writer.o: src/api/sse_writer.cpp.o
+.PHONY : src/api/sse_writer.o
+
+# target to build an object file
+src/api/sse_writer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_api.dir/build.make CMakeFiles/runtime_api.dir/src/api/sse_writer.cpp.o
+.PHONY : src/api/sse_writer.cpp.o
+
+src/api/sse_writer.i: src/api/sse_writer.cpp.i
+.PHONY : src/api/sse_writer.i
+
+# target to preprocess a source file
+src/api/sse_writer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_api.dir/build.make CMakeFiles/runtime_api.dir/src/api/sse_writer.cpp.i
+.PHONY : src/api/sse_writer.cpp.i
+
+src/api/sse_writer.s: src/api/sse_writer.cpp.s
+.PHONY : src/api/sse_writer.s
+
+# target to generate assembly for a file
+src/api/sse_writer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_api.dir/build.make CMakeFiles/runtime_api.dir/src/api/sse_writer.cpp.s
+.PHONY : src/api/sse_writer.cpp.s
+
 src/base/current_thread.o: src/base/current_thread.cpp.o
 .PHONY : src/base/current_thread.o
 
@@ -747,6 +897,54 @@ src/base/current_thread.s: src/base/current_thread.cpp.s
 src/base/current_thread.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_foundation.dir/build.make CMakeFiles/runtime_foundation.dir/src/base/current_thread.cpp.s
 .PHONY : src/base/current_thread.cpp.s
+
+src/config/config.o: src/config/config.cpp.o
+.PHONY : src/config/config.o
+
+# target to build an object file
+src/config/config.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_config.dir/build.make CMakeFiles/runtime_config.dir/src/config/config.cpp.o
+.PHONY : src/config/config.cpp.o
+
+src/config/config.i: src/config/config.cpp.i
+.PHONY : src/config/config.i
+
+# target to preprocess a source file
+src/config/config.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_config.dir/build.make CMakeFiles/runtime_config.dir/src/config/config.cpp.i
+.PHONY : src/config/config.cpp.i
+
+src/config/config.s: src/config/config.cpp.s
+.PHONY : src/config/config.s
+
+# target to generate assembly for a file
+src/config/config.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_config.dir/build.make CMakeFiles/runtime_config.dir/src/config/config.cpp.s
+.PHONY : src/config/config.cpp.s
+
+src/health/health_handler.o: src/health/health_handler.cpp.o
+.PHONY : src/health/health_handler.o
+
+# target to build an object file
+src/health/health_handler.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_health.dir/build.make CMakeFiles/runtime_health.dir/src/health/health_handler.cpp.o
+.PHONY : src/health/health_handler.cpp.o
+
+src/health/health_handler.i: src/health/health_handler.cpp.i
+.PHONY : src/health/health_handler.i
+
+# target to preprocess a source file
+src/health/health_handler.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_health.dir/build.make CMakeFiles/runtime_health.dir/src/health/health_handler.cpp.i
+.PHONY : src/health/health_handler.cpp.i
+
+src/health/health_handler.s: src/health/health_handler.cpp.s
+.PHONY : src/health/health_handler.s
+
+# target to generate assembly for a file
+src/health/health_handler.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_health.dir/build.make CMakeFiles/runtime_health.dir/src/health/health_handler.cpp.s
+.PHONY : src/health/health_handler.cpp.s
 
 src/http/http_context.o: src/http/http_context.cpp.o
 .PHONY : src/http/http_context.o
@@ -892,6 +1090,54 @@ src/http/router.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_http.dir/build.make CMakeFiles/runtime_http.dir/src/http/router.cpp.s
 .PHONY : src/http/router.cpp.s
 
+src/inference/batch_scheduler.o: src/inference/batch_scheduler.cpp.o
+.PHONY : src/inference/batch_scheduler.o
+
+# target to build an object file
+src/inference/batch_scheduler.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_inference.dir/build.make CMakeFiles/runtime_inference.dir/src/inference/batch_scheduler.cpp.o
+.PHONY : src/inference/batch_scheduler.cpp.o
+
+src/inference/batch_scheduler.i: src/inference/batch_scheduler.cpp.i
+.PHONY : src/inference/batch_scheduler.i
+
+# target to preprocess a source file
+src/inference/batch_scheduler.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_inference.dir/build.make CMakeFiles/runtime_inference.dir/src/inference/batch_scheduler.cpp.i
+.PHONY : src/inference/batch_scheduler.cpp.i
+
+src/inference/batch_scheduler.s: src/inference/batch_scheduler.cpp.s
+.PHONY : src/inference/batch_scheduler.s
+
+# target to generate assembly for a file
+src/inference/batch_scheduler.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_inference.dir/build.make CMakeFiles/runtime_inference.dir/src/inference/batch_scheduler.cpp.s
+.PHONY : src/inference/batch_scheduler.cpp.s
+
+src/inference/llama_engine.o: src/inference/llama_engine.cpp.o
+.PHONY : src/inference/llama_engine.o
+
+# target to build an object file
+src/inference/llama_engine.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_inference.dir/build.make CMakeFiles/runtime_inference.dir/src/inference/llama_engine.cpp.o
+.PHONY : src/inference/llama_engine.cpp.o
+
+src/inference/llama_engine.i: src/inference/llama_engine.cpp.i
+.PHONY : src/inference/llama_engine.i
+
+# target to preprocess a source file
+src/inference/llama_engine.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_inference.dir/build.make CMakeFiles/runtime_inference.dir/src/inference/llama_engine.cpp.i
+.PHONY : src/inference/llama_engine.cpp.i
+
+src/inference/llama_engine.s: src/inference/llama_engine.cpp.s
+.PHONY : src/inference/llama_engine.s
+
+# target to generate assembly for a file
+src/inference/llama_engine.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_inference.dir/build.make CMakeFiles/runtime_inference.dir/src/inference/llama_engine.cpp.s
+.PHONY : src/inference/llama_engine.cpp.s
+
 src/log/async_logger.o: src/log/async_logger.cpp.o
 .PHONY : src/log/async_logger.o
 
@@ -939,6 +1185,30 @@ src/log/logger.s: src/log/logger.cpp.s
 src/log/logger.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_foundation.dir/build.make CMakeFiles/runtime_foundation.dir/src/log/logger.cpp.s
 .PHONY : src/log/logger.cpp.s
+
+src/metrics/registry.o: src/metrics/registry.cpp.o
+.PHONY : src/metrics/registry.o
+
+# target to build an object file
+src/metrics/registry.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_metrics.dir/build.make CMakeFiles/runtime_metrics.dir/src/metrics/registry.cpp.o
+.PHONY : src/metrics/registry.cpp.o
+
+src/metrics/registry.i: src/metrics/registry.cpp.i
+.PHONY : src/metrics/registry.i
+
+# target to preprocess a source file
+src/metrics/registry.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_metrics.dir/build.make CMakeFiles/runtime_metrics.dir/src/metrics/registry.cpp.i
+.PHONY : src/metrics/registry.cpp.i
+
+src/metrics/registry.s: src/metrics/registry.cpp.s
+.PHONY : src/metrics/registry.s
+
+# target to generate assembly for a file
+src/metrics/registry.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_metrics.dir/build.make CMakeFiles/runtime_metrics.dir/src/metrics/registry.cpp.s
+.PHONY : src/metrics/registry.cpp.s
 
 src/net/acceptor.o: src/net/acceptor.cpp.o
 .PHONY : src/net/acceptor.o
@@ -1396,6 +1666,30 @@ src/time/timestamp.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_foundation.dir/build.make CMakeFiles/runtime_foundation.dir/src/time/timestamp.cpp.s
 .PHONY : src/time/timestamp.cpp.s
 
+src/trace/trace_id.o: src/trace/trace_id.cpp.o
+.PHONY : src/trace/trace_id.o
+
+# target to build an object file
+src/trace/trace_id.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_trace.dir/build.make CMakeFiles/runtime_trace.dir/src/trace/trace_id.cpp.o
+.PHONY : src/trace/trace_id.cpp.o
+
+src/trace/trace_id.i: src/trace/trace_id.cpp.i
+.PHONY : src/trace/trace_id.i
+
+# target to preprocess a source file
+src/trace/trace_id.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_trace.dir/build.make CMakeFiles/runtime_trace.dir/src/trace/trace_id.cpp.i
+.PHONY : src/trace/trace_id.cpp.i
+
+src/trace/trace_id.s: src/trace/trace_id.cpp.s
+.PHONY : src/trace/trace_id.s
+
+# target to generate assembly for a file
+src/trace/trace_id.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/runtime_trace.dir/build.make CMakeFiles/runtime_trace.dir/src/trace/trace_id.cpp.s
+.PHONY : src/trace/trace_id.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -1442,18 +1736,39 @@ help:
 	@echo "... memory_pool_bench"
 	@echo "... memory_pool_smoke_test"
 	@echo "... object_pool_smoke_test"
+	@echo "... runtime_api"
+	@echo "... runtime_config"
 	@echo "... runtime_foundation"
+	@echo "... runtime_health"
 	@echo "... runtime_http"
+	@echo "... runtime_inference"
 	@echo "... runtime_integration_tests"
+	@echo "... runtime_metrics"
 	@echo "... runtime_net"
 	@echo "... runtime_task"
+	@echo "... runtime_trace"
 	@echo "... runtime_unit_tests"
 	@echo "... simple_echo_server"
 	@echo "... simple_logger_example"
 	@echo "... tcp_server_smoke_test"
+	@echo "... src/api/chat_handler.o"
+	@echo "... src/api/chat_handler.i"
+	@echo "... src/api/chat_handler.s"
+	@echo "... src/api/models_handler.o"
+	@echo "... src/api/models_handler.i"
+	@echo "... src/api/models_handler.s"
+	@echo "... src/api/sse_writer.o"
+	@echo "... src/api/sse_writer.i"
+	@echo "... src/api/sse_writer.s"
 	@echo "... src/base/current_thread.o"
 	@echo "... src/base/current_thread.i"
 	@echo "... src/base/current_thread.s"
+	@echo "... src/config/config.o"
+	@echo "... src/config/config.i"
+	@echo "... src/config/config.s"
+	@echo "... src/health/health_handler.o"
+	@echo "... src/health/health_handler.i"
+	@echo "... src/health/health_handler.s"
 	@echo "... src/http/http_context.o"
 	@echo "... src/http/http_context.i"
 	@echo "... src/http/http_context.s"
@@ -1472,12 +1787,21 @@ help:
 	@echo "... src/http/router.o"
 	@echo "... src/http/router.i"
 	@echo "... src/http/router.s"
+	@echo "... src/inference/batch_scheduler.o"
+	@echo "... src/inference/batch_scheduler.i"
+	@echo "... src/inference/batch_scheduler.s"
+	@echo "... src/inference/llama_engine.o"
+	@echo "... src/inference/llama_engine.i"
+	@echo "... src/inference/llama_engine.s"
 	@echo "... src/log/async_logger.o"
 	@echo "... src/log/async_logger.i"
 	@echo "... src/log/async_logger.s"
 	@echo "... src/log/logger.o"
 	@echo "... src/log/logger.i"
 	@echo "... src/log/logger.s"
+	@echo "... src/metrics/registry.o"
+	@echo "... src/metrics/registry.i"
+	@echo "... src/metrics/registry.s"
 	@echo "... src/net/acceptor.o"
 	@echo "... src/net/acceptor.i"
 	@echo "... src/net/acceptor.s"
@@ -1535,6 +1859,9 @@ help:
 	@echo "... src/time/timestamp.o"
 	@echo "... src/time/timestamp.i"
 	@echo "... src/time/timestamp.s"
+	@echo "... src/trace/trace_id.o"
+	@echo "... src/trace/trace_id.i"
+	@echo "... src/trace/trace_id.s"
 .PHONY : help
 
 

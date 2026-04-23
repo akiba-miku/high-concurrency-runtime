@@ -1,0 +1,2 @@
+/usr/bin/ar qc libruntime_api.a CMakeFiles/runtime_api.dir/src/api/sse_writer.cpp.o CMakeFiles/runtime_api.dir/src/api/chat_handler.cpp.o CMakeFiles/runtime_api.dir/src/api/models_handler.cpp.o
+/usr/bin/ranlib libruntime_api.a

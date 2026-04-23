@@ -1,0 +1,2 @@
+/usr/bin/ar qc libruntime_trace.a CMakeFiles/runtime_trace.dir/src/trace/trace_id.cpp.o
+/usr/bin/ranlib libruntime_trace.a

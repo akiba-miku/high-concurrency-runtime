@@ -1,0 +1,2 @@
+/usr/bin/ar qc libruntime_health.a CMakeFiles/runtime_health.dir/src/health/health_handler.cpp.o
+/usr/bin/ranlib libruntime_health.a

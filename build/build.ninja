@@ -12,7 +12,7 @@
 
 # =============================================================================
 # Project: high_concurrency_runtime
-# Configurations: Debug
+# Configurations: Release
 # =============================================================================
 
 #############################################
@@ -24,7 +24,7 @@ ninja_required_version = 1.5
 #############################################
 # Set configuration variable for custom commands.
 
-CONFIGURATION = Debug
+CONFIGURATION = Release
 # =============================================================================
 # Include auxiliary files.
 
@@ -49,30 +49,30 @@ cmake_ninja_workdir = /home/yun/design/high-concurrency-runtime/build/
 
 build cmake_object_order_depends_target_runtime_foundation: phony || CMakeFiles/runtime_foundation.dir
 
-build CMakeFiles/runtime_foundation.dir/src/base/current_thread.cpp.o: CXX_COMPILER__runtime_foundation_Debug /home/yun/design/high-concurrency-runtime/src/base/current_thread.cpp || cmake_object_order_depends_target_runtime_foundation
+build CMakeFiles/runtime_foundation.dir/src/base/current_thread.cpp.o: CXX_COMPILER__runtime_foundation_Release /home/yun/design/high-concurrency-runtime/src/base/current_thread.cpp || cmake_object_order_depends_target_runtime_foundation
   DEP_FILE = CMakeFiles/runtime_foundation.dir/src/base/current_thread.cpp.o.d
-  FLAGS = -g -std=c++20
+  FLAGS = -O3 -DNDEBUG -std=c++20
   INCLUDES = -I/home/yun/design/high-concurrency-runtime/include
   OBJECT_DIR = CMakeFiles/runtime_foundation.dir
   OBJECT_FILE_DIR = CMakeFiles/runtime_foundation.dir/src/base
 
-build CMakeFiles/runtime_foundation.dir/src/log/async_logger.cpp.o: CXX_COMPILER__runtime_foundation_Debug /home/yun/design/high-concurrency-runtime/src/log/async_logger.cpp || cmake_object_order_depends_target_runtime_foundation
+build CMakeFiles/runtime_foundation.dir/src/log/async_logger.cpp.o: CXX_COMPILER__runtime_foundation_Release /home/yun/design/high-concurrency-runtime/src/log/async_logger.cpp || cmake_object_order_depends_target_runtime_foundation
   DEP_FILE = CMakeFiles/runtime_foundation.dir/src/log/async_logger.cpp.o.d
-  FLAGS = -g -std=c++20
+  FLAGS = -O3 -DNDEBUG -std=c++20
   INCLUDES = -I/home/yun/design/high-concurrency-runtime/include
   OBJECT_DIR = CMakeFiles/runtime_foundation.dir
   OBJECT_FILE_DIR = CMakeFiles/runtime_foundation.dir/src/log
 
-build CMakeFiles/runtime_foundation.dir/src/log/logger.cpp.o: CXX_COMPILER__runtime_foundation_Debug /home/yun/design/high-concurrency-runtime/src/log/logger.cpp || cmake_object_order_depends_target_runtime_foundation
+build CMakeFiles/runtime_foundation.dir/src/log/logger.cpp.o: CXX_COMPILER__runtime_foundation_Release /home/yun/design/high-concurrency-runtime/src/log/logger.cpp || cmake_object_order_depends_target_runtime_foundation
   DEP_FILE = CMakeFiles/runtime_foundation.dir/src/log/logger.cpp.o.d
-  FLAGS = -g -std=c++20
+  FLAGS = -O3 -DNDEBUG -std=c++20
   INCLUDES = -I/home/yun/design/high-concurrency-runtime/include
   OBJECT_DIR = CMakeFiles/runtime_foundation.dir
   OBJECT_FILE_DIR = CMakeFiles/runtime_foundation.dir/src/log
 
-build CMakeFiles/runtime_foundation.dir/src/time/timestamp.cpp.o: CXX_COMPILER__runtime_foundation_Debug /home/yun/design/high-concurrency-runtime/src/time/timestamp.cpp || cmake_object_order_depends_target_runtime_foundation
+build CMakeFiles/runtime_foundation.dir/src/time/timestamp.cpp.o: CXX_COMPILER__runtime_foundation_Release /home/yun/design/high-concurrency-runtime/src/time/timestamp.cpp || cmake_object_order_depends_target_runtime_foundation
   DEP_FILE = CMakeFiles/runtime_foundation.dir/src/time/timestamp.cpp.o.d
-  FLAGS = -g -std=c++20
+  FLAGS = -O3 -DNDEBUG -std=c++20
   INCLUDES = -I/home/yun/design/high-concurrency-runtime/include
   OBJECT_DIR = CMakeFiles/runtime_foundation.dir
   OBJECT_FILE_DIR = CMakeFiles/runtime_foundation.dir/src/time
@@ -85,8 +85,8 @@ build CMakeFiles/runtime_foundation.dir/src/time/timestamp.cpp.o: CXX_COMPILER__
 #############################################
 # Link the static library libruntime_foundation.a
 
-build libruntime_foundation.a: CXX_STATIC_LIBRARY_LINKER__runtime_foundation_Debug CMakeFiles/runtime_foundation.dir/src/base/current_thread.cpp.o CMakeFiles/runtime_foundation.dir/src/log/async_logger.cpp.o CMakeFiles/runtime_foundation.dir/src/log/logger.cpp.o CMakeFiles/runtime_foundation.dir/src/time/timestamp.cpp.o
-  LANGUAGE_COMPILE_FLAGS = -g
+build libruntime_foundation.a: CXX_STATIC_LIBRARY_LINKER__runtime_foundation_Release CMakeFiles/runtime_foundation.dir/src/base/current_thread.cpp.o CMakeFiles/runtime_foundation.dir/src/log/async_logger.cpp.o CMakeFiles/runtime_foundation.dir/src/log/logger.cpp.o CMakeFiles/runtime_foundation.dir/src/time/timestamp.cpp.o
+  LANGUAGE_COMPILE_FLAGS = -O3 -DNDEBUG
   OBJECT_DIR = CMakeFiles/runtime_foundation.dir
   POST_BUILD = :
   PRE_LINK = :
@@ -102,23 +102,23 @@ build libruntime_foundation.a: CXX_STATIC_LIBRARY_LINKER__runtime_foundation_Deb
 
 build cmake_object_order_depends_target_runtime_task: phony || cmake_object_order_depends_target_runtime_foundation
 
-build CMakeFiles/runtime_task.dir/src/task/thread_pool.cpp.o: CXX_COMPILER__runtime_task_Debug /home/yun/design/high-concurrency-runtime/src/task/thread_pool.cpp || cmake_object_order_depends_target_runtime_task
+build CMakeFiles/runtime_task.dir/src/task/thread_pool.cpp.o: CXX_COMPILER__runtime_task_Release /home/yun/design/high-concurrency-runtime/src/task/thread_pool.cpp || cmake_object_order_depends_target_runtime_task
   DEP_FILE = CMakeFiles/runtime_task.dir/src/task/thread_pool.cpp.o.d
-  FLAGS = -g -std=c++20
+  FLAGS = -O3 -DNDEBUG -std=c++20
   INCLUDES = -I/home/yun/design/high-concurrency-runtime/include
   OBJECT_DIR = CMakeFiles/runtime_task.dir
   OBJECT_FILE_DIR = CMakeFiles/runtime_task.dir/src/task
 
-build CMakeFiles/runtime_task.dir/src/task/task.cpp.o: CXX_COMPILER__runtime_task_Debug /home/yun/design/high-concurrency-runtime/src/task/task.cpp || cmake_object_order_depends_target_runtime_task
+build CMakeFiles/runtime_task.dir/src/task/task.cpp.o: CXX_COMPILER__runtime_task_Release /home/yun/design/high-concurrency-runtime/src/task/task.cpp || cmake_object_order_depends_target_runtime_task
   DEP_FILE = CMakeFiles/runtime_task.dir/src/task/task.cpp.o.d
-  FLAGS = -g -std=c++20
+  FLAGS = -O3 -DNDEBUG -std=c++20
   INCLUDES = -I/home/yun/design/high-concurrency-runtime/include
   OBJECT_DIR = CMakeFiles/runtime_task.dir
   OBJECT_FILE_DIR = CMakeFiles/runtime_task.dir/src/task
 
-build CMakeFiles/runtime_task.dir/src/task/scheduler.cpp.o: CXX_COMPILER__runtime_task_Debug /home/yun/design/high-concurrency-runtime/src/task/scheduler.cpp || cmake_object_order_depends_target_runtime_task
+build CMakeFiles/runtime_task.dir/src/task/scheduler.cpp.o: CXX_COMPILER__runtime_task_Release /home/yun/design/high-concurrency-runtime/src/task/scheduler.cpp || cmake_object_order_depends_target_runtime_task
   DEP_FILE = CMakeFiles/runtime_task.dir/src/task/scheduler.cpp.o.d
-  FLAGS = -g -std=c++20
+  FLAGS = -O3 -DNDEBUG -std=c++20
   INCLUDES = -I/home/yun/design/high-concurrency-runtime/include
   OBJECT_DIR = CMakeFiles/runtime_task.dir
   OBJECT_FILE_DIR = CMakeFiles/runtime_task.dir/src/task
@@ -131,8 +131,8 @@ build CMakeFiles/runtime_task.dir/src/task/scheduler.cpp.o: CXX_COMPILER__runtim
 #############################################
 # Link the static library libruntime_task.a
 
-build libruntime_task.a: CXX_STATIC_LIBRARY_LINKER__runtime_task_Debug CMakeFiles/runtime_task.dir/src/task/thread_pool.cpp.o CMakeFiles/runtime_task.dir/src/task/task.cpp.o CMakeFiles/runtime_task.dir/src/task/scheduler.cpp.o || libruntime_foundation.a
-  LANGUAGE_COMPILE_FLAGS = -g
+build libruntime_task.a: CXX_STATIC_LIBRARY_LINKER__runtime_task_Release CMakeFiles/runtime_task.dir/src/task/thread_pool.cpp.o CMakeFiles/runtime_task.dir/src/task/task.cpp.o CMakeFiles/runtime_task.dir/src/task/scheduler.cpp.o || libruntime_foundation.a
+  LANGUAGE_COMPILE_FLAGS = -O3 -DNDEBUG
   OBJECT_DIR = CMakeFiles/runtime_task.dir
   POST_BUILD = :
   PRE_LINK = :
@@ -148,107 +148,107 @@ build libruntime_task.a: CXX_STATIC_LIBRARY_LINKER__runtime_task_Debug CMakeFile
 
 build cmake_object_order_depends_target_runtime_net: phony || cmake_object_order_depends_target_runtime_foundation
 
-build CMakeFiles/runtime_net.dir/src/net/acceptor.cpp.o: CXX_COMPILER__runtime_net_Debug /home/yun/design/high-concurrency-runtime/src/net/acceptor.cpp || cmake_object_order_depends_target_runtime_net
+build CMakeFiles/runtime_net.dir/src/net/acceptor.cpp.o: CXX_COMPILER__runtime_net_Release /home/yun/design/high-concurrency-runtime/src/net/acceptor.cpp || cmake_object_order_depends_target_runtime_net
   DEP_FILE = CMakeFiles/runtime_net.dir/src/net/acceptor.cpp.o.d
-  FLAGS = -g -std=c++20
+  FLAGS = -O3 -DNDEBUG -std=c++20
   INCLUDES = -I/home/yun/design/high-concurrency-runtime/include
   OBJECT_DIR = CMakeFiles/runtime_net.dir
   OBJECT_FILE_DIR = CMakeFiles/runtime_net.dir/src/net
 
-build CMakeFiles/runtime_net.dir/src/net/buffer.cpp.o: CXX_COMPILER__runtime_net_Debug /home/yun/design/high-concurrency-runtime/src/net/buffer.cpp || cmake_object_order_depends_target_runtime_net
+build CMakeFiles/runtime_net.dir/src/net/buffer.cpp.o: CXX_COMPILER__runtime_net_Release /home/yun/design/high-concurrency-runtime/src/net/buffer.cpp || cmake_object_order_depends_target_runtime_net
   DEP_FILE = CMakeFiles/runtime_net.dir/src/net/buffer.cpp.o.d
-  FLAGS = -g -std=c++20
+  FLAGS = -O3 -DNDEBUG -std=c++20
   INCLUDES = -I/home/yun/design/high-concurrency-runtime/include
   OBJECT_DIR = CMakeFiles/runtime_net.dir
   OBJECT_FILE_DIR = CMakeFiles/runtime_net.dir/src/net
 
-build CMakeFiles/runtime_net.dir/src/net/channel.cpp.o: CXX_COMPILER__runtime_net_Debug /home/yun/design/high-concurrency-runtime/src/net/channel.cpp || cmake_object_order_depends_target_runtime_net
+build CMakeFiles/runtime_net.dir/src/net/channel.cpp.o: CXX_COMPILER__runtime_net_Release /home/yun/design/high-concurrency-runtime/src/net/channel.cpp || cmake_object_order_depends_target_runtime_net
   DEP_FILE = CMakeFiles/runtime_net.dir/src/net/channel.cpp.o.d
-  FLAGS = -g -std=c++20
+  FLAGS = -O3 -DNDEBUG -std=c++20
   INCLUDES = -I/home/yun/design/high-concurrency-runtime/include
   OBJECT_DIR = CMakeFiles/runtime_net.dir
   OBJECT_FILE_DIR = CMakeFiles/runtime_net.dir/src/net
 
-build CMakeFiles/runtime_net.dir/src/net/epoll_poller.cpp.o: CXX_COMPILER__runtime_net_Debug /home/yun/design/high-concurrency-runtime/src/net/epoll_poller.cpp || cmake_object_order_depends_target_runtime_net
+build CMakeFiles/runtime_net.dir/src/net/epoll_poller.cpp.o: CXX_COMPILER__runtime_net_Release /home/yun/design/high-concurrency-runtime/src/net/epoll_poller.cpp || cmake_object_order_depends_target_runtime_net
   DEP_FILE = CMakeFiles/runtime_net.dir/src/net/epoll_poller.cpp.o.d
-  FLAGS = -g -std=c++20
+  FLAGS = -O3 -DNDEBUG -std=c++20
   INCLUDES = -I/home/yun/design/high-concurrency-runtime/include
   OBJECT_DIR = CMakeFiles/runtime_net.dir
   OBJECT_FILE_DIR = CMakeFiles/runtime_net.dir/src/net
 
-build CMakeFiles/runtime_net.dir/src/net/event_loop.cpp.o: CXX_COMPILER__runtime_net_Debug /home/yun/design/high-concurrency-runtime/src/net/event_loop.cpp || cmake_object_order_depends_target_runtime_net
+build CMakeFiles/runtime_net.dir/src/net/event_loop.cpp.o: CXX_COMPILER__runtime_net_Release /home/yun/design/high-concurrency-runtime/src/net/event_loop.cpp || cmake_object_order_depends_target_runtime_net
   DEP_FILE = CMakeFiles/runtime_net.dir/src/net/event_loop.cpp.o.d
-  FLAGS = -g -std=c++20
+  FLAGS = -O3 -DNDEBUG -std=c++20
   INCLUDES = -I/home/yun/design/high-concurrency-runtime/include
   OBJECT_DIR = CMakeFiles/runtime_net.dir
   OBJECT_FILE_DIR = CMakeFiles/runtime_net.dir/src/net
 
-build CMakeFiles/runtime_net.dir/src/net/event_loop_thread.cpp.o: CXX_COMPILER__runtime_net_Debug /home/yun/design/high-concurrency-runtime/src/net/event_loop_thread.cpp || cmake_object_order_depends_target_runtime_net
+build CMakeFiles/runtime_net.dir/src/net/event_loop_thread.cpp.o: CXX_COMPILER__runtime_net_Release /home/yun/design/high-concurrency-runtime/src/net/event_loop_thread.cpp || cmake_object_order_depends_target_runtime_net
   DEP_FILE = CMakeFiles/runtime_net.dir/src/net/event_loop_thread.cpp.o.d
-  FLAGS = -g -std=c++20
+  FLAGS = -O3 -DNDEBUG -std=c++20
   INCLUDES = -I/home/yun/design/high-concurrency-runtime/include
   OBJECT_DIR = CMakeFiles/runtime_net.dir
   OBJECT_FILE_DIR = CMakeFiles/runtime_net.dir/src/net
 
-build CMakeFiles/runtime_net.dir/src/net/event_loop_thread_pool.cpp.o: CXX_COMPILER__runtime_net_Debug /home/yun/design/high-concurrency-runtime/src/net/event_loop_thread_pool.cpp || cmake_object_order_depends_target_runtime_net
+build CMakeFiles/runtime_net.dir/src/net/event_loop_thread_pool.cpp.o: CXX_COMPILER__runtime_net_Release /home/yun/design/high-concurrency-runtime/src/net/event_loop_thread_pool.cpp || cmake_object_order_depends_target_runtime_net
   DEP_FILE = CMakeFiles/runtime_net.dir/src/net/event_loop_thread_pool.cpp.o.d
-  FLAGS = -g -std=c++20
+  FLAGS = -O3 -DNDEBUG -std=c++20
   INCLUDES = -I/home/yun/design/high-concurrency-runtime/include
   OBJECT_DIR = CMakeFiles/runtime_net.dir
   OBJECT_FILE_DIR = CMakeFiles/runtime_net.dir/src/net
 
-build CMakeFiles/runtime_net.dir/src/net/inet_address.cpp.o: CXX_COMPILER__runtime_net_Debug /home/yun/design/high-concurrency-runtime/src/net/inet_address.cpp || cmake_object_order_depends_target_runtime_net
+build CMakeFiles/runtime_net.dir/src/net/inet_address.cpp.o: CXX_COMPILER__runtime_net_Release /home/yun/design/high-concurrency-runtime/src/net/inet_address.cpp || cmake_object_order_depends_target_runtime_net
   DEP_FILE = CMakeFiles/runtime_net.dir/src/net/inet_address.cpp.o.d
-  FLAGS = -g -std=c++20
+  FLAGS = -O3 -DNDEBUG -std=c++20
   INCLUDES = -I/home/yun/design/high-concurrency-runtime/include
   OBJECT_DIR = CMakeFiles/runtime_net.dir
   OBJECT_FILE_DIR = CMakeFiles/runtime_net.dir/src/net
 
-build CMakeFiles/runtime_net.dir/src/net/net_utils.cpp.o: CXX_COMPILER__runtime_net_Debug /home/yun/design/high-concurrency-runtime/src/net/net_utils.cpp || cmake_object_order_depends_target_runtime_net
+build CMakeFiles/runtime_net.dir/src/net/net_utils.cpp.o: CXX_COMPILER__runtime_net_Release /home/yun/design/high-concurrency-runtime/src/net/net_utils.cpp || cmake_object_order_depends_target_runtime_net
   DEP_FILE = CMakeFiles/runtime_net.dir/src/net/net_utils.cpp.o.d
-  FLAGS = -g -std=c++20
+  FLAGS = -O3 -DNDEBUG -std=c++20
   INCLUDES = -I/home/yun/design/high-concurrency-runtime/include
   OBJECT_DIR = CMakeFiles/runtime_net.dir
   OBJECT_FILE_DIR = CMakeFiles/runtime_net.dir/src/net
 
-build CMakeFiles/runtime_net.dir/src/net/poller.cpp.o: CXX_COMPILER__runtime_net_Debug /home/yun/design/high-concurrency-runtime/src/net/poller.cpp || cmake_object_order_depends_target_runtime_net
+build CMakeFiles/runtime_net.dir/src/net/poller.cpp.o: CXX_COMPILER__runtime_net_Release /home/yun/design/high-concurrency-runtime/src/net/poller.cpp || cmake_object_order_depends_target_runtime_net
   DEP_FILE = CMakeFiles/runtime_net.dir/src/net/poller.cpp.o.d
-  FLAGS = -g -std=c++20
+  FLAGS = -O3 -DNDEBUG -std=c++20
   INCLUDES = -I/home/yun/design/high-concurrency-runtime/include
   OBJECT_DIR = CMakeFiles/runtime_net.dir
   OBJECT_FILE_DIR = CMakeFiles/runtime_net.dir/src/net
 
-build CMakeFiles/runtime_net.dir/src/net/socket.cpp.o: CXX_COMPILER__runtime_net_Debug /home/yun/design/high-concurrency-runtime/src/net/socket.cpp || cmake_object_order_depends_target_runtime_net
+build CMakeFiles/runtime_net.dir/src/net/socket.cpp.o: CXX_COMPILER__runtime_net_Release /home/yun/design/high-concurrency-runtime/src/net/socket.cpp || cmake_object_order_depends_target_runtime_net
   DEP_FILE = CMakeFiles/runtime_net.dir/src/net/socket.cpp.o.d
-  FLAGS = -g -std=c++20
+  FLAGS = -O3 -DNDEBUG -std=c++20
   INCLUDES = -I/home/yun/design/high-concurrency-runtime/include
   OBJECT_DIR = CMakeFiles/runtime_net.dir
   OBJECT_FILE_DIR = CMakeFiles/runtime_net.dir/src/net
 
-build CMakeFiles/runtime_net.dir/src/net/tcp_connection.cpp.o: CXX_COMPILER__runtime_net_Debug /home/yun/design/high-concurrency-runtime/src/net/tcp_connection.cpp || cmake_object_order_depends_target_runtime_net
+build CMakeFiles/runtime_net.dir/src/net/tcp_connection.cpp.o: CXX_COMPILER__runtime_net_Release /home/yun/design/high-concurrency-runtime/src/net/tcp_connection.cpp || cmake_object_order_depends_target_runtime_net
   DEP_FILE = CMakeFiles/runtime_net.dir/src/net/tcp_connection.cpp.o.d
-  FLAGS = -g -std=c++20
+  FLAGS = -O3 -DNDEBUG -std=c++20
   INCLUDES = -I/home/yun/design/high-concurrency-runtime/include
   OBJECT_DIR = CMakeFiles/runtime_net.dir
   OBJECT_FILE_DIR = CMakeFiles/runtime_net.dir/src/net
 
-build CMakeFiles/runtime_net.dir/src/net/tcp_server.cpp.o: CXX_COMPILER__runtime_net_Debug /home/yun/design/high-concurrency-runtime/src/net/tcp_server.cpp || cmake_object_order_depends_target_runtime_net
+build CMakeFiles/runtime_net.dir/src/net/tcp_server.cpp.o: CXX_COMPILER__runtime_net_Release /home/yun/design/high-concurrency-runtime/src/net/tcp_server.cpp || cmake_object_order_depends_target_runtime_net
   DEP_FILE = CMakeFiles/runtime_net.dir/src/net/tcp_server.cpp.o.d
-  FLAGS = -g -std=c++20
+  FLAGS = -O3 -DNDEBUG -std=c++20
   INCLUDES = -I/home/yun/design/high-concurrency-runtime/include
   OBJECT_DIR = CMakeFiles/runtime_net.dir
   OBJECT_FILE_DIR = CMakeFiles/runtime_net.dir/src/net
 
-build CMakeFiles/runtime_net.dir/src/net/timer.cpp.o: CXX_COMPILER__runtime_net_Debug /home/yun/design/high-concurrency-runtime/src/net/timer.cpp || cmake_object_order_depends_target_runtime_net
+build CMakeFiles/runtime_net.dir/src/net/timer.cpp.o: CXX_COMPILER__runtime_net_Release /home/yun/design/high-concurrency-runtime/src/net/timer.cpp || cmake_object_order_depends_target_runtime_net
   DEP_FILE = CMakeFiles/runtime_net.dir/src/net/timer.cpp.o.d
-  FLAGS = -g -std=c++20
+  FLAGS = -O3 -DNDEBUG -std=c++20
   INCLUDES = -I/home/yun/design/high-concurrency-runtime/include
   OBJECT_DIR = CMakeFiles/runtime_net.dir
   OBJECT_FILE_DIR = CMakeFiles/runtime_net.dir/src/net
 
-build CMakeFiles/runtime_net.dir/src/net/timer_queue.cpp.o: CXX_COMPILER__runtime_net_Debug /home/yun/design/high-concurrency-runtime/src/net/timer_queue.cpp || cmake_object_order_depends_target_runtime_net
+build CMakeFiles/runtime_net.dir/src/net/timer_queue.cpp.o: CXX_COMPILER__runtime_net_Release /home/yun/design/high-concurrency-runtime/src/net/timer_queue.cpp || cmake_object_order_depends_target_runtime_net
   DEP_FILE = CMakeFiles/runtime_net.dir/src/net/timer_queue.cpp.o.d
-  FLAGS = -g -std=c++20
+  FLAGS = -O3 -DNDEBUG -std=c++20
   INCLUDES = -I/home/yun/design/high-concurrency-runtime/include
   OBJECT_DIR = CMakeFiles/runtime_net.dir
   OBJECT_FILE_DIR = CMakeFiles/runtime_net.dir/src/net
@@ -261,8 +261,8 @@ build CMakeFiles/runtime_net.dir/src/net/timer_queue.cpp.o: CXX_COMPILER__runtim
 #############################################
 # Link the static library libruntime_net.a
 
-build libruntime_net.a: CXX_STATIC_LIBRARY_LINKER__runtime_net_Debug CMakeFiles/runtime_net.dir/src/net/acceptor.cpp.o CMakeFiles/runtime_net.dir/src/net/buffer.cpp.o CMakeFiles/runtime_net.dir/src/net/channel.cpp.o CMakeFiles/runtime_net.dir/src/net/epoll_poller.cpp.o CMakeFiles/runtime_net.dir/src/net/event_loop.cpp.o CMakeFiles/runtime_net.dir/src/net/event_loop_thread.cpp.o CMakeFiles/runtime_net.dir/src/net/event_loop_thread_pool.cpp.o CMakeFiles/runtime_net.dir/src/net/inet_address.cpp.o CMakeFiles/runtime_net.dir/src/net/net_utils.cpp.o CMakeFiles/runtime_net.dir/src/net/poller.cpp.o CMakeFiles/runtime_net.dir/src/net/socket.cpp.o CMakeFiles/runtime_net.dir/src/net/tcp_connection.cpp.o CMakeFiles/runtime_net.dir/src/net/tcp_server.cpp.o CMakeFiles/runtime_net.dir/src/net/timer.cpp.o CMakeFiles/runtime_net.dir/src/net/timer_queue.cpp.o || libruntime_foundation.a
-  LANGUAGE_COMPILE_FLAGS = -g
+build libruntime_net.a: CXX_STATIC_LIBRARY_LINKER__runtime_net_Release CMakeFiles/runtime_net.dir/src/net/acceptor.cpp.o CMakeFiles/runtime_net.dir/src/net/buffer.cpp.o CMakeFiles/runtime_net.dir/src/net/channel.cpp.o CMakeFiles/runtime_net.dir/src/net/epoll_poller.cpp.o CMakeFiles/runtime_net.dir/src/net/event_loop.cpp.o CMakeFiles/runtime_net.dir/src/net/event_loop_thread.cpp.o CMakeFiles/runtime_net.dir/src/net/event_loop_thread_pool.cpp.o CMakeFiles/runtime_net.dir/src/net/inet_address.cpp.o CMakeFiles/runtime_net.dir/src/net/net_utils.cpp.o CMakeFiles/runtime_net.dir/src/net/poller.cpp.o CMakeFiles/runtime_net.dir/src/net/socket.cpp.o CMakeFiles/runtime_net.dir/src/net/tcp_connection.cpp.o CMakeFiles/runtime_net.dir/src/net/tcp_server.cpp.o CMakeFiles/runtime_net.dir/src/net/timer.cpp.o CMakeFiles/runtime_net.dir/src/net/timer_queue.cpp.o || libruntime_foundation.a
+  LANGUAGE_COMPILE_FLAGS = -O3 -DNDEBUG
   OBJECT_DIR = CMakeFiles/runtime_net.dir
   POST_BUILD = :
   PRE_LINK = :
@@ -278,44 +278,44 @@ build libruntime_net.a: CXX_STATIC_LIBRARY_LINKER__runtime_net_Debug CMakeFiles/
 
 build cmake_object_order_depends_target_runtime_http: phony || cmake_object_order_depends_target_runtime_foundation cmake_object_order_depends_target_runtime_net cmake_object_order_depends_target_runtime_task
 
-build CMakeFiles/runtime_http.dir/src/http/http_types.cpp.o: CXX_COMPILER__runtime_http_Debug /home/yun/design/high-concurrency-runtime/src/http/http_types.cpp || cmake_object_order_depends_target_runtime_http
+build CMakeFiles/runtime_http.dir/src/http/http_types.cpp.o: CXX_COMPILER__runtime_http_Release /home/yun/design/high-concurrency-runtime/src/http/http_types.cpp || cmake_object_order_depends_target_runtime_http
   DEP_FILE = CMakeFiles/runtime_http.dir/src/http/http_types.cpp.o.d
-  FLAGS = -g -std=c++20
+  FLAGS = -O3 -DNDEBUG -std=c++20
   INCLUDES = -I/home/yun/design/high-concurrency-runtime/include
   OBJECT_DIR = CMakeFiles/runtime_http.dir
   OBJECT_FILE_DIR = CMakeFiles/runtime_http.dir/src/http
 
-build CMakeFiles/runtime_http.dir/src/http/http_request.cpp.o: CXX_COMPILER__runtime_http_Debug /home/yun/design/high-concurrency-runtime/src/http/http_request.cpp || cmake_object_order_depends_target_runtime_http
+build CMakeFiles/runtime_http.dir/src/http/http_request.cpp.o: CXX_COMPILER__runtime_http_Release /home/yun/design/high-concurrency-runtime/src/http/http_request.cpp || cmake_object_order_depends_target_runtime_http
   DEP_FILE = CMakeFiles/runtime_http.dir/src/http/http_request.cpp.o.d
-  FLAGS = -g -std=c++20
+  FLAGS = -O3 -DNDEBUG -std=c++20
   INCLUDES = -I/home/yun/design/high-concurrency-runtime/include
   OBJECT_DIR = CMakeFiles/runtime_http.dir
   OBJECT_FILE_DIR = CMakeFiles/runtime_http.dir/src/http
 
-build CMakeFiles/runtime_http.dir/src/http/http_context.cpp.o: CXX_COMPILER__runtime_http_Debug /home/yun/design/high-concurrency-runtime/src/http/http_context.cpp || cmake_object_order_depends_target_runtime_http
+build CMakeFiles/runtime_http.dir/src/http/http_context.cpp.o: CXX_COMPILER__runtime_http_Release /home/yun/design/high-concurrency-runtime/src/http/http_context.cpp || cmake_object_order_depends_target_runtime_http
   DEP_FILE = CMakeFiles/runtime_http.dir/src/http/http_context.cpp.o.d
-  FLAGS = -g -std=c++20
+  FLAGS = -O3 -DNDEBUG -std=c++20
   INCLUDES = -I/home/yun/design/high-concurrency-runtime/include
   OBJECT_DIR = CMakeFiles/runtime_http.dir
   OBJECT_FILE_DIR = CMakeFiles/runtime_http.dir/src/http
 
-build CMakeFiles/runtime_http.dir/src/http/http_response.cpp.o: CXX_COMPILER__runtime_http_Debug /home/yun/design/high-concurrency-runtime/src/http/http_response.cpp || cmake_object_order_depends_target_runtime_http
+build CMakeFiles/runtime_http.dir/src/http/http_response.cpp.o: CXX_COMPILER__runtime_http_Release /home/yun/design/high-concurrency-runtime/src/http/http_response.cpp || cmake_object_order_depends_target_runtime_http
   DEP_FILE = CMakeFiles/runtime_http.dir/src/http/http_response.cpp.o.d
-  FLAGS = -g -std=c++20
+  FLAGS = -O3 -DNDEBUG -std=c++20
   INCLUDES = -I/home/yun/design/high-concurrency-runtime/include
   OBJECT_DIR = CMakeFiles/runtime_http.dir
   OBJECT_FILE_DIR = CMakeFiles/runtime_http.dir/src/http
 
-build CMakeFiles/runtime_http.dir/src/http/router.cpp.o: CXX_COMPILER__runtime_http_Debug /home/yun/design/high-concurrency-runtime/src/http/router.cpp || cmake_object_order_depends_target_runtime_http
+build CMakeFiles/runtime_http.dir/src/http/router.cpp.o: CXX_COMPILER__runtime_http_Release /home/yun/design/high-concurrency-runtime/src/http/router.cpp || cmake_object_order_depends_target_runtime_http
   DEP_FILE = CMakeFiles/runtime_http.dir/src/http/router.cpp.o.d
-  FLAGS = -g -std=c++20
+  FLAGS = -O3 -DNDEBUG -std=c++20
   INCLUDES = -I/home/yun/design/high-concurrency-runtime/include
   OBJECT_DIR = CMakeFiles/runtime_http.dir
   OBJECT_FILE_DIR = CMakeFiles/runtime_http.dir/src/http
 
-build CMakeFiles/runtime_http.dir/src/http/http_server.cpp.o: CXX_COMPILER__runtime_http_Debug /home/yun/design/high-concurrency-runtime/src/http/http_server.cpp || cmake_object_order_depends_target_runtime_http
+build CMakeFiles/runtime_http.dir/src/http/http_server.cpp.o: CXX_COMPILER__runtime_http_Release /home/yun/design/high-concurrency-runtime/src/http/http_server.cpp || cmake_object_order_depends_target_runtime_http
   DEP_FILE = CMakeFiles/runtime_http.dir/src/http/http_server.cpp.o.d
-  FLAGS = -g -std=c++20
+  FLAGS = -O3 -DNDEBUG -std=c++20
   INCLUDES = -I/home/yun/design/high-concurrency-runtime/include
   OBJECT_DIR = CMakeFiles/runtime_http.dir
   OBJECT_FILE_DIR = CMakeFiles/runtime_http.dir/src/http
@@ -328,13 +328,226 @@ build CMakeFiles/runtime_http.dir/src/http/http_server.cpp.o: CXX_COMPILER__runt
 #############################################
 # Link the static library libruntime_http.a
 
-build libruntime_http.a: CXX_STATIC_LIBRARY_LINKER__runtime_http_Debug CMakeFiles/runtime_http.dir/src/http/http_types.cpp.o CMakeFiles/runtime_http.dir/src/http/http_request.cpp.o CMakeFiles/runtime_http.dir/src/http/http_context.cpp.o CMakeFiles/runtime_http.dir/src/http/http_response.cpp.o CMakeFiles/runtime_http.dir/src/http/router.cpp.o CMakeFiles/runtime_http.dir/src/http/http_server.cpp.o || libruntime_foundation.a libruntime_net.a libruntime_task.a
-  LANGUAGE_COMPILE_FLAGS = -g
+build libruntime_http.a: CXX_STATIC_LIBRARY_LINKER__runtime_http_Release CMakeFiles/runtime_http.dir/src/http/http_types.cpp.o CMakeFiles/runtime_http.dir/src/http/http_request.cpp.o CMakeFiles/runtime_http.dir/src/http/http_context.cpp.o CMakeFiles/runtime_http.dir/src/http/http_response.cpp.o CMakeFiles/runtime_http.dir/src/http/router.cpp.o CMakeFiles/runtime_http.dir/src/http/http_server.cpp.o || libruntime_foundation.a libruntime_net.a libruntime_task.a
+  LANGUAGE_COMPILE_FLAGS = -O3 -DNDEBUG
   OBJECT_DIR = CMakeFiles/runtime_http.dir
   POST_BUILD = :
   PRE_LINK = :
   TARGET_FILE = libruntime_http.a
   TARGET_PDB = runtime_http.a.dbg
+
+# =============================================================================
+# Object build statements for STATIC_LIBRARY target runtime_trace
+
+
+#############################################
+# Order-only phony target for runtime_trace
+
+build cmake_object_order_depends_target_runtime_trace: phony || cmake_object_order_depends_target_runtime_foundation
+
+build CMakeFiles/runtime_trace.dir/src/trace/trace_id.cpp.o: CXX_COMPILER__runtime_trace_Release /home/yun/design/high-concurrency-runtime/src/trace/trace_id.cpp || cmake_object_order_depends_target_runtime_trace
+  DEP_FILE = CMakeFiles/runtime_trace.dir/src/trace/trace_id.cpp.o.d
+  FLAGS = -O3 -DNDEBUG -std=c++20
+  INCLUDES = -I/home/yun/design/high-concurrency-runtime/include
+  OBJECT_DIR = CMakeFiles/runtime_trace.dir
+  OBJECT_FILE_DIR = CMakeFiles/runtime_trace.dir/src/trace
+
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target runtime_trace
+
+
+#############################################
+# Link the static library libruntime_trace.a
+
+build libruntime_trace.a: CXX_STATIC_LIBRARY_LINKER__runtime_trace_Release CMakeFiles/runtime_trace.dir/src/trace/trace_id.cpp.o || libruntime_foundation.a
+  LANGUAGE_COMPILE_FLAGS = -O3 -DNDEBUG
+  OBJECT_DIR = CMakeFiles/runtime_trace.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_FILE = libruntime_trace.a
+  TARGET_PDB = runtime_trace.a.dbg
+
+# =============================================================================
+# Object build statements for STATIC_LIBRARY target runtime_config
+
+
+#############################################
+# Order-only phony target for runtime_config
+
+build cmake_object_order_depends_target_runtime_config: phony || cmake_object_order_depends_target_runtime_foundation
+
+build CMakeFiles/runtime_config.dir/src/config/config.cpp.o: CXX_COMPILER__runtime_config_Release /home/yun/design/high-concurrency-runtime/src/config/config.cpp || cmake_object_order_depends_target_runtime_config
+  DEP_FILE = CMakeFiles/runtime_config.dir/src/config/config.cpp.o.d
+  FLAGS = -O3 -DNDEBUG -std=c++20
+  INCLUDES = -I/home/yun/design/high-concurrency-runtime/include
+  OBJECT_DIR = CMakeFiles/runtime_config.dir
+  OBJECT_FILE_DIR = CMakeFiles/runtime_config.dir/src/config
+
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target runtime_config
+
+
+#############################################
+# Link the static library libruntime_config.a
+
+build libruntime_config.a: CXX_STATIC_LIBRARY_LINKER__runtime_config_Release CMakeFiles/runtime_config.dir/src/config/config.cpp.o || libruntime_foundation.a
+  LANGUAGE_COMPILE_FLAGS = -O3 -DNDEBUG
+  OBJECT_DIR = CMakeFiles/runtime_config.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_FILE = libruntime_config.a
+  TARGET_PDB = runtime_config.a.dbg
+
+# =============================================================================
+# Object build statements for STATIC_LIBRARY target runtime_metrics
+
+
+#############################################
+# Order-only phony target for runtime_metrics
+
+build cmake_object_order_depends_target_runtime_metrics: phony || cmake_object_order_depends_target_runtime_foundation
+
+build CMakeFiles/runtime_metrics.dir/src/metrics/registry.cpp.o: CXX_COMPILER__runtime_metrics_Release /home/yun/design/high-concurrency-runtime/src/metrics/registry.cpp || cmake_object_order_depends_target_runtime_metrics
+  DEP_FILE = CMakeFiles/runtime_metrics.dir/src/metrics/registry.cpp.o.d
+  FLAGS = -O3 -DNDEBUG -std=c++20
+  INCLUDES = -I/home/yun/design/high-concurrency-runtime/include
+  OBJECT_DIR = CMakeFiles/runtime_metrics.dir
+  OBJECT_FILE_DIR = CMakeFiles/runtime_metrics.dir/src/metrics
+
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target runtime_metrics
+
+
+#############################################
+# Link the static library libruntime_metrics.a
+
+build libruntime_metrics.a: CXX_STATIC_LIBRARY_LINKER__runtime_metrics_Release CMakeFiles/runtime_metrics.dir/src/metrics/registry.cpp.o || libruntime_foundation.a
+  LANGUAGE_COMPILE_FLAGS = -O3 -DNDEBUG
+  OBJECT_DIR = CMakeFiles/runtime_metrics.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_FILE = libruntime_metrics.a
+  TARGET_PDB = runtime_metrics.a.dbg
+
+# =============================================================================
+# Object build statements for STATIC_LIBRARY target runtime_health
+
+
+#############################################
+# Order-only phony target for runtime_health
+
+build cmake_object_order_depends_target_runtime_health: phony || cmake_object_order_depends_target_runtime_foundation cmake_object_order_depends_target_runtime_http cmake_object_order_depends_target_runtime_metrics cmake_object_order_depends_target_runtime_net cmake_object_order_depends_target_runtime_task
+
+build CMakeFiles/runtime_health.dir/src/health/health_handler.cpp.o: CXX_COMPILER__runtime_health_Release /home/yun/design/high-concurrency-runtime/src/health/health_handler.cpp || cmake_object_order_depends_target_runtime_health
+  DEP_FILE = CMakeFiles/runtime_health.dir/src/health/health_handler.cpp.o.d
+  FLAGS = -O3 -DNDEBUG -std=c++20
+  INCLUDES = -I/home/yun/design/high-concurrency-runtime/include
+  OBJECT_DIR = CMakeFiles/runtime_health.dir
+  OBJECT_FILE_DIR = CMakeFiles/runtime_health.dir/src/health
+
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target runtime_health
+
+
+#############################################
+# Link the static library libruntime_health.a
+
+build libruntime_health.a: CXX_STATIC_LIBRARY_LINKER__runtime_health_Release CMakeFiles/runtime_health.dir/src/health/health_handler.cpp.o || libruntime_foundation.a libruntime_http.a libruntime_metrics.a libruntime_net.a libruntime_task.a
+  LANGUAGE_COMPILE_FLAGS = -O3 -DNDEBUG
+  OBJECT_DIR = CMakeFiles/runtime_health.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_FILE = libruntime_health.a
+  TARGET_PDB = runtime_health.a.dbg
+
+# =============================================================================
+# Object build statements for STATIC_LIBRARY target runtime_inference
+
+
+#############################################
+# Order-only phony target for runtime_inference
+
+build cmake_object_order_depends_target_runtime_inference: phony || cmake_object_order_depends_target_runtime_foundation cmake_object_order_depends_target_runtime_net cmake_object_order_depends_target_runtime_task
+
+build CMakeFiles/runtime_inference.dir/src/inference/llama_engine.cpp.o: CXX_COMPILER__runtime_inference_Release /home/yun/design/high-concurrency-runtime/src/inference/llama_engine.cpp || cmake_object_order_depends_target_runtime_inference
+  DEP_FILE = CMakeFiles/runtime_inference.dir/src/inference/llama_engine.cpp.o.d
+  FLAGS = -O3 -DNDEBUG -std=c++20
+  INCLUDES = -I/home/yun/design/high-concurrency-runtime/include
+  OBJECT_DIR = CMakeFiles/runtime_inference.dir
+  OBJECT_FILE_DIR = CMakeFiles/runtime_inference.dir/src/inference
+
+build CMakeFiles/runtime_inference.dir/src/inference/batch_scheduler.cpp.o: CXX_COMPILER__runtime_inference_Release /home/yun/design/high-concurrency-runtime/src/inference/batch_scheduler.cpp || cmake_object_order_depends_target_runtime_inference
+  DEP_FILE = CMakeFiles/runtime_inference.dir/src/inference/batch_scheduler.cpp.o.d
+  FLAGS = -O3 -DNDEBUG -std=c++20
+  INCLUDES = -I/home/yun/design/high-concurrency-runtime/include
+  OBJECT_DIR = CMakeFiles/runtime_inference.dir
+  OBJECT_FILE_DIR = CMakeFiles/runtime_inference.dir/src/inference
+
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target runtime_inference
+
+
+#############################################
+# Link the static library libruntime_inference.a
+
+build libruntime_inference.a: CXX_STATIC_LIBRARY_LINKER__runtime_inference_Release CMakeFiles/runtime_inference.dir/src/inference/llama_engine.cpp.o CMakeFiles/runtime_inference.dir/src/inference/batch_scheduler.cpp.o || libruntime_foundation.a libruntime_net.a libruntime_task.a
+  LANGUAGE_COMPILE_FLAGS = -O3 -DNDEBUG
+  OBJECT_DIR = CMakeFiles/runtime_inference.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_FILE = libruntime_inference.a
+  TARGET_PDB = runtime_inference.a.dbg
+
+# =============================================================================
+# Object build statements for STATIC_LIBRARY target runtime_api
+
+
+#############################################
+# Order-only phony target for runtime_api
+
+build cmake_object_order_depends_target_runtime_api: phony || cmake_object_order_depends_target_runtime_foundation cmake_object_order_depends_target_runtime_http cmake_object_order_depends_target_runtime_inference cmake_object_order_depends_target_runtime_metrics cmake_object_order_depends_target_runtime_net cmake_object_order_depends_target_runtime_task
+
+build CMakeFiles/runtime_api.dir/src/api/sse_writer.cpp.o: CXX_COMPILER__runtime_api_Release /home/yun/design/high-concurrency-runtime/src/api/sse_writer.cpp || cmake_object_order_depends_target_runtime_api
+  DEP_FILE = CMakeFiles/runtime_api.dir/src/api/sse_writer.cpp.o.d
+  FLAGS = -O3 -DNDEBUG -std=c++20
+  INCLUDES = -I/home/yun/design/high-concurrency-runtime/include
+  OBJECT_DIR = CMakeFiles/runtime_api.dir
+  OBJECT_FILE_DIR = CMakeFiles/runtime_api.dir/src/api
+
+build CMakeFiles/runtime_api.dir/src/api/chat_handler.cpp.o: CXX_COMPILER__runtime_api_Release /home/yun/design/high-concurrency-runtime/src/api/chat_handler.cpp || cmake_object_order_depends_target_runtime_api
+  DEP_FILE = CMakeFiles/runtime_api.dir/src/api/chat_handler.cpp.o.d
+  FLAGS = -O3 -DNDEBUG -std=c++20
+  INCLUDES = -I/home/yun/design/high-concurrency-runtime/include
+  OBJECT_DIR = CMakeFiles/runtime_api.dir
+  OBJECT_FILE_DIR = CMakeFiles/runtime_api.dir/src/api
+
+build CMakeFiles/runtime_api.dir/src/api/models_handler.cpp.o: CXX_COMPILER__runtime_api_Release /home/yun/design/high-concurrency-runtime/src/api/models_handler.cpp || cmake_object_order_depends_target_runtime_api
+  DEP_FILE = CMakeFiles/runtime_api.dir/src/api/models_handler.cpp.o.d
+  FLAGS = -O3 -DNDEBUG -std=c++20
+  INCLUDES = -I/home/yun/design/high-concurrency-runtime/include
+  OBJECT_DIR = CMakeFiles/runtime_api.dir
+  OBJECT_FILE_DIR = CMakeFiles/runtime_api.dir/src/api
+
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target runtime_api
+
+
+#############################################
+# Link the static library libruntime_api.a
+
+build libruntime_api.a: CXX_STATIC_LIBRARY_LINKER__runtime_api_Release CMakeFiles/runtime_api.dir/src/api/sse_writer.cpp.o CMakeFiles/runtime_api.dir/src/api/chat_handler.cpp.o CMakeFiles/runtime_api.dir/src/api/models_handler.cpp.o || libruntime_foundation.a libruntime_http.a libruntime_inference.a libruntime_metrics.a libruntime_net.a libruntime_task.a
+  LANGUAGE_COMPILE_FLAGS = -O3 -DNDEBUG
+  OBJECT_DIR = CMakeFiles/runtime_api.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_FILE = libruntime_api.a
+  TARGET_PDB = runtime_api.a.dbg
 
 
 #############################################
@@ -385,9 +598,9 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 
 build cmake_object_order_depends_target_simple_logger_example: phony || cmake_object_order_depends_target_runtime_foundation
 
-build examples/CMakeFiles/simple_logger_example.dir/simple_logger.cpp.o: CXX_COMPILER__simple_logger_example_Debug /home/yun/design/high-concurrency-runtime/examples/simple_logger.cpp || cmake_object_order_depends_target_simple_logger_example
+build examples/CMakeFiles/simple_logger_example.dir/simple_logger.cpp.o: CXX_COMPILER__simple_logger_example_Release /home/yun/design/high-concurrency-runtime/examples/simple_logger.cpp || cmake_object_order_depends_target_simple_logger_example
   DEP_FILE = examples/CMakeFiles/simple_logger_example.dir/simple_logger.cpp.o.d
-  FLAGS = -g -std=c++20
+  FLAGS = -O3 -DNDEBUG -std=c++20
   INCLUDES = -I/home/yun/design/high-concurrency-runtime/include
   OBJECT_DIR = examples/CMakeFiles/simple_logger_example.dir
   OBJECT_FILE_DIR = examples/CMakeFiles/simple_logger_example.dir
@@ -400,8 +613,8 @@ build examples/CMakeFiles/simple_logger_example.dir/simple_logger.cpp.o: CXX_COM
 #############################################
 # Link the executable examples/simple_logger_example
 
-build examples/simple_logger_example: CXX_EXECUTABLE_LINKER__simple_logger_example_Debug examples/CMakeFiles/simple_logger_example.dir/simple_logger.cpp.o | libruntime_foundation.a || libruntime_foundation.a
-  FLAGS = -g
+build examples/simple_logger_example: CXX_EXECUTABLE_LINKER__simple_logger_example_Release examples/CMakeFiles/simple_logger_example.dir/simple_logger.cpp.o | libruntime_foundation.a || libruntime_foundation.a
+  FLAGS = -O3 -DNDEBUG
   LINK_LIBRARIES = libruntime_foundation.a
   OBJECT_DIR = examples/CMakeFiles/simple_logger_example.dir
   POST_BUILD = :
@@ -418,9 +631,9 @@ build examples/simple_logger_example: CXX_EXECUTABLE_LINKER__simple_logger_examp
 
 build cmake_object_order_depends_target_simple_echo_server: phony || cmake_object_order_depends_target_runtime_foundation cmake_object_order_depends_target_runtime_net
 
-build examples/CMakeFiles/simple_echo_server.dir/simple_echo_server.cpp.o: CXX_COMPILER__simple_echo_server_Debug /home/yun/design/high-concurrency-runtime/examples/simple_echo_server.cpp || cmake_object_order_depends_target_simple_echo_server
+build examples/CMakeFiles/simple_echo_server.dir/simple_echo_server.cpp.o: CXX_COMPILER__simple_echo_server_Release /home/yun/design/high-concurrency-runtime/examples/simple_echo_server.cpp || cmake_object_order_depends_target_simple_echo_server
   DEP_FILE = examples/CMakeFiles/simple_echo_server.dir/simple_echo_server.cpp.o.d
-  FLAGS = -g -std=c++20
+  FLAGS = -O3 -DNDEBUG -std=c++20
   INCLUDES = -I/home/yun/design/high-concurrency-runtime/include
   OBJECT_DIR = examples/CMakeFiles/simple_echo_server.dir
   OBJECT_FILE_DIR = examples/CMakeFiles/simple_echo_server.dir
@@ -433,8 +646,8 @@ build examples/CMakeFiles/simple_echo_server.dir/simple_echo_server.cpp.o: CXX_C
 #############################################
 # Link the executable examples/simple_echo_server
 
-build examples/simple_echo_server: CXX_EXECUTABLE_LINKER__simple_echo_server_Debug examples/CMakeFiles/simple_echo_server.dir/simple_echo_server.cpp.o | libruntime_net.a libruntime_foundation.a || libruntime_foundation.a libruntime_net.a
-  FLAGS = -g
+build examples/simple_echo_server: CXX_EXECUTABLE_LINKER__simple_echo_server_Release examples/CMakeFiles/simple_echo_server.dir/simple_echo_server.cpp.o | libruntime_net.a libruntime_foundation.a || libruntime_foundation.a libruntime_net.a
+  FLAGS = -O3 -DNDEBUG
   LINK_LIBRARIES = libruntime_net.a  libruntime_foundation.a
   OBJECT_DIR = examples/CMakeFiles/simple_echo_server.dir
   POST_BUILD = :
@@ -451,9 +664,9 @@ build examples/simple_echo_server: CXX_EXECUTABLE_LINKER__simple_echo_server_Deb
 
 build cmake_object_order_depends_target_demo_http_server: phony || cmake_object_order_depends_target_runtime_foundation cmake_object_order_depends_target_runtime_http cmake_object_order_depends_target_runtime_net cmake_object_order_depends_target_runtime_task
 
-build examples/CMakeFiles/demo_http_server.dir/demo_http_server.cpp.o: CXX_COMPILER__demo_http_server_Debug /home/yun/design/high-concurrency-runtime/examples/demo_http_server.cpp || cmake_object_order_depends_target_demo_http_server
+build examples/CMakeFiles/demo_http_server.dir/demo_http_server.cpp.o: CXX_COMPILER__demo_http_server_Release /home/yun/design/high-concurrency-runtime/examples/demo_http_server.cpp || cmake_object_order_depends_target_demo_http_server
   DEP_FILE = examples/CMakeFiles/demo_http_server.dir/demo_http_server.cpp.o.d
-  FLAGS = -g -std=c++20
+  FLAGS = -O3 -DNDEBUG -std=c++20
   INCLUDES = -I/home/yun/design/high-concurrency-runtime/include
   OBJECT_DIR = examples/CMakeFiles/demo_http_server.dir
   OBJECT_FILE_DIR = examples/CMakeFiles/demo_http_server.dir
@@ -466,8 +679,8 @@ build examples/CMakeFiles/demo_http_server.dir/demo_http_server.cpp.o: CXX_COMPI
 #############################################
 # Link the executable examples/demo_http_server
 
-build examples/demo_http_server: CXX_EXECUTABLE_LINKER__demo_http_server_Debug examples/CMakeFiles/demo_http_server.dir/demo_http_server.cpp.o | libruntime_http.a libruntime_foundation.a libruntime_net.a libruntime_task.a libruntime_foundation.a || libruntime_foundation.a libruntime_http.a libruntime_net.a libruntime_task.a
-  FLAGS = -g
+build examples/demo_http_server: CXX_EXECUTABLE_LINKER__demo_http_server_Release examples/CMakeFiles/demo_http_server.dir/demo_http_server.cpp.o | libruntime_http.a libruntime_foundation.a libruntime_net.a libruntime_task.a libruntime_foundation.a || libruntime_foundation.a libruntime_http.a libruntime_net.a libruntime_task.a
+  FLAGS = -O3 -DNDEBUG
   LINK_LIBRARIES = libruntime_http.a  libruntime_foundation.a  libruntime_net.a  libruntime_task.a  libruntime_foundation.a
   OBJECT_DIR = examples/CMakeFiles/demo_http_server.dir
   POST_BUILD = :
@@ -692,9 +905,9 @@ build tests/ContinuousSubmit: phony tests/CMakeFiles/ContinuousSubmit
 
 build cmake_object_order_depends_target_memory_pool_smoke_test: phony || tests/CMakeFiles/memory_pool_smoke_test.dir
 
-build tests/CMakeFiles/memory_pool_smoke_test.dir/unit/test_memory_pool_smoke.cpp.o: CXX_COMPILER__memory_pool_smoke_test_Debug /home/yun/design/high-concurrency-runtime/tests/unit/test_memory_pool_smoke.cpp || cmake_object_order_depends_target_memory_pool_smoke_test
+build tests/CMakeFiles/memory_pool_smoke_test.dir/unit/test_memory_pool_smoke.cpp.o: CXX_COMPILER__memory_pool_smoke_test_Release /home/yun/design/high-concurrency-runtime/tests/unit/test_memory_pool_smoke.cpp || cmake_object_order_depends_target_memory_pool_smoke_test
   DEP_FILE = tests/CMakeFiles/memory_pool_smoke_test.dir/unit/test_memory_pool_smoke.cpp.o.d
-  FLAGS = -g -std=c++20
+  FLAGS = -O3 -DNDEBUG -std=c++20
   INCLUDES = -I/home/yun/design/high-concurrency-runtime/tests/../include
   OBJECT_DIR = tests/CMakeFiles/memory_pool_smoke_test.dir
   OBJECT_FILE_DIR = tests/CMakeFiles/memory_pool_smoke_test.dir/unit
@@ -707,8 +920,8 @@ build tests/CMakeFiles/memory_pool_smoke_test.dir/unit/test_memory_pool_smoke.cp
 #############################################
 # Link the executable tests/memory_pool_smoke_test
 
-build tests/memory_pool_smoke_test: CXX_EXECUTABLE_LINKER__memory_pool_smoke_test_Debug tests/CMakeFiles/memory_pool_smoke_test.dir/unit/test_memory_pool_smoke.cpp.o
-  FLAGS = -g
+build tests/memory_pool_smoke_test: CXX_EXECUTABLE_LINKER__memory_pool_smoke_test_Release tests/CMakeFiles/memory_pool_smoke_test.dir/unit/test_memory_pool_smoke.cpp.o
+  FLAGS = -O3 -DNDEBUG
   OBJECT_DIR = tests/CMakeFiles/memory_pool_smoke_test.dir
   POST_BUILD = :
   PRE_LINK = :
@@ -724,9 +937,9 @@ build tests/memory_pool_smoke_test: CXX_EXECUTABLE_LINKER__memory_pool_smoke_tes
 
 build cmake_object_order_depends_target_object_pool_smoke_test: phony || tests/CMakeFiles/object_pool_smoke_test.dir
 
-build tests/CMakeFiles/object_pool_smoke_test.dir/unit/test_object_pool_smoke.cpp.o: CXX_COMPILER__object_pool_smoke_test_Debug /home/yun/design/high-concurrency-runtime/tests/unit/test_object_pool_smoke.cpp || cmake_object_order_depends_target_object_pool_smoke_test
+build tests/CMakeFiles/object_pool_smoke_test.dir/unit/test_object_pool_smoke.cpp.o: CXX_COMPILER__object_pool_smoke_test_Release /home/yun/design/high-concurrency-runtime/tests/unit/test_object_pool_smoke.cpp || cmake_object_order_depends_target_object_pool_smoke_test
   DEP_FILE = tests/CMakeFiles/object_pool_smoke_test.dir/unit/test_object_pool_smoke.cpp.o.d
-  FLAGS = -g -std=c++20
+  FLAGS = -O3 -DNDEBUG -std=c++20
   INCLUDES = -I/home/yun/design/high-concurrency-runtime/tests/../include
   OBJECT_DIR = tests/CMakeFiles/object_pool_smoke_test.dir
   OBJECT_FILE_DIR = tests/CMakeFiles/object_pool_smoke_test.dir/unit
@@ -739,8 +952,8 @@ build tests/CMakeFiles/object_pool_smoke_test.dir/unit/test_object_pool_smoke.cp
 #############################################
 # Link the executable tests/object_pool_smoke_test
 
-build tests/object_pool_smoke_test: CXX_EXECUTABLE_LINKER__object_pool_smoke_test_Debug tests/CMakeFiles/object_pool_smoke_test.dir/unit/test_object_pool_smoke.cpp.o
-  FLAGS = -g
+build tests/object_pool_smoke_test: CXX_EXECUTABLE_LINKER__object_pool_smoke_test_Release tests/CMakeFiles/object_pool_smoke_test.dir/unit/test_object_pool_smoke.cpp.o
+  FLAGS = -O3 -DNDEBUG
   OBJECT_DIR = tests/CMakeFiles/object_pool_smoke_test.dir
   POST_BUILD = :
   PRE_LINK = :
@@ -756,9 +969,9 @@ build tests/object_pool_smoke_test: CXX_EXECUTABLE_LINKER__object_pool_smoke_tes
 
 build cmake_object_order_depends_target_logger_smoke_test: phony || cmake_object_order_depends_target_runtime_foundation
 
-build tests/CMakeFiles/logger_smoke_test.dir/unit/test_logger_smoke.cpp.o: CXX_COMPILER__logger_smoke_test_Debug /home/yun/design/high-concurrency-runtime/tests/unit/test_logger_smoke.cpp || cmake_object_order_depends_target_logger_smoke_test
+build tests/CMakeFiles/logger_smoke_test.dir/unit/test_logger_smoke.cpp.o: CXX_COMPILER__logger_smoke_test_Release /home/yun/design/high-concurrency-runtime/tests/unit/test_logger_smoke.cpp || cmake_object_order_depends_target_logger_smoke_test
   DEP_FILE = tests/CMakeFiles/logger_smoke_test.dir/unit/test_logger_smoke.cpp.o.d
-  FLAGS = -g -std=c++20
+  FLAGS = -O3 -DNDEBUG -std=c++20
   INCLUDES = -I/home/yun/design/high-concurrency-runtime/tests/../include -I/home/yun/design/high-concurrency-runtime/include
   OBJECT_DIR = tests/CMakeFiles/logger_smoke_test.dir
   OBJECT_FILE_DIR = tests/CMakeFiles/logger_smoke_test.dir/unit
@@ -771,8 +984,8 @@ build tests/CMakeFiles/logger_smoke_test.dir/unit/test_logger_smoke.cpp.o: CXX_C
 #############################################
 # Link the executable tests/logger_smoke_test
 
-build tests/logger_smoke_test: CXX_EXECUTABLE_LINKER__logger_smoke_test_Debug tests/CMakeFiles/logger_smoke_test.dir/unit/test_logger_smoke.cpp.o | libruntime_foundation.a || libruntime_foundation.a
-  FLAGS = -g
+build tests/logger_smoke_test: CXX_EXECUTABLE_LINKER__logger_smoke_test_Release tests/CMakeFiles/logger_smoke_test.dir/unit/test_logger_smoke.cpp.o | libruntime_foundation.a || libruntime_foundation.a
+  FLAGS = -O3 -DNDEBUG
   LINK_LIBRARIES = libruntime_foundation.a
   OBJECT_DIR = tests/CMakeFiles/logger_smoke_test.dir
   POST_BUILD = :
@@ -789,9 +1002,9 @@ build tests/logger_smoke_test: CXX_EXECUTABLE_LINKER__logger_smoke_test_Debug te
 
 build cmake_object_order_depends_target_buffer_smoke_test: phony || cmake_object_order_depends_target_runtime_foundation cmake_object_order_depends_target_runtime_net
 
-build tests/CMakeFiles/buffer_smoke_test.dir/unit/test_buffer_smoke.cpp.o: CXX_COMPILER__buffer_smoke_test_Debug /home/yun/design/high-concurrency-runtime/tests/unit/test_buffer_smoke.cpp || cmake_object_order_depends_target_buffer_smoke_test
+build tests/CMakeFiles/buffer_smoke_test.dir/unit/test_buffer_smoke.cpp.o: CXX_COMPILER__buffer_smoke_test_Release /home/yun/design/high-concurrency-runtime/tests/unit/test_buffer_smoke.cpp || cmake_object_order_depends_target_buffer_smoke_test
   DEP_FILE = tests/CMakeFiles/buffer_smoke_test.dir/unit/test_buffer_smoke.cpp.o.d
-  FLAGS = -g -std=c++20
+  FLAGS = -O3 -DNDEBUG -std=c++20
   INCLUDES = -I/home/yun/design/high-concurrency-runtime/tests/../include -I/home/yun/design/high-concurrency-runtime/include
   OBJECT_DIR = tests/CMakeFiles/buffer_smoke_test.dir
   OBJECT_FILE_DIR = tests/CMakeFiles/buffer_smoke_test.dir/unit
@@ -804,8 +1017,8 @@ build tests/CMakeFiles/buffer_smoke_test.dir/unit/test_buffer_smoke.cpp.o: CXX_C
 #############################################
 # Link the executable tests/buffer_smoke_test
 
-build tests/buffer_smoke_test: CXX_EXECUTABLE_LINKER__buffer_smoke_test_Debug tests/CMakeFiles/buffer_smoke_test.dir/unit/test_buffer_smoke.cpp.o | libruntime_net.a libruntime_foundation.a || libruntime_foundation.a libruntime_net.a
-  FLAGS = -g
+build tests/buffer_smoke_test: CXX_EXECUTABLE_LINKER__buffer_smoke_test_Release tests/CMakeFiles/buffer_smoke_test.dir/unit/test_buffer_smoke.cpp.o | libruntime_net.a libruntime_foundation.a || libruntime_foundation.a libruntime_net.a
+  FLAGS = -O3 -DNDEBUG
   LINK_LIBRARIES = libruntime_net.a  libruntime_foundation.a
   OBJECT_DIR = tests/CMakeFiles/buffer_smoke_test.dir
   POST_BUILD = :
@@ -822,9 +1035,9 @@ build tests/buffer_smoke_test: CXX_EXECUTABLE_LINKER__buffer_smoke_test_Debug te
 
 build cmake_object_order_depends_target_http_smoke_test: phony || cmake_object_order_depends_target_runtime_foundation cmake_object_order_depends_target_runtime_http cmake_object_order_depends_target_runtime_net cmake_object_order_depends_target_runtime_task
 
-build tests/CMakeFiles/http_smoke_test.dir/unit/test_http_smoke.cpp.o: CXX_COMPILER__http_smoke_test_Debug /home/yun/design/high-concurrency-runtime/tests/unit/test_http_smoke.cpp || cmake_object_order_depends_target_http_smoke_test
+build tests/CMakeFiles/http_smoke_test.dir/unit/test_http_smoke.cpp.o: CXX_COMPILER__http_smoke_test_Release /home/yun/design/high-concurrency-runtime/tests/unit/test_http_smoke.cpp || cmake_object_order_depends_target_http_smoke_test
   DEP_FILE = tests/CMakeFiles/http_smoke_test.dir/unit/test_http_smoke.cpp.o.d
-  FLAGS = -g -std=c++20
+  FLAGS = -O3 -DNDEBUG -std=c++20
   INCLUDES = -I/home/yun/design/high-concurrency-runtime/tests/../include -I/home/yun/design/high-concurrency-runtime/include
   OBJECT_DIR = tests/CMakeFiles/http_smoke_test.dir
   OBJECT_FILE_DIR = tests/CMakeFiles/http_smoke_test.dir/unit
@@ -837,8 +1050,8 @@ build tests/CMakeFiles/http_smoke_test.dir/unit/test_http_smoke.cpp.o: CXX_COMPI
 #############################################
 # Link the executable tests/http_smoke_test
 
-build tests/http_smoke_test: CXX_EXECUTABLE_LINKER__http_smoke_test_Debug tests/CMakeFiles/http_smoke_test.dir/unit/test_http_smoke.cpp.o | libruntime_http.a libruntime_net.a libruntime_task.a libruntime_foundation.a || libruntime_foundation.a libruntime_http.a libruntime_net.a libruntime_task.a
-  FLAGS = -g
+build tests/http_smoke_test: CXX_EXECUTABLE_LINKER__http_smoke_test_Release tests/CMakeFiles/http_smoke_test.dir/unit/test_http_smoke.cpp.o | libruntime_http.a libruntime_net.a libruntime_task.a libruntime_foundation.a || libruntime_foundation.a libruntime_http.a libruntime_net.a libruntime_task.a
+  FLAGS = -O3 -DNDEBUG
   LINK_LIBRARIES = libruntime_http.a  libruntime_net.a  libruntime_task.a  libruntime_foundation.a
   OBJECT_DIR = tests/CMakeFiles/http_smoke_test.dir
   POST_BUILD = :
@@ -855,9 +1068,9 @@ build tests/http_smoke_test: CXX_EXECUTABLE_LINKER__http_smoke_test_Debug tests/
 
 build cmake_object_order_depends_target_epoll_poller_smoke_test: phony || cmake_object_order_depends_target_runtime_foundation cmake_object_order_depends_target_runtime_net
 
-build tests/CMakeFiles/epoll_poller_smoke_test.dir/unit/test_epoll_poller_smoke.cpp.o: CXX_COMPILER__epoll_poller_smoke_test_Debug /home/yun/design/high-concurrency-runtime/tests/unit/test_epoll_poller_smoke.cpp || cmake_object_order_depends_target_epoll_poller_smoke_test
+build tests/CMakeFiles/epoll_poller_smoke_test.dir/unit/test_epoll_poller_smoke.cpp.o: CXX_COMPILER__epoll_poller_smoke_test_Release /home/yun/design/high-concurrency-runtime/tests/unit/test_epoll_poller_smoke.cpp || cmake_object_order_depends_target_epoll_poller_smoke_test
   DEP_FILE = tests/CMakeFiles/epoll_poller_smoke_test.dir/unit/test_epoll_poller_smoke.cpp.o.d
-  FLAGS = -g -std=c++20
+  FLAGS = -O3 -DNDEBUG -std=c++20
   INCLUDES = -I/home/yun/design/high-concurrency-runtime/tests/../include -I/home/yun/design/high-concurrency-runtime/include
   OBJECT_DIR = tests/CMakeFiles/epoll_poller_smoke_test.dir
   OBJECT_FILE_DIR = tests/CMakeFiles/epoll_poller_smoke_test.dir/unit
@@ -870,8 +1083,8 @@ build tests/CMakeFiles/epoll_poller_smoke_test.dir/unit/test_epoll_poller_smoke.
 #############################################
 # Link the executable tests/epoll_poller_smoke_test
 
-build tests/epoll_poller_smoke_test: CXX_EXECUTABLE_LINKER__epoll_poller_smoke_test_Debug tests/CMakeFiles/epoll_poller_smoke_test.dir/unit/test_epoll_poller_smoke.cpp.o | libruntime_net.a libruntime_foundation.a || libruntime_foundation.a libruntime_net.a
-  FLAGS = -g
+build tests/epoll_poller_smoke_test: CXX_EXECUTABLE_LINKER__epoll_poller_smoke_test_Release tests/CMakeFiles/epoll_poller_smoke_test.dir/unit/test_epoll_poller_smoke.cpp.o | libruntime_net.a libruntime_foundation.a || libruntime_foundation.a libruntime_net.a
+  FLAGS = -O3 -DNDEBUG
   LINK_LIBRARIES = libruntime_net.a  libruntime_foundation.a
   OBJECT_DIR = tests/CMakeFiles/epoll_poller_smoke_test.dir
   POST_BUILD = :
@@ -888,9 +1101,9 @@ build tests/epoll_poller_smoke_test: CXX_EXECUTABLE_LINKER__epoll_poller_smoke_t
 
 build cmake_object_order_depends_target_event_loop_smoke_test: phony || cmake_object_order_depends_target_runtime_foundation cmake_object_order_depends_target_runtime_net
 
-build tests/CMakeFiles/event_loop_smoke_test.dir/integration/test_event_loop_smoke.cpp.o: CXX_COMPILER__event_loop_smoke_test_Debug /home/yun/design/high-concurrency-runtime/tests/integration/test_event_loop_smoke.cpp || cmake_object_order_depends_target_event_loop_smoke_test
+build tests/CMakeFiles/event_loop_smoke_test.dir/integration/test_event_loop_smoke.cpp.o: CXX_COMPILER__event_loop_smoke_test_Release /home/yun/design/high-concurrency-runtime/tests/integration/test_event_loop_smoke.cpp || cmake_object_order_depends_target_event_loop_smoke_test
   DEP_FILE = tests/CMakeFiles/event_loop_smoke_test.dir/integration/test_event_loop_smoke.cpp.o.d
-  FLAGS = -g -std=c++20
+  FLAGS = -O3 -DNDEBUG -std=c++20
   INCLUDES = -I/home/yun/design/high-concurrency-runtime/tests/../include -I/home/yun/design/high-concurrency-runtime/include
   OBJECT_DIR = tests/CMakeFiles/event_loop_smoke_test.dir
   OBJECT_FILE_DIR = tests/CMakeFiles/event_loop_smoke_test.dir/integration
@@ -903,8 +1116,8 @@ build tests/CMakeFiles/event_loop_smoke_test.dir/integration/test_event_loop_smo
 #############################################
 # Link the executable tests/event_loop_smoke_test
 
-build tests/event_loop_smoke_test: CXX_EXECUTABLE_LINKER__event_loop_smoke_test_Debug tests/CMakeFiles/event_loop_smoke_test.dir/integration/test_event_loop_smoke.cpp.o | libruntime_net.a libruntime_foundation.a || libruntime_foundation.a libruntime_net.a
-  FLAGS = -g
+build tests/event_loop_smoke_test: CXX_EXECUTABLE_LINKER__event_loop_smoke_test_Release tests/CMakeFiles/event_loop_smoke_test.dir/integration/test_event_loop_smoke.cpp.o | libruntime_net.a libruntime_foundation.a || libruntime_foundation.a libruntime_net.a
+  FLAGS = -O3 -DNDEBUG
   LINK_LIBRARIES = libruntime_net.a  libruntime_foundation.a
   OBJECT_DIR = tests/CMakeFiles/event_loop_smoke_test.dir
   POST_BUILD = :
@@ -921,9 +1134,9 @@ build tests/event_loop_smoke_test: CXX_EXECUTABLE_LINKER__event_loop_smoke_test_
 
 build cmake_object_order_depends_target_tcp_server_smoke_test: phony || cmake_object_order_depends_target_runtime_foundation cmake_object_order_depends_target_runtime_net
 
-build tests/CMakeFiles/tcp_server_smoke_test.dir/integration/test_tcp_server_smoke.cpp.o: CXX_COMPILER__tcp_server_smoke_test_Debug /home/yun/design/high-concurrency-runtime/tests/integration/test_tcp_server_smoke.cpp || cmake_object_order_depends_target_tcp_server_smoke_test
+build tests/CMakeFiles/tcp_server_smoke_test.dir/integration/test_tcp_server_smoke.cpp.o: CXX_COMPILER__tcp_server_smoke_test_Release /home/yun/design/high-concurrency-runtime/tests/integration/test_tcp_server_smoke.cpp || cmake_object_order_depends_target_tcp_server_smoke_test
   DEP_FILE = tests/CMakeFiles/tcp_server_smoke_test.dir/integration/test_tcp_server_smoke.cpp.o.d
-  FLAGS = -g -std=c++20
+  FLAGS = -O3 -DNDEBUG -std=c++20
   INCLUDES = -I/home/yun/design/high-concurrency-runtime/tests/../include -I/home/yun/design/high-concurrency-runtime/include
   OBJECT_DIR = tests/CMakeFiles/tcp_server_smoke_test.dir
   OBJECT_FILE_DIR = tests/CMakeFiles/tcp_server_smoke_test.dir/integration
@@ -936,8 +1149,8 @@ build tests/CMakeFiles/tcp_server_smoke_test.dir/integration/test_tcp_server_smo
 #############################################
 # Link the executable tests/tcp_server_smoke_test
 
-build tests/tcp_server_smoke_test: CXX_EXECUTABLE_LINKER__tcp_server_smoke_test_Debug tests/CMakeFiles/tcp_server_smoke_test.dir/integration/test_tcp_server_smoke.cpp.o | libruntime_net.a libruntime_foundation.a || libruntime_foundation.a libruntime_net.a
-  FLAGS = -g
+build tests/tcp_server_smoke_test: CXX_EXECUTABLE_LINKER__tcp_server_smoke_test_Release tests/CMakeFiles/tcp_server_smoke_test.dir/integration/test_tcp_server_smoke.cpp.o | libruntime_net.a libruntime_foundation.a || libruntime_foundation.a libruntime_net.a
+  FLAGS = -O3 -DNDEBUG
   LINK_LIBRARIES = libruntime_net.a  libruntime_foundation.a
   OBJECT_DIR = tests/CMakeFiles/tcp_server_smoke_test.dir
   POST_BUILD = :
@@ -954,9 +1167,9 @@ build tests/tcp_server_smoke_test: CXX_EXECUTABLE_LINKER__tcp_server_smoke_test_
 
 build cmake_object_order_depends_target_memory_pool_bench: phony || tests/CMakeFiles/memory_pool_bench.dir
 
-build tests/CMakeFiles/memory_pool_bench.dir/unit/bench_memory_pool.cpp.o: CXX_COMPILER__memory_pool_bench_Debug /home/yun/design/high-concurrency-runtime/tests/unit/bench_memory_pool.cpp || cmake_object_order_depends_target_memory_pool_bench
+build tests/CMakeFiles/memory_pool_bench.dir/unit/bench_memory_pool.cpp.o: CXX_COMPILER__memory_pool_bench_Release /home/yun/design/high-concurrency-runtime/tests/unit/bench_memory_pool.cpp || cmake_object_order_depends_target_memory_pool_bench
   DEP_FILE = tests/CMakeFiles/memory_pool_bench.dir/unit/bench_memory_pool.cpp.o.d
-  FLAGS = -g -O2 -std=c++20
+  FLAGS = -O3 -DNDEBUG -O2 -std=c++20
   INCLUDES = -I/home/yun/design/high-concurrency-runtime/tests/../include
   OBJECT_DIR = tests/CMakeFiles/memory_pool_bench.dir
   OBJECT_FILE_DIR = tests/CMakeFiles/memory_pool_bench.dir/unit
@@ -969,8 +1182,8 @@ build tests/CMakeFiles/memory_pool_bench.dir/unit/bench_memory_pool.cpp.o: CXX_C
 #############################################
 # Link the executable tests/memory_pool_bench
 
-build tests/memory_pool_bench: CXX_EXECUTABLE_LINKER__memory_pool_bench_Debug tests/CMakeFiles/memory_pool_bench.dir/unit/bench_memory_pool.cpp.o
-  FLAGS = -g
+build tests/memory_pool_bench: CXX_EXECUTABLE_LINKER__memory_pool_bench_Release tests/CMakeFiles/memory_pool_bench.dir/unit/bench_memory_pool.cpp.o
+  FLAGS = -O3 -DNDEBUG
   OBJECT_DIR = tests/CMakeFiles/memory_pool_bench.dir
   POST_BUILD = :
   PRE_LINK = :
@@ -986,51 +1199,51 @@ build tests/memory_pool_bench: CXX_EXECUTABLE_LINKER__memory_pool_bench_Debug te
 
 build cmake_object_order_depends_target_runtime_unit_tests: phony || cmake_object_order_depends_target_runtime_foundation cmake_object_order_depends_target_runtime_net cmake_object_order_depends_target_runtime_task
 
-build tests/CMakeFiles/runtime_unit_tests.dir/unit/test_buffer.cpp.o: CXX_COMPILER__runtime_unit_tests_Debug /home/yun/design/high-concurrency-runtime/tests/unit/test_buffer.cpp || cmake_object_order_depends_target_runtime_unit_tests
+build tests/CMakeFiles/runtime_unit_tests.dir/unit/test_buffer.cpp.o: CXX_COMPILER__runtime_unit_tests_Release /home/yun/design/high-concurrency-runtime/tests/unit/test_buffer.cpp || cmake_object_order_depends_target_runtime_unit_tests
   DEP_FILE = tests/CMakeFiles/runtime_unit_tests.dir/unit/test_buffer.cpp.o.d
-  FLAGS = -g -std=c++20
+  FLAGS = -O3 -DNDEBUG -std=c++20
   INCLUDES = -I/home/yun/design/high-concurrency-runtime/include
   OBJECT_DIR = tests/CMakeFiles/runtime_unit_tests.dir
   OBJECT_FILE_DIR = tests/CMakeFiles/runtime_unit_tests.dir/unit
 
-build tests/CMakeFiles/runtime_unit_tests.dir/unit/test_logger.cpp.o: CXX_COMPILER__runtime_unit_tests_Debug /home/yun/design/high-concurrency-runtime/tests/unit/test_logger.cpp || cmake_object_order_depends_target_runtime_unit_tests
+build tests/CMakeFiles/runtime_unit_tests.dir/unit/test_logger.cpp.o: CXX_COMPILER__runtime_unit_tests_Release /home/yun/design/high-concurrency-runtime/tests/unit/test_logger.cpp || cmake_object_order_depends_target_runtime_unit_tests
   DEP_FILE = tests/CMakeFiles/runtime_unit_tests.dir/unit/test_logger.cpp.o.d
-  FLAGS = -g -std=c++20
+  FLAGS = -O3 -DNDEBUG -std=c++20
   INCLUDES = -I/home/yun/design/high-concurrency-runtime/include
   OBJECT_DIR = tests/CMakeFiles/runtime_unit_tests.dir
   OBJECT_FILE_DIR = tests/CMakeFiles/runtime_unit_tests.dir/unit
 
-build tests/CMakeFiles/runtime_unit_tests.dir/unit/test_memory_pool.cpp.o: CXX_COMPILER__runtime_unit_tests_Debug /home/yun/design/high-concurrency-runtime/tests/unit/test_memory_pool.cpp || cmake_object_order_depends_target_runtime_unit_tests
+build tests/CMakeFiles/runtime_unit_tests.dir/unit/test_memory_pool.cpp.o: CXX_COMPILER__runtime_unit_tests_Release /home/yun/design/high-concurrency-runtime/tests/unit/test_memory_pool.cpp || cmake_object_order_depends_target_runtime_unit_tests
   DEP_FILE = tests/CMakeFiles/runtime_unit_tests.dir/unit/test_memory_pool.cpp.o.d
-  FLAGS = -g -std=c++20
+  FLAGS = -O3 -DNDEBUG -std=c++20
   INCLUDES = -I/home/yun/design/high-concurrency-runtime/include
   OBJECT_DIR = tests/CMakeFiles/runtime_unit_tests.dir
   OBJECT_FILE_DIR = tests/CMakeFiles/runtime_unit_tests.dir/unit
 
-build tests/CMakeFiles/runtime_unit_tests.dir/unit/test_object_pool.cpp.o: CXX_COMPILER__runtime_unit_tests_Debug /home/yun/design/high-concurrency-runtime/tests/unit/test_object_pool.cpp || cmake_object_order_depends_target_runtime_unit_tests
+build tests/CMakeFiles/runtime_unit_tests.dir/unit/test_object_pool.cpp.o: CXX_COMPILER__runtime_unit_tests_Release /home/yun/design/high-concurrency-runtime/tests/unit/test_object_pool.cpp || cmake_object_order_depends_target_runtime_unit_tests
   DEP_FILE = tests/CMakeFiles/runtime_unit_tests.dir/unit/test_object_pool.cpp.o.d
-  FLAGS = -g -std=c++20
+  FLAGS = -O3 -DNDEBUG -std=c++20
   INCLUDES = -I/home/yun/design/high-concurrency-runtime/include
   OBJECT_DIR = tests/CMakeFiles/runtime_unit_tests.dir
   OBJECT_FILE_DIR = tests/CMakeFiles/runtime_unit_tests.dir/unit
 
-build tests/CMakeFiles/runtime_unit_tests.dir/unit/test_sanity.cpp.o: CXX_COMPILER__runtime_unit_tests_Debug /home/yun/design/high-concurrency-runtime/tests/unit/test_sanity.cpp || cmake_object_order_depends_target_runtime_unit_tests
+build tests/CMakeFiles/runtime_unit_tests.dir/unit/test_sanity.cpp.o: CXX_COMPILER__runtime_unit_tests_Release /home/yun/design/high-concurrency-runtime/tests/unit/test_sanity.cpp || cmake_object_order_depends_target_runtime_unit_tests
   DEP_FILE = tests/CMakeFiles/runtime_unit_tests.dir/unit/test_sanity.cpp.o.d
-  FLAGS = -g -std=c++20
+  FLAGS = -O3 -DNDEBUG -std=c++20
   INCLUDES = -I/home/yun/design/high-concurrency-runtime/include
   OBJECT_DIR = tests/CMakeFiles/runtime_unit_tests.dir
   OBJECT_FILE_DIR = tests/CMakeFiles/runtime_unit_tests.dir/unit
 
-build tests/CMakeFiles/runtime_unit_tests.dir/unit/test_thread_pool.cpp.o: CXX_COMPILER__runtime_unit_tests_Debug /home/yun/design/high-concurrency-runtime/tests/unit/test_thread_pool.cpp || cmake_object_order_depends_target_runtime_unit_tests
+build tests/CMakeFiles/runtime_unit_tests.dir/unit/test_thread_pool.cpp.o: CXX_COMPILER__runtime_unit_tests_Release /home/yun/design/high-concurrency-runtime/tests/unit/test_thread_pool.cpp || cmake_object_order_depends_target_runtime_unit_tests
   DEP_FILE = tests/CMakeFiles/runtime_unit_tests.dir/unit/test_thread_pool.cpp.o.d
-  FLAGS = -g -std=c++20
+  FLAGS = -O3 -DNDEBUG -std=c++20
   INCLUDES = -I/home/yun/design/high-concurrency-runtime/include
   OBJECT_DIR = tests/CMakeFiles/runtime_unit_tests.dir
   OBJECT_FILE_DIR = tests/CMakeFiles/runtime_unit_tests.dir/unit
 
-build tests/CMakeFiles/runtime_unit_tests.dir/unit/test_scheduler.cpp.o: CXX_COMPILER__runtime_unit_tests_Debug /home/yun/design/high-concurrency-runtime/tests/unit/test_scheduler.cpp || cmake_object_order_depends_target_runtime_unit_tests
+build tests/CMakeFiles/runtime_unit_tests.dir/unit/test_scheduler.cpp.o: CXX_COMPILER__runtime_unit_tests_Release /home/yun/design/high-concurrency-runtime/tests/unit/test_scheduler.cpp || cmake_object_order_depends_target_runtime_unit_tests
   DEP_FILE = tests/CMakeFiles/runtime_unit_tests.dir/unit/test_scheduler.cpp.o.d
-  FLAGS = -g -std=c++20
+  FLAGS = -O3 -DNDEBUG -std=c++20
   INCLUDES = -I/home/yun/design/high-concurrency-runtime/include
   OBJECT_DIR = tests/CMakeFiles/runtime_unit_tests.dir
   OBJECT_FILE_DIR = tests/CMakeFiles/runtime_unit_tests.dir/unit
@@ -1043,8 +1256,8 @@ build tests/CMakeFiles/runtime_unit_tests.dir/unit/test_scheduler.cpp.o: CXX_COM
 #############################################
 # Link the executable tests/runtime_unit_tests
 
-build tests/runtime_unit_tests tests/runtime_unit_tests[1]_tests.cmake | ${cmake_ninja_workdir}tests/runtime_unit_tests[1]_tests.cmake: CXX_EXECUTABLE_LINKER__runtime_unit_tests_Debug tests/CMakeFiles/runtime_unit_tests.dir/unit/test_buffer.cpp.o tests/CMakeFiles/runtime_unit_tests.dir/unit/test_logger.cpp.o tests/CMakeFiles/runtime_unit_tests.dir/unit/test_memory_pool.cpp.o tests/CMakeFiles/runtime_unit_tests.dir/unit/test_object_pool.cpp.o tests/CMakeFiles/runtime_unit_tests.dir/unit/test_sanity.cpp.o tests/CMakeFiles/runtime_unit_tests.dir/unit/test_thread_pool.cpp.o tests/CMakeFiles/runtime_unit_tests.dir/unit/test_scheduler.cpp.o | /usr/local/lib/libgtest_main.a libruntime_net.a libruntime_task.a /usr/local/lib/libgtest.a libruntime_foundation.a || libruntime_foundation.a libruntime_net.a libruntime_task.a
-  FLAGS = -g
+build tests/runtime_unit_tests tests/runtime_unit_tests[1]_tests.cmake | ${cmake_ninja_workdir}tests/runtime_unit_tests[1]_tests.cmake: CXX_EXECUTABLE_LINKER__runtime_unit_tests_Release tests/CMakeFiles/runtime_unit_tests.dir/unit/test_buffer.cpp.o tests/CMakeFiles/runtime_unit_tests.dir/unit/test_logger.cpp.o tests/CMakeFiles/runtime_unit_tests.dir/unit/test_memory_pool.cpp.o tests/CMakeFiles/runtime_unit_tests.dir/unit/test_object_pool.cpp.o tests/CMakeFiles/runtime_unit_tests.dir/unit/test_sanity.cpp.o tests/CMakeFiles/runtime_unit_tests.dir/unit/test_thread_pool.cpp.o tests/CMakeFiles/runtime_unit_tests.dir/unit/test_scheduler.cpp.o | /usr/local/lib/libgtest_main.a libruntime_net.a libruntime_task.a /usr/local/lib/libgtest.a libruntime_foundation.a || libruntime_foundation.a libruntime_net.a libruntime_task.a
+  FLAGS = -O3 -DNDEBUG
   LINK_LIBRARIES = /usr/local/lib/libgtest_main.a  libruntime_net.a  libruntime_task.a  /usr/local/lib/libgtest.a  libruntime_foundation.a
   OBJECT_DIR = tests/CMakeFiles/runtime_unit_tests.dir
   POST_BUILD = cd /home/yun/design/high-concurrency-runtime/build/tests && /usr/bin/cmake -D TEST_TARGET=runtime_unit_tests -D TEST_EXECUTABLE=/home/yun/design/high-concurrency-runtime/build/tests/runtime_unit_tests -D TEST_EXECUTOR= -D TEST_WORKING_DIR=/home/yun/design/high-concurrency-runtime/build/tests -D TEST_EXTRA_ARGS= -D TEST_PROPERTIES= -D TEST_PREFIX= -D TEST_SUFFIX= -D TEST_FILTER= -D NO_PRETTY_TYPES=FALSE -D NO_PRETTY_VALUES=FALSE -D TEST_LIST=runtime_unit_tests_TESTS -D CTEST_FILE=/home/yun/design/high-concurrency-runtime/build/tests/runtime_unit_tests[1]_tests.cmake -D TEST_DISCOVERY_TIMEOUT=5 -D TEST_XML_OUTPUT_DIR= -P /usr/share/cmake-3.25/Modules/GoogleTestAddTests.cmake
@@ -1062,30 +1275,30 @@ build tests/runtime_unit_tests tests/runtime_unit_tests[1]_tests.cmake | ${cmake
 
 build cmake_object_order_depends_target_runtime_integration_tests: phony || cmake_object_order_depends_target_runtime_foundation cmake_object_order_depends_target_runtime_http cmake_object_order_depends_target_runtime_net cmake_object_order_depends_target_runtime_task
 
-build tests/CMakeFiles/runtime_integration_tests.dir/integration/test_event_loop.cpp.o: CXX_COMPILER__runtime_integration_tests_Debug /home/yun/design/high-concurrency-runtime/tests/integration/test_event_loop.cpp || cmake_object_order_depends_target_runtime_integration_tests
+build tests/CMakeFiles/runtime_integration_tests.dir/integration/test_event_loop.cpp.o: CXX_COMPILER__runtime_integration_tests_Release /home/yun/design/high-concurrency-runtime/tests/integration/test_event_loop.cpp || cmake_object_order_depends_target_runtime_integration_tests
   DEP_FILE = tests/CMakeFiles/runtime_integration_tests.dir/integration/test_event_loop.cpp.o.d
-  FLAGS = -g -std=c++20
+  FLAGS = -O3 -DNDEBUG -std=c++20
   INCLUDES = -I/home/yun/design/high-concurrency-runtime/include
   OBJECT_DIR = tests/CMakeFiles/runtime_integration_tests.dir
   OBJECT_FILE_DIR = tests/CMakeFiles/runtime_integration_tests.dir/integration
 
-build tests/CMakeFiles/runtime_integration_tests.dir/integration/test_tcp_server.cpp.o: CXX_COMPILER__runtime_integration_tests_Debug /home/yun/design/high-concurrency-runtime/tests/integration/test_tcp_server.cpp || cmake_object_order_depends_target_runtime_integration_tests
+build tests/CMakeFiles/runtime_integration_tests.dir/integration/test_tcp_server.cpp.o: CXX_COMPILER__runtime_integration_tests_Release /home/yun/design/high-concurrency-runtime/tests/integration/test_tcp_server.cpp || cmake_object_order_depends_target_runtime_integration_tests
   DEP_FILE = tests/CMakeFiles/runtime_integration_tests.dir/integration/test_tcp_server.cpp.o.d
-  FLAGS = -g -std=c++20
+  FLAGS = -O3 -DNDEBUG -std=c++20
   INCLUDES = -I/home/yun/design/high-concurrency-runtime/include
   OBJECT_DIR = tests/CMakeFiles/runtime_integration_tests.dir
   OBJECT_FILE_DIR = tests/CMakeFiles/runtime_integration_tests.dir/integration
 
-build tests/CMakeFiles/runtime_integration_tests.dir/integration/test_trigger_mode.cpp.o: CXX_COMPILER__runtime_integration_tests_Debug /home/yun/design/high-concurrency-runtime/tests/integration/test_trigger_mode.cpp || cmake_object_order_depends_target_runtime_integration_tests
+build tests/CMakeFiles/runtime_integration_tests.dir/integration/test_trigger_mode.cpp.o: CXX_COMPILER__runtime_integration_tests_Release /home/yun/design/high-concurrency-runtime/tests/integration/test_trigger_mode.cpp || cmake_object_order_depends_target_runtime_integration_tests
   DEP_FILE = tests/CMakeFiles/runtime_integration_tests.dir/integration/test_trigger_mode.cpp.o.d
-  FLAGS = -g -std=c++20
+  FLAGS = -O3 -DNDEBUG -std=c++20
   INCLUDES = -I/home/yun/design/high-concurrency-runtime/include
   OBJECT_DIR = tests/CMakeFiles/runtime_integration_tests.dir
   OBJECT_FILE_DIR = tests/CMakeFiles/runtime_integration_tests.dir/integration
 
-build tests/CMakeFiles/runtime_integration_tests.dir/integration/test_http_server.cpp.o: CXX_COMPILER__runtime_integration_tests_Debug /home/yun/design/high-concurrency-runtime/tests/integration/test_http_server.cpp || cmake_object_order_depends_target_runtime_integration_tests
+build tests/CMakeFiles/runtime_integration_tests.dir/integration/test_http_server.cpp.o: CXX_COMPILER__runtime_integration_tests_Release /home/yun/design/high-concurrency-runtime/tests/integration/test_http_server.cpp || cmake_object_order_depends_target_runtime_integration_tests
   DEP_FILE = tests/CMakeFiles/runtime_integration_tests.dir/integration/test_http_server.cpp.o.d
-  FLAGS = -g -std=c++20
+  FLAGS = -O3 -DNDEBUG -std=c++20
   INCLUDES = -I/home/yun/design/high-concurrency-runtime/include
   OBJECT_DIR = tests/CMakeFiles/runtime_integration_tests.dir
   OBJECT_FILE_DIR = tests/CMakeFiles/runtime_integration_tests.dir/integration
@@ -1098,8 +1311,8 @@ build tests/CMakeFiles/runtime_integration_tests.dir/integration/test_http_serve
 #############################################
 # Link the executable tests/runtime_integration_tests
 
-build tests/runtime_integration_tests tests/runtime_integration_tests[1]_tests.cmake | ${cmake_ninja_workdir}tests/runtime_integration_tests[1]_tests.cmake: CXX_EXECUTABLE_LINKER__runtime_integration_tests_Debug tests/CMakeFiles/runtime_integration_tests.dir/integration/test_event_loop.cpp.o tests/CMakeFiles/runtime_integration_tests.dir/integration/test_tcp_server.cpp.o tests/CMakeFiles/runtime_integration_tests.dir/integration/test_trigger_mode.cpp.o tests/CMakeFiles/runtime_integration_tests.dir/integration/test_http_server.cpp.o | /usr/local/lib/libgtest_main.a libruntime_net.a libruntime_http.a /usr/local/lib/libgtest.a libruntime_net.a libruntime_task.a libruntime_foundation.a || libruntime_foundation.a libruntime_http.a libruntime_net.a libruntime_task.a
-  FLAGS = -g
+build tests/runtime_integration_tests tests/runtime_integration_tests[1]_tests.cmake | ${cmake_ninja_workdir}tests/runtime_integration_tests[1]_tests.cmake: CXX_EXECUTABLE_LINKER__runtime_integration_tests_Release tests/CMakeFiles/runtime_integration_tests.dir/integration/test_event_loop.cpp.o tests/CMakeFiles/runtime_integration_tests.dir/integration/test_tcp_server.cpp.o tests/CMakeFiles/runtime_integration_tests.dir/integration/test_trigger_mode.cpp.o tests/CMakeFiles/runtime_integration_tests.dir/integration/test_http_server.cpp.o | /usr/local/lib/libgtest_main.a libruntime_net.a libruntime_http.a /usr/local/lib/libgtest.a libruntime_net.a libruntime_task.a libruntime_foundation.a || libruntime_foundation.a libruntime_http.a libruntime_net.a libruntime_task.a
+  FLAGS = -O3 -DNDEBUG
   LINK_LIBRARIES = /usr/local/lib/libgtest_main.a  libruntime_net.a  libruntime_http.a  /usr/local/lib/libgtest.a  libruntime_net.a  libruntime_task.a  libruntime_foundation.a
   OBJECT_DIR = tests/CMakeFiles/runtime_integration_tests.dir
   POST_BUILD = cd /home/yun/design/high-concurrency-runtime/build/tests && /usr/bin/cmake -D TEST_TARGET=runtime_integration_tests -D TEST_EXECUTABLE=/home/yun/design/high-concurrency-runtime/build/tests/runtime_integration_tests -D TEST_EXECUTOR= -D TEST_WORKING_DIR=/home/yun/design/high-concurrency-runtime/build/tests -D TEST_EXTRA_ARGS= -D TEST_PROPERTIES= -D TEST_PREFIX= -D TEST_SUFFIX= -D TEST_FILTER= -D NO_PRETTY_TYPES=FALSE -D NO_PRETTY_VALUES=FALSE -D TEST_LIST=runtime_integration_tests_TESTS -D CTEST_FILE=/home/yun/design/high-concurrency-runtime/build/tests/runtime_integration_tests[1]_tests.cmake -D TEST_DISCOVERY_TIMEOUT=5 -D TEST_XML_OUTPUT_DIR= -P /usr/share/cmake-3.25/Modules/GoogleTestAddTests.cmake
@@ -1444,15 +1657,27 @@ build memory_pool_smoke_test: phony tests/memory_pool_smoke_test
 
 build object_pool_smoke_test: phony tests/object_pool_smoke_test
 
+build runtime_api: phony libruntime_api.a
+
+build runtime_config: phony libruntime_config.a
+
 build runtime_foundation: phony libruntime_foundation.a
+
+build runtime_health: phony libruntime_health.a
 
 build runtime_http: phony libruntime_http.a
 
+build runtime_inference: phony libruntime_inference.a
+
 build runtime_integration_tests: phony tests/runtime_integration_tests
+
+build runtime_metrics: phony libruntime_metrics.a
 
 build runtime_net: phony libruntime_net.a
 
 build runtime_task: phony libruntime_task.a
+
+build runtime_trace: phony libruntime_trace.a
 
 build runtime_unit_tests: phony tests/runtime_unit_tests
 
@@ -1470,7 +1695,7 @@ build tcp_server_smoke_test: phony tests/tcp_server_smoke_test
 #############################################
 # Folder: /home/yun/design/high-concurrency-runtime/build
 
-build all: phony libruntime_foundation.a libruntime_task.a libruntime_net.a libruntime_http.a examples/all tests/all
+build all: phony libruntime_foundation.a libruntime_task.a libruntime_net.a libruntime_http.a libruntime_trace.a libruntime_config.a libruntime_metrics.a libruntime_health.a libruntime_inference.a libruntime_api.a examples/all tests/all
 
 # =============================================================================
 

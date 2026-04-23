@@ -1,0 +1,2 @@
+/usr/bin/ar qc libruntime_config.a CMakeFiles/runtime_config.dir/src/config/config.cpp.o
+/usr/bin/ranlib libruntime_config.a

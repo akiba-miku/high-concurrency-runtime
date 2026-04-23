@@ -1,0 +1,2 @@
+/usr/bin/ar qc libruntime_inference.a CMakeFiles/runtime_inference.dir/src/inference/llama_engine.cpp.o CMakeFiles/runtime_inference.dir/src/inference/batch_scheduler.cpp.o
+/usr/bin/ranlib libruntime_inference.a
