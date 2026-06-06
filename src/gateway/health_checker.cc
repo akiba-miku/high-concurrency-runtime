@@ -36,9 +36,9 @@ uint64_t NowMs() {
 }
 }  // namespace
 
-HealthChecker::HealthChecker(runtime::net::EventLoop* loop, 
-                             UpstreamRegistry& registry, 
-                             HealthCheckConfig cfg) 
+HealthChecker::HealthChecker(runtime::net::EventLoop* loop,
+                             UpstreamRegistry& registry,
+                             HealthCheckConfig cfg)
   : loop_(loop), registry_(registry), cfg_(std::move(cfg)) {}
 
 

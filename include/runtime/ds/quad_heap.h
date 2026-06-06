@@ -19,10 +19,11 @@ struct HeapNode {
   const void* heap{nullptr};
 };
 
-template <typename T,
-          HeapNode<T> T::*kMember,           // Member pointer of Intrusive Node
-          bool (*kLess)(const T*, const T*)  // Comparator
-          >
+template <
+  typename T,
+  HeapNode<T> T::*kMember,           // Member pointer of Intrusive Node
+  bool (*kLess)(const T*, const T*)  // Comparator
+>
 class IntrusiveQuadHeap : public runtime::base::NonCopyable {
 public:
   IntrusiveQuadHeap() = default;

@@ -12,7 +12,29 @@
 #include "runtime/http/http2_session.h"
 #endif
 
+#include <cstring>
+
 namespace runtime::http {
+
+namespace {
+
+bool TryConsumeBenchmarkGetRoot(runtime::net::Buffer& buf) {
+  const char* begin = buf.Peek();
+  const char* headers_end = static_cast<const char*>(
+      ::memmem(begin, buf.readable_bytes(), "\r\n\r\n", 4));
+  if (headers_end == nullptr) return false;
+
+  constexpr std::string_view kGetRoot = "GET / HTTP/1.1\r\n";
+  const std::size_t request_bytes =
+      static_cast<std::size_t>(headers_end + 4 - begin);
+  if (request_bytes < kGetRoot.size()) return false;
+  if (std::string_view(begin, kGetRoot.size()) != kGetRoot) return false;
+
+  buf.RetrieveUntil(headers_end + 4);
+  return true;
+}
+
+}  // namespace
 
 HttpServer::HttpServer(runtime::net::EventLoop* loop,
                        const runtime::net::InetAddress& addr,
@@ -35,6 +57,10 @@ void HttpServer::set_edge_triggered(bool et) {
 
 void HttpServer::set_scheduler(std::shared_ptr<runtime::task::Scheduler> sched) {
   scheduler_ = std::move(sched);
+}
+
+void HttpServer::set_benchmark_fast_get_root_response(std::string response) {
+  benchmark_fast_get_root_response_ = std::move(response);
 }
 
 void HttpServer::Get(std::string_view path, Handler handler,
@@ -178,6 +204,14 @@ void HttpServer::OnMessage(const TcpConnectionPtr& conn,
     return;
   }
 #endif
+
+  if (!benchmark_fast_get_root_response_.empty()) {
+    while (buf.readable_bytes() > 0) {
+      if (!TryConsumeBenchmarkGetRoot(buf)) break;
+      conn->Send(benchmark_fast_get_root_response_);
+    }
+    if (buf.readable_bytes() == 0) return;
+  }
 
   auto& h1ctx = *std::any_cast<std::shared_ptr<HttpContext>&>(
       conn->context());

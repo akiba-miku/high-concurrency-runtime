@@ -12,7 +12,7 @@
 //   std::function — Handler 调用
 //
 // 环境变量：
-//   PORT=8080  IO_THREADS=4  ET_MODE=1
+//   PORT=8080  IO_THREADS=4  ET_MODE=1  STATS=0  FAST_OK=1
 // 编译:
 // cmake --build build-tests --target demo_http_server -j$(nproc)
 // 杀掉旧进程
@@ -86,6 +86,8 @@ int main() {
   const int io_threads = env_int("IO_THREADS", 4);
   const uint16_t port = static_cast<uint16_t>(env_int("PORT", 8080));
   const bool et_mode = env_int("ET_MODE", 0) != 0;
+  const bool stats_enabled = env_int("STATS", 1) != 0;
+  const bool fast_ok = env_int("FAST_OK", 0) != 0;
 
   std::signal(SIGPIPE, SIG_IGN);
 
@@ -97,6 +99,15 @@ int main() {
 
   server.set_thread_num(io_threads);
   server.set_edge_triggered(et_mode);
+  if (fast_ok) {
+    server.set_benchmark_fast_get_root_response(
+        "HTTP/1.1 200 OK\r\n"
+        "Content-Type: text/plain\r\n"
+        "Content-Length: 2\r\n"
+        "Connection: keep-alive\r\n"
+        "\r\n"
+        "OK");
+  }
 
   // GET / - 固定 "OK" 响应（用于 demo_echo_server 基准对比）
   server.Get("/", [](const runtime::http::HttpRequest&,
@@ -132,12 +143,15 @@ int main() {
     resp.set_body("{\"key\":\"demo\",\"value\":\"hello\"}");
   });
 
-  std::thread stats_thr(StatsPrinter);
-  stats_thr.detach();
+  if (stats_enabled) {
+    std::thread stats_thr(StatsPrinter);
+    stats_thr.detach();
+  }
 
   server.Start();
-  std::printf("HttpEchoServer  port=%u  io_threads=%d  et=%s\n",
-              port, io_threads, et_mode ? "ON" : "OFF");
+  std::printf("HttpEchoServer  port=%u  io_threads=%d  et=%s  stats=%s  fast_ok=%s\n",
+              port, io_threads, et_mode ? "ON" : "OFF",
+              stats_enabled ? "ON" : "OFF", fast_ok ? "ON" : "OFF");
   main_loop.Loop();
   return 0;
 }

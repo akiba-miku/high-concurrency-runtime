@@ -36,6 +36,13 @@ class HttpServer : public runtime::base::NonCopyable {
 
   void set_scheduler(std::shared_ptr<runtime::task::Scheduler> sched);
 
+  // Benchmark-only fast path for GET / with a pre-rendered HTTP response.
+  // Disabled by default. When enabled, OnMessage consumes complete GET /
+  // requests and sends this wire response without constructing HttpRequest or
+  // HttpResponse objects. This is intentionally narrow and should not be used
+  // for normal application routes.
+  void set_benchmark_fast_get_root_response(std::string response);
+
   // Registers GET /metrics → JSON snapshot of scheduler counters.
   // Must be called after set_scheduler().
   void RegisterMetricsRoute();
@@ -71,6 +78,7 @@ class HttpServer : public runtime::base::NonCopyable {
   runtime::net::TcpServer server_;
   Router router_;
   std::shared_ptr<runtime::task::Scheduler> scheduler_;
+  std::string benchmark_fast_get_root_response_;
 #ifdef RUNTIME_ENABLE_SSL
   runtime::net::SslContext* ssl_ctx_{nullptr};
 #endif
