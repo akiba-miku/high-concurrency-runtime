@@ -134,6 +134,22 @@ target_link_libraries(http_smoke_test
 
 add_test(NAME http_smoke_test COMMAND http_smoke_test)
 
+add_executable(debug_handler_smoke_test
+    unit/test_debug_handler_smoke.cc
+)
+
+target_include_directories(debug_handler_smoke_test
+    PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}/../include
+)
+
+target_link_libraries(debug_handler_smoke_test
+    PRIVATE
+        runtime_http
+)
+
+add_test(NAME debug_handler_smoke_test COMMAND debug_handler_smoke_test)
+
 
 
 add_executable(epoll_poller_smoke_test
