@@ -40,8 +40,8 @@ Foundation     ─── runtime::base / ds / log / time / task / memory / metri
 
 - Asynchronous double-buffered logger
 - `MemoryPool`, `ObjectPool` allocators
-- `Scheduler`, `ThreadPool`, `WorkQueue` with cooperative cancellation
-- `runtime::ds::IntrusiveRBTree<T, kMember, kLess>` and `IntrusiveQuadHeap` — generic intrusive data structures with zero per-node heap allocation
+- `BlockingExecutor` with bounded FIFO queue and cooperative cancellation
+- `runtime::ds::IntrusiveRBTree<T, kLess, Tag>` v4 and `IntrusiveQuadHeap` — generic intrusive data structures with zero per-node heap allocation
 - `Counter`, `Gauge`, `Histogram`, `Registry` metrics interfaces
 
 ## Requirements
@@ -158,6 +158,56 @@ target_link_libraries(my_tcp   PRIVATE runtime_net)
 target_link_libraries(my_util  PRIVATE runtime_foundation)
 ```
 
+### IntrusiveRBTree v4
+
+The v4 red-black tree replaces the embedded member hook with a C++20 base
+hook. Elements publicly and non-virtually inherit `RBTNode<T, Tag>`, and the
+comparator is passed directly to `IntrusiveRBTree`:
+
+```cpp
+#include "runtime/ds/intrusive_rbtree.h"
+
+struct Job : runtime::ds::RBTNode<Job> {
+    int id;
+    std::int64_t deadline_ms;
+};
+
+bool JobLess(const Job* lhs, const Job* rhs) {
+    if (lhs->deadline_ms != rhs->deadline_ms) {
+        return lhs->deadline_ms < rhs->deadline_ms;
+    }
+    return lhs->id < rhs->id;  // Tie-break equivalent keys.
+}
+
+using JobTree = runtime::ds::IntrusiveRBTree<Job, JobLess>;
+```
+
+Key properties:
+
+- The hook stores parent, color, and linked state in one pointer-tagged word; no owner pointer or per-node allocation is required.
+- A header sentinel caches root, minimum, and maximum. `empty()`, `size()`, and `earliest()` are O(1); `Insert()` and `Erase()` are O(log n).
+- `PopWhile(pred)` returns matching elements in key order. `PopWhile(pred, on_pop)` avoids a result vector and invokes the callback after each node has been unlinked.
+- `InTree()` reports whether a hook is linked. Repeated insertion is ignored, and erasing an unlinked element returns `false`.
+- The optional `Tag` parameter supports multiple independent tree hooks on one type.
+- `CheckRBInvariants()` performs an O(n) debug validation of red-black properties, ordering, links, size, and cached root/min/max state.
+
+The comparator must provide a strict total order for all simultaneously linked
+elements. Since hooks do not store a tree owner, calling `Erase()` on a tree
+other than the one containing the element is undefined behavior.
+
+Migration from v3:
+
+```cpp
+// v3: member hook
+// struct Job { runtime::ds::RBTNode<Job> tree_node; };
+// using JobTree =
+//     runtime::ds::IntrusiveRBTree<Job, &Job::tree_node, JobLess>;
+
+// v4: base hook
+struct Job : runtime::ds::RBTNode<Job> {};
+using JobTree = runtime::ds::IntrusiveRBTree<Job, JobLess>;
+```
+
 ### Gateway example
 
 ```cpp
@@ -230,15 +280,15 @@ int main() {
 }
 ```
 
-### Task scheduler example
+### Blocking executor example
 
 ```cpp
-#include "runtime/task/scheduler.h"
+#include "runtime/task/blocking_executor.h"
 #include <iostream>
 
 int main() {
-    runtime::task::Scheduler scheduler(4);
-    auto handle = scheduler.Submit([] { std::cout << "hello\n"; });
+    runtime::task::BlockingExecutor executor(4);
+    auto handle = executor.Submit([] { std::cout << "hello\n"; });
     handle.Wait();
 }
 ```
@@ -250,7 +300,7 @@ Library targets:
 | `runtime_gateway` | Gateway, proxy, load balancers, health checker |
 | `runtime_http` | HTTP server, Trie router, request/response, context |
 | `runtime_net` | EventLoop, TcpServer, Channel, Poller, Buffer, TimerQueue |
-| `runtime_task` | Scheduler, ThreadPool, Task, WorkQueue |
+| `runtime_task` | BlockingExecutor, TaskHandle, cooperative cancellation |
 | `runtime_foundation` | Logger, Timestamp, MemoryPool, ObjectPool, `runtime::ds`, metrics |
 
 ## Run Tests
@@ -269,7 +319,7 @@ Notable tests:
 
 | Binary | What it tests |
 |---|---|
-| `rbtree_validator` | 10 M ops vs `std::set` oracle + `CheckRBInvariants()` every step |
+| `rbtree_validator` | v4 ordered insert/erase patterns, callback `PopWhile()`, churn campaigns, and 10 M ops vs `std::set` with `CheckRBInvariants()` every step |
 | `quad_heap_test` | intrusive 4-ary heap insert, erase, duplicate insert, cross-heap safety, and ordered `PopWhile()` |
 | `http_smoke_test` | HTTP parsing and routing (no GTest required) |
 | `buffer_smoke_test` | Buffer read / write / prepend |
@@ -294,7 +344,7 @@ Notes:
 │   ├── memory/      # MemoryPool, ObjectPool
 │   ├── metrics/     # Counter, Gauge, Histogram, Registry
 │   ├── net/         # EventLoop, TcpServer, Channel, Poller, Buffer, TimerQueue
-│   ├── task/        # Scheduler, ThreadPool, Task, WorkQueue, coro
+│   ├── task/        # BlockingExecutor, TaskHandle, cancellation
 │   ├── time/        # Timestamp, Timer, TimerId, TimerTree
 │   └── trace/       # TraceId, LifecycleTrace
 ├── src/             # Implementations (mirrors include layout)
@@ -320,9 +370,9 @@ Net Layer       runtime::net
   Buffer, TimerQueue (timerfd-backed)
 
 Foundation      runtime::base / ds / log / time / task / memory / metrics
-  AsyncLogger, Scheduler, ThreadPool
+  AsyncLogger, BlockingExecutor
   MemoryPool, ObjectPool
-  runtime::ds::IntrusiveRBTree<T, kMember, kLess>, IntrusiveQuadHeap
+  runtime::ds::IntrusiveRBTree<T, kLess, Tag>, IntrusiveQuadHeap
   Timestamp, Timer, TimerTree, Counter, Gauge, Histogram
 ```
 

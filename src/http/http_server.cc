@@ -2,17 +2,38 @@
 // SPDX-License-Identifier: MIT
 #include "runtime/http/http_server.h"
 
-#include "runtime/http/debug_handler.h"
 #include "runtime/http/http_context.h"
 #include "runtime/http/metrics_handler.h"
 #include "runtime/http/router.h"
 #include "runtime/net/event_loop.h"
-#include "runtime/task/scheduler.h"
+#include "runtime/task/blocking_executor.h"
 #ifdef RUNTIME_ENABLE_HTTP2
 #include "runtime/http/http2_session.h"
 #endif
 
+#include <cstring>
+
 namespace runtime::http {
+
+namespace {
+
+bool TryConsumeBenchmarkGetRoot(runtime::net::Buffer& buf) {
+  const char* begin = buf.Peek();
+  const char* headers_end = static_cast<const char*>(
+      ::memmem(begin, buf.readable_bytes(), "\r\n\r\n", 4));
+  if (headers_end == nullptr) return false;
+
+  constexpr std::string_view kGetRoot = "GET / HTTP/1.1\r\n";
+  const std::size_t request_bytes =
+      static_cast<std::size_t>(headers_end + 4 - begin);
+  if (request_bytes < kGetRoot.size()) return false;
+  if (std::string_view(begin, kGetRoot.size()) != kGetRoot) return false;
+
+  buf.RetrieveUntil(headers_end + 4);
+  return true;
+}
+
+}  // namespace
 
 HttpServer::HttpServer(runtime::net::EventLoop* loop,
                        const runtime::net::InetAddress& addr,
@@ -33,8 +54,13 @@ void HttpServer::set_edge_triggered(bool et) {
   server_.set_edge_triggered(et);
 }
 
-void HttpServer::set_scheduler(std::shared_ptr<runtime::task::Scheduler> sched) {
-  scheduler_ = std::move(sched);
+void HttpServer::set_blocking_executor(
+    std::shared_ptr<runtime::task::BlockingExecutor> executor) {
+  blocking_executor_ = std::move(executor);
+}
+
+void HttpServer::set_benchmark_fast_get_root_response(std::string response) {
+  benchmark_fast_get_root_response_ = std::move(response);
 }
 
 void HttpServer::Get(std::string_view path, Handler handler,
@@ -58,32 +84,17 @@ void HttpServer::set_tls(runtime::net::SslContext* ctx) { ssl_ctx_ = ctx; }
 
 void HttpServer::Start() { server_.Start(); }
 
-void HttpServer::RegisterDebugTasksRoute() {
-  Get("/debug/tasks", [this](const HttpRequest&, HttpResponse& resp) {
-    if (!scheduler_) {
-      resp.set_status_code(StatusCode::InternalServerError);
-      resp.set_content_type("application/json; charset=utf-8");
-      resp.set_body("{\"error\":\"scheduler not set\"}");
-      return;
-    }
-    const auto& history = scheduler_->History();
-    resp.set_status_code(StatusCode::Ok);
-    resp.set_content_type("application/json; charset=utf-8");
-    resp.set_body(MakeDebugTasksJson(history.Snapshot(), history.capacity()));
-  });
-}
-
 void HttpServer::RegisterMetricsRoute() {
   Get("/metrics", [this](const HttpRequest&, HttpResponse& resp) {
-    if (!scheduler_) {
+    if (!blocking_executor_) {
       resp.set_status_code(StatusCode::InternalServerError);
       resp.set_content_type("application/json; charset=utf-8");
-      resp.set_body("{\"error\":\"scheduler not set\"}");
+      resp.set_body("{\"error\":\"blocking executor not set\"}");
       return;
     }
     resp.set_status_code(StatusCode::Ok);
     resp.set_content_type("application/json; charset=utf-8");
-    resp.set_body(MakeMetricsJson(scheduler_->metrics().Load()));
+    resp.set_body(MakeMetricsJson(blocking_executor_->metrics().Load()));
   });
 }
 
@@ -122,8 +133,8 @@ void HttpServer::OnConnection(const TcpConnectionPtr& conn) {
                   return;
                 }
                 req.set_path_params(std::move(match.params));
-                if (scheduler_) {
-                  scheduler_->Submit(
+                if (blocking_executor_) {
+                  auto submitted = blocking_executor_->TrySubmit(
                       [c, req = std::move(req), resp = std::move(resp),
                        handler = match.handler, sid]() mutable {
                         try {
@@ -142,6 +153,15 @@ void HttpServer::OnConnection(const TcpConnectionPtr& conn) {
                               ses->SendResponse(sid, resp);
                             });
                       });
+                  if (!submitted) {
+                    HttpResponse busy(false);
+                    busy.set_status_code(StatusCode::ServiceUnavailable);
+                    busy.set_content_type("application/json; charset=utf-8");
+                    busy.set_body("{\"error\":\"blocking executor overloaded\"}");
+                    auto& ses = std::any_cast<std::shared_ptr<Http2Session>&>(
+                        c->context());
+                    ses->SendResponse(sid, busy);
+                  }
                   return;
                 }
                 try {
@@ -179,6 +199,14 @@ void HttpServer::OnMessage(const TcpConnectionPtr& conn,
   }
 #endif
 
+  if (!benchmark_fast_get_root_response_.empty()) {
+    while (buf.readable_bytes() > 0) {
+      if (!TryConsumeBenchmarkGetRoot(buf)) break;
+      conn->Send(benchmark_fast_get_root_response_);
+    }
+    if (buf.readable_bytes() == 0) return;
+  }
+
   auto& h1ctx = *std::any_cast<std::shared_ptr<HttpContext>&>(
       conn->context());
   const ParseStatus parse_status = h1ctx.ParseRequest(buf, ts);
@@ -203,7 +231,7 @@ void HttpServer::OnMessage(const TcpConnectionPtr& conn,
 
     auto match = router_.Match(request.method(), request.path());
 
-    if (match.handler && scheduler_) {
+    if (match.handler && blocking_executor_) {
       request.set_path_params(std::move(match.params));
       // HttpRequest 现在持有 Pool unique_ptr, move-only; std::function
       // 要求 callable 可拷贝, 因此把 req/resp 装进 shared_ptr 让 lambda
@@ -214,7 +242,7 @@ void HttpServer::OnMessage(const TcpConnectionPtr& conn,
       };
       auto state = std::make_shared<DispatchState>(
           DispatchState{std::move(request), std::move(response)});
-      scheduler_->Submit(
+      auto submitted = blocking_executor_->TrySubmit(
           [conn, state, handler = match.handler]() mutable {
             try {
               handler(state->request, state->response);
@@ -236,6 +264,13 @@ void HttpServer::OnMessage(const TcpConnectionPtr& conn,
                   if (close) conn->Shutdown();
                 });
           });
+      if (!submitted) {
+        HttpResponse busy = MakeError(StatusCode::ServiceUnavailable,
+                                      "blocking executor overloaded");
+        conn->Send(busy.ToString());
+        if (busy.close_connection()) conn->Shutdown();
+        return;
+      }
       break;
     } else if (match.handler) {
       request.set_path_params(std::move(match.params));

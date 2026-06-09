@@ -40,8 +40,8 @@ Foundation     ─── runtime::base / ds / log / time / task / memory / metri
 
 - 异步双缓冲日志
 - `MemoryPool`、`ObjectPool` 内存分配器
-- `Scheduler`、`ThreadPool`、`WorkQueue`，支持协作式任务取消
-- `runtime::ds::IntrusiveRBTree<T, kMember, kLess>` 和 `IntrusiveQuadHeap` — 泛型侵入式数据结构，节点零堆分配
+- `BlockingExecutor`，支持有界 FIFO 队列和协作式任务取消
+- `runtime::ds::IntrusiveRBTree<T, kLess, Tag>` v4 和 `IntrusiveQuadHeap` — 泛型侵入式数据结构，节点零堆分配
 - `Counter`、`Gauge`、`Histogram`、`Registry` 指标接口
 
 ## 环境要求
@@ -156,6 +156,54 @@ target_link_libraries(my_tcp   PRIVATE runtime_net)
 target_link_libraries(my_util  PRIVATE runtime_foundation)
 ```
 
+### IntrusiveRBTree v4
+
+v4 红黑树将旧版的成员 hook 改为 C++20 基类 hook。元素需要公开、非虚继承
+`RBTNode<T, Tag>`，比较函数直接作为 `IntrusiveRBTree` 的模板参数：
+
+```cpp
+#include "runtime/ds/intrusive_rbtree.h"
+
+struct Job : runtime::ds::RBTNode<Job> {
+    int id;
+    std::int64_t deadline_ms;
+};
+
+bool JobLess(const Job* lhs, const Job* rhs) {
+    if (lhs->deadline_ms != rhs->deadline_ms) {
+        return lhs->deadline_ms < rhs->deadline_ms;
+    }
+    return lhs->id < rhs->id;  // 为相同截止时间提供稳定的次级排序键。
+}
+
+using JobTree = runtime::ds::IntrusiveRBTree<Job, JobLess>;
+```
+
+主要特性：
+
+- hook 使用指针标记，将父指针、颜色和 linked 状态压缩在一个机器字中；不保存 owner 指针，也不为节点单独分配内存。
+- header sentinel 同时缓存根、最小和最大节点。`empty()`、`size()`、`earliest()` 为 O(1)，`Insert()`、`Erase()` 为 O(log n)。
+- `PopWhile(pred)` 按 key 顺序返回匹配元素；`PopWhile(pred, on_pop)` 不创建结果 vector，并在节点解除链接后调用回调。
+- `InTree()` 可检查 hook 是否已链接；重复插入会被忽略，删除未链接元素返回 `false`。
+- 可选 `Tag` 参数允许同一元素类型拥有多个相互独立的树 hook。
+- `CheckRBInvariants()` 提供 O(n) 调试校验，覆盖红黑树性质、排序、父子链接、节点数量以及 root/min/max 缓存。
+
+比较函数必须为所有同时入树的元素提供严格全序；存在相同 key 时应增加次级排序键。
+hook 不记录所属树，因此对不包含该元素的另一棵树调用 `Erase()` 属于未定义行为。
+
+从 v3 迁移：
+
+```cpp
+// v3：成员 hook
+// struct Job { runtime::ds::RBTNode<Job> tree_node; };
+// using JobTree =
+//     runtime::ds::IntrusiveRBTree<Job, &Job::tree_node, JobLess>;
+
+// v4：基类 hook
+struct Job : runtime::ds::RBTNode<Job> {};
+using JobTree = runtime::ds::IntrusiveRBTree<Job, JobLess>;
+```
+
 ### 网关示例
 
 ```cpp
@@ -231,12 +279,12 @@ int main() {
 ### 任务调度示例
 
 ```cpp
-#include "runtime/task/scheduler.h"
+#include "runtime/task/blocking_executor.h"
 #include <iostream>
 
 int main() {
-    runtime::task::Scheduler scheduler(4);
-    auto handle = scheduler.Submit([] { std::cout << "hello\n"; });
+    runtime::task::BlockingExecutor executor(4);
+    auto handle = executor.Submit([] { std::cout << "hello\n"; });
     handle.Wait();
 }
 ```
@@ -248,7 +296,7 @@ int main() {
 | `runtime_gateway` | 网关、反向代理、负载均衡器、健康检查 |
 | `runtime_http` | HTTP 服务器、Trie 路由、请求/响应、上下文 |
 | `runtime_net` | EventLoop、TcpServer、Channel、Poller、Buffer、TimerQueue |
-| `runtime_task` | Scheduler、ThreadPool、Task、WorkQueue |
+| `runtime_task` | BlockingExecutor、TaskHandle、协作式取消 |
 | `runtime_foundation` | 日志、时间戳、MemoryPool、ObjectPool、`runtime::ds`、指标 |
 
 ## 运行测试
@@ -267,7 +315,7 @@ ctest --test-dir build -R rbtree_validator --output-on-failure
 
 | 二进制 | 测试内容 |
 |---|---|
-| `rbtree_validator` | 1000 万次操作对比 `std::set` 对数器 + 每步 `CheckRBInvariants()` |
+| `rbtree_validator` | v4 有序插删、回调式 `PopWhile()`、churn 测试，以及 1000 万次操作对比 `std::set` 并逐步执行 `CheckRBInvariants()` |
 | `http_smoke_test` | HTTP 解析与路由（不依赖 GTest） |
 | `buffer_smoke_test` | Buffer 读/写/预置 |
 | `runtime_unit_tests` | GTest 套件：buffer、logger、内存池、调度器 |
@@ -291,7 +339,7 @@ ctest --test-dir build -R rbtree_validator --output-on-failure
 │   ├── memory/      # MemoryPool、ObjectPool
 │   ├── metrics/     # Counter、Gauge、Histogram、Registry
 │   ├── net/         # EventLoop、TcpServer、Channel、Poller、Buffer、TimerQueue
-│   ├── task/        # Scheduler、ThreadPool、Task、WorkQueue、coro
+│   ├── task/        # BlockingExecutor、TaskHandle、取消
 │   ├── time/        # Timestamp、Timer、TimerId、TimerTree
 │   └── trace/       # TraceId、LifecycleTrace
 ├── src/             # 各模块实现（目录结构与 include 对称）
@@ -317,9 +365,9 @@ Net Layer       runtime::net
   Buffer、TimerQueue（基于 timerfd）
 
 Foundation      runtime::base / ds / log / time / task / memory / metrics
-  AsyncLogger、Scheduler、ThreadPool
+  AsyncLogger、BlockingExecutor
   MemoryPool、ObjectPool
-  runtime::ds::IntrusiveRBTree<T, kMember, kLess>、IntrusiveQuadHeap
+  runtime::ds::IntrusiveRBTree<T, kLess, Tag>、IntrusiveQuadHeap
   Timestamp、Timer、TimerTree、Counter、Gauge、Histogram
 ```
 
