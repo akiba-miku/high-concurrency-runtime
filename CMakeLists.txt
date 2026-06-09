@@ -51,6 +51,7 @@ add_library(runtime_foundation STATIC
     src/memory/pool.cc
     src/time/timestamp.cc
     src/time/timer_tree.cc
+    src/trace/trace_recorder.cc
 )
 
 target_include_directories(runtime_foundation
