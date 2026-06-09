@@ -86,6 +86,22 @@ target_link_libraries(trace_smoke_test
 
 add_test(NAME trace_smoke_test COMMAND trace_smoke_test)
 
+add_executable(event_journal_smoke_test
+    unit/test_event_journal_smoke.cc
+)
+
+target_include_directories(event_journal_smoke_test
+    PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}/../include
+)
+
+target_link_libraries(event_journal_smoke_test
+    PRIVATE
+        runtime_foundation
+)
+
+add_test(NAME event_journal_smoke_test COMMAND event_journal_smoke_test)
+
 add_executable(buffer_smoke_test
     unit/test_buffer_smoke.cc
 )

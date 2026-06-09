@@ -52,6 +52,7 @@ add_library(runtime_foundation STATIC
     src/time/timestamp.cc
     src/time/timer_tree.cc
     src/trace/trace_recorder.cc
+    src/events/event_journal.cc
 )
 
 target_include_directories(runtime_foundation
