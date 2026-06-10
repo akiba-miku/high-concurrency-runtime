@@ -8,6 +8,7 @@
 #include "runtime/base/current_thread.h"
 #include "runtime/log/async_logger.h"
 #include "runtime/time/timestamp.h"
+#include "runtime/trace/trace_context.h"
 
 namespace runtime::log {
 
@@ -30,6 +31,15 @@ std::string FormatLogMessage(LogLevel level, const char* file, int line,
   result += "] [";
   result += func;
   result += "] ";
+  // 请求作用域内 (ScopedTrace) 追加 trace 关联段, 非请求日志格式不变
+  const trace::TraceContext& current = trace::CurrentTrace();
+  if (current.Valid()) {
+    result += "[trace:";
+    result += current.TraceIdHex();
+    result += '/';
+    result += current.SpanIdHex();
+    result += "] ";
+  }
   result += message;
   result += '\n';
   return result;

@@ -8,6 +8,7 @@
 #include "runtime/log/async_logger.h"
 #include "runtime/log/log_buffer.h"
 #include "runtime/log/logger.h"
+#include "runtime/trace/trace_context.h"
 
 namespace {
 
@@ -95,6 +96,41 @@ bool TestLoggerIntegration() {
     return true;
 }
 
+bool TestTraceCorrelation() {
+    const auto path = UniqueLogPath("trace-corr-smoke");
+    auto& logger = runtime::log::Logger::Instance();
+    logger.Init(path.string(), runtime::log::LogLevel::DEBUG, 10);
+
+    const auto ctx = runtime::trace::NewRootContext();
+    {
+        runtime::trace::ScopedTrace scoped{ctx};
+        LOG_INFO() << "inside trace scope";
+    }
+    LOG_INFO() << "outside trace scope";
+    logger.Shutdown();
+
+    const std::string output = ReadFile(path);
+    std::filesystem::remove(path);
+
+    const std::string expected =
+        "[trace:" + ctx.TraceIdHex() + "/" + ctx.SpanIdHex() + "]";
+    if (!Expect(output.find(expected) != std::string::npos,
+                "in-scope log should carry the trace correlation tag")) {
+        return false;
+    }
+    const auto outside_pos = output.find("outside trace scope");
+    if (!Expect(outside_pos != std::string::npos,
+                "out-of-scope log should be persisted")) return false;
+    // 作用域外的那一行不应再出现 [trace:
+    const auto line_start = output.rfind('\n', outside_pos);
+    const std::string outside_line = output.substr(
+        line_start == std::string::npos ? 0 : line_start + 1,
+        outside_pos - (line_start == std::string::npos ? 0 : line_start + 1));
+    if (!Expect(outside_line.find("[trace:") == std::string::npos,
+                "out-of-scope log should not carry a trace tag")) return false;
+    return true;
+}
+
 }  // namespace
 
 int main() {
@@ -102,6 +138,7 @@ int main() {
         if (!TestLogBuffer()) return 1;
         if (!TestFormatter()) return 1;
         if (!TestLoggerIntegration()) return 1;
+        if (!TestTraceCorrelation()) return 1;
     } catch (const std::exception& ex) {
         std::cerr << "[FAIL] unexpected exception: " << ex.what() << '\n';
         return 1;
