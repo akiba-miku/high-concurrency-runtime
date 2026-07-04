@@ -55,27 +55,6 @@ target_link_libraries(vexo_foundation
 
 target_compile_features(vexo_foundation PUBLIC cxx_std_23)
 
-add_library(vexo_task STATIC
-    src/task/thread_pool.cc
-    src/task/task.cc
-    src/task/task_handle.cc
-    src/task/work_queue.cc
-    src/task/blocking_executor.cc
-)
-
-target_include_directories(vexo_task
-    PUBLIC
-        ${CMAKE_CURRENT_SOURCE_DIR}/include
-)
-
-target_link_libraries(vexo_task
-    PUBLIC
-        vexo_foundation
-        Threads::Threads
-)
-
-target_compile_features(vexo_task PUBLIC cxx_std_23)
-
 set(VEXO_BUFFER_IMPL "muduo" CACHE STRING "Buffer implementation: muduo | ringbuf | nginx")
 
 if(VEXO_BUFFER_IMPL STREQUAL "ringbuf")
@@ -168,7 +147,6 @@ set(VEXO_HTTP_SOURCES
     src/http/http_response.cc
     src/http/router.cc
     src/http/http_server.cc
-    src/http/metrics_handler.cc
 )
 
 add_library(vexo_http STATIC ${VEXO_HTTP_SOURCES})
@@ -181,7 +159,6 @@ target_include_directories(vexo_http
 target_link_libraries(vexo_http
     PUBLIC
         vexo_net
-        vexo_task
         vexo_foundation
         Threads::Threads
 )

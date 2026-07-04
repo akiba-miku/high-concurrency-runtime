@@ -512,14 +512,12 @@ if(GTest_FOUND)
         unit/test_net_utils.cc
         unit/test_object_pool.cc
         unit/test_sanity.cc
-        unit/test_blocking_executor.cc
     )
 
     target_link_libraries(vexo_unit_tests
         PRIVATE
             GTest::gtest_main
             vexo_net
-            vexo_task
     )
 
     gtest_discover_tests(vexo_unit_tests DISCOVERY_MODE PRE_TEST)
